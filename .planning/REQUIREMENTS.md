@@ -104,7 +104,7 @@
 - [x] **PROJ-13**: Đơn vị chủ trì sao chép đề án từ đề án cũ (prefill toàn bộ data, sửa năm + chỉnh)
 - [x] **PROJ-14**: Đơn vị chủ trì nộp đề án — server action validate đầy đủ + ghi nhận thời điểm nộp + chuyển trạng thái SUBMITTED + tăng version
 - [x] **PROJ-15**: Đơn vị chủ trì rút hồ sơ trước khi được tiếp nhận (chỉ khi status = SUBMITTED, chưa được phân công)
-- [ ] **PROJ-16**: Đơn vị chủ trì in/xuất PDF hồ sơ đề án (header Bộ CT, Quốc hiệu, font Be Vietnam Pro, dấu mộc placeholder, watermark "BẢN MẪU")
+- [x] **PROJ-16**: Đơn vị chủ trì in/xuất PDF hồ sơ đề án (header Bộ CT, Quốc hiệu, font Be Vietnam Pro, dấu mộc placeholder, watermark "BẢN MẪU")
 - [x] **PROJ-17**: Đề án 2 năm: toggle "Đề án 2 năm" → tự động tạo 2 records cho 2 năm liên tiếp với parentProjectId link
 - [x] **PROJ-18**: Đề án 2 năm hiển thị badge "Tiếp nối từ [tên đề án năm trước]" và link điều hướng
 - [x] **PROJ-19**: Đơn vị chủ trì theo dõi trạng thái xử lý đề án (timeline visual: SUBMITTED → ASSIGNED → IN_REVIEW → SUPPLEMENT_REQUIRED → RESUBMITTED → VALID → EVALUATING → APPROVED → ...)
@@ -395,7 +395,7 @@ Explicit exclusions cho prototype POC này.
 | PROJ-13 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-14 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-15 | Phase 5 (M2.3 Đề án HERO) | Complete |
-| PROJ-16 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-16 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-17 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-18 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-19 | Phase 5 (M2.3 Đề án HERO) | Complete |

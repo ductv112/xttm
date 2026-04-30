@@ -116,7 +116,7 @@ Plans:
 Plans:
 - [x] 05-01-foundation-PLAN.md — Schema verify + state machine 14 states + ProjectVersion + 11 server actions (autosave/submit/withdraw/copy-from-previous/upload với magic byte) + 6 mock projects (PROJ-01,03,12-15,17-22) — Wave 1
 - [x] 05-02-wizard-6-buoc-PLAN.md — Wizard 6 bước với Stepper + Zustand persist + RHF + autosave 2s — Wave 2
-- [ ] 05-03-detail-pdf-versions-PLAN.md — Trang chi tiết + xuất PDF + tab lịch sử versions — Wave 3
+- [x] 05-03-detail-pdf-versions-PLAN.md — Trang chi tiết + xuất PDF + tab lịch sử versions — Wave 3
 **UI hint**: yes
 
 ### Phase 6: M2.4 Tiếp nhận & Kiểm tra hồ sơ

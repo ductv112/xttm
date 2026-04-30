@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed Phase 5 Plan 02 (wizard 6 bước HERO)
-last_updated: "2026-04-30T22:51:29.531Z"
+status: verifying
+stopped_at: Completed Phase 5 Plan 03 + Phase 5 done — ready for verification
+last_updated: "2026-04-30T23:13:05.421Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 25
-  completed_plans: 24
-  percent: 96
+  completed_plans: 25
+  percent: 100
 ---
 
 # Project State
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 
 Phase: 5 (M2.3 Khai báo & Nộp Đề án (HERO)) — EXECUTING
 Plan: 3 of 3
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-04-30
 
 Progress: [░░░░░░░░░░] 0%
@@ -79,6 +79,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì P02 | 22m | 2 tasks | 16 files |
 | Phase 05-m2.3-khai-báo-nộp-đề-án P01 | 13m | 3 tasks | 14 files |
 | Phase 05-m2.3-khai-báo-nộp-đề-án P02 | 17m | 3 tasks | 15 files |
+| Phase 05-m2.3-khai-báo-nộp-đề-án P03 | 25m | 3 tasks | 18 files |
 
 ## Accumulated Context
 
@@ -169,6 +170,9 @@ Recent decisions affecting current work:
 - [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-01: 11 server actions trong app/(app)/de-an/_actions với pattern Per-step Zod schemas (generalInfoSchema/objectivesSchema/planSchema/budgetSchema/pmContactSchema/documentSchema) Internal-suffixed + alias re-exports — wizard client Phase 5 Plan 02 import schemas direct; upload-document magic byte verification PDF/DOC/DOCX/XLSX/JPG/PNG (T-05-01-04) UUID filename + path.resolve guard, 10MB/file 20/project quota
 - [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-02: Wizard 6 bước reuse pattern Phase 3 (Stepper + Zustand persist + RHF per-step) với userId-scoped persist key (project-wizard-{userId}); autosave debounce 2s on store-level subscription gọi saveDraftProject server action thay vì chỉ localStorage; Step5 first-upload force-saves draft để đảm bảo có projectId; Step6 submit = final saveDraft pass + submitProject với idempotency 5s window
 - [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-02: Step3 dual-total breakdown (Nhà nước + Đối ứng) với amount column auto-calc readonly = qty × unitPrice trên mỗi row update; ngân sách tham chiếu manual input validate >= total; Step4 auto-pick contact khi đơn vị chỉ có 1 contact (UX gem POC scope); Step1 Quarter Select chỉ hiển thị cho TRADE_DELEGATION_OUT/IN per CONTEXT.md decision; submit flow gate qua 2 user actions (declaration checkbox + ConfirmDialog) để mitigate accidental submit
+- [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-03: Single-page Tabs primitive với hash bookmarkable URLs (vs sub-routes Phase 3 chuong-trinh detail) — plan locked simpler approach since 6 tab content cùng chia sẻ project data + RBAC layer; ProjectStatusTimeline build từ audit log filter SUBMIT/TRANSITION/ASSIGN actions với initial DRAFT entry, current dot indicator visual
+- [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-03: PDF reuse pattern lib/pdf/render.ts wrapper renderProjectProposalPdf analogous renderOfficialDocumentPdf; ProjectProposal template A4 portrait với header CHXHCNVN 2-col + 5 sections I-V (Thông tin chung/Mục tiêu&nội dung/Kế hoạch/Dự toán/Chủ nhiệm) + signature block với SVG dấu mộc placeholder (Circle + Path 5-point star + 2 vòng đỏ) + watermark BẢN MẪU diagonal khi !== APPROVED; htmlToPlain helper strip Tiptap HTML cho react-pdf <Text> consumption
+- [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-03: Edit page hydrate-then-redirect pattern thay vì separate ProjectEditShell — ProjectEditEntry client setUserScopeKey + waitForHydration → replaceAll(initialData built from project shape) + setSavedDraftProjectId(projectId) → router.push(/de-an/new); wizard tiếp tục autosave merges qua existing save-draft projectId param; resubmit leverages existing submit.ts SUPPLEMENT_REQUIRED → RESUBMITTED auto-detection trong fromStatus logic — không tạo new resubmitProject action
 
 ### Pending Todos
 
@@ -183,6 +187,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T22:51:29.527Z
-Stopped at: Completed Phase 5 Plan 02 (wizard 6 bước HERO)
+Last session: 2026-04-30T23:13:05.416Z
+Stopped at: Completed Phase 5 Plan 03 + Phase 5 done — ready for verification
 Resume file: None
