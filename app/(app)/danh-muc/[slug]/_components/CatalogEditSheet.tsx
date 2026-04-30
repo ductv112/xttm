@@ -365,8 +365,8 @@ function SimpleCatalogFields({ kind, form, isEdit, currentItemId }: SimpleProps)
                 </div>
               </FormControl>
               <FormDescription>
-                Đánh dấu để kích hoạt cảnh báo "30 ngày trước sự kiện quốc tế"
-                cho đề án sang quốc gia này.
+                Đánh dấu để kích hoạt cảnh báo &quot;30 ngày trước sự kiện
+                quốc tế&quot; cho đề án sang quốc gia này.
               </FormDescription>
               <FormMessage />
             </FormItem>

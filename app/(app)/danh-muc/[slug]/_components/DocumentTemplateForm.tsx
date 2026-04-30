@@ -269,7 +269,7 @@ ${previewHtml || '<p style="color:#94a3b8;font-style:italic">Chưa có nội dun
               <code className="rounded bg-slate-100 px-1 font-mono text-xs">
                 {'{{tenBien}}'}
               </code>
-              . Sau đó dùng nút "Chèn biến" trong toolbar editor.
+              . Sau đó dùng nút &quot;Chèn biến&quot; trong toolbar editor.
             </FormDescription>
             <div className="flex gap-2">
               <Input
