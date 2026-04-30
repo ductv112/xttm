@@ -81,7 +81,7 @@ Plans:
 **Plans**: 7 plans
 Plans:
 - [x] 03-01-schema-state-machine-PLAN.md — Schema Notification + NotificationDispatch + Attachment metadata + workflow TRANSITIONS hoàn chỉnh + lib/notifications mock dispatch + seed 3 cycles realistic — Wave 1
-- [ ] 03-02-visual-components-PLAN.md — @xyflow/react install + ProgramCycleStateMachineVisual 7-node + Stepper 5-step + StatCard 5-tone (HERO visuals) — Wave 1
+- [x] 03-02-visual-components-PLAN.md — @xyflow/react install + ProgramCycleStateMachineVisual 7-node + Stepper 5-step + StatCard 5-tone (HERO visuals) — Wave 1
 - [ ] 03-03-server-actions-rbac-PLAN.md — 9 server actions (list/get/create/update/transition/extend/upload-cong-van/send-invitation) + RBAC + Zod + audit + rate limit — Wave 2
 - [ ] 03-04-wizard-5-buoc-PLAN.md — /chuong-trinh/new wizard với Stepper + Zustand persist + RHF + Zod per-step + 5 step components + autosave (CYCLE-01..04) — Wave 3
 - [ ] 03-05-list-page-card-view-PLAN.md — /chuong-trinh card grid 3-col với status badge + countdown + progress bar + filter URL-driven (CYCLE-15) — Wave 3
