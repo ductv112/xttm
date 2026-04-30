@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 01-m0-bootstrap-h-t-ng plan 04 (Layout Shell — 18 shadcn + 7 layout components + AppShell wire auth(), AUTH-06 + AUTH-07 satisfied)
-last_updated: "2026-04-30T17:24:14.308Z"
+status: verifying
+stopped_at: Completed 01-05 — Phase 1 ready for verification (all 6 plans complete)
+last_updated: "2026-04-30T17:32:33.494Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 6
-  completed_plans: 5
-  percent: 83
+  completed_plans: 6
+  percent: 100
 ---
 
 # Project State
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 
 Phase: 1 (M0 Bootstrap & Hạ tầng) — EXECUTING
 Plan: 6 of 6
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-04-30
 
 Progress: [░░░░░░░░░░] 0%
@@ -57,6 +57,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-m0-bootstrap-h-t-ng P06 | 7m | 3 tasks | 12 files |
 | Phase 01-m0-bootstrap-h-t-ng P03 | 4m | 3 tasks | 10 files |
 | Phase 01-m0-bootstrap-h-t-ng P04 | 4m | 3 tasks | 27 files |
+| Phase 01-m0-bootstrap-h-t-ng P05 | 5m | 3 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -94,6 +95,7 @@ Recent decisions affecting current work:
 - [Phase 01-m0-bootstrap-h-t-ng]: (app)/layout.tsx defense-in-depth redirect — middleware Plan 03 + layout fallback đều check session, layer 2 chống matcher config drift
 - [Phase 01-m0-bootstrap-h-t-ng]: Sidebar inset variant + collapsible icon (UI-SPEC lock) — w-64 expanded / w-16 icon-only mode với tooltip side-popup; Lucide icon dynamic registry kebab→Pascal cho menu config dạng string
 - [Phase 01-m0-bootstrap-h-t-ng]: AppProviders minimal cho M0 (chỉ QueryProvider) — KHÔNG add ThemeProvider vì light mode hardcode UI-SPEC, KHÔNG add LocaleProvider vì date-fns/vi import trực tiếp Plan 01
+- [Phase 01-m0-bootstrap-h-t-ng]: Plan 05: Login UI split 60/40 + LoginForm useActionState + Dashboard + 404/500 hero pages tiếng Việt no-stack-trace + UAT checklist 8 tài khoản — Phase 1 complete
 
 ### Pending Todos
 
@@ -108,6 +110,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T17:24:14.304Z
-Stopped at: Completed 01-m0-bootstrap-h-t-ng plan 04 (Layout Shell — 18 shadcn + 7 layout components + AppShell wire auth(), AUTH-06 + AUTH-07 satisfied)
+Last session: 2026-04-30T17:32:33.490Z
+Stopped at: Completed 01-05 — Phase 1 ready for verification (all 6 plans complete)
 Resume file: None
