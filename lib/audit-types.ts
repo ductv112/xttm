@@ -104,6 +104,22 @@ export const ORG_PROFILE_AUDIT_TYPES = {
   ORG_PROFILE_UPDATE: { action: 'UPDATE' as AuditAction, resource: 'don-vi-chu-tri' as AuditResource },
 } as const;
 
+// =============================================================================
+// Phase 5 (M2.3 Khai báo & Nộp Đề án HERO) — composite audit type identifiers
+// for project lifecycle. Same convention as ORG_PROFILE_AUDIT_TYPES — these are
+// call-site documentation; underlying log row uses AuditAction × AuditResource.
+// =============================================================================
+
+export const PROJECT_AUDIT_TYPES = {
+  PROJECT_SAVE_DRAFT: { action: 'UPDATE' as AuditAction, resource: 'de-an' as AuditResource },
+  PROJECT_SUBMIT: { action: 'SUBMIT' as AuditAction, resource: 'de-an' as AuditResource },
+  PROJECT_WITHDRAW: { action: 'TRANSITION' as AuditAction, resource: 'de-an' as AuditResource },
+  PROJECT_RESUBMIT: { action: 'SUBMIT' as AuditAction, resource: 'de-an' as AuditResource },
+  PROJECT_COPY_FROM_PREVIOUS: { action: 'CREATE' as AuditAction, resource: 'de-an' as AuditResource },
+  PROJECT_UPLOAD_DOCUMENT: { action: 'UPLOAD' as AuditAction, resource: 'de-an' as AuditResource },
+  PROJECT_TRANSITION: { action: 'TRANSITION' as AuditAction, resource: 'de-an' as AuditResource },
+} as const;
+
 // Color tokens for action badges (consumed by AuditLogTable)
 export const AUDIT_ACTION_BADGE: Record<AuditAction, string> = {
   CREATE: 'bg-green-100 text-green-800',
