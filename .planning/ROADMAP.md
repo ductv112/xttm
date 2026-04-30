@@ -63,7 +63,7 @@ Plans:
 - [x] 02-04-user-management-PLAN.md — User CRUD list+create+edit+lock/unlock+reset password+bulk actions+xuất Excel (USER-01..07) — Wave 2
 - [x] 02-05-role-permission-matrix-PLAN.md — Role list cards + Permission Matrix Grid 18 sections × 8 actions × 7+ roles + custom role CRUD + canFromDB (ROLE-01..07) — Wave 2
 - [x] 02-06-catalog-editors-PLAN.md — 8 catalog CRUD UI config-driven + ScoringCriterionForm + DocumentTemplateForm Tiptap+VariableMenu (CAT-01..08) — Wave 2
-- [ ] 02-07-system-config-PLAN.md — SLA params form + 5 email templates + 3 SMS templates với honorific Việt (CONFIG-01..02) — Wave 3 (depends 02-05 seed.ts)
+- [x] 02-07-system-config-PLAN.md — SLA params form + 5 email templates + 3 SMS templates với honorific Việt (CONFIG-01..02) — Wave 3 (depends 02-05 seed.ts)
 
 **UI hint**: yes
 

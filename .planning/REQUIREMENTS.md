@@ -49,7 +49,7 @@
 
 ### Cấu hình Hệ thống (CONFIG) — Phase M1
 
-- [ ] **CONFIG-01**: Admin cấu hình tham số cảnh báo SLA (60 ngày HĐ / 30 ngày thương vụ / 15 ngày báo cáo / hạn 30/5)
+- [x] **CONFIG-01**: Admin cấu hình tham số cảnh báo SLA (60 ngày HĐ / 30 ngày thương vụ / 15 ngày báo cáo / hạn 30/5)
 - [x] **CONFIG-02**: Admin cấu hình mẫu email/SMS template với honorific Việt (Kính gửi Quý đơn vị / Quý ông / Quý bà) — UI-only, không gửi thật
 
 ### Audit Log (LOG) — Phase M1
@@ -352,7 +352,7 @@ Explicit exclusions cho prototype POC này.
 | CAT-06 | Phase 2 (M1 Quản trị) | Complete |
 | CAT-07 | Phase 2 (M1 Quản trị) | Complete |
 | CAT-08 | Phase 2 (M1 Quản trị) | Complete |
-| CONFIG-01 | Phase 2 (M1 Quản trị) | Pending |
+| CONFIG-01 | Phase 2 (M1 Quản trị) | Complete |
 | CONFIG-02 | Phase 2 (M1 Quản trị) | Complete |
 | LOG-01 | Phase 2 (M1 Quản trị) | Complete |
 | LOG-02 | Phase 2 (M1 Quản trị) | Complete |
