@@ -60,7 +60,7 @@ Plans:
 - [x] 02-01-audit-log-infrastructure-PLAN.md — Audit log withAuditLog wrapper + trang /nhat-ky DataTable filter + xuất CSV (LOG-01..03) — Wave 1
 - [x] 02-02-catalog-schema-seed-PLAN.md — 8 catalog Prisma models + seed Vietnamese realistic data + lib/catalog-types.ts (CAT-01..08) — Wave 1
 - [x] 02-03-shared-ui-primitives-PLAN.md — DataTable wrapper TanStack Table v8 + EmptyState + ConfirmDialog + RichTextEditor Tiptap + MultiSelect + DateRangePicker + lib/csv + lib/clipboard — Wave 1
-- [ ] 02-04-user-management-PLAN.md — User CRUD list+create+edit+lock/unlock+reset password+bulk actions+xuất Excel (USER-01..07) — Wave 2
+- [x] 02-04-user-management-PLAN.md — User CRUD list+create+edit+lock/unlock+reset password+bulk actions+xuất Excel (USER-01..07) — Wave 2
 - [ ] 02-05-role-permission-matrix-PLAN.md — Role list cards + Permission Matrix Grid 18 sections × 8 actions × 7+ roles + custom role CRUD + canFromDB (ROLE-01..07) — Wave 2
 - [ ] 02-06-catalog-editors-PLAN.md — 8 catalog CRUD UI config-driven + ScoringCriterionForm + DocumentTemplateForm Tiptap+VariableMenu (CAT-01..08) — Wave 2
 - [ ] 02-07-system-config-PLAN.md — SLA params form + 5 email templates + 3 SMS templates với honorific Việt (CONFIG-01..02) — Wave 3 (depends 02-05 seed.ts)
@@ -194,7 +194,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. M0 Bootstrap & Hạ tầng | 6/6 | Complete    | 2026-04-30 |
-| 2. M1 Quản trị & Danh mục | 0/7 | Not started | - |
+| 2. M1 Quản trị & Danh mục | 4/7 | In Progress|  |
 | 3. M2.1 Chu kỳ Chương trình XTTM (HERO) | 0/TBD | Not started | - |
 | 4. M2.2 Hồ sơ Đơn vị Chủ trì | 0/TBD | Not started | - |
 | 5. M2.3 Khai báo & Nộp Đề án (HERO) | 0/TBD | Not started | - |

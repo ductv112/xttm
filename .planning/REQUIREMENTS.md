@@ -19,11 +19,11 @@
 ### Quản trị Người dùng (USER) — Phase M1
 
 - [x] **USER-01**: Admin xem danh sách người dùng với filter (vai trò, đơn vị, trạng thái), sort, pagination, search theo tên/email
-- [ ] **USER-02**: Admin tạo người dùng mới (họ tên, email, username, mật khẩu, vai trò, đơn vị, trạng thái)
-- [ ] **USER-03**: Admin chỉnh sửa thông tin người dùng (trừ username)
-- [ ] **USER-04**: Admin khóa/mở khóa tài khoản với confirmation dialog
-- [ ] **USER-05**: Admin gán/đổi vai trò cho người dùng
-- [ ] **USER-06**: Admin reset mật khẩu người dùng (sinh mật khẩu tạm hiển thị 1 lần)
+- [x] **USER-02**: Admin tạo người dùng mới (họ tên, email, username, mật khẩu, vai trò, đơn vị, trạng thái)
+- [x] **USER-03**: Admin chỉnh sửa thông tin người dùng (trừ username)
+- [x] **USER-04**: Admin khóa/mở khóa tài khoản với confirmation dialog
+- [x] **USER-05**: Admin gán/đổi vai trò cho người dùng
+- [x] **USER-06**: Admin reset mật khẩu người dùng (sinh mật khẩu tạm hiển thị 1 lần)
 - [x] **USER-07**: Admin xuất danh sách người dùng ra Excel/CSV
 
 ### Vai trò & Phân quyền (ROLE) — Phase M1
@@ -331,11 +331,11 @@ Explicit exclusions cho prototype POC này.
 | AUTH-07 | Phase 1 (M0 Bootstrap) | Complete |
 | AUTH-08 | Phase 1 (M0 Bootstrap) | Complete |
 | USER-01 | Phase 2 (M1 Quản trị) | Complete |
-| USER-02 | Phase 2 (M1 Quản trị) | Pending |
-| USER-03 | Phase 2 (M1 Quản trị) | Pending |
-| USER-04 | Phase 2 (M1 Quản trị) | Pending |
-| USER-05 | Phase 2 (M1 Quản trị) | Pending |
-| USER-06 | Phase 2 (M1 Quản trị) | Pending |
+| USER-02 | Phase 2 (M1 Quản trị) | Complete |
+| USER-03 | Phase 2 (M1 Quản trị) | Complete |
+| USER-04 | Phase 2 (M1 Quản trị) | Complete |
+| USER-05 | Phase 2 (M1 Quản trị) | Complete |
+| USER-06 | Phase 2 (M1 Quản trị) | Complete |
 | USER-07 | Phase 2 (M1 Quản trị) | Complete |
 | ROLE-01 | Phase 2 (M1 Quản trị) | Complete |
 | ROLE-02 | Phase 2 (M1 Quản trị) | Pending |
