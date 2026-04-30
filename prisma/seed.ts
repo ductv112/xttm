@@ -3,6 +3,7 @@ import { seedUsers } from './seed/users';
 import { seedOrganizations } from './seed/organizations';
 import { seedCatalogs } from './seed/catalogs';
 import { seedPermissions } from './seed/permissions';
+import { seedSystemConfig } from './seed/system-config';
 
 const prisma = new PrismaClient();
 
@@ -16,6 +17,7 @@ async function main() {
   await seedUsers(prisma);
   await seedCatalogs(prisma);
   await seedPermissions(prisma);
+  await seedSystemConfig(prisma);
 
   // Smoke verify counts
   const userCount = await prisma.user.count();
@@ -35,11 +37,13 @@ async function main() {
   const grantCount = await prisma.rolePermission.count({
     where: { granted: true },
   });
+  const systemConfigCount = await prisma.systemConfig.count();
   console.log(`📊 Total users: ${userCount}, organizations: ${orgCount}`);
   console.log(`📊 Catalogs:`, catalogCounts);
   console.log(
     `📊 RBAC: roles=${roleCount}, permissions=${permissionCount}, grants=${grantCount}`,
   );
+  console.log(`📊 SystemConfig: ${systemConfigCount} (1 SLA + 5 email + 3 SMS = 9)`);
 
   if (userCount < 8) throw new Error(`Expected 8 users, got ${userCount}`);
   if (roleCount !== 7)
@@ -68,6 +72,10 @@ async function main() {
     throw new Error(`Expected 15 ScoringCriterion, got ${catalogCounts.scoringCriterion}`);
   if (catalogCounts.documentTemplate !== 6)
     throw new Error(`Expected 6 DocumentTemplate, got ${catalogCounts.documentTemplate}`);
+  if (systemConfigCount !== 9)
+    throw new Error(
+      `Expected 9 SystemConfig (1 SLA + 5 email + 3 SMS), got ${systemConfigCount}`,
+    );
 
   console.timeEnd('seed');
   console.log('✅ Seed complete.');

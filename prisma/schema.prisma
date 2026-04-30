@@ -484,3 +484,25 @@ model DocumentTemplate {
   @@index([isActive, displayOrder])
   @@index([category])
 }
+
+// =============================================================================
+// SYSTEM CONFIG — M1 (Phase 2 plan 02-07)
+// Key-value JSON store cho:
+//   - "sla.params" — SLA thresholds (CONFIG-01)
+//   - "email.template.{KEY}" — 5 email templates (CONFIG-02)
+//   - "sms.template.{KEY}" — 3 SMS templates (CONFIG-02)
+// Phase 3+ consume qua lib/system-config.ts cached helpers.
+// =============================================================================
+
+model SystemConfig {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  valueJson   String // JSON string
+  category    String // SLA | EMAIL | SMS
+  label       String // Vietnamese human-readable label
+  updatedById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+}
