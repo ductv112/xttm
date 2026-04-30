@@ -169,6 +169,8 @@ export type MenuItem = {
   icon: string;
   resource: Resource;
   section: 'NGHIEP_VU' | 'QUAN_TRI';
+  /** Optional whitelist — if set, item only renders for roles in this list (in addition to resource read check). */
+  roleOnly?: Role[];
 };
 
 const ALL_MENU_ITEMS: MenuItem[] = [
@@ -187,11 +189,20 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     section: 'NGHIEP_VU',
   },
   {
+    href: '/don-vi-cua-toi',
+    label: 'Hồ sơ tổ chức của tôi',
+    icon: 'building-2',
+    resource: 'don-vi-chu-tri',
+    section: 'NGHIEP_VU',
+    roleOnly: [ROLES.DONVI],
+  },
+  {
     href: '/don-vi-chu-tri',
     label: 'Đơn vị chủ trì',
     icon: 'building-2',
     resource: 'don-vi-chu-tri',
     section: 'NGHIEP_VU',
+    roleOnly: [ROLES.ADMIN, ROLES.BANQL, ROLES.LANHDAO],
   },
   {
     href: '/de-an',
@@ -301,7 +312,11 @@ const ALL_MENU_ITEMS: MenuItem[] = [
 ];
 
 export function getMenuItems(role: Role): MenuItem[] {
-  return ALL_MENU_ITEMS.filter((item) => can(role, item.resource, 'read'));
+  return ALL_MENU_ITEMS.filter((item) => {
+    if (!can(role, item.resource, 'read')) return false;
+    if (item.roleOnly && !item.roleOnly.includes(role)) return false;
+    return true;
+  });
 }
 
 export function defaultLandingPath(role: Role): string {

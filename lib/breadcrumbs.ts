@@ -2,6 +2,7 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   '/dashboard': 'Trang chủ',
   '/chuong-trinh': 'Chu kỳ chương trình',
   '/don-vi-chu-tri': 'Đơn vị chủ trì',
+  '/don-vi-cua-toi': 'Hồ sơ tổ chức của tôi',
   '/de-an': 'Đề án',
   '/tiep-nhan': 'Tiếp nhận hồ sơ',
   '/tham-dinh': 'Thẩm định',
