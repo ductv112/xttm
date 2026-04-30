@@ -13,6 +13,9 @@ export const AUDIT_ACTIONS = [
   'LOGIN',
   'LOGOUT',
   'EXPORT',
+  'UPLOAD',
+  'DISPATCH',
+  'EXTEND',
 ] as const;
 export type AuditAction = (typeof AUDIT_ACTIONS)[number];
 
@@ -28,6 +31,9 @@ export const AUDIT_ACTION_LABELS: Record<AuditAction, string> = {
   LOGIN: 'Đăng nhập',
   LOGOUT: 'Đăng xuất',
   EXPORT: 'Xuất dữ liệu',
+  UPLOAD: 'Tải lên tệp',
+  DISPATCH: 'Gửi thông báo',
+  EXTEND: 'Gia hạn',
 };
 
 // 18 resources khớp lib/permissions.ts Resource type
@@ -88,7 +94,7 @@ export const AUDIT_ACTION_BADGE: Record<AuditAction, string> = {
   CREATE: 'bg-green-100 text-green-800',
   UPDATE: 'bg-blue-100 text-blue-800',
   DELETE: 'bg-red-100 text-red-800',
-  TRANSITION: 'bg-slate-100 text-slate-800',
+  TRANSITION: 'bg-blue-100 text-blue-800',
   SUBMIT: 'bg-blue-100 text-blue-800',
   APPROVE: 'bg-green-100 text-green-800',
   REJECT: 'bg-red-100 text-red-800',
@@ -96,4 +102,7 @@ export const AUDIT_ACTION_BADGE: Record<AuditAction, string> = {
   LOGIN: 'bg-slate-100 text-slate-800',
   LOGOUT: 'bg-slate-100 text-slate-800',
   EXPORT: 'bg-slate-100 text-slate-800',
+  UPLOAD: 'bg-slate-100 text-slate-800',
+  DISPATCH: 'bg-emerald-100 text-emerald-800',
+  EXTEND: 'bg-amber-100 text-amber-800',
 };
