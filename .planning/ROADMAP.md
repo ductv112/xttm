@@ -41,7 +41,7 @@ Plans:
 - [ ] 01-03-nextauth-credentials-PLAN.md — NextAuth v5 split-config (edge auth.config + lib/auth Credentials) + middleware + login/logout server actions — Wave 3
 - [ ] 01-04-layout-shell-PLAN.md — 18 shadcn components + AppShell/Sidebar/Topbar/Breadcrumb/UserMenu/LogoutDialog + (app)/layout — Wave 3
 - [ ] 01-05-login-pages-PLAN.md — Login split 60/40 + LoginForm RHF/Zod + SSO toast + dashboard placeholder + 404/500 — Wave 4
-- [ ] 01-06-pdf-spike-PLAN.md — Be Vietnam Pro static TTF + OfficialDocument template + /api/pdf/spike + /test-pdf page — Wave 2
+- [x] 01-06-pdf-spike-PLAN.md — Be Vietnam Pro static TTF + OfficialDocument template + /api/pdf/spike + /test-pdf page — Wave 2
 
 **UI hint**: yes
 

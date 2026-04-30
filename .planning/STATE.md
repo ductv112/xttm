@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-m0-bootstrap-h-t-ng plan 02 (prisma schema + seed)
-last_updated: "2026-04-30T16:53:22.338Z"
+stopped_at: Completed 01-m0-bootstrap-h-t-ng plan 06 (PDF spike + R1 mitigated programmatic)
+last_updated: "2026-04-30T17:04:45.988Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 0
   total_plans: 6
-  completed_plans: 2
-  percent: 33
+  completed_plans: 3
+  percent: 50
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 1 (M0 Bootstrap & Hạ tầng) — EXECUTING
-Plan: 3 of 6
+Plan: 4 of 6
 Status: Ready to execute
 Last activity: 2026-04-30
 
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 01-m0-bootstrap-h-t-ng P01 | 11m | 3 tasks | 38 files |
 | Phase 01-m0-bootstrap-h-t-ng P02 | 4m | 3 tasks | 7 files |
+| Phase 01-m0-bootstrap-h-t-ng P06 | 7m | 3 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,11 @@ Recent decisions affecting current work:
 - [Phase 01-m0-bootstrap-h-t-ng]: Tạo .env riêng cho Prisma CLI (Prisma không đọc .env.local); duplicate DATABASE_URL trong cả .env (CLI) và .env.local (Next.js runtime); cả 2 gitignored
 - [Phase 01-m0-bootstrap-h-t-ng]: Bcrypt cost 10 (~80ms/hash, seed 8 users 640ms) + bcryptjs Windows-compatible — POC standard cho password hashing (T-02-01 mitigated)
 - [Phase 01-m0-bootstrap-h-t-ng]: Seed idempotent qua prisma.X.upsert pattern + count assertions (≥8 users / ≥5 orgs); orgs first (FK), users next; bcrypt hash trong helpers.ts shared
+- [Phase 01-m0-bootstrap-h-t-ng]: Font source: Google Fonts upstream GitHub repo (raw.githubusercontent.com/google/fonts/main/ofl/bevietnampro/) — bvn-typeface và bettergui mirrors trả 404; Google Fonts repo canonical source luôn available; script giữ 3 fallback URLs cho resilience
+- [Phase 01-m0-bootstrap-h-t-ng]: lib/pdf/render.ts giữ extension .ts (per plan interface contract) — dùng React.createElement thay vì JSX để TypeScript compile thành công
+- [Phase 01-m0-bootstrap-h-t-ng]: OfficialDocument.tsx thêm 'import * as React from react' — tsx CLI smoke test dùng classic JSX transform cần React in scope; Next.js production build dùng modern transform OK
+- [Phase 01-m0-bootstrap-h-t-ng]: PDF Buffer wrap thành Uint8Array trước khi pass NextResponse — Web Response constructor không accept Node Buffer trực tiếp (TypeScript error)
+- [Phase 01-m0-bootstrap-h-t-ng]: R1 PDF Vietnamese CRITICAL pitfall MITIGATED programmatic level — Be Vietnam Pro static TTF (TrueType magic 0x00010000) Regular/Bold/Italic register thành công, render PDF 36KB %PDF- valid; manual UAT visual verification (Chrome/Adobe Reader) pending user
 
 ### Pending Todos
 
@@ -91,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T16:53:22.331Z
-Stopped at: Completed 01-m0-bootstrap-h-t-ng plan 02 (prisma schema + seed)
+Last session: 2026-04-30T17:04:45.984Z
+Stopped at: Completed 01-m0-bootstrap-h-t-ng plan 06 (PDF spike + R1 mitigated programmatic)
 Resume file: None
