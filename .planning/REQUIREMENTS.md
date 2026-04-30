@@ -114,19 +114,19 @@
 
 ### Tiếp nhận & Kiểm tra hồ sơ (INTAKE) — Phase M2.4
 
-- [ ] **INTAKE-01**: Ban quản lý CT XTTM xem danh sách hồ sơ đề án mới nộp với filter (đơn vị, loại đề án, ngày nộp, trạng thái)
-- [ ] **INTAKE-02**: Ban quản lý tiếp nhận hồ sơ (chuyển từ SUBMITTED → ASSIGNED)
-- [ ] **INTAKE-03**: Lãnh đạo Ban quản lý phân công chuyên viên kiểm tra (drag-drop hoặc bulk-assign theo loại đề án)
-- [ ] **INTAKE-04**: Lãnh đạo thu hồi hồ sơ đã phân công về hàng đợi
-- [ ] **INTAKE-05**: Lãnh đạo tái phân công cho chuyên viên khác
-- [ ] **INTAKE-06**: Chuyên viên xem danh sách hồ sơ được giao
-- [ ] **INTAKE-07**: Chuyên viên xem chi tiết thành phần hồ sơ với checklist (✓/✗/N/A + ghi chú từng mục)
-- [ ] **INTAKE-08**: Chuyên viên nhập kết quả kiểm tra (nhận xét/kết luận sơ bộ)
-- [ ] **INTAKE-09**: Chuyên viên trả hồ sơ yêu cầu bổ sung (nhập nội dung cần bổ sung → composer email → gửi)
-- [ ] **INTAKE-10**: Chuyên viên xác nhận hồ sơ hợp lệ (chuyển → VALID)
-- [ ] **INTAKE-11**: Chuyên viên chấm điểm sơ bộ theo bộ tiêu chí của chu kỳ
-- [ ] **INTAKE-12**: Ban quản lý tổng hợp kết quả sơ bộ (sắp xếp danh sách)
-- [ ] **INTAKE-13**: Ban quản lý chuyển hồ sơ sang hội đồng thẩm định (bulk action)
+- [x] **INTAKE-01**: Ban quản lý CT XTTM xem danh sách hồ sơ đề án mới nộp với filter (đơn vị, loại đề án, ngày nộp, trạng thái)
+- [x] **INTAKE-02**: Ban quản lý tiếp nhận hồ sơ (chuyển từ SUBMITTED → ASSIGNED)
+- [x] **INTAKE-03**: Lãnh đạo Ban quản lý phân công chuyên viên kiểm tra (drag-drop hoặc bulk-assign theo loại đề án)
+- [x] **INTAKE-04**: Lãnh đạo thu hồi hồ sơ đã phân công về hàng đợi
+- [x] **INTAKE-05**: Lãnh đạo tái phân công cho chuyên viên khác
+- [x] **INTAKE-06**: Chuyên viên xem danh sách hồ sơ được giao
+- [x] **INTAKE-07**: Chuyên viên xem chi tiết thành phần hồ sơ với checklist (✓/✗/N/A + ghi chú từng mục)
+- [x] **INTAKE-08**: Chuyên viên nhập kết quả kiểm tra (nhận xét/kết luận sơ bộ)
+- [x] **INTAKE-09**: Chuyên viên trả hồ sơ yêu cầu bổ sung (nhập nội dung cần bổ sung → composer email → gửi)
+- [x] **INTAKE-10**: Chuyên viên xác nhận hồ sơ hợp lệ (chuyển → VALID)
+- [x] **INTAKE-11**: Chuyên viên chấm điểm sơ bộ theo bộ tiêu chí của chu kỳ
+- [x] **INTAKE-12**: Ban quản lý tổng hợp kết quả sơ bộ (sắp xếp danh sách)
+- [x] **INTAKE-13**: Ban quản lý chuyển hồ sơ sang hội đồng thẩm định (bulk action)
 
 ### Hội đồng Thẩm định (COUNCIL) — Phase M3 — HERO
 
@@ -402,19 +402,19 @@ Explicit exclusions cho prototype POC này.
 | PROJ-20 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-21 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-22 | Phase 5 (M2.3 Đề án HERO) | Complete |
-| INTAKE-01 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-02 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-03 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-04 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-05 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-06 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-07 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-08 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-09 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-10 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-11 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-12 | Phase 6 (M2.4 Tiếp nhận) | Pending |
-| INTAKE-13 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-01 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-02 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-03 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-04 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-05 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-06 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-07 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-08 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-09 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-10 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-11 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-12 | Phase 6 (M2.4 Tiếp nhận) | Complete |
+| INTAKE-13 | Phase 6 (M2.4 Tiếp nhận) | Complete |
 | COUNCIL-01 | Phase 7 (M3 Thẩm định HERO) | Pending |
 | COUNCIL-02 | Phase 7 (M3 Thẩm định HERO) | Pending |
 | COUNCIL-03 | Phase 7 (M3 Thẩm định HERO) | Pending |

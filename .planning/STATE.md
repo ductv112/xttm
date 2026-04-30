@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Completed Phase 5 Plan 03 + Phase 5 done — ready for verification
-last_updated: "2026-04-30T23:14:30.534Z"
+stopped_at: Completed Phase 6 Plan 01 — ready for verification
+last_updated: "2026-04-30T23:45:53.470Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
-  completed_phases: 5
-  total_plans: 25
-  completed_plans: 25
+  completed_phases: 6
+  total_plans: 26
+  completed_plans: 26
   percent: 100
 ---
 
@@ -21,12 +21,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-30)
 
 **Core value:** Demo end-to-end mượt và đẹp luồng "Vòng đời đề án" (M2-M3): từ Ban quản lý khởi tạo Chu kỳ Chương trình → Đơn vị chủ trì khai báo & nộp đề án → Tiếp nhận & kiểm tra → Hội đồng thẩm định chấm điểm → Ban quản lý lập tờ trình & nhập quyết định phê duyệt.
-**Current focus:** Phase 5 — M2.3 Khai báo & Nộp Đề án (HERO)
+**Current focus:** Phase 6 — M2.4 Tiếp nhận & Kiểm tra hồ sơ
 
 ## Current Position
 
-Phase: 6
-Plan: Not started
+Phase: 6 (M2.4 Tiếp nhận & Kiểm tra hồ sơ) — EXECUTING
+Plan: 1 of 1
 Status: Phase complete — ready for verification
 Last activity: 2026-04-30
 
@@ -81,6 +81,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 05-m2.3-khai-báo-nộp-đề-án P01 | 13m | 3 tasks | 14 files |
 | Phase 05-m2.3-khai-báo-nộp-đề-án P02 | 17m | 3 tasks | 15 files |
 | Phase 05-m2.3-khai-báo-nộp-đề-án P03 | 25m | 3 tasks | 18 files |
+| Phase 06-m2.4-tiếp-nhận-kiểm-tra P01 | 47m | 6 tasks | 30 files |
 
 ## Accumulated Context
 
@@ -174,6 +175,9 @@ Recent decisions affecting current work:
 - [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-03: Single-page Tabs primitive với hash bookmarkable URLs (vs sub-routes Phase 3 chuong-trinh detail) — plan locked simpler approach since 6 tab content cùng chia sẻ project data + RBAC layer; ProjectStatusTimeline build từ audit log filter SUBMIT/TRANSITION/ASSIGN actions với initial DRAFT entry, current dot indicator visual
 - [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-03: PDF reuse pattern lib/pdf/render.ts wrapper renderProjectProposalPdf analogous renderOfficialDocumentPdf; ProjectProposal template A4 portrait với header CHXHCNVN 2-col + 5 sections I-V (Thông tin chung/Mục tiêu&nội dung/Kế hoạch/Dự toán/Chủ nhiệm) + signature block với SVG dấu mộc placeholder (Circle + Path 5-point star + 2 vòng đỏ) + watermark BẢN MẪU diagonal khi !== APPROVED; htmlToPlain helper strip Tiptap HTML cho react-pdf <Text> consumption
 - [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-03: Edit page hydrate-then-redirect pattern thay vì separate ProjectEditShell — ProjectEditEntry client setUserScopeKey + waitForHydration → replaceAll(initialData built from project shape) + setSavedDraftProjectId(projectId) → router.push(/de-an/new); wizard tiếp tục autosave merges qua existing save-draft projectId param; resubmit leverages existing submit.ts SUPPLEMENT_REQUIRED → RESUBMITTED auto-detection trong fromStatus logic — không tạo new resubmitProject action
+- [Phase 06-m2.4-tiếp-nhận-kiểm-tra]: ScoreSheet kind field (PRELIMINARY|EVALUATION) + nullable councilId — reuse single model for Phase 6 + Phase 7 scoring
+- [Phase 06-m2.4-tiếp-nhận-kiểm-tra]: HTML5 native drag-drop for /phan-cong assignment board (no react-dnd / @hello-pangea/dnd dep)
+- [Phase 06-m2.4-tiếp-nhận-kiểm-tra]: Hardcoded 12-item checklist in lib/intake-checklist.ts với 80% pass threshold (POC speed; catalog-backed deferred)
 
 ### Pending Todos
 
@@ -188,6 +192,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T23:13:05.416Z
-Stopped at: Completed Phase 5 Plan 03 + Phase 5 done — ready for verification
+Last session: 2026-04-30T23:45:53.465Z
+Stopped at: Completed Phase 6 Plan 01 — ready for verification
 Resume file: None

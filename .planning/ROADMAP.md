@@ -15,7 +15,7 @@
 - [x] **Phase 3: M2.1 Chu kỳ Chương trình XTTM (HERO)** - Wizard 5 bước + state machine 7 trạng thái + upload công văn + composer email mời + visual state machine (completed 2026-04-30)
 - [x] **Phase 4: M2.2 Hồ sơ Đơn vị Chủ trì** - Đăng ký tổ chức + năng lực + đầu mối liên hệ + xác nhận hồ sơ (completed 2026-04-30)
 - [x] **Phase 5: M2.3 Khai báo & Nộp Đề án (HERO)** - Multi-step form 6 bước + autosave + sao chép đề án cũ + đề án 2 năm + xuất PDF chuẩn công văn (completed 2026-04-30)
-- [ ] **Phase 6: M2.4 Tiếp nhận & Kiểm tra hồ sơ** - BQL tiếp nhận + drag-drop phân công + checklist kiểm tra + trả bổ sung + version snapshot + chấm điểm sơ bộ
+- [x] **Phase 6: M2.4 Tiếp nhận & Kiểm tra hồ sơ** - BQL tiếp nhận + drag-drop phân công + checklist kiểm tra + trả bổ sung + chấm điểm sơ bộ với weighted scoring (completed 2026-04-30)
 - [ ] **Phase 7: M3 Thẩm định & Phê duyệt (HERO)** - Hội đồng thẩm định + side-by-side scoring + COI checkbox + tổng hợp real-time + tờ trình PDF + quyết định phê duyệt
 - [ ] **Phase 8: M4 Hợp đồng, Triển khai & Điều chỉnh** - Sinh HĐ auto số + cảnh báo 60 ngày + kế hoạch triển khai + cảnh báo thương vụ 30 ngày + điều chỉnh đề án Điều 13 NĐ 28 với side-by-side diff
 - [ ] **Phase 9: M5 Báo cáo, Nghiệm thu, Tài chính** - Báo cáo kết quả + biên bản nghiệm thu PDF + thanh lý hợp đồng + tạm ứng/thanh toán/quyết toán
