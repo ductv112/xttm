@@ -12,7 +12,7 @@
 
 - [x] **Phase 1: M0 Bootstrap & Hạ tầng** - Next.js 15 + Tailwind v4 + shadcn/ui + Prisma/SQLite + NextAuth 8 tài khoản + Layout shell + PDF spike font Be Vietnam Pro (completed 2026-04-30)
 - [x] **Phase 2: M1 Quản trị & Danh mục** - User CRUD + Role matrix grid (render từ DB) + 8 catalogs + System config + Audit log (completed 2026-04-30)
-- [ ] **Phase 3: M2.1 Chu kỳ Chương trình XTTM (HERO)** - Wizard 5 bước + state machine 7 trạng thái + upload công văn + composer email mời + visual state machine
+- [x] **Phase 3: M2.1 Chu kỳ Chương trình XTTM (HERO)** - Wizard 5 bước + state machine 7 trạng thái + upload công văn + composer email mời + visual state machine (completed 2026-04-30)
 - [ ] **Phase 4: M2.2 Hồ sơ Đơn vị Chủ trì** - Đăng ký tổ chức + năng lực + đầu mối liên hệ + xác nhận hồ sơ
 - [ ] **Phase 5: M2.3 Khai báo & Nộp Đề án (HERO)** - Multi-step form 6 bước + autosave + sao chép đề án cũ + đề án 2 năm + xuất PDF chuẩn công văn
 - [ ] **Phase 6: M2.4 Tiếp nhận & Kiểm tra hồ sơ** - BQL tiếp nhận + drag-drop phân công + checklist kiểm tra + trả bổ sung + version snapshot + chấm điểm sơ bộ
@@ -203,7 +203,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 |-------|----------------|--------|-----------|
 | 1. M0 Bootstrap & Hạ tầng | 6/6 | Complete    | 2026-04-30 |
 | 2. M1 Quản trị & Danh mục | 7/7 | Complete    | 2026-04-30 |
-| 3. M2.1 Chu kỳ Chương trình XTTM (HERO) | 0/7 | Not started | - |
+| 3. M2.1 Chu kỳ Chương trình XTTM (HERO) | 7/7 | Complete    | 2026-04-30 |
 | 4. M2.2 Hồ sơ Đơn vị Chủ trì | 0/TBD | Not started | - |
 | 5. M2.3 Khai báo & Nộp Đề án (HERO) | 0/TBD | Not started | - |
 | 6. M2.4 Tiếp nhận & Kiểm tra hồ sơ | 0/TBD | Not started | - |
