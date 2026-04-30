@@ -210,7 +210,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 3. M2.1 Chu kỳ Chương trình XTTM (HERO) | 7/7 | Complete    | 2026-04-30 |
 | 4. M2.2 Hồ sơ Đơn vị Chủ trì | 2/2 | Complete    | 2026-04-30 |
 | 5. M2.3 Khai báo & Nộp Đề án (HERO) | 3/3 | Complete    | 2026-04-30 |
-| 6. M2.4 Tiếp nhận & Kiểm tra hồ sơ | 0/TBD | Not started | - |
+| 6. M2.4 Tiếp nhận & Kiểm tra hồ sơ | 1/1 | Complete    | 2026-04-30 |
 | 7. M3 Thẩm định & Phê duyệt (HERO) | 0/TBD | Not started | - |
 | 8. M4 Hợp đồng, Triển khai & Điều chỉnh | 0/TBD | Not started | - |
 | 9. M5 Báo cáo, Nghiệm thu, Tài chính | 0/TBD | Not started | - |
