@@ -6,8 +6,6 @@ import {
   getCoreRowModel,
   useReactTable,
   type ColumnDef,
-  type RowSelectionState,
-  type SortingState,
   type Row,
   type Header,
 } from '@tanstack/react-table';
@@ -173,10 +171,13 @@ export function DataTable<TData>({
   const headerGroups = table.getHeaderGroups();
   const rows = table.getRowModel().rows;
 
-  // Selected row data — passed vào bulk actions
+  // Selected row data — passed vào bulk actions.
+  // Recompute when rowSelection changes (table reference is stable across renders);
+  // include rowSelection trong deps để tránh stale closure khi parent toggles selection.
   const selectedRowsData = React.useMemo<TData[]>(() => {
     if (!hasSelection) return [];
     return table.getSelectedRowModel().rows.map((r) => r.original);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- rowSelection is the trigger; table is stable
   }, [table, hasSelection, rowSelection]);
 
   const handleClearSelection = React.useCallback(() => {
