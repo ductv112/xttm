@@ -5,7 +5,7 @@
 // next-auth/Credentials/bcrypt → tránh circular ở module load time.
 
 import { prisma } from '@/lib/prisma';
-import type { AuditAction, AuditEntry, AuditResource } from '@/lib/audit-types';
+import type { AuditAction, AuditResource } from '@/lib/audit-types';
 
 // Keys hệ thống tự quản — không tính vào diff (tránh noise)
 const SYSTEM_FIELDS = new Set([

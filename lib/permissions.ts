@@ -274,7 +274,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     section: 'QUAN_TRI',
   },
   {
-    href: '/audit-log',
+    href: '/nhat-ky',
     label: 'Nhật ký truy cập',
     icon: 'history',
     resource: 'audit-log',

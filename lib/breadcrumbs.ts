@@ -17,6 +17,7 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   '/vai-tro': 'Vai trò & quyền',
   '/cau-hinh': 'Cấu hình',
   '/audit-log': 'Nhật ký truy cập',
+  '/nhat-ky': 'Nhật ký truy cập',
   '/de-an/new': 'Tạo đề án mới',
 };
 
