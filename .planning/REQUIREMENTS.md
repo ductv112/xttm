@@ -7,10 +7,10 @@
 
 ### Hạ tầng & Auth (AUTH) — Phase M0
 
-- [ ] **AUTH-01**: Người dùng đăng nhập bằng username + mật khẩu, được redirect về trang chủ phù hợp với vai trò
+- [x] **AUTH-01**: Người dùng đăng nhập bằng username + mật khẩu, được redirect về trang chủ phù hợp với vai trò
 - [x] **AUTH-02**: Hệ thống cung cấp 8 tài khoản hardcoded với mật khẩu bcrypt cho 7 vai trò (admin, banql, chuyenvien, hoidong, donvi1, donvi2, taichinh, lanhdao)
-- [ ] **AUTH-03**: Người dùng đăng xuất hủy session và quay về trang đăng nhập
-- [ ] **AUTH-04**: Session JWT giữ trạng thái đăng nhập qua refresh trình duyệt
+- [x] **AUTH-03**: Người dùng đăng xuất hủy session và quay về trang đăng nhập
+- [x] **AUTH-04**: Session JWT giữ trạng thái đăng nhập qua refresh trình duyệt
 - [ ] **AUTH-05**: Trang đăng nhập có button "Đăng nhập SSO" (placeholder, hiển thị toast "Tính năng giai đoạn 2")
 - [ ] **AUTH-06**: Layout shell có sidebar (menu render động theo vai trò), topbar (tên user + vai trò + đơn vị + notification bell + dropdown đăng xuất), breadcrumb tiếng Việt
 - [x] **AUTH-07**: Theme system với light mode mặc định, locale `vi-VN` toàn cục cho date-fns / Intl
@@ -322,10 +322,10 @@ Explicit exclusions cho prototype POC này.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | Phase 1 (M0 Bootstrap) | Pending |
+| AUTH-01 | Phase 1 (M0 Bootstrap) | Complete |
 | AUTH-02 | Phase 1 (M0 Bootstrap) | Complete |
-| AUTH-03 | Phase 1 (M0 Bootstrap) | Pending |
-| AUTH-04 | Phase 1 (M0 Bootstrap) | Pending |
+| AUTH-03 | Phase 1 (M0 Bootstrap) | Complete |
+| AUTH-04 | Phase 1 (M0 Bootstrap) | Complete |
 | AUTH-05 | Phase 1 (M0 Bootstrap) | Pending |
 | AUTH-06 | Phase 1 (M0 Bootstrap) | Pending |
 | AUTH-07 | Phase 1 (M0 Bootstrap) | Complete |
