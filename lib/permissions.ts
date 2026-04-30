@@ -30,6 +30,17 @@ export type Action =
   | 'assign'
   | 'score';
 
+export const ALL_ACTIONS: readonly Action[] = [
+  'read',
+  'create',
+  'update',
+  'delete',
+  'submit',
+  'approve',
+  'assign',
+  'score',
+] as const;
+
 const MATRIX: Record<Resource, Partial<Record<Action, Role[]>>> = {
   dashboard: {
     read: [
@@ -144,6 +155,13 @@ const MATRIX: Record<Resource, Partial<Record<Action, Role[]>>> = {
 export function can(role: Role, resource: Resource, action: Action): boolean {
   return MATRIX[resource]?.[action]?.includes(role) ?? false;
 }
+
+/**
+ * Read-only MATRIX export for seed scripts and admin "Re-sync from defaults"
+ * server action. Consumers MUST treat this as immutable — runtime grants are
+ * persisted in DB (Role+Permission+RolePermission) and managed via /vai-tro UI.
+ */
+export const MATRIX_FOR_SEED: Readonly<typeof MATRIX> = MATRIX;
 
 export type MenuItem = {
   href: string;
