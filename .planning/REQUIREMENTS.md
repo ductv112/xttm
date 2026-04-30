@@ -315,13 +315,207 @@ Explicit exclusions cho prototype POC này.
 
 ## Traceability
 
-Sẽ được điền vào bởi roadmapper agent.
-
 **Coverage:**
-- v1 requirements: ~190 (đếm chính xác sau khi roadmapper map xong)
-- Mapped to phases: TBD
-- Unmapped: TBD
+- v1 requirements: **193**
+- Mapped to phases: **193 (100%)**
+- Unmapped: **0**
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| AUTH-01 | Phase 1 (M0 Bootstrap) | Pending |
+| AUTH-02 | Phase 1 (M0 Bootstrap) | Pending |
+| AUTH-03 | Phase 1 (M0 Bootstrap) | Pending |
+| AUTH-04 | Phase 1 (M0 Bootstrap) | Pending |
+| AUTH-05 | Phase 1 (M0 Bootstrap) | Pending |
+| AUTH-06 | Phase 1 (M0 Bootstrap) | Pending |
+| AUTH-07 | Phase 1 (M0 Bootstrap) | Pending |
+| AUTH-08 | Phase 1 (M0 Bootstrap) | Pending |
+| USER-01 | Phase 2 (M1 Quản trị) | Pending |
+| USER-02 | Phase 2 (M1 Quản trị) | Pending |
+| USER-03 | Phase 2 (M1 Quản trị) | Pending |
+| USER-04 | Phase 2 (M1 Quản trị) | Pending |
+| USER-05 | Phase 2 (M1 Quản trị) | Pending |
+| USER-06 | Phase 2 (M1 Quản trị) | Pending |
+| USER-07 | Phase 2 (M1 Quản trị) | Pending |
+| ROLE-01 | Phase 2 (M1 Quản trị) | Pending |
+| ROLE-02 | Phase 2 (M1 Quản trị) | Pending |
+| ROLE-03 | Phase 2 (M1 Quản trị) | Pending |
+| ROLE-04 | Phase 2 (M1 Quản trị) | Pending |
+| ROLE-05 | Phase 2 (M1 Quản trị) | Pending |
+| ROLE-06 | Phase 2 (M1 Quản trị) | Pending |
+| ROLE-07 | Phase 2 (M1 Quản trị) | Pending |
+| CAT-01 | Phase 2 (M1 Quản trị) | Pending |
+| CAT-02 | Phase 2 (M1 Quản trị) | Pending |
+| CAT-03 | Phase 2 (M1 Quản trị) | Pending |
+| CAT-04 | Phase 2 (M1 Quản trị) | Pending |
+| CAT-05 | Phase 2 (M1 Quản trị) | Pending |
+| CAT-06 | Phase 2 (M1 Quản trị) | Pending |
+| CAT-07 | Phase 2 (M1 Quản trị) | Pending |
+| CAT-08 | Phase 2 (M1 Quản trị) | Pending |
+| CONFIG-01 | Phase 2 (M1 Quản trị) | Pending |
+| CONFIG-02 | Phase 2 (M1 Quản trị) | Pending |
+| LOG-01 | Phase 2 (M1 Quản trị) | Pending |
+| LOG-02 | Phase 2 (M1 Quản trị) | Pending |
+| LOG-03 | Phase 2 (M1 Quản trị) | Pending |
+| CYCLE-01 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-02 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-03 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-04 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-05 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-06 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-07 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-08 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-09 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-10 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-11 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-12 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-13 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-14 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-15 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| ORG-01 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
+| ORG-02 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
+| ORG-03 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
+| ORG-04 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
+| ORG-05 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
+| ORG-06 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
+| ORG-07 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
+| ORG-08 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
+| PROJ-01 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-02 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-03 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-04 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-05 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-06 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-07 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-08 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-09 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-10 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-11 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-12 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-13 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-14 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-15 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-16 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-17 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-18 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-19 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-20 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-21 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-22 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| INTAKE-01 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-02 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-03 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-04 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-05 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-06 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-07 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-08 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-09 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-10 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-11 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-12 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| INTAKE-13 | Phase 6 (M2.4 Tiếp nhận) | Pending |
+| COUNCIL-01 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-02 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-03 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-04 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-05 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-06 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-07 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-08 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-09 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-10 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-11 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-12 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-13 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-14 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-15 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-16 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| APPROVE-01 | Phase 7 (M3 Phê duyệt HERO) | Pending |
+| APPROVE-02 | Phase 7 (M3 Phê duyệt HERO) | Pending |
+| APPROVE-03 | Phase 7 (M3 Phê duyệt HERO) | Pending |
+| APPROVE-04 | Phase 7 (M3 Phê duyệt HERO) | Pending |
+| APPROVE-05 | Phase 7 (M3 Phê duyệt HERO) | Pending |
+| APPROVE-06 | Phase 7 (M3 Phê duyệt HERO) | Pending |
+| APPROVE-07 | Phase 7 (M3 Phê duyệt HERO) | Pending |
+| APPROVE-08 | Phase 7 (M3 Phê duyệt HERO) | Pending |
+| CONTRACT-01 | Phase 8 (M4 Hợp đồng) | Pending |
+| CONTRACT-02 | Phase 8 (M4 Hợp đồng) | Pending |
+| CONTRACT-03 | Phase 8 (M4 Hợp đồng) | Pending |
+| CONTRACT-04 | Phase 8 (M4 Hợp đồng) | Pending |
+| CONTRACT-05 | Phase 8 (M4 Hợp đồng) | Pending |
+| CONTRACT-06 | Phase 8 (M4 Hợp đồng) | Pending |
+| CONTRACT-07 | Phase 8 (M4 Hợp đồng) | Pending |
+| IMPL-01 | Phase 8 (M4 Triển khai) | Pending |
+| IMPL-02 | Phase 8 (M4 Triển khai) | Pending |
+| IMPL-03 | Phase 8 (M4 Triển khai) | Pending |
+| IMPL-04 | Phase 8 (M4 Triển khai) | Pending |
+| IMPL-05 | Phase 8 (M4 Triển khai) | Pending |
+| IMPL-06 | Phase 8 (M4 Triển khai) | Pending |
+| IMPL-07 | Phase 8 (M4 Triển khai) | Pending |
+| IMPL-08 | Phase 8 (M4 Triển khai) | Pending |
+| IMPL-09 | Phase 8 (M4 Triển khai) | Pending |
+| IMPL-10 | Phase 8 (M4 Triển khai) | Pending |
+| IMPL-11 | Phase 8 (M4 Triển khai) | Pending |
+| IMPL-12 | Phase 8 (M4 Triển khai) | Pending |
+| AMEND-01 | Phase 8 (M4 Điều chỉnh) | Pending |
+| AMEND-02 | Phase 8 (M4 Điều chỉnh) | Pending |
+| AMEND-03 | Phase 8 (M4 Điều chỉnh) | Pending |
+| AMEND-04 | Phase 8 (M4 Điều chỉnh) | Pending |
+| AMEND-05 | Phase 8 (M4 Điều chỉnh) | Pending |
+| AMEND-06 | Phase 8 (M4 Điều chỉnh) | Pending |
+| AMEND-07 | Phase 8 (M4 Điều chỉnh) | Pending |
+| REPORT-01 | Phase 9 (M5 Báo cáo) | Pending |
+| REPORT-02 | Phase 9 (M5 Báo cáo) | Pending |
+| REPORT-03 | Phase 9 (M5 Báo cáo) | Pending |
+| REPORT-04 | Phase 9 (M5 Báo cáo) | Pending |
+| REPORT-05 | Phase 9 (M5 Báo cáo) | Pending |
+| REPORT-06 | Phase 9 (M5 Báo cáo) | Pending |
+| REPORT-07 | Phase 9 (M5 Báo cáo) | Pending |
+| ACCEPT-01 | Phase 9 (M5 Nghiệm thu) | Pending |
+| ACCEPT-02 | Phase 9 (M5 Nghiệm thu) | Pending |
+| ACCEPT-03 | Phase 9 (M5 Nghiệm thu) | Pending |
+| ACCEPT-04 | Phase 9 (M5 Nghiệm thu) | Pending |
+| ACCEPT-05 | Phase 9 (M5 Nghiệm thu) | Pending |
+| ACCEPT-06 | Phase 9 (M5 Nghiệm thu) | Pending |
+| FIN-01 | Phase 9 (M5 Tài chính) | Pending |
+| FIN-02 | Phase 9 (M5 Tài chính) | Pending |
+| FIN-03 | Phase 9 (M5 Tài chính) | Pending |
+| FIN-04 | Phase 9 (M5 Tài chính) | Pending |
+| DASH-01 | Phase 10 (M6 Dashboard HERO) | Pending |
+| DASH-02 | Phase 10 (M6 Dashboard HERO) | Pending |
+| DASH-03 | Phase 10 (M6 Dashboard HERO) | Pending |
+| DASH-04 | Phase 10 (M6 Dashboard HERO) | Pending |
+| DASH-05 | Phase 10 (M6 Dashboard HERO) | Pending |
+| DASH-06 | Phase 10 (M6 Dashboard HERO) | Pending |
+| DASH-07 | Phase 10 (M6 Dashboard HERO) | Pending |
+| DASH-08 | Phase 10 (M6 Dashboard HERO) | Pending |
+| DASH-09 | Phase 10 (M6 Dashboard HERO) | Pending |
+| DASH-10 | Phase 10 (M6 Dashboard HERO) | Pending |
+| DASH-11 | Phase 10 (M6 Dashboard HERO) | Pending |
+| DASH-12 | Phase 10 (M6 Dashboard HERO) | Pending |
+| ALERT-01 | Phase 10 (M6 Cảnh báo) | Pending |
+| ALERT-02 | Phase 10 (M6 Cảnh báo) | Pending |
+| ALERT-03 | Phase 10 (M6 Cảnh báo) | Pending |
+| ALERT-04 | Phase 10 (M6 Cảnh báo) | Pending |
+| ALERT-05 | Phase 10 (M6 Cảnh báo) | Pending |
+| ALERT-06 | Phase 10 (M6 Cảnh báo) | Pending |
+| ALERT-07 | Phase 10 (M6 Cảnh báo) | Pending |
+| ALERT-08 | Phase 10 (M6 Cảnh báo) | Pending |
+| POLISH-01 | Phase 11 (M7 Polish) | Pending |
+| POLISH-02 | Phase 11 (M7 Polish) | Pending |
+| POLISH-03 | Phase 11 (M7 Polish) | Pending |
+| POLISH-04 | Phase 11 (M7 Polish) | Pending |
+| POLISH-05 | Phase 11 (M7 Polish) | Pending |
+| POLISH-06 | Phase 11 (M7 Polish) | Pending |
+| POLISH-07 | Phase 11 (M7 Polish) | Pending |
+| POLISH-08 | Phase 11 (M7 Polish) | Pending |
+| POLISH-09 | Phase 11 (M7 Polish) | Pending |
+| POLISH-10 | Phase 11 (M7 Polish) | Pending |
+| POLISH-11 | Phase 11 (M7 Polish) | Pending |
+| POLISH-12 | Phase 11 (M7 Polish) | Pending |
+| POLISH-13 | Phase 11 (M7 Polish) | Pending |
 
 ---
 *Requirements defined: 2026-04-30*
-*Last updated: 2026-04-30 after initial definition*
+*Last updated: 2026-04-30 — traceability filled by roadmapper agent (193/193 mapped, 0 orphaned)*
