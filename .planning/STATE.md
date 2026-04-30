@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: "Completed 02-07-system-config — Phase 2 closure: SystemConfig key-value JSON store + 30s TTL cached helpers + /cau-hinh 3-tab UI (SLA params + 5 email + 3 SMS templates với honorific Việt) + iframe sandbox preview; Phase 2 hoàn tất 7/7 plans, 27 reqs covered"
-last_updated: "2026-04-30T19:51:11.586Z"
+status: executing
+stopped_at: Completed 03-01-schema-state-machine — schema Notification/Dispatch + Attachment metadata + ProgramCycle 3 fields, state machine 7-state với validateGuards VN reasons, lib/notifications.ts mock dispatch (4 functions), seed 3 cycles (2025/2026/2027) + 2 notifications + 10 dispatches realistic relative dates
+last_updated: "2026-04-30T20:25:27.952Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 2
-  total_plans: 13
-  completed_plans: 13
-  percent: 100
+  total_plans: 20
+  completed_plans: 14
+  percent: 70
 ---
 
 # Project State
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-30)
 
 **Core value:** Demo end-to-end mượt và đẹp luồng "Vòng đời đề án" (M2-M3): từ Ban quản lý khởi tạo Chu kỳ Chương trình → Đơn vị chủ trì khai báo & nộp đề án → Tiếp nhận & kiểm tra → Hội đồng thẩm định chấm điểm → Ban quản lý lập tờ trình & nhập quyết định phê duyệt.
-**Current focus:** Phase 2 — M1 Quản trị & Danh mục
+**Current focus:** Phase 3 — M2.1 Chu kỳ Chương trình XTTM (HERO)
 
 ## Current Position
 
-Phase: 3
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 3 (M2.1 Chu kỳ Chương trình XTTM (HERO)) — EXECUTING
+Plan: 2 of 7
+Status: Ready to execute
 Last activity: 2026-04-30
 
 Progress: [░░░░░░░░░░] 0%
@@ -66,6 +66,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-m1-quan-tri-danh-muc P05 | 11m | 3 tasks | 18 files |
 | Phase 02-m1-quan-tri-danh-muc P06 | 12m | 3 tasks | 12 files |
 | Phase 02-m1-quan-tri-danh-muc P07 | 10m | 3 tasks | 13 files |
+| Phase 03-m2.1-chu-kỳ-chương-trình-xttm P01 | 6m | 3 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -126,6 +127,9 @@ Recent decisions affecting current work:
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-06: T-02-06-04 DocumentTemplate preview qua iframe sandbox="" srcDoc thay dangerouslySetInnerHTML — defense-in-depth XSS isolate (Tiptap StarterKit ko expose script nodes nhưng admin có thể paste HTML); T-02-06-05 substitutePreview dùng split().join() thay regex để tránh injection từ admin-defined variable names; 17 mock values constant lookup
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-07: SystemConfig key-value JSON store (key='sla.params'|'email.template.{KEY}'|'sms.template.{KEY}') với 30s TTL in-memory cache + fallback constants (T-02-07-06 accept POC scope); 9 default rows seed idempotent (1 SLA + 5 email + 3 SMS); honorific enum 5 values (KINH_GUI_QUY_DON_VI/QUY_ONG/QUY_BA/KINH_CHAO_ANH_CHI/TRAN_TRONG_KINH_GUI) với Vietnamese formal labels
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-07: 3 server actions (updateSLAConfig + updateEmailTemplate + updateSmsTemplate) với withAuditLog wrapper + key whitelist Zod schema (T-02-07-02 mass-assignment guard cho email/SMS template keys); iframe sandbox='' email preview (T-02-07-04 reuse Plan 02-06); split().join() substitution thay regex (T-02-07-08); textarea char count realtime aria-live cho SMS với 160 hard limit
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: TRANSITIONS table lock trong lib/workflows/programCycle.ts — mọi server action Phase 3+ MUST consult canTransitionCycle/validateGuards (PITFALLS R3 mitigation)
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: lib/notifications.ts là pure data layer — KHÔNG check RBAC/audit; server actions Plan 03-03 wrap; recipientOrgIds.length validate 1..50 (T-03-01-04)
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Cycle 2026 dùng daysAgo(28)/daysFromNow(12) RELATIVE dates (PITFALLS R5); seed VASEP+VCCI vào organizations (5→7) cho 5-org realistic CYCLE-13 demo
 
 ### Pending Todos
 
@@ -140,6 +144,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T19:46:16.825Z
-Stopped at: Completed 02-07-system-config — Phase 2 closure: SystemConfig key-value JSON store + 30s TTL cached helpers + /cau-hinh 3-tab UI (SLA params + 5 email + 3 SMS templates với honorific Việt) + iframe sandbox preview; Phase 2 hoàn tất 7/7 plans, 27 reqs covered
+Last session: 2026-04-30T20:25:27.948Z
+Stopped at: Completed 03-01-schema-state-machine — schema Notification/Dispatch + Attachment metadata + ProgramCycle 3 fields, state machine 7-state với validateGuards VN reasons, lib/notifications.ts mock dispatch (4 functions), seed 3 cycles (2025/2026/2027) + 2 notifications + 10 dispatches realistic relative dates
 Resume file: None

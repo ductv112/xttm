@@ -64,7 +64,7 @@
 - [ ] **CYCLE-02**: Ràng buộc unique 1 chu kỳ / năm — form validation chặn tạo trùng năm
 - [ ] **CYCLE-03**: Cấu hình mốc thời gian: ngày mở cổng, hạn nộp (mặc định 30/5), hạn nộp bổ sung, ngày bắt đầu/kết thúc thẩm định, hạn phê duyệt
 - [ ] **CYCLE-04**: Cấu hình ngân sách dự kiến + tiêu chí chấm điểm sơ bộ + tiêu chí thẩm định + mẫu công văn + mẫu email + danh sách đơn vị mời
-- [ ] **CYCLE-05**: State machine 7 trạng thái (DRAFT / READY / OPEN_REGISTRATION / CLOSED_REGISTRATION / EVALUATING / APPROVED / COMPLETED) với transition table + guard functions
+- [x] **CYCLE-05**: State machine 7 trạng thái (DRAFT / READY / OPEN_REGISTRATION / CLOSED_REGISTRATION / EVALUATING / APPROVED / COMPLETED) với transition table + guard functions
 - [ ] **CYCLE-06**: Visual state machine diagram trên trang chi tiết hiển thị tiến trình hiện tại
 - [ ] **CYCLE-07**: Upload bản scan công văn ban hành (PDF) với số công văn, ngày ký, người ký
 - [ ] **CYCLE-08**: Action "Mở cổng nhận đăng ký" chuyển READY → OPEN_REGISTRATION (yêu cầu đã upload công văn)
@@ -361,7 +361,7 @@ Explicit exclusions cho prototype POC này.
 | CYCLE-02 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
 | CYCLE-03 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
 | CYCLE-04 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
-| CYCLE-05 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-05 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
 | CYCLE-06 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
 | CYCLE-07 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
 | CYCLE-08 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |

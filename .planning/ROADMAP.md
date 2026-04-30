@@ -78,7 +78,15 @@ Plans:
   4. BQL chỉnh sửa cấu hình kỳ ngay cả khi OPEN_REGISTRATION (mốc/tiêu chí), hệ thống ghi audit log và tự động gửi thông báo cho danh sách đơn vị mời
   5. BQL soạn email mời đăng ký bằng Tiptap rich text với template variable + preview + gửi hàng loạt (mock dispatch lưu DB + inbox)
   6. Trang chi tiết hiển thị visual state machine diagram + 6 tabs (Tổng quan / Cấu hình kỳ / Công văn / Đơn vị mời + thông báo / Đề án đăng ký / Nhật ký), trang danh sách hiển thị card view các năm với status badge
-**Plans**: TBD
+**Plans**: 7 plans
+Plans:
+- [x] 03-01-schema-state-machine-PLAN.md — Schema Notification + NotificationDispatch + Attachment metadata + workflow TRANSITIONS hoàn chỉnh + lib/notifications mock dispatch + seed 3 cycles realistic — Wave 1
+- [ ] 03-02-visual-components-PLAN.md — @xyflow/react install + ProgramCycleStateMachineVisual 7-node + Stepper 5-step + StatCard 5-tone (HERO visuals) — Wave 1
+- [ ] 03-03-server-actions-rbac-PLAN.md — 9 server actions (list/get/create/update/transition/extend/upload-cong-van/send-invitation) + RBAC + Zod + audit + rate limit — Wave 2
+- [ ] 03-04-wizard-5-buoc-PLAN.md — /chuong-trinh/new wizard với Stepper + Zustand persist + RHF + Zod per-step + 5 step components + autosave (CYCLE-01..04) — Wave 3
+- [ ] 03-05-list-page-card-view-PLAN.md — /chuong-trinh card grid 3-col với status badge + countdown + progress bar + filter URL-driven (CYCLE-15) — Wave 3
+- [ ] 03-06-detail-page-6-tabs-PLAN.md — /chuong-trinh/[id] layout shared + 6 sub-routes deep-linkable + tab content + composer Tiptap với 7 variables + iframe PDF preview + API /api/file/[id] auth-gated (CYCLE-03/04/06/07/12/13/14) — Wave 3
+- [ ] 03-07-action-handlers-workflows-PLAN.md — CycleActionBar + TransitionDialog + ExtendCycleDialog + state machine onClick wired (CYCLE-08/09/10/11) — Wave 4
 **UI hint**: yes
 
 ### Phase 4: M2.2 Hồ sơ Đơn vị Chủ trì
@@ -195,7 +203,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 |-------|----------------|--------|-----------|
 | 1. M0 Bootstrap & Hạ tầng | 6/6 | Complete    | 2026-04-30 |
 | 2. M1 Quản trị & Danh mục | 7/7 | Complete    | 2026-04-30 |
-| 3. M2.1 Chu kỳ Chương trình XTTM (HERO) | 0/TBD | Not started | - |
+| 3. M2.1 Chu kỳ Chương trình XTTM (HERO) | 0/7 | Not started | - |
 | 4. M2.2 Hồ sơ Đơn vị Chủ trì | 0/TBD | Not started | - |
 | 5. M2.3 Khai báo & Nộp Đề án (HERO) | 0/TBD | Not started | - |
 | 6. M2.4 Tiếp nhận & Kiểm tra hồ sơ | 0/TBD | Not started | - |
