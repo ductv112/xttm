@@ -60,7 +60,7 @@ export const ORG_NAMES: Record<OrgCode, string> = {
   CUC_XTTM: 'Cục Xúc tiến Thương mại',
   BO_CT: 'Bộ Công Thương',
   VITAS: 'Hiệp hội Dệt may Việt Nam',
-  LEFASO: 'Hiệp hội Da giày — Túi xách Việt Nam',
+  LEFASO: 'Hiệp hội Da giày - Túi xách Việt Nam',
   VINATEX: 'Tập đoàn Dệt May Việt Nam',
   VASEP: 'Hiệp hội Chế biến và Xuất khẩu Thủy sản Việt Nam',
   VCCI: 'Liên đoàn Thương mại và Công nghiệp Việt Nam',
