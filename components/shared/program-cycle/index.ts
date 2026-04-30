@@ -12,6 +12,9 @@ export type { StepperProps } from './Stepper';
 
 export { StatCard } from './StatCard';
 
+export { ProgramCycleStateMachineVisual } from './ProgramCycleStateMachineVisual';
+export type { ProgramCycleStateMachineVisualProps } from './ProgramCycleStateMachineVisual';
+
 export type {
   StatCardProps,
   StatCardTone,
