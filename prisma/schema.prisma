@@ -211,6 +211,13 @@ model Project {
   submittedAt        DateTime?
   receivedAt         DateTime?
   assignedReviewerId String? // alias: assignedToUserId
+  // Phase 6 (M2.4) intake metadata
+  assignedAt         DateTime? // BQL/LĐ phân công cho chuyên viên thời điểm nào
+  assignedById       String? // user id của BQL/LĐ phân công
+  checklistJson           String? // JSON: [{ itemId, status: '✓'|'✗'|'N/A', note }]
+  passedFormalCheck       Boolean   @default(false) // chuyên viên xác nhận hợp lệ
+  formalRejectionReason   String? // lý do loại từ vòng kiểm tra hành chính
+  supplementRequestReason String? // lý do trả bổ sung mới nhất
   searchKey          String    @default("") // diacritics-removed
   createdById        String?
   createdAt          DateTime  @default(now())
@@ -273,9 +280,10 @@ model EvaluationCouncil {
 
 model ScoreSheet {
   id                 String    @id @default(cuid())
-  councilId          String
+  councilId          String? // null khi kind=PRELIMINARY (chấm điểm sơ bộ trước khi lập hội đồng)
   projectId          String
   reviewerId         String
+  kind               String    @default("EVALUATION") // PRELIMINARY (chuyên viên chấm sơ bộ Phase 6) | EVALUATION (hội đồng thẩm định Phase 7)
   status             String    @default("DRAFT") // DRAFT | SUBMITTED
   scoresJson         String? // JSON [{criterionId, score, weight, comment}]
   totalScore         Float?
@@ -285,11 +293,13 @@ model ScoreSheet {
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 
-  council  EvaluationCouncil @relation(fields: [councilId], references: [id])
+  council  EvaluationCouncil? @relation(fields: [councilId], references: [id])
   project  Project           @relation(fields: [projectId], references: [id])
   reviewer User              @relation(fields: [reviewerId], references: [id])
 
-  @@unique([councilId, projectId, reviewerId])
+  @@unique([projectId, reviewerId, kind])
+  @@index([kind, status])
+  @@index([projectId, kind])
 }
 
 // =============================================================================

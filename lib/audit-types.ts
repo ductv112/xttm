@@ -120,6 +120,27 @@ export const PROJECT_AUDIT_TYPES = {
   PROJECT_TRANSITION: { action: 'TRANSITION' as AuditAction, resource: 'de-an' as AuditResource },
 } as const;
 
+// =============================================================================
+// Phase 6 (M2.4 Tiếp nhận & Kiểm tra hồ sơ) — composite audit type identifiers.
+// Underlying log row uses AuditAction × AuditResource — these constants are
+// call-site documentation for grep-able semantics across intake actions.
+// Resource: 'tiep-nhan' covers BQL receive + assignment;
+// 'de-an' covers chuyên viên checklist updates + transitions on the project.
+// =============================================================================
+
+export const INTAKE_AUDIT_TYPES = {
+  INTAKE_RECEIVE: { action: 'TRANSITION' as AuditAction, resource: 'tiep-nhan' as AuditResource },
+  INTAKE_ASSIGN: { action: 'ASSIGN' as AuditAction, resource: 'tiep-nhan' as AuditResource },
+  INTAKE_UNASSIGN: { action: 'ASSIGN' as AuditAction, resource: 'tiep-nhan' as AuditResource },
+  INTAKE_REASSIGN: { action: 'ASSIGN' as AuditAction, resource: 'tiep-nhan' as AuditResource },
+  INTAKE_CHECKLIST_SAVE: { action: 'UPDATE' as AuditAction, resource: 'tiep-nhan' as AuditResource },
+  INTAKE_REQUEST_SUPPLEMENT: { action: 'TRANSITION' as AuditAction, resource: 'tiep-nhan' as AuditResource },
+  INTAKE_MARK_VALID: { action: 'TRANSITION' as AuditAction, resource: 'tiep-nhan' as AuditResource },
+  INTAKE_REJECT_FORMAL: { action: 'REJECT' as AuditAction, resource: 'tiep-nhan' as AuditResource },
+  INTAKE_SCORE_SAVE: { action: 'UPDATE' as AuditAction, resource: 'tham-dinh' as AuditResource },
+  INTAKE_SCORE_FINALIZE: { action: 'SUBMIT' as AuditAction, resource: 'tham-dinh' as AuditResource },
+} as const;
+
 // Color tokens for action badges (consumed by AuditLogTable)
 export const AUDIT_ACTION_BADGE: Record<AuditAction, string> = {
   CREATE: 'bg-green-100 text-green-800',
