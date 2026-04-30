@@ -321,3 +321,166 @@ model AuditLog {
   @@index([userId, createdAt])
   @@index([resource, resourceId])
 }
+
+// =============================================================================
+// CATALOGS — M1 (Phase 2 plan 02-02)
+// 8 master data tables phục vụ dropdown options cho mọi phase nghiệp vụ.
+// CAT-01..08: ProjectKind, IndustrySector, Market, PromotionType, Country,
+// OrgUnit, ScoringCriterion, DocumentTemplate.
+// Common pattern: code unique, name VN, searchKey diacritics-removed,
+// displayOrder int, isActive bool soft-deactivate.
+// =============================================================================
+
+// CAT-01: Loại đề án — 8 records seed (EXPORT_EXHIBITION, INTL_CONFERENCE, ...)
+model ProjectKind {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  name         String
+  description  String?
+  searchKey    String   @default("")
+  displayOrder Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([searchKey])
+  @@index([isActive, displayOrder])
+}
+
+// CAT-02: Ngành hàng — 20 records (TEXTILE, FOOTWEAR, WOOD, ...)
+model IndustrySector {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  name         String
+  description  String?
+  searchKey    String   @default("")
+  displayOrder Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([searchKey])
+  @@index([isActive, displayOrder])
+}
+
+// CAT-03: Thị trường — 15 records, region-grouped (EU, US, CHINA, JAPAN, ...)
+model Market {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  name         String
+  nameEn       String?
+  region       String // EUROPE | ASIA | AMERICAS | AFRICA | OCEANIA
+  description  String?
+  searchKey    String   @default("")
+  displayOrder Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([searchKey])
+  @@index([isActive, displayOrder])
+  @@index([region])
+}
+
+// CAT-04: Loại hình XTTM — 8 records (TRADE_FAIR, BUSINESS_MATCHING, ...)
+model PromotionType {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  name         String
+  description  String?
+  searchKey    String   @default("")
+  displayOrder Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([searchKey])
+  @@index([isActive, displayOrder])
+}
+
+// CAT-05: Quốc gia — 30 records ISO alpha-3 (VNM, USA, CHN, JPN, ...)
+model Country {
+  id             String   @id @default(cuid())
+  code           String   @unique // ISO 3166-1 alpha-3
+  name           String
+  nameEn         String?
+  region         String // EUROPE | ASIA | AMERICAS | AFRICA | OCEANIA
+  hasTradeOffice Boolean  @default(false) // Có thương vụ Việt Nam tại đó?
+  description    String?
+  searchKey      String   @default("")
+  displayOrder   Int      @default(0)
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([searchKey])
+  @@index([isActive, displayOrder])
+  @@index([region])
+}
+
+// CAT-06: Đơn vị — 12 records, hierarchical (BO_CT → CUC_XTTM, VINATEX → MAY10)
+model OrgUnit {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  name         String
+  type         String // MINISTRY | DEPARTMENT | ASSOCIATION | ENTERPRISE | RESEARCH_INSTITUTE | OTHER
+  parentId     String?
+  description  String?
+  searchKey    String   @default("")
+  displayOrder Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  parent   OrgUnit?  @relation("OrgUnitParent", fields: [parentId], references: [id])
+  children OrgUnit[] @relation("OrgUnitParent")
+
+  @@index([searchKey])
+  @@index([isActive, displayOrder])
+  @@index([type])
+  @@index([parentId])
+}
+
+// CAT-07: Tiêu chí chấm điểm — 15 records, hierarchical (4 group + 11 children)
+// weight Float (sum group = 100), appliesToKinds JSON of ProjectKind.code
+model ScoringCriterion {
+  id             String   @id @default(cuid())
+  code           String   @unique
+  name           String
+  description    String?
+  weight         Float    @default(0) // 0-100
+  appliesToKinds String? // JSON array of ProjectKind.code values, e.g. ["EXPORT_EXHIBITION","INTL_CONFERENCE"]
+  parentId       String?
+  searchKey      String   @default("")
+  displayOrder   Int      @default(0)
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  parent   ScoringCriterion?  @relation("ScoringCriterionParent", fields: [parentId], references: [id])
+  children ScoringCriterion[] @relation("ScoringCriterionParent")
+
+  @@index([searchKey])
+  @@index([isActive, displayOrder])
+  @@index([parentId])
+}
+
+// CAT-08: Mẫu văn bản — 6 records Tiptap HTML (CONG_VAN_MOI, TO_TRINH, ...)
+model DocumentTemplate {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  name         String
+  category     String // CONG_VAN_MOI | TO_TRINH | QUYET_DINH | HOP_DONG | BIEN_BAN_NGHIEM_THU | THANH_LY
+  description  String?
+  bodyHtml     String // Tiptap HTML output
+  variables    String? // JSON array of placeholder names, e.g. ["tenChuongTrinh","namKy"]
+  searchKey    String   @default("")
+  displayOrder Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([searchKey])
+  @@index([isActive, displayOrder])
+  @@index([category])
+}
