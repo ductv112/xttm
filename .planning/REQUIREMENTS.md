@@ -90,16 +90,16 @@
 ### Khai báo & Nộp Đề án (PROJ) — Phase M2.3 — HERO
 
 - [x] **PROJ-01**: Đơn vị chủ trì xem cổng tiếp nhận với banner "Đợt mời đề xuất [năm] đang mở — hạn [date]" hoặc "Hiện chưa có đợt mời nào đang mở" (gating bởi `ProgramCycle.status = OPEN_REGISTRATION`)
-- [ ] **PROJ-02**: Đơn vị chủ trì xem chi tiết đợt mời (điều kiện, tiêu chí, biểu mẫu, thời hạn) và tải biểu mẫu
+- [x] **PROJ-02**: Đơn vị chủ trì xem chi tiết đợt mời (điều kiện, tiêu chí, biểu mẫu, thời hạn) và tải biểu mẫu
 - [x] **PROJ-03**: Đơn vị chủ trì tạo đề án mới (yêu cầu hồ sơ tổ chức APPROVED + chu kỳ OPEN_REGISTRATION)
-- [ ] **PROJ-04**: Multi-step form 6 bước (Thông tin chung → Mục tiêu, nội dung, kế hoạch → Dự toán kinh phí → Chủ nhiệm đề án → Tài liệu đính kèm → Xem lại & nộp) với progress indicator
-- [ ] **PROJ-05**: Form sử dụng RHF 1 instance + Zustand persist step + Zod schema/step + autosave debounce 2s
-- [ ] **PROJ-06**: Step "Thông tin chung": tên đề án, loại đề án, ngành hàng (multi), thị trường (multi), quốc gia (multi), thời gian dự kiến (date range hoặc quý cho đoàn nước ngoài)
-- [ ] **PROJ-07**: Step "Mục tiêu, nội dung, kế hoạch": mục tiêu, mô tả nội dung, kế hoạch tiến độ chi tiết (rich text)
-- [ ] **PROJ-08**: Step "Dự toán kinh phí": bảng chi tiết hạng mục (mã, tên, đơn vị, số lượng, đơn giá, thành tiền) + tổng + nguồn (Nhà nước/Đối ứng đơn vị)
-- [ ] **PROJ-09**: Step "Chủ nhiệm đề án": chọn từ danh sách đầu mối của đơn vị, hiển thị thông tin
-- [ ] **PROJ-10**: Step "Tài liệu đính kèm": upload nhiều file (kế hoạch chi tiết, hồ sơ năng lực, ...) với progress + preview
-- [ ] **PROJ-11**: Step "Xem lại & nộp": readonly summary toàn bộ đề án + checkbox cam đoan
+- [x] **PROJ-04**: Multi-step form 6 bước (Thông tin chung → Mục tiêu, nội dung, kế hoạch → Dự toán kinh phí → Chủ nhiệm đề án → Tài liệu đính kèm → Xem lại & nộp) với progress indicator
+- [x] **PROJ-05**: Form sử dụng RHF 1 instance + Zustand persist step + Zod schema/step + autosave debounce 2s
+- [x] **PROJ-06**: Step "Thông tin chung": tên đề án, loại đề án, ngành hàng (multi), thị trường (multi), quốc gia (multi), thời gian dự kiến (date range hoặc quý cho đoàn nước ngoài)
+- [x] **PROJ-07**: Step "Mục tiêu, nội dung, kế hoạch": mục tiêu, mô tả nội dung, kế hoạch tiến độ chi tiết (rich text)
+- [x] **PROJ-08**: Step "Dự toán kinh phí": bảng chi tiết hạng mục (mã, tên, đơn vị, số lượng, đơn giá, thành tiền) + tổng + nguồn (Nhà nước/Đối ứng đơn vị)
+- [x] **PROJ-09**: Step "Chủ nhiệm đề án": chọn từ danh sách đầu mối của đơn vị, hiển thị thông tin
+- [x] **PROJ-10**: Step "Tài liệu đính kèm": upload nhiều file (kế hoạch chi tiết, hồ sơ năng lực, ...) với progress + preview
+- [x] **PROJ-11**: Step "Xem lại & nộp": readonly summary toàn bộ đề án + checkbox cam đoan
 - [x] **PROJ-12**: Đơn vị chủ trì lưu nháp đề án bất kỳ lúc nào (auto-save + manual save)
 - [x] **PROJ-13**: Đơn vị chủ trì sao chép đề án từ đề án cũ (prefill toàn bộ data, sửa năm + chỉnh)
 - [x] **PROJ-14**: Đơn vị chủ trì nộp đề án — server action validate đầy đủ + ghi nhận thời điểm nộp + chuyển trạng thái SUBMITTED + tăng version
@@ -381,16 +381,16 @@ Explicit exclusions cho prototype POC này.
 | ORG-07 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
 | ORG-08 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
 | PROJ-01 | Phase 5 (M2.3 Đề án HERO) | Complete |
-| PROJ-02 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-02 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-03 | Phase 5 (M2.3 Đề án HERO) | Complete |
-| PROJ-04 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-05 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-06 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-07 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-08 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-09 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-10 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-11 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-04 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-05 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-06 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-07 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-08 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-09 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-10 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-11 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-12 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-13 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-14 | Phase 5 (M2.3 Đề án HERO) | Complete |

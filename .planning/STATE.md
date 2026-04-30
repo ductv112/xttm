@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed Phase 5 Plan 01 (foundation)
-last_updated: "2026-04-30T22:30:20.693Z"
+stopped_at: Completed Phase 5 Plan 02 (wizard 6 bước HERO)
+last_updated: "2026-04-30T22:51:29.531Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 4
   total_plans: 25
-  completed_plans: 23
-  percent: 92
+  completed_plans: 24
+  percent: 96
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 5 (M2.3 Khai báo & Nộp Đề án (HERO)) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-04-30
 
@@ -78,6 +78,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì P01 | 14m | 3 tasks | 13 files |
 | Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì P02 | 22m | 2 tasks | 16 files |
 | Phase 05-m2.3-khai-báo-nộp-đề-án P01 | 13m | 3 tasks | 14 files |
+| Phase 05-m2.3-khai-báo-nộp-đề-án P02 | 17m | 3 tasks | 15 files |
 
 ## Accumulated Context
 
@@ -166,6 +167,8 @@ Recent decisions affecting current work:
 - [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-01: ProjectVersion snapshot model với @@unique([projectId,versionNumber]) + atomic transaction wrap version-snapshot + status-change + đề án 2 năm child creation; child created in same transaction as parent SUBMITTED with status TENTATIVE và parentProjectId — partial failure không leave inconsistent state
 - [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-01: pmContactId là plain String column reference OrgProfile.contactsJson[].id (không FK) — keeps schema lean; snapshot resolved trong get-detail.ts; idempotency 5s window dùng project.submittedAt + 5000ms cho double-click protection; mock notification reuse type=CYCLE_OPENED (không thêm enum mới Phase 5)
 - [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-01: 11 server actions trong app/(app)/de-an/_actions với pattern Per-step Zod schemas (generalInfoSchema/objectivesSchema/planSchema/budgetSchema/pmContactSchema/documentSchema) Internal-suffixed + alias re-exports — wizard client Phase 5 Plan 02 import schemas direct; upload-document magic byte verification PDF/DOC/DOCX/XLSX/JPG/PNG (T-05-01-04) UUID filename + path.resolve guard, 10MB/file 20/project quota
+- [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-02: Wizard 6 bước reuse pattern Phase 3 (Stepper + Zustand persist + RHF per-step) với userId-scoped persist key (project-wizard-{userId}); autosave debounce 2s on store-level subscription gọi saveDraftProject server action thay vì chỉ localStorage; Step5 first-upload force-saves draft để đảm bảo có projectId; Step6 submit = final saveDraft pass + submitProject với idempotency 5s window
+- [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-02: Step3 dual-total breakdown (Nhà nước + Đối ứng) với amount column auto-calc readonly = qty × unitPrice trên mỗi row update; ngân sách tham chiếu manual input validate >= total; Step4 auto-pick contact khi đơn vị chỉ có 1 contact (UX gem POC scope); Step1 Quarter Select chỉ hiển thị cho TRADE_DELEGATION_OUT/IN per CONTEXT.md decision; submit flow gate qua 2 user actions (declaration checkbox + ConfirmDialog) để mitigate accidental submit
 
 ### Pending Todos
 
@@ -180,6 +183,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T22:30:20.688Z
-Stopped at: Completed Phase 5 Plan 01 (foundation)
+Last session: 2026-04-30T22:51:29.527Z
+Stopped at: Completed Phase 5 Plan 02 (wizard 6 bước HERO)
 Resume file: None
