@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-04-user-management — User CRUD + bulk actions + reset password 12-char + Excel export 8 cột; 7/7 USER-01..07 đạt; ready cho Plan 02-05 role-permission-matrix
-last_updated: "2026-04-30T19:01:59.386Z"
+stopped_at: Completed 02-05-role-permission-matrix — Permission Matrix Grid 18×8×7+ với optimistic UI + canFromDB DB-backed check + custom role CRUD; 7/7 ROLE-01..07 đạt; ready cho Plan 02-06 catalog-editors
+last_updated: "2026-04-30T19:17:08.973Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 1
   total_plans: 13
-  completed_plans: 10
-  percent: 77
+  completed_plans: 11
+  percent: 85
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 2 (M1 Quản trị & Danh mục) — EXECUTING
-Plan: 5 of 7
+Plan: 6 of 7
 Status: Ready to execute
 Last activity: 2026-04-30
 
@@ -62,6 +62,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-m1-quan-tri-danh-muc P02 | 5m | 2 tasks | 4 files |
 | Phase 02-m1-quan-tri-danh-muc P03 | 9m | 3 tasks | 16 files |
 | Phase 02-m1-quan-tri-danh-muc P04 | 22m | 3 tasks | 18 files |
+| Phase 02-m1-quan-tri-danh-muc P05 | 11m | 3 tasks | 18 files |
 
 ## Accumulated Context
 
@@ -113,6 +114,10 @@ Recent decisions affecting current work:
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-04: 'use server' module convention — non-async exports phải tách sibling module (vd password-utils.ts cho generateTempPassword); withAuditLog captureAfter explicit field whitelist redact passwordHash/raw password; 3-layer self privilege guard (server throw + bulk filter-out-self + UI disable)
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-04: Excel export base64 (RSC ↔ client serialization friendly) thay vì Buffer pass-through; client decode atob → Uint8Array → Blob → URL.createObjectURL → anchor download — pattern reuse cho Phase tiếp theo có xuất file (CSV đã có lib/csv, Excel via xlsx package)
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-04: ResetPasswordDialog 2-step + prevent-close khi show-password (onPointerDownOutside/onEscapeKeyDown e.preventDefault) — UX critical force user copy temp password 12-char trước khi đóng; T-02-04-04 mitigation tempPassword chỉ trả về client 1 lần, audit captureAfter chỉ {passwordReset:true} flag
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-05: lib/permissions-db.ts canFromDB() DB-backed RBAC với 30s TTL cache + invalidatePermissionsCache() sau mutations + fallback static MATRIX nếu DB lỗi/empty — Phase 3+ tuỳ context dùng can() static (95%, fast) hoặc canFromDB (admin override áp dụng ngay)
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-05: Matrix grid 18 accordion sections × 7+ × 8 mini-tables (1008 cells split → 56-cell groups, manageable scrolling); MatrixCell optimistic UI useMutation onMutate flip + onError rollback + 600ms red flash; ADMIN bảo vệ 2 lớp UI disable + server throw (T-02-05-02)
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-05: Revoke = upsert {granted: false} không delete row (giữ history + explicit deny semantics); custom role create check Object.values(ROLES) clash + Prisma @unique defense in depth; deleteCustomRole refuse khi userCount > 0 (T-02-05-09)
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-05: Tabs/Accordion/Textarea shadcn primitives viết tay theo radix-ui meta-package pattern (consistent với existing Dialog wrap style) thay vì npx shadcn add — radix-ui meta-package ^1.4.3 đã expose primitives, no npm install
 
 ### Pending Todos
 
@@ -127,6 +132,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T19:01:59.382Z
-Stopped at: Completed 02-04-user-management — User CRUD + bulk actions + reset password 12-char + Excel export 8 cột; 7/7 USER-01..07 đạt; ready cho Plan 02-05 role-permission-matrix
+Last session: 2026-04-30T19:17:08.968Z
+Stopped at: Completed 02-05-role-permission-matrix — Permission Matrix Grid 18×8×7+ với optimistic UI + canFromDB DB-backed check + custom role CRUD; 7/7 ROLE-01..07 đạt; ready cho Plan 02-06 catalog-editors
 Resume file: None

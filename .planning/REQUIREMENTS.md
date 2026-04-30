@@ -29,12 +29,12 @@
 ### Vai trò & Phân quyền (ROLE) — Phase M1
 
 - [x] **ROLE-01**: Admin xem danh sách vai trò (7 vai trò seed sẵn) và mô tả mỗi vai trò
-- [ ] **ROLE-02**: Admin tạo nhóm quyền mới (custom role) với tên + mô tả
-- [ ] **ROLE-03**: Admin chỉnh sửa nhóm quyền
+- [x] **ROLE-02**: Admin tạo nhóm quyền mới (custom role) với tên + mô tả
+- [x] **ROLE-03**: Admin chỉnh sửa nhóm quyền
 - [x] **ROLE-04**: Admin xem ma trận phân quyền — grid vai trò × phân hệ × hành động (Xem/Thêm/Sửa/Xóa/Phê duyệt) với checkbox tick/untick
-- [ ] **ROLE-05**: Admin gán/bỏ quyền chức năng cho nhóm quyền với optimistic UI + audit log entry
-- [ ] **ROLE-06**: Sidebar và action button render động theo permission của user hiện tại
-- [ ] **ROLE-07**: Server action authoritative permission check — UI guard chỉ là layer 2
+- [x] **ROLE-05**: Admin gán/bỏ quyền chức năng cho nhóm quyền với optimistic UI + audit log entry
+- [x] **ROLE-06**: Sidebar và action button render động theo permission của user hiện tại
+- [x] **ROLE-07**: Server action authoritative permission check — UI guard chỉ là layer 2
 
 ### Danh mục Hệ thống (CAT) — Phase M1
 
@@ -338,12 +338,12 @@ Explicit exclusions cho prototype POC này.
 | USER-06 | Phase 2 (M1 Quản trị) | Complete |
 | USER-07 | Phase 2 (M1 Quản trị) | Complete |
 | ROLE-01 | Phase 2 (M1 Quản trị) | Complete |
-| ROLE-02 | Phase 2 (M1 Quản trị) | Pending |
-| ROLE-03 | Phase 2 (M1 Quản trị) | Pending |
+| ROLE-02 | Phase 2 (M1 Quản trị) | Complete |
+| ROLE-03 | Phase 2 (M1 Quản trị) | Complete |
 | ROLE-04 | Phase 2 (M1 Quản trị) | Complete |
-| ROLE-05 | Phase 2 (M1 Quản trị) | Pending |
-| ROLE-06 | Phase 2 (M1 Quản trị) | Pending |
-| ROLE-07 | Phase 2 (M1 Quản trị) | Pending |
+| ROLE-05 | Phase 2 (M1 Quản trị) | Complete |
+| ROLE-06 | Phase 2 (M1 Quản trị) | Complete |
+| ROLE-07 | Phase 2 (M1 Quản trị) | Complete |
 | CAT-01 | Phase 2 (M1 Quản trị) | Complete |
 | CAT-02 | Phase 2 (M1 Quản trị) | Complete |
 | CAT-03 | Phase 2 (M1 Quản trị) | Complete |
