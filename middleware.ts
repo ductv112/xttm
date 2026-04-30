@@ -12,7 +12,8 @@ export const config = {
   // - /fonts/* (public fonts cho PDF)
   // - /mock-files/* (public mock files cho demo)
   // - /logo-*.svg (public logo assets)
+  // - /test-pdf (Plan 06 dev-only PDF spike smoke page — keep accessible without auth)
   matcher: [
-    '/((?!api/auth|api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|fonts|mock-files|logo-).*)',
+    '/((?!api/auth|api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|fonts|mock-files|logo-|test-pdf).*)',
   ],
 };
