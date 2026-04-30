@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-02-visual-components — @xyflow/react ^12.10.2 + Stepper (172 LOC) + StatCard 5-tone (91 LOC) + ProgramCycleStateMachineVisual React Flow 7-node HERO (293 LOC) + index.ts barrel; checkpoint Task 3 auto-approved overnight mode
-last_updated: "2026-04-30T20:32:26.410Z"
+stopped_at: Completed 03-03-server-actions-rbac — 9 server actions (listCycles/getCycleDetail/createCycle/updateCycle/transitionCycle/extendCycle/uploadCongVan/sendInvitation) + index barrel; RBAC canFromDB + Zod + withAuditLog + magic byte PDF + rate-limit Map
+last_updated: "2026-04-30T20:44:15.858Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 2
   total_plans: 20
-  completed_plans: 15
-  percent: 75
+  completed_plans: 16
+  percent: 80
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 3 (M2.1 Chu kỳ Chương trình XTTM (HERO)) — EXECUTING
-Plan: 3 of 7
+Plan: 4 of 7
 Status: Ready to execute
 Last activity: 2026-04-30
 
@@ -68,6 +68,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-m1-quan-tri-danh-muc P07 | 10m | 3 tasks | 13 files |
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P01 | 6m | 3 tasks | 11 files |
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P02 | 4m | 2 tasks | 7 files |
+| Phase 03-m2.1-chu-kỳ-chương-trình-xttm P03 | 8m | 4 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -133,6 +134,9 @@ Recent decisions affecting current work:
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Cycle 2026 dùng daysAgo(28)/daysFromNow(12) RELATIVE dates (PITFALLS R5); seed VASEP+VCCI vào organizations (5→7) cho 5-org realistic CYCLE-13 demo
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-02 — Use @xyflow/react v12 (latest stable 12.10.2) over reactflow v11; SSR mounted gate pattern over next/dynamic; visual nodes non-interactive (draggable/selectable false) — only click reachable triggers transition
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-02 — StatCard 5-tone variants locked (default/success/warning/danger/info) cho mọi phase tái dùng; VALUE_TONE map cho text color emphasis của value
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: ProgramCycle.description stash trong configJson — không add column mới, giữ schema lean (Plan 03-03 deviation)
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: transitionCycle reject CLOSED→OPEN với VN message bắt UI dùng extendCycle (Gia hạn) — force ghi reason vào configJson.extensions[]
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Rate limit Map<cycleId, lastSentAt> in-memory 5 phút cho sendInvitation — production multi-instance sẽ replace với Redis pub/sub
 
 ### Pending Todos
 
@@ -147,6 +151,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T20:32:26.406Z
-Stopped at: Completed 03-02-visual-components — @xyflow/react ^12.10.2 + Stepper (172 LOC) + StatCard 5-tone (91 LOC) + ProgramCycleStateMachineVisual React Flow 7-node HERO (293 LOC) + index.ts barrel; checkpoint Task 3 auto-approved overnight mode
+Last session: 2026-04-30T20:44:15.853Z
+Stopped at: Completed 03-03-server-actions-rbac — 9 server actions (listCycles/getCycleDetail/createCycle/updateCycle/transitionCycle/extendCycle/uploadCongVan/sendInvitation) + index barrel; RBAC canFromDB + Zod + withAuditLog + magic byte PDF + rate-limit Map
 Resume file: None

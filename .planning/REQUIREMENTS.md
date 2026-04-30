@@ -61,18 +61,18 @@
 ### Chu kỳ Chương trình XTTM (CYCLE) — Phase M2.1 — HERO ENTITY
 
 - [ ] **CYCLE-01**: Ban quản lý CT XTTM tạo chu kỳ chương trình mới với multi-step wizard 5 bước (Thông tin chung / Mốc thời gian / Cấu hình tiêu chí / Đơn vị mời / Xem lại)
-- [ ] **CYCLE-02**: Ràng buộc unique 1 chu kỳ / năm — form validation chặn tạo trùng năm
+- [x] **CYCLE-02**: Ràng buộc unique 1 chu kỳ / năm — form validation chặn tạo trùng năm
 - [ ] **CYCLE-03**: Cấu hình mốc thời gian: ngày mở cổng, hạn nộp (mặc định 30/5), hạn nộp bổ sung, ngày bắt đầu/kết thúc thẩm định, hạn phê duyệt
 - [ ] **CYCLE-04**: Cấu hình ngân sách dự kiến + tiêu chí chấm điểm sơ bộ + tiêu chí thẩm định + mẫu công văn + mẫu email + danh sách đơn vị mời
 - [x] **CYCLE-05**: State machine 7 trạng thái (DRAFT / READY / OPEN_REGISTRATION / CLOSED_REGISTRATION / EVALUATING / APPROVED / COMPLETED) với transition table + guard functions
 - [x] **CYCLE-06**: Visual state machine diagram trên trang chi tiết hiển thị tiến trình hiện tại
-- [ ] **CYCLE-07**: Upload bản scan công văn ban hành (PDF) với số công văn, ngày ký, người ký
-- [ ] **CYCLE-08**: Action "Mở cổng nhận đăng ký" chuyển READY → OPEN_REGISTRATION (yêu cầu đã upload công văn)
-- [ ] **CYCLE-09**: Action "Đóng cổng" chuyển OPEN_REGISTRATION → CLOSED_REGISTRATION
-- [ ] **CYCLE-10**: Action "Mở lại để gia hạn" chuyển CLOSED_REGISTRATION → OPEN_REGISTRATION (nhập lý do + ngày hạn mới, ghi audit log)
-- [ ] **CYCLE-11**: Action "Chuyển sang thẩm định" chuyển CLOSED_REGISTRATION → EVALUATING
+- [x] **CYCLE-07**: Upload bản scan công văn ban hành (PDF) với số công văn, ngày ký, người ký
+- [x] **CYCLE-08**: Action "Mở cổng nhận đăng ký" chuyển READY → OPEN_REGISTRATION (yêu cầu đã upload công văn)
+- [x] **CYCLE-09**: Action "Đóng cổng" chuyển OPEN_REGISTRATION → CLOSED_REGISTRATION
+- [x] **CYCLE-10**: Action "Mở lại để gia hạn" chuyển CLOSED_REGISTRATION → OPEN_REGISTRATION (nhập lý do + ngày hạn mới, ghi audit log)
+- [x] **CYCLE-11**: Action "Chuyển sang thẩm định" chuyển CLOSED_REGISTRATION → EVALUATING
 - [ ] **CYCLE-12**: Cho phép chỉnh sửa cấu hình kỳ ngay cả khi đang OPEN_REGISTRATION (ghi audit log + tự động gửi thông báo cho đơn vị nếu thay đổi mốc/tiêu chí)
-- [ ] **CYCLE-13**: Composer email mời đăng ký bằng Tiptap rich text với template variable + preview + gửi hàng loạt cho danh sách đơn vị (mock dispatch lưu DB + inbox)
+- [x] **CYCLE-13**: Composer email mời đăng ký bằng Tiptap rich text với template variable + preview + gửi hàng loạt cho danh sách đơn vị (mock dispatch lưu DB + inbox)
 - [ ] **CYCLE-14**: Trang chi tiết chu kỳ với 6 tabs (Tổng quan / Cấu hình kỳ / Công văn / Đơn vị mời + thông báo / Đề án đăng ký / Nhật ký)
 - [ ] **CYCLE-15**: Trang danh sách chu kỳ dạng card view các năm với status badge + tiến độ + thống kê (số đề án, kinh phí đăng ký)
 
@@ -358,18 +358,18 @@ Explicit exclusions cho prototype POC này.
 | LOG-02 | Phase 2 (M1 Quản trị) | Complete |
 | LOG-03 | Phase 2 (M1 Quản trị) | Complete |
 | CYCLE-01 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
-| CYCLE-02 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-02 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
 | CYCLE-03 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
 | CYCLE-04 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
 | CYCLE-05 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
 | CYCLE-06 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
-| CYCLE-07 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
-| CYCLE-08 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
-| CYCLE-09 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
-| CYCLE-10 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
-| CYCLE-11 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-07 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
+| CYCLE-08 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
+| CYCLE-09 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
+| CYCLE-10 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
+| CYCLE-11 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
 | CYCLE-12 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
-| CYCLE-13 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-13 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
 | CYCLE-14 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
 | CYCLE-15 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
 | ORG-01 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
