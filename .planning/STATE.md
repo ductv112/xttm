@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-05-list-page-card-view-PLAN.md
-last_updated: "2026-04-30T21:09:18.843Z"
+stopped_at: Completed 03-06-detail-page-6-tabs-PLAN.md
+last_updated: "2026-04-30T21:26:46.489Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 2
   total_plans: 20
-  completed_plans: 18
-  percent: 90
+  completed_plans: 19
+  percent: 95
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 3 (M2.1 Chu kỳ Chương trình XTTM (HERO)) — EXECUTING
-Plan: 6 of 7
+Plan: 7 of 7
 Status: Ready to execute
 Last activity: 2026-04-30
 
@@ -71,6 +71,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P03 | 8m | 4 tasks | 11 files |
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P04 | 13m | 4 tasks | 10 files |
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P05 | 4m | 3 tasks | 5 files |
+| Phase 03-m2.1-chu-kỳ-chương-trình-xttm P06 | 12m | 4 tasks | 19 files |
 
 ## Accumulated Context
 
@@ -145,6 +146,11 @@ Recent decisions affecting current work:
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: URL search params là single source of truth cho CycleFilterBar (no useState mirror) — Plan 5+ list views reuse pattern
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Triple RBAC defense-in-depth (page auth → page canFromDB → listCycles internal canFromDB) prevents URL-direct-hit bypass
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: ALL_YEARS_VALUE='__all__' sentinel cho Radix Select empty-string disallow constraint
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-06: Sub-routes (vs client tabs) cho 6 tab chosen vì bookmarkability + per-tab independent RSC data dependency (cau-hinh catalogs / cong-van attachment / nhat-ky audit) — natural route boundary
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-06: API /api/file/[id] entity-aware RBAC dispatch — resolveResourceForEntity('ProgramCycle')→'chuong-trinh'; Phase 4+ extends switch cho OrgProfile/Project/Contract attachments; fail-closed default-deny 403 cho unwired entityType
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-06: Tab Nhật ký bypasses /nhat-ky listAuditLogs (gates audit-log:read which BANQL không có) — direct prisma query với resource+resourceId scope; RBAC inherited from layout's chuong-trinh:read gate
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-06: VariableMenu standalone file SKIPPED — RichTextEditor toolbar có VariableMenu integrated với variables prop từ Phase 2 Plan 02-03; InvitationComposer chỉ pass 7 cycle-bound variables array
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-06: EDITABLE_STATUSES=[DRAFT,READY,OPEN_REGISTRATION] cho CauHinhKyForm — covers CYCLE-12 'sửa khi OPEN'; CLOSED/EVALUATING/APPROVED/COMPLETED disable + banner; significantChange flag từ updateCycle triggers ConfirmDialog → sendInvitation auto-template
 
 ### Pending Todos
 
@@ -159,6 +165,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T21:09:18.839Z
-Stopped at: Completed 03-05-list-page-card-view-PLAN.md
+Last session: 2026-04-30T21:26:46.485Z
+Stopped at: Completed 03-06-detail-page-6-tabs-PLAN.md
 Resume file: None
