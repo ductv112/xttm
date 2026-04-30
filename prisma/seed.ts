@@ -6,6 +6,7 @@ import { seedPermissions } from './seed/permissions';
 import { seedSystemConfig } from './seed/system-config';
 import { seedProgramCycles } from './seed/program-cycles';
 import { seedCycleNotifications } from './seed/notifications';
+import { seedOrgProfiles } from './seed/orgProfiles';
 
 const prisma = new PrismaClient();
 
@@ -32,6 +33,9 @@ async function main() {
     );
   }
 
+  // Phase 4 (M2.2) data: 5 OrganizationProfile cover all 4 statuses
+  await seedOrgProfiles(prisma);
+
   // Smoke verify counts
   const userCount = await prisma.user.count();
   const orgCount = await prisma.organization.count();
@@ -51,12 +55,22 @@ async function main() {
     where: { granted: true },
   });
   const systemConfigCount = await prisma.systemConfig.count();
+  const orgProfileCount = await prisma.organizationProfile.count();
+  const orgProfilesByStatus = await prisma.organizationProfile.groupBy({
+    by: ['status'],
+    _count: { _all: true },
+  });
   console.log(`📊 Total users: ${userCount}, organizations: ${orgCount}`);
   console.log(`📊 Catalogs:`, catalogCounts);
   console.log(
     `📊 RBAC: roles=${roleCount}, permissions=${permissionCount}, grants=${grantCount}`,
   );
   console.log(`📊 SystemConfig: ${systemConfigCount} (1 SLA + 5 email + 3 SMS = 9)`);
+  console.log(
+    `📊 OrganizationProfile: ${orgProfileCount} (status mix: ${orgProfilesByStatus
+      .map((r) => `${r.status}=${r._count._all}`)
+      .join(', ')})`,
+  );
 
   if (userCount < 8) throw new Error(`Expected 8 users, got ${userCount}`);
   if (roleCount !== 7)
@@ -89,6 +103,19 @@ async function main() {
     throw new Error(
       `Expected 9 SystemConfig (1 SLA + 5 email + 3 SMS), got ${systemConfigCount}`,
     );
+  if (orgProfileCount < 5)
+    throw new Error(`Expected ≥5 OrganizationProfile, got ${orgProfileCount}`);
+  const statusCounts = Object.fromEntries(
+    orgProfilesByStatus.map((r) => [r.status, r._count._all] as const),
+  );
+  if ((statusCounts.APPROVED ?? 0) < 1)
+    throw new Error('Expected ≥1 APPROVED OrganizationProfile');
+  if ((statusCounts.SUBMITTED ?? 0) < 1)
+    throw new Error('Expected ≥1 SUBMITTED OrganizationProfile');
+  if ((statusCounts.REJECTED ?? 0) < 1)
+    throw new Error('Expected ≥1 REJECTED OrganizationProfile');
+  if ((statusCounts.DRAFT ?? 0) < 2)
+    throw new Error('Expected ≥2 DRAFT OrganizationProfile');
 
   console.timeEnd('seed');
   console.log('✅ Seed complete.');
