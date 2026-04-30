@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-m0-bootstrap-h-t-ng plan 03 (NextAuth Credentials — 8/8 smoke PASS, AUTH-01..04 satisfied)
-last_updated: "2026-04-30T17:14:30.189Z"
+stopped_at: Completed 01-m0-bootstrap-h-t-ng plan 04 (Layout Shell — 18 shadcn + 7 layout components + AppShell wire auth(), AUTH-06 + AUTH-07 satisfied)
+last_updated: "2026-04-30T17:24:14.308Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 0
   total_plans: 6
-  completed_plans: 4
-  percent: 67
+  completed_plans: 5
+  percent: 83
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 1 (M0 Bootstrap & Hạ tầng) — EXECUTING
-Plan: 5 of 6
+Plan: 6 of 6
 Status: Ready to execute
 Last activity: 2026-04-30
 
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-m0-bootstrap-h-t-ng P02 | 4m | 3 tasks | 7 files |
 | Phase 01-m0-bootstrap-h-t-ng P06 | 7m | 3 tasks | 12 files |
 | Phase 01-m0-bootstrap-h-t-ng P03 | 4m | 3 tasks | 10 files |
+| Phase 01-m0-bootstrap-h-t-ng P04 | 4m | 3 tasks | 27 files |
 
 ## Accumulated Context
 
@@ -89,6 +90,10 @@ Recent decisions affecting current work:
 - [Phase 01-m0-bootstrap-h-t-ng]: Server action loginAction lookup role qua prisma TRƯỚC signIn, signIn(redirect:false), redirect role-based qua defaultLandingPath — control flow tự manual không dùng raw callbackUrl (T-03-04)
 - [Phase 01-m0-bootstrap-h-t-ng]: JWT session strategy 7d (maxAge 60*60*24*7); jwt callback chỉ inject role lần đầu khi user truthy (initial sign-in); session callback đọc role từ token không từ client (T-03-06)
 - [Phase 01-m0-bootstrap-h-t-ng]: Rule 1 fix lib/constants.ts ORG_NAMES.LEFASO em-dash → hyphen để khớp seed DB value (Plan 02 seeded with hyphen, Plan 01 typo)
+- [Phase 01-m0-bootstrap-h-t-ng]: AppSidebar là RSC + SidebarMenuItem inner client — server-side render menu theo role, client-side check active state qua usePathname
+- [Phase 01-m0-bootstrap-h-t-ng]: (app)/layout.tsx defense-in-depth redirect — middleware Plan 03 + layout fallback đều check session, layer 2 chống matcher config drift
+- [Phase 01-m0-bootstrap-h-t-ng]: Sidebar inset variant + collapsible icon (UI-SPEC lock) — w-64 expanded / w-16 icon-only mode với tooltip side-popup; Lucide icon dynamic registry kebab→Pascal cho menu config dạng string
+- [Phase 01-m0-bootstrap-h-t-ng]: AppProviders minimal cho M0 (chỉ QueryProvider) — KHÔNG add ThemeProvider vì light mode hardcode UI-SPEC, KHÔNG add LocaleProvider vì date-fns/vi import trực tiếp Plan 01
 
 ### Pending Todos
 
@@ -103,6 +108,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T17:14:30.184Z
-Stopped at: Completed 01-m0-bootstrap-h-t-ng plan 03 (NextAuth Credentials — 8/8 smoke PASS, AUTH-01..04 satisfied)
+Last session: 2026-04-30T17:24:14.304Z
+Stopped at: Completed 01-m0-bootstrap-h-t-ng plan 04 (Layout Shell — 18 shadcn + 7 layout components + AppShell wire auth(), AUTH-06 + AUTH-07 satisfied)
 Resume file: None
