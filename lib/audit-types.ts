@@ -89,6 +89,21 @@ export type AuditEntry = {
   metadata?: Record<string, unknown>;
 };
 
+// =============================================================================
+// Phase 4 (M2.2 Hồ sơ Đơn vị Chủ trì) — convenience composite type identifiers.
+// Server actions in app/(app)/don-vi-cua-toi/_actions + don-vi-chu-tri/_actions
+// reference these for grep-able audit semantics. Underlying log row uses
+// AuditAction × AuditResource (UPDATE × don-vi-chu-tri etc.) — these constants
+// are call-site documentation, NOT new resource/action enum values.
+// =============================================================================
+
+export const ORG_PROFILE_AUDIT_TYPES = {
+  ORG_PROFILE_SUBMIT: { action: 'SUBMIT' as AuditAction, resource: 'don-vi-chu-tri' as AuditResource },
+  ORG_PROFILE_APPROVE: { action: 'APPROVE' as AuditAction, resource: 'don-vi-chu-tri' as AuditResource },
+  ORG_PROFILE_REJECT: { action: 'REJECT' as AuditAction, resource: 'don-vi-chu-tri' as AuditResource },
+  ORG_PROFILE_UPDATE: { action: 'UPDATE' as AuditAction, resource: 'don-vi-chu-tri' as AuditResource },
+} as const;
+
 // Color tokens for action badges (consumed by AuditLogTable)
 export const AUDIT_ACTION_BADGE: Record<AuditAction, string> = {
   CREATE: 'bg-green-100 text-green-800',

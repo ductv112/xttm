@@ -100,22 +100,29 @@ model Organization {
   @@index([searchKey])
 }
 
-// Scaffolding cho Phase 4 (M2.2) — full fields populated then.
+// Phase 4 (M2.2) — Hồ sơ Đơn vị Chủ trì.
+// JSON-backed pattern (consistent với ProgramCycle.configJson + Project.marketIds):
+//   legalInfoJson  : { taxCode, address, representativeName, representativeTitle, businessType, businessField }
+//   capabilitiesJson: { description (Tiptap HTML), achievements (string), pastProjects: [{ name, year, outcome }] }
+//   contactsJson   : [{ name, title, role, email, phone }]  -- min 1 contact required at submit
+// State machine: lib/workflows/orgProfile.ts (DRAFT → SUBMITTED → APPROVED/REJECTED ⇄ DRAFT).
 model OrganizationProfile {
-  id             String    @id @default(cuid())
-  organizationId String    @unique
-  legalRepName   String?
-  legalRepTitle  String?
-  capabilities   String? // năng lực, thành tích
-  contactPersons String? // JSON string: [{name, title, phone, email, role}]
-  status         String    @default("DRAFT") // DRAFT | SUBMITTED | APPROVED | REJECTED
-  submittedAt    DateTime?
-  approvedAt     DateTime?
-  approvedById   String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  id               String    @id @default(cuid())
+  organizationId   String    @unique
+  legalInfoJson    String? // JSON: legal info object
+  capabilitiesJson String? // JSON: capabilities object
+  contactsJson     String? // JSON: array of contact objects
+  status           String    @default("DRAFT") // DRAFT | SUBMITTED | APPROVED | REJECTED
+  rejectionReason  String? // populated when status=REJECTED (BQL fills in)
+  submittedAt      DateTime?
+  approvedAt       DateTime?
+  approvedById     String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([status])
 }
 
 // =============================================================================
