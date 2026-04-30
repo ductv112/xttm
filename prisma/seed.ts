@@ -4,6 +4,8 @@ import { seedOrganizations } from './seed/organizations';
 import { seedCatalogs } from './seed/catalogs';
 import { seedPermissions } from './seed/permissions';
 import { seedSystemConfig } from './seed/system-config';
+import { seedProgramCycles } from './seed/program-cycles';
+import { seedCycleNotifications } from './seed/notifications';
 
 const prisma = new PrismaClient();
 
@@ -18,6 +20,17 @@ async function main() {
   await seedCatalogs(prisma);
   await seedPermissions(prisma);
   await seedSystemConfig(prisma);
+
+  // Phase 3 (M2.1) HERO data: 3 program cycles + invitation history
+  const cycleIds = await seedProgramCycles(prisma);
+  const banqlUser = await prisma.user.findUnique({ where: { username: 'banql' } });
+  if (banqlUser) {
+    await seedCycleNotifications(
+      prisma,
+      { cycle2025Id: cycleIds.cycle2025Id, cycle2026Id: cycleIds.cycle2026Id },
+      banqlUser.id,
+    );
+  }
 
   // Smoke verify counts
   const userCount = await prisma.user.count();

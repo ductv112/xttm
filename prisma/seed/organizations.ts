@@ -56,6 +56,24 @@ const SEED_ORGS: OrgSeed[] = [
     email: 'info@vinatex.com.vn',
     isInvited: true,
   },
+  {
+    code: 'VASEP',
+    name: 'Hiệp hội Chế biến và Xuất khẩu Thủy sản Việt Nam',
+    type: 'ASSOCIATION',
+    taxCode: '0100400400',
+    address: '218 Lê Trọng Tấn, Tân Phú, TP.HCM',
+    email: 'vasep@vasep.com.vn',
+    isInvited: true,
+  },
+  {
+    code: 'VCCI',
+    name: 'Liên đoàn Thương mại và Công nghiệp Việt Nam',
+    type: 'ASSOCIATION',
+    taxCode: '0100500500',
+    address: '9 Đào Duy Anh, Đống Đa, Hà Nội',
+    email: 'vcci@vcci.com.vn',
+    isInvited: true,
+  },
 ];
 
 export async function seedOrganizations(prisma: PrismaClient) {

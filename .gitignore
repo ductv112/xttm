@@ -51,6 +51,8 @@ prisma/*.db-journal
 # storage / uploads
 storage/uploads/*
 !storage/uploads/.gitkeep
+!storage/uploads/*/
+!storage/uploads/**/.gitkeep
 !storage/.gitignore
 
 # editor / OS
