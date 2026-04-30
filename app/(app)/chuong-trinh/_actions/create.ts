@@ -17,7 +17,9 @@ import type { CreateCycleInput } from './types';
 
 const cuid = z.string().min(1, 'ID không hợp lệ').max(64);
 
-export const createCycleSchema = z
+// Internal Zod schema — NOT exported because 'use server' modules require all
+// exports to be async functions (Plan 03-04 client consumer fix).
+const createCycleSchemaInternal = z
   .object({
     year: z
       .number({ message: 'Vui lòng nhập năm chu kỳ' })
@@ -91,7 +93,7 @@ async function createCycleImpl(input: CreateCycleInput): Promise<CreateCycleResu
     throw new Error('Bạn không có quyền tạo chu kỳ chương trình');
   }
 
-  const result = createCycleSchema.safeParse(input);
+  const result = createCycleSchemaInternal.safeParse(input);
   if (!result.success) {
     const first = result.error.issues[0];
     throw new Error('Dữ liệu không hợp lệ: ' + (first?.message ?? 'lỗi không xác định'));

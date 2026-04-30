@@ -23,13 +23,14 @@ const STATUS_ENUM = z.enum(
   PROGRAM_CYCLE_STATUSES as readonly string[] as readonly [string, ...string[]],
 );
 
-export const transitionInputSchema = z.object({
+// Internal schema (NOT exported — 'use server' module rule).
+const transitionInputSchemaInternal = z.object({
   cycleId: z.string().min(1, 'Mã chu kỳ không hợp lệ'),
   target: STATUS_ENUM,
   reason: z.string().trim().max(1000, 'Lý do tối đa 1000 ký tự').optional(),
 });
 
-export type TransitionInput = z.input<typeof transitionInputSchema>;
+export type TransitionInput = z.input<typeof transitionInputSchemaInternal>;
 
 export type TransitionResult = {
   id: string;
@@ -46,7 +47,7 @@ async function transitionCycleImpl(input: TransitionInput): Promise<TransitionRe
     throw new Error('Bạn không có quyền chuyển trạng thái chu kỳ chương trình');
   }
 
-  const result = transitionInputSchema.safeParse(input);
+  const result = transitionInputSchemaInternal.safeParse(input);
   if (!result.success) {
     const first = result.error.issues[0];
     throw new Error('Dữ liệu không hợp lệ: ' + (first?.message ?? 'lỗi không xác định'));

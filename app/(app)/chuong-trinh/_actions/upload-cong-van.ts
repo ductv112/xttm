@@ -27,7 +27,8 @@ const cycleIdSchema = z
   .max(64, 'Mã chu kỳ không hợp lệ')
   .regex(/^[a-zA-Z0-9_-]+$/, 'Mã chu kỳ không hợp lệ');
 
-export const uploadCongVanMetadataSchema = z.object({
+// Internal schema (NOT exported — 'use server' module rule).
+const uploadCongVanMetadataSchemaInternal = z.object({
   signedNumber: z
     .string({ message: 'Vui lòng nhập số công văn' })
     .trim()
@@ -119,7 +120,7 @@ async function uploadCongVanImpl(
     signedByName: (formData.get('signedByName') as string | null) ?? '',
     signedByTitle: (formData.get('signedByTitle') as string | null) ?? '',
   };
-  const metaResult = uploadCongVanMetadataSchema.safeParse(metadataInput);
+  const metaResult = uploadCongVanMetadataSchemaInternal.safeParse(metadataInput);
   if (!metaResult.success) {
     const first = metaResult.error.issues[0];
     throw new Error('Dữ liệu không hợp lệ: ' + (first?.message ?? 'lỗi không xác định'));

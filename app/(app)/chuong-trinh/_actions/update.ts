@@ -14,10 +14,11 @@ import { canFromDB } from '@/lib/permissions-db';
 import { withAuditLog } from '@/lib/audit';
 import type { ProgramCycleStatus } from '@/lib/workflows/programCycle';
 import type { UpdateCycleInput } from './types';
-import { createCycleSchema } from './create';
 
+// Internal Zod schema — NOT exported because 'use server' modules require all
+// exports to be async functions (Plan 03-04 client consumer fix).
 // Reuse base shape but everything optional + add id; superRefine carries date ordering.
-export const updateCycleSchema = z
+const updateCycleSchemaInternal = z
   .object({
     id: z.string().min(1, 'Mã chu kỳ không hợp lệ'),
     year: z
@@ -79,9 +80,6 @@ export const updateCycleSchema = z
     }
   });
 
-// Reference createCycleSchema in a no-op to keep import (used for client/edit form reuse)
-export type _CreateSchemaShape = z.infer<typeof createCycleSchema>;
-
 function safeParseConfig(json: string | null): Record<string, unknown> {
   if (!json) return {};
   try {
@@ -112,7 +110,7 @@ async function updateCycleImpl(input: UpdateCycleInput): Promise<UpdateCycleResu
     throw new Error('Bạn không có quyền cập nhật chu kỳ chương trình');
   }
 
-  const result = updateCycleSchema.safeParse(input);
+  const result = updateCycleSchemaInternal.safeParse(input);
   if (!result.success) {
     const first = result.error.issues[0];
     throw new Error('Dữ liệu không hợp lệ: ' + (first?.message ?? 'lỗi không xác định'));

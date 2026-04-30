@@ -25,7 +25,8 @@ const NOTIFICATION_TYPE_ENUM = z.enum(
   NOTIFICATION_TYPES as readonly string[] as readonly [string, ...string[]],
 );
 
-export const sendInvitationInputSchema = z.object({
+// Internal schema (NOT exported — 'use server' module rule).
+const sendInvitationInputSchemaInternal = z.object({
   cycleId: z.string().min(1, 'Mã chu kỳ không hợp lệ'),
   subject: z
     .string({ message: 'Vui lòng nhập tiêu đề' })
@@ -43,7 +44,7 @@ export const sendInvitationInputSchema = z.object({
   notificationType: NOTIFICATION_TYPE_ENUM.default('CYCLE_INVITATION'),
 });
 
-export type SendInvitationInput = z.input<typeof sendInvitationInputSchema>;
+export type SendInvitationInput = z.input<typeof sendInvitationInputSchemaInternal>;
 
 export type SendInvitationResult = {
   notificationId: string;
@@ -62,7 +63,7 @@ async function sendInvitationImpl(
     throw new Error('Bạn không có quyền gửi thông báo chu kỳ chương trình');
   }
 
-  const result = sendInvitationInputSchema.safeParse(input);
+  const result = sendInvitationInputSchemaInternal.safeParse(input);
   if (!result.success) {
     const first = result.error.issues[0];
     throw new Error('Dữ liệu không hợp lệ: ' + (first?.message ?? 'lỗi không xác định'));

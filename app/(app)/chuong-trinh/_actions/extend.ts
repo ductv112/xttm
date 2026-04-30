@@ -13,7 +13,8 @@ import { canFromDB } from '@/lib/permissions-db';
 import { withAuditLog } from '@/lib/audit';
 import type { ProgramCycleStatus } from '@/lib/workflows/programCycle';
 
-export const extendInputSchema = z.object({
+// Internal schema (NOT exported — 'use server' module rule).
+const extendInputSchemaInternal = z.object({
   cycleId: z.string().min(1, 'Mã chu kỳ không hợp lệ'),
   reason: z
     .string({ message: 'Vui lòng nhập lý do gia hạn' })
@@ -25,7 +26,7 @@ export const extendInputSchema = z.object({
     .refine((d) => d.getTime() > Date.now(), 'Ngày hạn mới phải sau hôm nay'),
 });
 
-export type ExtendInput = z.input<typeof extendInputSchema>;
+export type ExtendInput = z.input<typeof extendInputSchemaInternal>;
 
 export type ExtendResult = {
   id: string;
@@ -59,7 +60,7 @@ async function extendCycleImpl(input: ExtendInput): Promise<ExtendResult> {
     throw new Error('Bạn không có quyền gia hạn chu kỳ chương trình');
   }
 
-  const result = extendInputSchema.safeParse(input);
+  const result = extendInputSchemaInternal.safeParse(input);
   if (!result.success) {
     const first = result.error.issues[0];
     throw new Error('Dữ liệu không hợp lệ: ' + (first?.message ?? 'lỗi không xác định'));
