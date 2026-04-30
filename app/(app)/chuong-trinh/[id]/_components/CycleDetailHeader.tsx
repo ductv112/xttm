@@ -1,6 +1,7 @@
 // CycleDetailHeader — sticky header đầu detail page.
 // Plan 03-06 layout component: row 1 back button → row 2 cycle name + status badge + meta.
-// RSC (no interactivity) — Plan 03-07 action buttons sẽ wrap header với client component.
+// Plan 03-07: wire CycleActionBar (client component) vào right-side cho action buttons
+// theo trạng thái cycle (Hoàn thành cấu hình / Mở cổng / Đóng cổng / Gia hạn / Chuyển thẩm định).
 
 import * as React from 'react';
 import Link from 'next/link';
@@ -9,16 +10,14 @@ import { ArrowLeft } from 'lucide-react';
 import { StatusBadge } from '@/components/shared/StatusBadge';
 import { formatVNDCompact } from '@/lib/format';
 import type { CycleDetail } from '../../_actions/types';
+import { CycleActionBar } from './CycleActionBar';
 
 export type CycleDetailHeaderProps = {
   cycle: CycleDetail;
   canEdit: boolean;
 };
 
-export function CycleDetailHeader({ cycle, canEdit: _canEdit }: CycleDetailHeaderProps) {
-  // canEdit not yet wired to UI in Plan 03-06 — Plan 03-07 will surface action buttons here
-  void _canEdit;
-
+export function CycleDetailHeader({ cycle, canEdit }: CycleDetailHeaderProps) {
   const invitedOrgCount = cycle.invitedOrganizations.length;
   const projectCount = cycle.projectCount;
 
@@ -55,8 +54,10 @@ export function CycleDetailHeader({ cycle, canEdit: _canEdit }: CycleDetailHeade
             </span>
           </p>
         </div>
-        {/* Right-side action buttons placeholder — Plan 03-07 wires transitionCycle/extendCycle CTAs */}
-        <div aria-hidden="true" />
+        {/* Right-side action buttons — Plan 03-07 CycleActionBar contextual theo status + canEdit */}
+        <div className="shrink-0">
+          <CycleActionBar cycle={cycle} canEdit={canEdit} />
+        </div>
       </div>
     </header>
   );

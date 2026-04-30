@@ -3,10 +3,13 @@
 // renders Tổng quan content. RSC fetches cycle (Next 15 dedups in same render with layout)
 // + recent audit entries scoped to this cycle.
 
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
+import { auth } from '@/lib/auth';
+import { canFromDB } from '@/lib/permissions-db';
 import { prisma } from '@/lib/prisma';
 import { AUDIT_ACTION_LABELS, type AuditAction } from '@/lib/audit-types';
+import type { Role } from '@/lib/constants';
 
 import { getCycleDetail } from '../_actions/get-detail';
 import { TongQuanTab } from './_components/TongQuanTab';
@@ -63,6 +66,12 @@ export default async function CycleDetailDefaultPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const session = await auth();
+  if (!session?.user) {
+    redirect('/login');
+  }
+  const role = session.user.role as Role;
+
   const { id } = await params;
   let cycle;
   try {
@@ -71,7 +80,14 @@ export default async function CycleDetailDefaultPage({
     notFound();
   }
 
+  const canEdit = await canFromDB(role, 'chuong-trinh', 'update');
   const recentAuditEntries = await loadRecentAuditEntries(id);
 
-  return <TongQuanTab cycle={cycle} recentAuditEntries={recentAuditEntries} />;
+  return (
+    <TongQuanTab
+      cycle={cycle}
+      canEdit={canEdit}
+      recentAuditEntries={recentAuditEntries}
+    />
+  );
 }
