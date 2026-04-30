@@ -14,6 +14,7 @@ import { prisma } from '@/lib/prisma';
 import { canFromDB } from '@/lib/permissions-db';
 import { removeDiacritics } from '@/lib/vi-search';
 import {
+  parseCapabilities,
   parseContacts,
   parseLegalInfo,
   type OrgProfileStatus,
@@ -145,14 +146,7 @@ export async function getOrgProfileDetail(profileId: string) {
     organization: profile.organization,
     status: profile.status as OrgProfileStatus,
     legalInfo: parseLegalInfo(profile.legalInfoJson),
-    capabilities: (() => {
-      try {
-        const v = profile.capabilitiesJson ? JSON.parse(profile.capabilitiesJson) : {};
-        return v && typeof v === 'object' ? v : {};
-      } catch {
-        return {};
-      }
-    })(),
+    capabilities: parseCapabilities(profile.capabilitiesJson),
     contacts: parseContacts(profile.contactsJson),
     rejectionReason: profile.rejectionReason,
     submittedAt: profile.submittedAt,
