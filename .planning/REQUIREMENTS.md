@@ -54,9 +54,9 @@
 
 ### Audit Log (LOG) — Phase M1
 
-- [ ] **LOG-01**: Mọi server action mutation ghi audit log (user, action, entity, timestamp, IP, before/after diff JSON)
-- [ ] **LOG-02**: Admin tra cứu audit log với filter (user, entity, action, khoảng thời gian)
-- [ ] **LOG-03**: Admin xuất audit log ra CSV phục vụ thanh tra/kiểm tra
+- [x] **LOG-01**: Mọi server action mutation ghi audit log (user, action, entity, timestamp, IP, before/after diff JSON)
+- [x] **LOG-02**: Admin tra cứu audit log với filter (user, entity, action, khoảng thời gian)
+- [x] **LOG-03**: Admin xuất audit log ra CSV phục vụ thanh tra/kiểm tra
 
 ### Chu kỳ Chương trình XTTM (CYCLE) — Phase M2.1 — HERO ENTITY
 
@@ -354,9 +354,9 @@ Explicit exclusions cho prototype POC này.
 | CAT-08 | Phase 2 (M1 Quản trị) | Pending |
 | CONFIG-01 | Phase 2 (M1 Quản trị) | Pending |
 | CONFIG-02 | Phase 2 (M1 Quản trị) | Pending |
-| LOG-01 | Phase 2 (M1 Quản trị) | Pending |
-| LOG-02 | Phase 2 (M1 Quản trị) | Pending |
-| LOG-03 | Phase 2 (M1 Quản trị) | Pending |
+| LOG-01 | Phase 2 (M1 Quản trị) | Complete |
+| LOG-02 | Phase 2 (M1 Quản trị) | Complete |
+| LOG-03 | Phase 2 (M1 Quản trị) | Complete |
 | CYCLE-01 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
 | CYCLE-02 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
 | CYCLE-03 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |

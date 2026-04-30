@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 01-05 — Phase 1 ready for verification (all 6 plans complete)
-last_updated: "2026-04-30T17:41:06.876Z"
+status: executing
+stopped_at: Completed 02-01 — audit log infrastructure ready, withAuditLog wrapper sẵn sàng cho Plan 02-04+
+last_updated: "2026-04-30T18:21:53.409Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 1
-  total_plans: 6
-  completed_plans: 6
-  percent: 100
+  total_plans: 13
+  completed_plans: 7
+  percent: 54
 ---
 
 # Project State
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-30)
 
 **Core value:** Demo end-to-end mượt và đẹp luồng "Vòng đời đề án" (M2-M3): từ Ban quản lý khởi tạo Chu kỳ Chương trình → Đơn vị chủ trì khai báo & nộp đề án → Tiếp nhận & kiểm tra → Hội đồng thẩm định chấm điểm → Ban quản lý lập tờ trình & nhập quyết định phê duyệt.
-**Current focus:** Phase 1 — M0 Bootstrap & Hạ tầng
+**Current focus:** Phase 2 — M1 Quản trị & Danh mục
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 2 (M1 Quản trị & Danh mục) — EXECUTING
+Plan: 2 of 7
+Status: Ready to execute
 Last activity: 2026-04-30
 
 Progress: [░░░░░░░░░░] 0%
@@ -58,6 +58,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-m0-bootstrap-h-t-ng P03 | 4m | 3 tasks | 10 files |
 | Phase 01-m0-bootstrap-h-t-ng P04 | 4m | 3 tasks | 27 files |
 | Phase 01-m0-bootstrap-h-t-ng P05 | 5m | 3 tasks | 11 files |
+| Phase 02-m1-quan-tri-danh-muc P01 | 8m | 3 tasks | 14 files |
 
 ## Accumulated Context
 
@@ -96,6 +97,9 @@ Recent decisions affecting current work:
 - [Phase 01-m0-bootstrap-h-t-ng]: Sidebar inset variant + collapsible icon (UI-SPEC lock) — w-64 expanded / w-16 icon-only mode với tooltip side-popup; Lucide icon dynamic registry kebab→Pascal cho menu config dạng string
 - [Phase 01-m0-bootstrap-h-t-ng]: AppProviders minimal cho M0 (chỉ QueryProvider) — KHÔNG add ThemeProvider vì light mode hardcode UI-SPEC, KHÔNG add LocaleProvider vì date-fns/vi import trực tiếp Plan 01
 - [Phase 01-m0-bootstrap-h-t-ng]: Plan 05: Login UI split 60/40 + LoginForm useActionState + Dashboard + 404/500 hero pages tiếng Việt no-stack-trace + UAT checklist 8 tài khoản — Phase 1 complete
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-01: withAuditLog<TArgs,TReturn> generic wrapper với fire-and-forget logAudit (void promise, không block business latency); dynamic import @/lib/auth + next/headers tránh circular dep; diffObjects skip SYSTEM_FIELDS (updatedAt/createdAt/searchKey/currentVersion) — convention cho mọi mutation Phase 2-9 phải import từ @/lib/audit
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-01: Trang /nhat-ky URL search params bookmarkable filter (6 fields: userId/resources/actions/from/to/keyword) + RBAC defense-in-depth 3 layers (middleware + RSC redirect + server action throw); CSV UTF-8 BOM cap 5000 rows + không export userAgent (T-02-01-03 mitigation); pagination 50/page (virtualization defer Plan 02-03 shared-ui-primitives)
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-01 [Rule 3]: đổi sidebar menu /audit-log → /nhat-ky trong lib/permissions.ts ALL_MENU_ITEMS + thêm '/nhat-ky' vào lib/breadcrumbs.ts BREADCRUMB_LABELS (giữ '/audit-log' backward compat) — plan locks Vietnamese-friendly slug nhất quán với /tham-dinh /phe-duyet /hop-dong
 
 ### Pending Todos
 
@@ -110,6 +114,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T17:32:33.490Z
-Stopped at: Completed 01-05 — Phase 1 ready for verification (all 6 plans complete)
+Last session: 2026-04-30T18:21:53.404Z
+Stopped at: Completed 02-01 — audit log infrastructure ready, withAuditLog wrapper sẵn sàng cho Plan 02-04+
 Resume file: None
