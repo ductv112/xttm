@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-05-role-permission-matrix — Permission Matrix Grid 18×8×7+ với optimistic UI + canFromDB DB-backed check + custom role CRUD; 7/7 ROLE-01..07 đạt; ready cho Plan 02-06 catalog-editors
-last_updated: "2026-04-30T19:17:08.973Z"
+stopped_at: Completed 02-06-catalog-editors — Config-driven CRUD 8 catalogs với CatalogPage template + ScoringCriterion (weight+parent+appliesToKinds) + DocumentTemplate (Tiptap+VariableMenu+iframe sandbox preview); CAT-01..08 đạt; ready cho Plan 02-07 system-config
+last_updated: "2026-04-30T19:32:48.459Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 1
   total_plans: 13
-  completed_plans: 11
-  percent: 85
+  completed_plans: 12
+  percent: 92
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 2 (M1 Quản trị & Danh mục) — EXECUTING
-Plan: 6 of 7
+Plan: 7 of 7
 Status: Ready to execute
 Last activity: 2026-04-30
 
@@ -63,6 +63,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-m1-quan-tri-danh-muc P03 | 9m | 3 tasks | 16 files |
 | Phase 02-m1-quan-tri-danh-muc P04 | 22m | 3 tasks | 18 files |
 | Phase 02-m1-quan-tri-danh-muc P05 | 11m | 3 tasks | 18 files |
+| Phase 02-m1-quan-tri-danh-muc P06 | 12m | 3 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -118,6 +119,9 @@ Recent decisions affecting current work:
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-05: Matrix grid 18 accordion sections × 7+ × 8 mini-tables (1008 cells split → 56-cell groups, manageable scrolling); MatrixCell optimistic UI useMutation onMutate flip + onError rollback + 600ms red flash; ADMIN bảo vệ 2 lớp UI disable + server throw (T-02-05-02)
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-05: Revoke = upsert {granted: false} không delete row (giữ history + explicit deny semantics); custom role create check Object.values(ROLES) clash + Prisma @unique defense in depth; deleteCustomRole refuse khi userCount > 0 (T-02-05-09)
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-05: Tabs/Accordion/Textarea shadcn primitives viết tay theo radix-ui meta-package pattern (consistent với existing Dialog wrap style) thay vì npx shadcn add — radix-ui meta-package ^1.4.3 đã expose primitives, no npm install
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-06: Config-driven UI template — 1 CatalogPage + CatalogTable + CatalogEditSheet xử lý 8 catalogs khác nhau qua CATALOG_CONFIGS lookup + flags (hasParent/hasWeight/hasRichText) drive conditional render; trade-off lose per-kind type safety qua dynamic prisma dispatch (prisma as any)[config.prismaModel] nhưng DRY 8x reuse
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-06: Soft-delete primary qua Switch toggle inline (Plan 02-02 DECISION) + hard-delete chỉ khi 0 FK refs; per-kind FK count via Project.kind/industrySectorId/promotionTypeId/marketIds JSON contains/countryIds + children check cho hierarchical (org-unit/scoring-criterion); throw VN message yêu cầu deactivate khi refCount > 0
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-06: T-02-06-04 DocumentTemplate preview qua iframe sandbox="" srcDoc thay dangerouslySetInnerHTML — defense-in-depth XSS isolate (Tiptap StarterKit ko expose script nodes nhưng admin có thể paste HTML); T-02-06-05 substitutePreview dùng split().join() thay regex để tránh injection từ admin-defined variable names; 17 mock values constant lookup
 
 ### Pending Todos
 
@@ -132,6 +136,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T19:17:08.968Z
-Stopped at: Completed 02-05-role-permission-matrix — Permission Matrix Grid 18×8×7+ với optimistic UI + canFromDB DB-backed check + custom role CRUD; 7/7 ROLE-01..07 đạt; ready cho Plan 02-06 catalog-editors
+Last session: 2026-04-30T19:32:33.823Z
+Stopped at: Completed 02-06-catalog-editors — Config-driven CRUD 8 catalogs với CatalogPage template + ScoringCriterion (weight+parent+appliesToKinds) + DocumentTemplate (Tiptap+VariableMenu+iframe sandbox preview); CAT-01..08 đạt; ready cho Plan 02-07 system-config
 Resume file: None
