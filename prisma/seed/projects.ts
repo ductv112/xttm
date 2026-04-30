@@ -29,7 +29,7 @@ type IndustryCode =
 
 type MarketCode = 'EU' | 'US' | 'JAPAN' | 'KOREA' | 'CHINA' | 'ASEAN' | 'MIDDLE_EAST';
 
-type CountryCode = 'DEU' | 'FRA' | 'USA' | 'JPN' | 'KOR' | 'CHN' | 'ITA' | 'NLD' | 'GBR' | 'ARE';
+type CountryCode = 'DEU' | 'FRA' | 'USA' | 'JPN' | 'KOR' | 'CHN' | 'ITA' | 'NLD' | 'GBR' | 'ARE' | 'VNM';
 
 type PromotionCode =
   | 'TRADE_FAIR'
@@ -49,7 +49,10 @@ type ProjectKindCode =
 type Status =
   | 'DRAFT'
   | 'SUBMITTED'
+  | 'ASSIGNED'
   | 'IN_REVIEW'
+  | 'SUPPLEMENT_REQUIRED'
+  | 'VALID'
   | 'APPROVED'
   | 'TENTATIVE';
 
@@ -70,6 +73,18 @@ type PlanRow = {
   deliverable: string;
   dueDate: string | null;
   owner: string;
+};
+
+type ChecklistEntrySeed = {
+  itemId: string;
+  status: '✓' | '✗' | 'N/A';
+  note?: string;
+};
+
+type ScoreEntrySeed = {
+  criterionCode: string;
+  score: number;
+  comment?: string;
 };
 
 type ProjectSeed = {
@@ -96,6 +111,18 @@ type ProjectSeed = {
   submittedDaysAgo?: number;
   assignedReviewer?: 'chuyenvien' | null;
   approvedDaysAgo?: number;
+  // Phase 6 (M2.4) intake fields
+  receivedDaysAgo?: number;
+  assignedDaysAgo?: number;
+  checklist?: ChecklistEntrySeed[];
+  passedFormalCheck?: boolean;
+  supplementRequestReason?: string;
+  preliminaryScore?: {
+    status: 'DRAFT' | 'SUBMITTED';
+    scores: ScoreEntrySeed[];
+    overallComment?: string;
+    submittedDaysAgo?: number;
+  };
 };
 
 // Helper: compute amount for budget row (qty * unitPrice)
@@ -268,7 +295,34 @@ const SEEDS: ProjectSeed[] = [
     ],
     pmContactEmail: 'giang.vu@vitas.org.vn',
     submittedDaysAgo: 18,
+    receivedDaysAgo: 14,
+    assignedDaysAgo: 12,
     assignedReviewer: 'chuyenvien',
+    // Partial checklist — 8/9 required items, demo state IN_REVIEW
+    checklist: [
+      { itemId: 'CHK-01-LEGAL-SIGNATURE', status: '✓' },
+      { itemId: 'CHK-02-LEGAL-CAPACITY', status: '✓' },
+      {
+        itemId: 'CHK-03-OBJECTIVE-CLARITY',
+        status: '✓',
+        note: 'Mục tiêu rõ ràng, đo lường được qua KPI.',
+      },
+      { itemId: 'CHK-04-PLAN-DETAIL', status: '✓' },
+      {
+        itemId: 'CHK-05-BUDGET-MATCH-PLAN',
+        status: '✗',
+        note: 'Hạng mục "Phiên dịch" trong dự toán chưa khớp với hoạt động trong kế hoạch — cần đối chiếu lại.',
+      },
+      { itemId: 'CHK-06-BUDGET-WITHIN-LIMIT', status: '✓' },
+      { itemId: 'CHK-07-PM-INFO', status: '✓' },
+      { itemId: 'CHK-08-MARKET-COUNTRY', status: '✓' },
+      {
+        itemId: 'CHK-09-CONSULATE-CONTACT',
+        status: '✓',
+        note: 'Đã có kế hoạch liên hệ Thương vụ VN tại Seoul và Tokyo.',
+      },
+      { itemId: 'CHK-12-COMPLIANCE', status: '✓' },
+    ],
   },
 
   // ---------------------------------------------------------------------------
@@ -343,6 +397,206 @@ const SEEDS: ProjectSeed[] = [
     ],
     pmContactEmail: 'kiet.diep@lefaso.org.vn',
   },
+
+  // ---------------------------------------------------------------------------
+  // 7. ASSIGNED — VITAS 2026 (đã được BQL tiếp nhận, chờ LĐ phân công cho chuyên viên)
+  //    Phase 6 demo state: hồ sơ ở /phan-cong cột trái
+  // ---------------------------------------------------------------------------
+  {
+    code: 'XTTM-2026-005',
+    orgCode: 'VITAS',
+    cycleYear: 2026,
+    year: 2026,
+    name: 'Đào tạo nâng cao năng lực XTTM cho doanh nghiệp Dệt may xuất khẩu 2026',
+    kind: 'TRAINING',
+    status: 'ASSIGNED',
+    industrySectorCodes: ['TEXTILE', 'GARMENT'],
+    marketCodes: ['EU', 'US'],
+    countryCodes: ['DEU', 'USA'],
+    promotionCodes: ['TRADE_TRAINING'],
+    isTwoYear: false,
+    timeRange: { start: '2026-07-10', end: '2026-07-15', quarter: 'Q3' },
+    objectiveHtml:
+      '<p>Tổ chức 5 khóa đào tạo cho 200 cán bộ Marketing - Xuất khẩu của 60 doanh nghiệp Dệt may tại Hà Nội, TP.HCM, Đà Nẵng. Trang bị kỹ năng tiếp cận thị trường EU + US sau CBAM 2026.</p>',
+    contentHtml:
+      '<p>Mỗi khóa 2 ngày, kết hợp lý thuyết + workshop phân tích case study CBAM, OEKO-TEX, BSCI, EU Green Deal. Diễn giả: chuyên gia Bộ Công Thương + đại diện 3 hãng tư vấn quốc tế.</p>',
+    planRows: [
+      {
+        task: 'Khảo sát nhu cầu đào tạo + tuyển chọn 60 doanh nghiệp',
+        deliverable: 'Danh sách doanh nghiệp + 200 học viên',
+        dueDate: '2026-05-31',
+        owner: 'Vũ Đức Minh',
+      },
+      {
+        task: 'Thiết kế giáo trình + tài liệu giảng dạy',
+        deliverable: 'Giáo trình 5 khóa - 100 trang',
+        dueDate: '2026-06-30',
+        owner: 'Phòng Đào tạo',
+      },
+      {
+        task: 'Tổ chức 5 khóa đào tạo tại 3 thành phố',
+        deliverable: 'Báo cáo + chứng chỉ 200 học viên',
+        dueDate: '2026-07-31',
+        owner: 'Phòng Đào tạo',
+      },
+    ],
+    budgetRows: [
+      { item: 'Thuê hội trường + thiết bị (5 khóa x 2 ngày)', unit: 'ngày', quantity: 10, unitPrice: 35_000_000, source: 'STATE' },
+      { item: 'Thù lao diễn giả + chuyên gia (5 khóa)', unit: 'khóa', quantity: 5, unitPrice: 80_000_000, source: 'STATE' },
+      { item: 'Tài liệu + giáo trình (200 bộ)', unit: 'bộ', quantity: 200, unitPrice: 350_000, source: 'STATE' },
+      { item: 'Đối ứng đơn vị: vận hành + phối hợp địa phương', unit: 'gói', quantity: 1, unitPrice: 120_000_000, source: 'SELF' },
+    ],
+    pmContactEmail: 'minh.vu@vitas.org.vn',
+    submittedDaysAgo: 5,
+    receivedDaysAgo: 2,
+    assignedReviewer: null, // chưa phân công chuyên viên
+  },
+
+  // ---------------------------------------------------------------------------
+  // 8. VALID — LEFASO 2026 (đã được chuyên viên xác nhận hợp lệ + có PRELIMINARY ScoreSheet DRAFT)
+  //    Phase 6 demo state: hồ sơ sẵn sàng chấm điểm sơ bộ ở /cham-diem-so-bo
+  // ---------------------------------------------------------------------------
+  {
+    code: 'XTTM-2026-006',
+    orgCode: 'LEFASO',
+    cycleYear: 2026,
+    year: 2026,
+    name: 'Tham dự Hội chợ AGENDA Paris 2026 - Triển lãm phụ kiện thời trang Da giày',
+    kind: 'EXPORT_EXHIBITION',
+    status: 'VALID',
+    industrySectorCodes: ['LEATHER', 'FOOTWEAR'],
+    marketCodes: ['EU'],
+    countryCodes: ['FRA', 'ITA'],
+    promotionCodes: ['TRADE_FAIR', 'BRAND_PROMOTION'],
+    isTwoYear: false,
+    timeRange: { start: '2026-09-04', end: '2026-09-07', quarter: 'Q3' },
+    objectiveHtml:
+      '<p>Đưa 12 doanh nghiệp phụ kiện da giày Việt tham dự AGENDA Paris 2026 — sự kiện thời trang phụ kiện hàng đầu châu Âu. Mục tiêu kết nối 60 buyers + ký 20 MOU.</p>',
+    contentHtml:
+      '<p>Gian hàng quốc gia 80m² tại AGENDA Paris, tổ chức Vietnam Leather Accessories Showcase với 30 buyer cao cấp tại khách sạn Le Meurice.</p>',
+    planRows: [
+      { task: 'Tuyển chọn 12 doanh nghiệp', deliverable: 'Danh sách', dueDate: '2026-05-15', owner: 'Hoàng Mai Linh' },
+      { task: 'Thiết kế + thi công gian hàng', deliverable: 'Bản vẽ + hợp đồng', dueDate: '2026-07-15', owner: 'Phòng Tổ chức Hội chợ' },
+      { task: 'Networking event + tham dự sự kiện', deliverable: 'Báo cáo 20 MOU', dueDate: '2026-09-10', owner: 'Diệp Thành Kiệt' },
+    ],
+    budgetRows: [
+      { item: 'Thuê gian hàng AGENDA 80m²', unit: 'm²', quantity: 80, unitPrice: 1_750_000, source: 'STATE' },
+      { item: 'Thiết kế + thi công gian hàng', unit: 'gói', quantity: 1, unitPrice: 280_000_000, source: 'STATE' },
+      { item: 'Vé máy bay 8 cán bộ', unit: 'vé', quantity: 8, unitPrice: 36_000_000, source: 'STATE' },
+      { item: 'Networking event 30 khách', unit: 'gói', quantity: 1, unitPrice: 150_000_000, source: 'STATE' },
+      { item: 'In ấn + truyền thông', unit: 'gói', quantity: 1, unitPrice: 80_000_000, source: 'SELF' },
+    ],
+    pmContactEmail: 'kiet.diep@lefaso.org.vn',
+    submittedDaysAgo: 25,
+    receivedDaysAgo: 22,
+    assignedDaysAgo: 20,
+    assignedReviewer: 'chuyenvien',
+    passedFormalCheck: true,
+    // Full checklist all ✓ — đã đạt 100%
+    checklist: [
+      { itemId: 'CHK-01-LEGAL-SIGNATURE', status: '✓' },
+      { itemId: 'CHK-02-LEGAL-CAPACITY', status: '✓' },
+      { itemId: 'CHK-03-OBJECTIVE-CLARITY', status: '✓', note: 'Mục tiêu cụ thể, đo lường được.' },
+      { itemId: 'CHK-04-PLAN-DETAIL', status: '✓' },
+      { itemId: 'CHK-05-BUDGET-MATCH-PLAN', status: '✓' },
+      { itemId: 'CHK-06-BUDGET-WITHIN-LIMIT', status: '✓' },
+      { itemId: 'CHK-07-PM-INFO', status: '✓' },
+      { itemId: 'CHK-08-MARKET-COUNTRY', status: '✓' },
+      { itemId: 'CHK-09-CONSULATE-CONTACT', status: '✓' },
+      { itemId: 'CHK-10-PRECEDENT-OUTCOME', status: '✓', note: 'LEFASO 2025 GDS Düsseldorf đã thành công.' },
+      { itemId: 'CHK-11-SUSTAINABILITY', status: 'N/A' },
+      { itemId: 'CHK-12-COMPLIANCE', status: '✓' },
+    ],
+    preliminaryScore: {
+      status: 'DRAFT',
+      overallComment:
+        'Đề án có chất lượng tốt, đối tượng + thị trường rõ ràng. Đơn vị có kinh nghiệm. Cần chú ý phương án triển khai networking event để đảm bảo KPI 20 MOU.',
+      scores: [
+        { criterionCode: 'CRIT_FIT_DIRECTION', score: 8.5, comment: 'Phù hợp định hướng XTTMQG ngành Da giày EU.' },
+        { criterionCode: 'CRIT_FIT_INDUSTRY', score: 9.0 },
+        { criterionCode: 'CRIT_FIT_REGION', score: 9.0 },
+        { criterionCode: 'CRIT_FEAS_CAPACITY', score: 9.0, comment: 'LEFASO có kinh nghiệm tổ chức 2025.' },
+        { criterionCode: 'CRIT_FEAS_FINANCE', score: 7.5 },
+        { criterionCode: 'CRIT_FEAS_TIMELINE', score: 8.0 },
+        { criterionCode: 'CRIT_IMPACT_ECONOMIC', score: 8.0, comment: 'KPI 20 MOU + 60 buyers hợp lý.' },
+        { criterionCode: 'CRIT_IMPACT_PARTICIPATION', score: 7.5 },
+        { criterionCode: 'CRIT_IMPACT_SPREAD', score: 7.0 },
+        { criterionCode: 'CRIT_QUALITY_OBJECTIVE', score: 8.0 },
+        { criterionCode: 'CRIT_QUALITY_METHOD', score: 7.0, comment: 'Phương pháp triển khai phù hợp.' },
+      ],
+    },
+  },
+
+  // ---------------------------------------------------------------------------
+  // 9. SUPPLEMENT_REQUIRED — VITAS 2026 (chuyên viên đã trả bổ sung — đợi đơn vị nộp lại)
+  //    Phase 6 demo state: hồ sơ ở SUPPLEMENT_REQUIRED, có lý do
+  // ---------------------------------------------------------------------------
+  {
+    code: 'XTTM-2026-007',
+    orgCode: 'VITAS',
+    cycleYear: 2026,
+    year: 2026,
+    name: 'Hội chợ Dệt may - Da giày Việt Nam tại Đà Nẵng 2026',
+    kind: 'DOMESTIC_FAIR',
+    status: 'SUPPLEMENT_REQUIRED',
+    industrySectorCodes: ['TEXTILE', 'GARMENT', 'FOOTWEAR'],
+    marketCodes: ['ASEAN'],
+    countryCodes: ['VNM'],
+    promotionCodes: ['TRADE_FAIR'],
+    isTwoYear: false,
+    timeRange: { start: '2026-10-12', end: '2026-10-16', quarter: 'Q4' },
+    objectiveHtml:
+      '<p>Tổ chức Hội chợ Dệt may - Da giày Việt Nam quy mô khu vực tại Trung tâm Hội chợ Đà Nẵng. Quảng bá sản phẩm tới buyer ASEAN + nội địa.</p>',
+    contentHtml:
+      '<p>Quy mô 3000m² gian hàng, 100 doanh nghiệp tham gia, 5000 lượt khách tham quan dự kiến.</p>',
+    planRows: [
+      {
+        task: 'Thiết kế tổng mặt bằng + đăng ký gian hàng',
+        deliverable: 'Bản vẽ + xác nhận 100 DN',
+        dueDate: '2026-08-01',
+        owner: 'Vũ Đức Minh',
+      },
+      {
+        task: 'Tổ chức hội chợ 5 ngày',
+        deliverable: 'Báo cáo + minh chứng 5000 khách',
+        dueDate: '2026-10-31',
+        owner: 'Phòng Tổ chức Hội chợ',
+      },
+    ],
+    budgetRows: [
+      { item: 'Thuê trung tâm hội chợ Đà Nẵng', unit: 'ngày', quantity: 5, unitPrice: 180_000_000, source: 'STATE' },
+      { item: 'Thiết kế tổng mặt bằng + thi công', unit: 'gói', quantity: 1, unitPrice: 580_000_000, source: 'STATE' },
+      { item: 'Truyền thông trước + trong sự kiện', unit: 'gói', quantity: 1, unitPrice: 250_000_000, source: 'STATE' },
+      { item: 'Vận hành + an ninh + tiếp đón', unit: 'gói', quantity: 1, unitPrice: 180_000_000, source: 'SELF' },
+    ],
+    pmContactEmail: 'giang.vu@vitas.org.vn',
+    submittedDaysAgo: 15,
+    receivedDaysAgo: 12,
+    assignedDaysAgo: 10,
+    assignedReviewer: 'chuyenvien',
+    supplementRequestReason:
+      'Đề nghị bổ sung các nội dung sau:\n• Hợp đồng thuê trung tâm hội chợ (hoặc thư xác nhận giữ chỗ) từ Trung tâm Hội chợ Đà Nẵng.\n• Phương án dự phòng nếu không đủ 100 doanh nghiệp đăng ký (trong vòng 30 ngày trước sự kiện).\n• Bảng phân tích định mức truyền thông 250 triệu đồng — cần chia nhỏ theo kênh (truyền hình / báo / digital).\n• Chứng nhận năng lực Phòng Tổ chức Hội chợ trong 3 năm gần nhất.',
+    checklist: [
+      { itemId: 'CHK-01-LEGAL-SIGNATURE', status: '✓' },
+      {
+        itemId: 'CHK-02-LEGAL-CAPACITY',
+        status: '✗',
+        note: 'Cần bổ sung chứng nhận năng lực Phòng Tổ chức Hội chợ 3 năm gần nhất.',
+      },
+      { itemId: 'CHK-03-OBJECTIVE-CLARITY', status: '✓' },
+      { itemId: 'CHK-04-PLAN-DETAIL', status: '✓' },
+      {
+        itemId: 'CHK-05-BUDGET-MATCH-PLAN',
+        status: '✗',
+        note: 'Hạng mục truyền thông 250 triệu chưa chia nhỏ theo kênh.',
+      },
+      { itemId: 'CHK-06-BUDGET-WITHIN-LIMIT', status: '✓' },
+      { itemId: 'CHK-07-PM-INFO', status: '✓' },
+      { itemId: 'CHK-08-MARKET-COUNTRY', status: '✓' },
+      { itemId: 'CHK-09-CONSULATE-CONTACT', status: 'N/A' },
+      { itemId: 'CHK-12-COMPLIANCE', status: '✓' },
+    ],
+  },
 ];
 
 // =============================================================================
@@ -400,11 +654,24 @@ export async function seedProjects(prisma: PrismaClient): Promise<void> {
     where: { username: 'chuyenvien' },
     select: { id: true },
   });
+  const banql = await prisma.user.findUnique({
+    where: { username: 'banql' },
+    select: { id: true },
+  });
+  const banqlUserId = banql?.id ?? null;
 
   const userIdByOrgCode: Record<string, string | null> = {
     LEFASO: donvi1?.id ?? null,
     VITAS: donvi2?.id ?? null,
   };
+
+  // Resolve scoring criterion ids by code (for PRELIMINARY ScoreSheet seeding)
+  const scoringCriteriaRows = await prisma.scoringCriterion.findMany({
+    select: { id: true, code: true, weight: true, parentId: true },
+  });
+  const criterionByCode = new Map(
+    scoringCriteriaRows.map((c) => [c.code, c]),
+  );
 
   // Resolve catalog ids by code
   const [industrySectors, markets, countries, promotionTypes] = await Promise.all([
@@ -519,6 +786,20 @@ export async function seedProjects(prisma: PrismaClient): Promise<void> {
 
     const submittedAt =
       seed.submittedDaysAgo !== undefined ? daysAgo(seed.submittedDaysAgo) : null;
+    const receivedAt =
+      seed.receivedDaysAgo !== undefined ? daysAgo(seed.receivedDaysAgo) : null;
+    const assignedAt =
+      seed.assignedDaysAgo !== undefined ? daysAgo(seed.assignedDaysAgo) : null;
+
+    // Phase 6 intake fields
+    const checklistJson = seed.checklist
+      ? JSON.stringify({
+          items: seed.checklist,
+          updatedAt: assignedAt
+            ? assignedAt.toISOString()
+            : new Date().toISOString(),
+        })
+      : null;
 
     const baseData = {
       programCycleId: cycle.id,
@@ -536,7 +817,13 @@ export async function seedProjects(prisma: PrismaClient): Promise<void> {
       proposedBudget: total,
       approvedBudget: seed.status === 'APPROVED' ? total : null,
       submittedAt,
+      receivedAt,
+      assignedAt,
+      assignedById: assignedAt ? banqlUserId : null,
       assignedReviewerId,
+      checklistJson,
+      passedFormalCheck: seed.passedFormalCheck ?? false,
+      supplementRequestReason: seed.supplementRequestReason ?? null,
       searchKey: removeDiacritics(`${seed.name} ${seed.kind} ${seed.code}`),
       createdById: userIdByOrgCode[seed.orgCode] ?? null,
       currentVersion:
@@ -549,6 +836,78 @@ export async function seedProjects(prisma: PrismaClient): Promise<void> {
       create: { code: seed.code, ...baseData },
     });
     insertedIdByCode.set(seed.code, created.id);
+
+    // PRELIMINARY ScoreSheet (Phase 6) — chuyên viên chấm điểm sơ bộ
+    if (seed.preliminaryScore && chuyenvien?.id) {
+      const ps = seed.preliminaryScore;
+      type SanitizedScore = {
+        criterionId: string;
+        score: number;
+        comment: string | undefined;
+      };
+      const sanitized: SanitizedScore[] = [];
+      for (const s of ps.scores) {
+        const c = criterionByCode.get(s.criterionCode);
+        if (!c) continue;
+        sanitized.push({
+          criterionId: c.id,
+          score: Math.max(0, Math.min(10, s.score)),
+          comment: s.comment,
+        });
+      }
+
+      // Compute weighted total — only leaf criteria (parentId !== null)
+      let totalScore = 0;
+      for (const entry of sanitized) {
+        const c = scoringCriteriaRows.find((x) => x.id === entry.criterionId);
+        if (!c) continue;
+        if (c.parentId === null) continue;
+        totalScore += (entry.score / 10) * c.weight;
+      }
+      totalScore = Math.round(totalScore * 100) / 100;
+
+      const submittedAtSheet =
+        ps.status === 'SUBMITTED' && ps.submittedDaysAgo !== undefined
+          ? daysAgo(ps.submittedDaysAgo)
+          : ps.status === 'SUBMITTED'
+            ? new Date()
+            : null;
+
+      // Find or create
+      const existingSheet = await prisma.scoreSheet.findFirst({
+        where: {
+          projectId: created.id,
+          reviewerId: chuyenvien.id,
+          kind: 'PRELIMINARY',
+        },
+        select: { id: true },
+      });
+      if (existingSheet) {
+        await prisma.scoreSheet.update({
+          where: { id: existingSheet.id },
+          data: {
+            scoresJson: JSON.stringify(sanitized),
+            totalScore,
+            comment: ps.overallComment ?? null,
+            status: ps.status,
+            submittedAt: submittedAtSheet,
+          },
+        });
+      } else {
+        await prisma.scoreSheet.create({
+          data: {
+            projectId: created.id,
+            reviewerId: chuyenvien.id,
+            kind: 'PRELIMINARY',
+            status: ps.status,
+            scoresJson: JSON.stringify(sanitized),
+            totalScore,
+            comment: ps.overallComment ?? null,
+            submittedAt: submittedAtSheet,
+          },
+        });
+      }
+    }
 
     // Snapshot version for projects that have been submitted
     if (seed.status !== 'DRAFT' && seed.status !== 'TENTATIVE') {

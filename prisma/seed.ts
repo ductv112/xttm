@@ -134,8 +134,8 @@ async function main() {
   if ((statusCounts.DRAFT ?? 0) < 2)
     throw new Error('Expected ≥2 DRAFT OrganizationProfile');
 
-  if (projectCount < 6)
-    throw new Error(`Expected ≥6 Project, got ${projectCount}`);
+  if (projectCount < 9)
+    throw new Error(`Expected ≥9 Project, got ${projectCount}`);
   const projectStatusCounts = Object.fromEntries(
     projectsByStatus.map((r) => [r.status, r._count._all] as const),
   );
@@ -149,8 +149,27 @@ async function main() {
     throw new Error('Expected ≥1 IN_REVIEW Project');
   if ((projectStatusCounts.TENTATIVE ?? 0) < 1)
     throw new Error('Expected ≥1 TENTATIVE Project');
+  // Phase 6 (M2.4) intake states
+  if ((projectStatusCounts.ASSIGNED ?? 0) < 1)
+    throw new Error('Expected ≥1 ASSIGNED Project (Phase 6 demo)');
+  if ((projectStatusCounts.VALID ?? 0) < 1)
+    throw new Error('Expected ≥1 VALID Project (Phase 6 demo)');
+  if ((projectStatusCounts.SUPPLEMENT_REQUIRED ?? 0) < 1)
+    throw new Error('Expected ≥1 SUPPLEMENT_REQUIRED Project (Phase 6 demo)');
   if (twoYearChildCount < 1)
     throw new Error('Expected ≥1 đề án 2 năm child (parentProjectId set)');
+
+  // Verify ScoreSheet PRELIMINARY records (Phase 6)
+  const preliminaryScoreSheets = await prisma.scoreSheet.count({
+    where: { kind: 'PRELIMINARY' },
+  });
+  if (preliminaryScoreSheets < 1)
+    throw new Error(
+      'Expected ≥1 PRELIMINARY ScoreSheet (Phase 6 demo state)',
+    );
+  console.log(
+    `📊 PRELIMINARY ScoreSheet: ${preliminaryScoreSheets} record(s)`,
+  );
 
   console.timeEnd('seed');
   console.log('✅ Seed complete.');
