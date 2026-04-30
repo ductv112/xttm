@@ -1,0 +1,323 @@
+// XTTMQG — Hệ thống Quản lý Chương trình Quốc gia về Xúc tiến Thương mại
+// Schema lock cho M0 + scaffolding cho phase 2-11
+// Theo .planning/research/ARCHITECTURE.md §3
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// =============================================================================
+// AUTH & RBAC — M0 (AUTH-02)
+// =============================================================================
+
+model User {
+  id             String   @id @default(cuid())
+  username       String   @unique
+  passwordHash   String
+  fullName       String
+  email          String?
+  phone          String?
+  role           String // ADMIN | BANQL | CHUYENVIEN | HOIDONG | DONVI | TAICHINH | LANHDAO
+  isActive       Boolean  @default(true)
+  organizationId String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization  Organization? @relation(fields: [organizationId], references: [id])
+  scoreSheets   ScoreSheet[]
+  auditLogs     AuditLog[]
+  uploadedFiles Attachment[]  @relation("AttachmentUploader")
+
+  @@index([organizationId])
+  @@index([role])
+}
+
+// Permissions managed at app layer via lib/permissions.ts MATRIX.
+// These models scaffold M1 role/permission matrix UI (Phase 2) so schema doesn't refactor.
+model Role {
+  id          String   @id @default(cuid())
+  code        String   @unique // ADMIN | BANQL | CHUYENVIEN | HOIDONG | DONVI | TAICHINH | LANHDAO
+  name        String
+  description String?
+  isSystem    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  permissions RolePermission[]
+}
+
+model Permission {
+  id       String @id @default(cuid())
+  code     String @unique // resource:action  e.g. "de-an:create"
+  resource String
+  action   String
+  name     String
+
+  roles RolePermission[]
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  granted      Boolean @default(true)
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+}
+
+// =============================================================================
+// ORGANIZATION — M0 partial (3-5 seed orgs); full M2.2 (AUTH-02 needs Cục XTTM)
+// =============================================================================
+
+model Organization {
+  id        String   @id @default(cuid())
+  code      String   @unique // CUC_XTTM | BO_CT | VITAS | LEFASO | VINATEX | ...
+  name      String
+  type      String // ASSOCIATION | RESEARCH_INSTITUTE | ENTERPRISE | GOVERNMENT | OTHER
+  taxCode   String?
+  address   String?
+  phone     String?
+  email     String?
+  website   String?
+  isInvited Boolean  @default(false)
+  searchKey String // diacritics-removed cho Vietnamese search
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users     User[]
+  profile   OrganizationProfile?
+  projects  Project[]
+  contracts Contract[]
+
+  @@index([type])
+  @@index([searchKey])
+}
+
+// Scaffolding cho Phase 4 (M2.2) — full fields populated then.
+model OrganizationProfile {
+  id             String    @id @default(cuid())
+  organizationId String    @unique
+  legalRepName   String?
+  legalRepTitle  String?
+  capabilities   String? // năng lực, thành tích
+  contactPersons String? // JSON string: [{name, title, phone, email, role}]
+  status         String    @default("DRAFT") // DRAFT | SUBMITTED | APPROVED | REJECTED
+  submittedAt    DateTime?
+  approvedAt     DateTime?
+  approvedById   String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+}
+
+// =============================================================================
+// PROGRAM CYCLE — Scaffold for Phase 3 (M2.1 HERO)
+// =============================================================================
+
+model ProgramCycle {
+  id                   String    @id @default(cuid())
+  year                 Int       @unique // 1 chu kỳ / năm
+  name                 String
+  status               String    @default("DRAFT") // DRAFT | READY | OPEN_REGISTRATION | CLOSED_REGISTRATION | EVALUATING | APPROVED | COMPLETED
+  totalBudget          Float? // VND, SQLite REAL
+  registrationOpenAt   DateTime?
+  registrationCloseAt  DateTime? // mặc định 30/5
+  evaluationStartAt    DateTime?
+  evaluationEndAt      DateTime?
+  approvalDeadline     DateTime?
+  scanDocumentUrl      String?
+  emailTemplateId      String?
+  invitedOrganizations String? // JSON array of organizationIds
+  createdById          String?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  projects Project[]
+  councils EvaluationCouncil[]
+
+  @@index([status])
+}
+
+// =============================================================================
+// PROJECT — Scaffold for Phase 5 (M2.3 HERO) + Phase 6
+// =============================================================================
+
+model Project {
+  id                 String    @id @default(cuid())
+  code               String    @unique // XTTM-2026-001
+  programCycleId     String
+  organizationId     String
+  parentProjectId    String? // Đề án 2 năm — link tới năm 1 (per PITFALLS §4.2)
+  name               String
+  kind               String // EXPORT_EXHIBITION | INTL_CONFERENCE | DOMESTIC_FAIR | TRADE_DELEGATION_OUT | TRADE_DELEGATION_IN | TRADE_INFO_EXPORT | TRADE_INFO_DOMESTIC | TRAINING | OTHER
+  industrySectorId   String?
+  promotionTypeId    String?
+  marketIds          String? // JSON array
+  countryIds         String? // JSON array
+  objective          String?
+  description        String?
+  expectedOutcome    String?
+  plannedStartAt     DateTime?
+  plannedEndAt       DateTime?
+  location           String?
+  proposedBudget     Float?
+  approvedBudget     Float?
+  managerName        String?
+  managerTitle       String?
+  managerPhone       String?
+  managerEmail       String?
+  status             String    @default("DRAFT") // see lib/workflows/project.ts
+  currentVersion     Int       @default(1)
+  submittedAt        DateTime?
+  receivedAt         DateTime?
+  assignedReviewerId String?
+  searchKey          String    @default("") // diacritics-removed
+  createdById        String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  deletedAt          DateTime?
+
+  programCycle  ProgramCycle @relation(fields: [programCycleId], references: [id])
+  organization  Organization @relation(fields: [organizationId], references: [id])
+  parent        Project?     @relation("ProjectYearLink", fields: [parentProjectId], references: [id])
+  childProjects Project[]    @relation("ProjectYearLink")
+  scoreSheets   ScoreSheet[]
+  contract      Contract?
+  reports       Report[]
+
+  @@index([programCycleId, status])
+  @@index([organizationId])
+  @@index([assignedReviewerId])
+  @@index([searchKey])
+}
+
+// =============================================================================
+// EVALUATION — Scaffold for Phase 7 (M3 HERO)
+// =============================================================================
+
+model EvaluationCouncil {
+  id             String    @id @default(cuid())
+  programCycleId String
+  name           String
+  decisionDocUrl String?
+  status         String    @default("DRAFT") // DRAFT | OPEN | CLOSED
+  openAt         DateTime?
+  closeAt        DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  programCycle ProgramCycle @relation(fields: [programCycleId], references: [id])
+  scoreSheets  ScoreSheet[]
+}
+
+model ScoreSheet {
+  id                 String    @id @default(cuid())
+  councilId          String
+  projectId          String
+  reviewerId         String
+  status             String    @default("DRAFT") // DRAFT | SUBMITTED
+  scoresJson         String? // JSON [{criterionId, score, weight, comment}]
+  totalScore         Float?
+  comment            String?
+  conflictOfInterest Boolean   @default(false)
+  submittedAt        DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  council  EvaluationCouncil @relation(fields: [councilId], references: [id])
+  project  Project           @relation(fields: [projectId], references: [id])
+  reviewer User              @relation(fields: [reviewerId], references: [id])
+
+  @@unique([councilId, projectId, reviewerId])
+}
+
+// =============================================================================
+// CONTRACT — Scaffold for Phase 8 (M4)
+// =============================================================================
+
+model Contract {
+  id             String    @id @default(cuid())
+  projectId      String    @unique
+  organizationId String
+  contractNo     String    @unique // XTTM/2026/001
+  signedDate     DateTime?
+  effectiveFrom  DateTime?
+  effectiveTo    DateTime?
+  totalValue     Float
+  status         String    @default("DRAFT") // DRAFT | SIGNED | ACTIVE | COMPLETED | LIQUIDATED | OVERDUE
+  scanFileUrl    String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  project      Project      @relation(fields: [projectId], references: [id])
+  organization Organization @relation(fields: [organizationId], references: [id])
+}
+
+// =============================================================================
+// REPORT — Scaffold for Phase 9 (M5)
+// =============================================================================
+
+model Report {
+  id               String    @id @default(cuid())
+  projectId        String
+  title            String
+  reportType       String // PROGRESS | FINAL
+  quantitativeData String? // JSON
+  qualitativeData  String?
+  status           String    @default("DRAFT") // DRAFT | SUBMITTED | RETURNED | ACCEPTED
+  submittedAt      DateTime?
+  dueAt            DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  project Project @relation(fields: [projectId], references: [id])
+}
+
+// =============================================================================
+// ATTACHMENT — Polymorphic, used từ M0+ cho mọi entity
+// =============================================================================
+
+model Attachment {
+  id           String   @id @default(cuid())
+  entityType   String // Project | Contract | Report | ProgramCycle | OrganizationProfile
+  entityId     String
+  fileName     String
+  fileUrl      String // path in storage/uploads/ or public/mock-files/
+  fileSize     Int?
+  mimeType     String?
+  uploadedById String
+  createdAt    DateTime @default(now())
+
+  uploader User @relation("AttachmentUploader", fields: [uploadedById], references: [id])
+
+  @@index([entityType, entityId])
+}
+
+// =============================================================================
+// AUDIT LOG — M1 scaffolding, write từ M0 (every server action mutation)
+// =============================================================================
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String
+  action     String // CREATE | UPDATE | DELETE | LOGIN | LOGOUT | TRANSITION | SUBMIT | APPROVE
+  resource   String // Project | ProgramCycle | Contract | Report | User | ...
+  resourceId String?
+  diffJson   String? // before/after JSON
+  ip         String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
+  @@index([resource, resourceId])
+}
