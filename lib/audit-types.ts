@@ -141,6 +141,36 @@ export const INTAKE_AUDIT_TYPES = {
   INTAKE_SCORE_FINALIZE: { action: 'SUBMIT' as AuditAction, resource: 'tham-dinh' as AuditResource },
 } as const;
 
+// =============================================================================
+// Phase 7 (M3 Thẩm định & Phê duyệt HERO) — composite audit type identifiers.
+// COUNCIL_* (Plan 07-01): hội đồng thẩm định lifecycle.
+// EVALUATION_* (Plan 07-01): hội đồng thành viên chấm điểm.
+// SUBMISSION_* / DECISION_* / NOTIFY_* (Plan 07-02): tờ trình + quyết định + thông báo.
+// =============================================================================
+
+export const COUNCIL_AUDIT_TYPES = {
+  COUNCIL_CREATE: { action: 'CREATE' as AuditAction, resource: 'tham-dinh' as AuditResource },
+  COUNCIL_UPDATE: { action: 'UPDATE' as AuditAction, resource: 'tham-dinh' as AuditResource },
+  COUNCIL_ADD_MEMBER: { action: 'UPDATE' as AuditAction, resource: 'tham-dinh' as AuditResource },
+  COUNCIL_REMOVE_MEMBER: { action: 'UPDATE' as AuditAction, resource: 'tham-dinh' as AuditResource },
+  COUNCIL_ASSIGN_PROJECT: { action: 'ASSIGN' as AuditAction, resource: 'tham-dinh' as AuditResource },
+  COUNCIL_UNASSIGN_PROJECT: { action: 'ASSIGN' as AuditAction, resource: 'tham-dinh' as AuditResource },
+  COUNCIL_LOCK: { action: 'TRANSITION' as AuditAction, resource: 'tham-dinh' as AuditResource },
+  COUNCIL_UNLOCK: { action: 'TRANSITION' as AuditAction, resource: 'tham-dinh' as AuditResource },
+  EVALUATION_SAVE_SCORE: { action: 'UPDATE' as AuditAction, resource: 'tham-dinh' as AuditResource },
+  EVALUATION_SUBMIT_SCORE: { action: 'SUBMIT' as AuditAction, resource: 'tham-dinh' as AuditResource },
+  EVALUATION_DECLINE_COI: { action: 'REJECT' as AuditAction, resource: 'tham-dinh' as AuditResource },
+} as const;
+
+export const APPROVAL_AUDIT_TYPES = {
+  SUBMISSION_CREATE: { action: 'CREATE' as AuditAction, resource: 'phe-duyet' as AuditResource },
+  SUBMISSION_UPDATE: { action: 'UPDATE' as AuditAction, resource: 'phe-duyet' as AuditResource },
+  SUBMISSION_FINALIZE: { action: 'SUBMIT' as AuditAction, resource: 'phe-duyet' as AuditResource },
+  DECISION_SAVE: { action: 'APPROVE' as AuditAction, resource: 'phe-duyet' as AuditResource },
+  DECISION_REJECT_PROJECT: { action: 'REJECT' as AuditAction, resource: 'phe-duyet' as AuditResource },
+  NOTIFY_RESULT: { action: 'DISPATCH' as AuditAction, resource: 'phe-duyet' as AuditResource },
+} as const;
+
 // Color tokens for action badges (consumed by AuditLogTable)
 export const AUDIT_ACTION_BADGE: Record<AuditAction, string> = {
   CREATE: 'bg-green-100 text-green-800',

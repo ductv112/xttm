@@ -111,6 +111,7 @@ const STATUS_THEME: Record<string, keyof typeof THEMES> = {
   LIQUIDATED: 'slateDark',
   // Lỗi / từ chối
   REJECTED: 'red',
+  REJECTED_FINAL: 'red',
   // Hủy
   CANCELLED: 'slateMuted',
 };

@@ -23,15 +23,17 @@
 //   VALID
 //     → EVALUATING   (BQL chuyển sang hội đồng)
 //   EVALUATING
-//     → APPROVED     (lãnh đạo phê duyệt)
-//     → REJECTED
+//     → APPROVED        (lãnh đạo phê duyệt)
+//     → REJECTED        (legacy term — Phase 6 trở về trước)
+//     → REJECTED_FINAL  (Phase 7 — Bộ ra quyết định không phê duyệt)
 //   APPROVED
 //     → IN_PROGRESS  (sau khi ký HĐ + bắt đầu triển khai)
 //   IN_PROGRESS
 //     → COMPLETED    (đã nghiệm thu)
-//   COMPLETED   — terminal
-//   REJECTED    — terminal
-//   CANCELLED   — terminal
+//   COMPLETED       — terminal
+//   REJECTED        — terminal
+//   REJECTED_FINAL  — terminal (Phase 7 — Bộ không phê duyệt)
+//   CANCELLED       — terminal
 //   TENTATIVE   — đề án 2 năm: record năm 2 placeholder
 //     → DRAFT        (khi chu kỳ năm sau OPEN_REGISTRATION, đơn vị bắt đầu khai báo)
 
@@ -46,6 +48,7 @@ export type ProjectStatus =
   | 'EVALUATING'
   | 'APPROVED'
   | 'REJECTED'
+  | 'REJECTED_FINAL'
   | 'IN_PROGRESS'
   | 'COMPLETED'
   | 'CANCELLED'
@@ -62,6 +65,7 @@ export const PROJECT_STATUSES: readonly ProjectStatus[] = [
   'EVALUATING',
   'APPROVED',
   'REJECTED',
+  'REJECTED_FINAL',
   'IN_PROGRESS',
   'COMPLETED',
   'CANCELLED',
@@ -81,11 +85,12 @@ export const TRANSITIONS: Record<ProjectStatus, ProjectStatus[]> = {
   SUPPLEMENT_REQUIRED: ['RESUBMITTED'],
   RESUBMITTED: ['IN_REVIEW'],
   VALID: ['EVALUATING'],
-  EVALUATING: ['APPROVED', 'REJECTED'],
+  EVALUATING: ['APPROVED', 'REJECTED', 'REJECTED_FINAL'],
   APPROVED: ['IN_PROGRESS'],
   IN_PROGRESS: ['COMPLETED'],
   COMPLETED: [],
   REJECTED: [],
+  REJECTED_FINAL: [],
   CANCELLED: [],
   TENTATIVE: ['DRAFT'],
 };
@@ -115,6 +120,7 @@ export const PROJECT_STATUS_LABELS: Record<ProjectStatus, string> = {
   EVALUATING: 'Đang thẩm định',
   APPROVED: 'Đã phê duyệt',
   REJECTED: 'Bị từ chối',
+  REJECTED_FINAL: 'Không được phê duyệt',
   IN_PROGRESS: 'Đang triển khai',
   COMPLETED: 'Đã nghiệm thu',
   CANCELLED: 'Đã hủy',
@@ -144,6 +150,7 @@ export const PROJECT_STATUS_BADGE_THEME: Record<
   EVALUATING: 'blue',
   APPROVED: 'emerald',
   REJECTED: 'red',
+  REJECTED_FINAL: 'red',
   IN_PROGRESS: 'blue',
   COMPLETED: 'slateDark',
   CANCELLED: 'slate',

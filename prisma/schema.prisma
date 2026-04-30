@@ -263,19 +263,60 @@ model ProjectVersion {
 // EVALUATION — Scaffold for Phase 7 (M3 HERO)
 // =============================================================================
 
+// Phase 7 (M3) — EvaluationCouncil extended với term, lockStatus, createdById,
+// members[], assignments[]. Status retained cho backward compat (DRAFT|OPEN|CLOSED)
+// nhưng business chủ yếu dựa vào lockStatus (OPEN|LOCKED) per plan decisions.
 model EvaluationCouncil {
   id             String    @id @default(cuid())
   programCycleId String
   name           String
+  term           String    @default("Lần 1") // Lần 1 | Lần 2 | ...
   decisionDocUrl String?
-  status         String    @default("DRAFT") // DRAFT | OPEN | CLOSED
+  status         String    @default("DRAFT") // DRAFT | OPEN | CLOSED — legacy field
+  lockStatus     String    @default("OPEN") // OPEN | LOCKED — Phase 7 working state
   openAt         DateTime?
   closeAt        DateTime?
+  createdById    String?
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 
-  programCycle ProgramCycle @relation(fields: [programCycleId], references: [id])
+  programCycle ProgramCycle              @relation(fields: [programCycleId], references: [id])
   scoreSheets  ScoreSheet[]
+  members      CouncilMember[]
+  assignments  ProjectCouncilAssignment[]
+
+  @@index([programCycleId, lockStatus])
+}
+
+// Phase 7 — Thành viên hội đồng thẩm định.
+// roles: CHU_TICH | PHO | UY_VIEN | THU_KY (per CONTEXT.md decisions).
+model CouncilMember {
+  id        String   @id @default(cuid())
+  councilId String
+  userId    String
+  role      String // CHU_TICH | PHO | UY_VIEN | THU_KY
+  joinedAt  DateTime @default(now())
+
+  council EvaluationCouncil @relation(fields: [councilId], references: [id], onDelete: Cascade)
+
+  @@unique([councilId, userId])
+  @@index([councilId])
+  @@index([userId])
+}
+
+// Phase 7 — Phân công đề án vào hội đồng (many-to-many).
+// Khi tạo assignment, project transitions VALID → EVALUATING.
+model ProjectCouncilAssignment {
+  id         String   @id @default(cuid())
+  councilId  String
+  projectId  String
+  assignedAt DateTime @default(now())
+
+  council EvaluationCouncil @relation(fields: [councilId], references: [id], onDelete: Cascade)
+
+  @@unique([councilId, projectId])
+  @@index([councilId])
+  @@index([projectId])
 }
 
 model ScoreSheet {

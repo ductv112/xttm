@@ -193,6 +193,7 @@ export const STATUS_LABELS = {
     EVALUATED: 'Đã thẩm định',
     APPROVED: 'Đã phê duyệt',
     REJECTED: 'Bị từ chối',
+    REJECTED_FINAL: 'Không được phê duyệt',
     CONTRACTED: 'Đã ký HĐ',
     IN_PROGRESS: 'Đang triển khai',
     COMPLETED: 'Đã nghiệm thu',
