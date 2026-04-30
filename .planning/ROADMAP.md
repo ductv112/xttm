@@ -34,7 +34,15 @@
   3. User refresh trình duyệt vẫn giữ session JWT, click "Đăng xuất" hủy session và quay về trang đăng nhập
   4. Trang login hiển thị button "Đăng nhập SSO Bộ Công Thương" placeholder, click ra toast "Tính năng giai đoạn 2"
   5. PDF spike chạy được: render Quyết định mẫu với chuỗi smoke đầy đủ dấu tiếng Việt + font Be Vietnam Pro + watermark "BẢN MẪU", không vỡ chữ
-**Plans**: TBD
+**Plans**: 6 plans
+Plans:
+- [x] 01-01-repo-init-PLAN.md — Bootstrap Next.js 15 + dependencies + shadcn init + lib foundation (TERMS, RBAC matrix, formatters, state machines, NextAuth types) — Wave 1
+- [ ] 01-02-prisma-schema-seed-PLAN.md — Prisma schema (14 models) + db push [BLOCKING] + seed 8 accounts bcrypt + 5 organizations — Wave 2
+- [ ] 01-03-nextauth-credentials-PLAN.md — NextAuth v5 split-config (edge auth.config + lib/auth Credentials) + middleware + login/logout server actions — Wave 3
+- [ ] 01-04-layout-shell-PLAN.md — 18 shadcn components + AppShell/Sidebar/Topbar/Breadcrumb/UserMenu/LogoutDialog + (app)/layout — Wave 3
+- [ ] 01-05-login-pages-PLAN.md — Login split 60/40 + LoginForm RHF/Zod + SSO toast + dashboard placeholder + 404/500 — Wave 4
+- [ ] 01-06-pdf-spike-PLAN.md — Be Vietnam Pro static TTF + OfficialDocument template + /api/pdf/spike + /test-pdf page — Wave 2
+
 **UI hint**: yes
 
 ### Phase 2: M1 Quản trị & Danh mục
@@ -176,7 +184,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. M0 Bootstrap & Hạ tầng | 0/TBD | Not started | - |
+| 1. M0 Bootstrap & Hạ tầng | 0/6 | Not started | - |
 | 2. M1 Quản trị & Danh mục | 0/TBD | Not started | - |
 | 3. M2.1 Chu kỳ Chương trình XTTM (HERO) | 0/TBD | Not started | - |
 | 4. M2.2 Hồ sơ Đơn vị Chủ trì | 0/TBD | Not started | - |

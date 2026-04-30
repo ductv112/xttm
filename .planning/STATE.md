@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: executing
+stopped_at: Completed 01-m0-bootstrap-h-t-ng plan 01 (repo init)
+last_updated: "2026-04-30T16:44:54.961Z"
+last_activity: 2026-04-30
+progress:
+  total_phases: 11
+  completed_phases: 0
+  total_plans: 6
+  completed_plans: 1
+  percent: 17
+---
+
 # Project State
 
 ## Project Reference
@@ -9,16 +25,17 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 
 ## Current Position
 
-Phase: 1 of 11 (M0 Bootstrap & Hạ tầng)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-04-30 — ROADMAP.md created with 11 phases mapping 193/193 v1 requirements
+Phase: 1 (M0 Bootstrap & Hạ tầng) — EXECUTING
+Plan: 2 of 6
+Status: Ready to execute
+Last activity: 2026-04-30
 
 Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 0
 - Average duration: —
 - Total execution time: 0 hours
@@ -30,10 +47,12 @@ Progress: [░░░░░░░░░░] 0%
 | - | - | - | - |
 
 **Recent Trend:**
+
 - Last 5 plans: —
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01-m0-bootstrap-h-t-ng P01 | 11m | 3 tasks | 38 files |
 
 ## Accumulated Context
 
@@ -47,6 +66,11 @@ Recent decisions affecting current work:
 - Initial: 8 tài khoản hardcoded, 1 chu kỳ chương trình / năm (unique year), đề án 2 năm = 2 records có parentProjectId
 - Roadmap: 11 phase ánh xạ M0-M7 (M2 tách 2.1/2.2/2.3/2.4); 4 HERO phase (3, 5, 7, 10) cần ngân sách polish cao hơn
 - Roadmap: Mọi phase có UI work — đây là UI prototype POC
+- [Phase 01-m0-bootstrap-h-t-ng]: TERMS dictionary 21 keys lock tại lib/constants.ts (PITFALLS R2) — đề án≠dự án, thẩm định≠kiểm tra; mọi phase sau import TERMS, không hardcode label
+- [Phase 01-m0-bootstrap-h-t-ng]: RBAC default-deny matrix (lib/permissions.ts): MATRIX[res]?.[act]?.includes(role) ?? false; 18 resources × 8 actions; getMenuItems(role) render menu động
+- [Phase 01-m0-bootstrap-h-t-ng]: Plain TS state machine cho 6 entity (programCycle 7-state với gia hạn, project 16-state, orgProfile/scoreSheet/contract/report) — KHÔNG XState (overkill)
+- [Phase 01-m0-bootstrap-h-t-ng]: xlsx@0.18.5 thay 0.20.x (SheetJS chuyển sang CDN riêng, npm registry chỉ có đến 0.18.5)
+- [Phase 01-m0-bootstrap-h-t-ng]: Bootstrap manual thay create-next-app vì dir uppercase XTTM vi phạm npm naming; components.json + globals.css tạo manual với shadcn new-york + slate preset
 
 ### Pending Todos
 
@@ -61,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30
-Stopped at: ROADMAP.md + STATE.md initialized; REQUIREMENTS.md traceability updated; ready to start Phase 1 planning
+Last session: 2026-04-30T16:44:54.958Z
+Stopped at: Completed 01-m0-bootstrap-h-t-ng plan 01 (repo init)
 Resume file: None
