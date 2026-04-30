@@ -86,7 +86,7 @@ Plans:
 - [x] 03-04-wizard-5-buoc-PLAN.md — /chuong-trinh/new wizard với Stepper + Zustand persist + RHF + Zod per-step + 5 step components + autosave (CYCLE-01..04) — Wave 3
 - [x] 03-05-list-page-card-view-PLAN.md — /chuong-trinh card grid 3-col với status badge + countdown + progress bar + filter URL-driven (CYCLE-15) — Wave 3
 - [x] 03-06-detail-page-6-tabs-PLAN.md — /chuong-trinh/[id] layout shared + 6 sub-routes deep-linkable + tab content + composer Tiptap với 7 variables + iframe PDF preview + API /api/file/[id] auth-gated (CYCLE-03/04/06/07/12/13/14) — Wave 3
-- [ ] 03-07-action-handlers-workflows-PLAN.md — CycleActionBar + TransitionDialog + ExtendCycleDialog + state machine onClick wired (CYCLE-08/09/10/11) — Wave 4
+- [x] 03-07-action-handlers-workflows-PLAN.md — CycleActionBar + TransitionDialog + ExtendCycleDialog + state machine onClick wired (CYCLE-08/09/10/11) — Wave 4
 **UI hint**: yes
 
 ### Phase 4: M2.2 Hồ sơ Đơn vị Chủ trì
