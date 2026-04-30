@@ -1,0 +1,21 @@
+export function QuocHuySvg({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 80 80"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <circle cx="40" cy="40" r="36" />
+      <circle cx="40" cy="40" r="28" />
+      <path d="M40 14 L44 32 L62 32 L48 44 L54 62 L40 50 L26 62 L32 44 L18 32 L36 32 Z" />
+      <path d="M16 56 Q40 64 64 56" />
+      <path d="M16 56 L20 60 M64 56 L60 60" />
+    </svg>
+  );
+}
