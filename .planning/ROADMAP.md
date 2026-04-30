@@ -10,7 +10,7 @@
 - Integer phases (1-11): Planned milestone work
 - Decimal phases (chưa có): Urgent insertions
 
-- [ ] **Phase 1: M0 Bootstrap & Hạ tầng** - Next.js 15 + Tailwind v4 + shadcn/ui + Prisma/SQLite + NextAuth 8 tài khoản + Layout shell + PDF spike font Be Vietnam Pro
+- [x] **Phase 1: M0 Bootstrap & Hạ tầng** - Next.js 15 + Tailwind v4 + shadcn/ui + Prisma/SQLite + NextAuth 8 tài khoản + Layout shell + PDF spike font Be Vietnam Pro (completed 2026-04-30)
 - [ ] **Phase 2: M1 Quản trị & Danh mục** - User CRUD + Role matrix grid (render từ DB) + 8 catalogs + System config + Audit log
 - [ ] **Phase 3: M2.1 Chu kỳ Chương trình XTTM (HERO)** - Wizard 5 bước + state machine 7 trạng thái + upload công văn + composer email mời + visual state machine
 - [ ] **Phase 4: M2.2 Hồ sơ Đơn vị Chủ trì** - Đăng ký tổ chức + năng lực + đầu mối liên hệ + xác nhận hồ sơ
@@ -184,7 +184,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. M0 Bootstrap & Hạ tầng | 0/6 | Not started | - |
+| 1. M0 Bootstrap & Hạ tầng | 6/6 | Complete    | 2026-04-30 |
 | 2. M1 Quản trị & Danh mục | 0/TBD | Not started | - |
 | 3. M2.1 Chu kỳ Chương trình XTTM (HERO) | 0/TBD | Not started | - |
 | 4. M2.2 Hồ sơ Đơn vị Chủ trì | 0/TBD | Not started | - |
