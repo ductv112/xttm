@@ -18,20 +18,20 @@
 
 ### Quản trị Người dùng (USER) — Phase M1
 
-- [ ] **USER-01**: Admin xem danh sách người dùng với filter (vai trò, đơn vị, trạng thái), sort, pagination, search theo tên/email
+- [x] **USER-01**: Admin xem danh sách người dùng với filter (vai trò, đơn vị, trạng thái), sort, pagination, search theo tên/email
 - [ ] **USER-02**: Admin tạo người dùng mới (họ tên, email, username, mật khẩu, vai trò, đơn vị, trạng thái)
 - [ ] **USER-03**: Admin chỉnh sửa thông tin người dùng (trừ username)
 - [ ] **USER-04**: Admin khóa/mở khóa tài khoản với confirmation dialog
 - [ ] **USER-05**: Admin gán/đổi vai trò cho người dùng
 - [ ] **USER-06**: Admin reset mật khẩu người dùng (sinh mật khẩu tạm hiển thị 1 lần)
-- [ ] **USER-07**: Admin xuất danh sách người dùng ra Excel/CSV
+- [x] **USER-07**: Admin xuất danh sách người dùng ra Excel/CSV
 
 ### Vai trò & Phân quyền (ROLE) — Phase M1
 
-- [ ] **ROLE-01**: Admin xem danh sách vai trò (7 vai trò seed sẵn) và mô tả mỗi vai trò
+- [x] **ROLE-01**: Admin xem danh sách vai trò (7 vai trò seed sẵn) và mô tả mỗi vai trò
 - [ ] **ROLE-02**: Admin tạo nhóm quyền mới (custom role) với tên + mô tả
 - [ ] **ROLE-03**: Admin chỉnh sửa nhóm quyền
-- [ ] **ROLE-04**: Admin xem ma trận phân quyền — grid vai trò × phân hệ × hành động (Xem/Thêm/Sửa/Xóa/Phê duyệt) với checkbox tick/untick
+- [x] **ROLE-04**: Admin xem ma trận phân quyền — grid vai trò × phân hệ × hành động (Xem/Thêm/Sửa/Xóa/Phê duyệt) với checkbox tick/untick
 - [ ] **ROLE-05**: Admin gán/bỏ quyền chức năng cho nhóm quyền với optimistic UI + audit log entry
 - [ ] **ROLE-06**: Sidebar và action button render động theo permission của user hiện tại
 - [ ] **ROLE-07**: Server action authoritative permission check — UI guard chỉ là layer 2
@@ -50,7 +50,7 @@
 ### Cấu hình Hệ thống (CONFIG) — Phase M1
 
 - [ ] **CONFIG-01**: Admin cấu hình tham số cảnh báo SLA (60 ngày HĐ / 30 ngày thương vụ / 15 ngày báo cáo / hạn 30/5)
-- [ ] **CONFIG-02**: Admin cấu hình mẫu email/SMS template với honorific Việt (Kính gửi Quý đơn vị / Quý ông / Quý bà) — UI-only, không gửi thật
+- [x] **CONFIG-02**: Admin cấu hình mẫu email/SMS template với honorific Việt (Kính gửi Quý đơn vị / Quý ông / Quý bà) — UI-only, không gửi thật
 
 ### Audit Log (LOG) — Phase M1
 
@@ -330,17 +330,17 @@ Explicit exclusions cho prototype POC này.
 | AUTH-06 | Phase 1 (M0 Bootstrap) | Complete |
 | AUTH-07 | Phase 1 (M0 Bootstrap) | Complete |
 | AUTH-08 | Phase 1 (M0 Bootstrap) | Complete |
-| USER-01 | Phase 2 (M1 Quản trị) | Pending |
+| USER-01 | Phase 2 (M1 Quản trị) | Complete |
 | USER-02 | Phase 2 (M1 Quản trị) | Pending |
 | USER-03 | Phase 2 (M1 Quản trị) | Pending |
 | USER-04 | Phase 2 (M1 Quản trị) | Pending |
 | USER-05 | Phase 2 (M1 Quản trị) | Pending |
 | USER-06 | Phase 2 (M1 Quản trị) | Pending |
-| USER-07 | Phase 2 (M1 Quản trị) | Pending |
-| ROLE-01 | Phase 2 (M1 Quản trị) | Pending |
+| USER-07 | Phase 2 (M1 Quản trị) | Complete |
+| ROLE-01 | Phase 2 (M1 Quản trị) | Complete |
 | ROLE-02 | Phase 2 (M1 Quản trị) | Pending |
 | ROLE-03 | Phase 2 (M1 Quản trị) | Pending |
-| ROLE-04 | Phase 2 (M1 Quản trị) | Pending |
+| ROLE-04 | Phase 2 (M1 Quản trị) | Complete |
 | ROLE-05 | Phase 2 (M1 Quản trị) | Pending |
 | ROLE-06 | Phase 2 (M1 Quản trị) | Pending |
 | ROLE-07 | Phase 2 (M1 Quản trị) | Pending |
@@ -353,7 +353,7 @@ Explicit exclusions cho prototype POC này.
 | CAT-07 | Phase 2 (M1 Quản trị) | Complete |
 | CAT-08 | Phase 2 (M1 Quản trị) | Complete |
 | CONFIG-01 | Phase 2 (M1 Quản trị) | Pending |
-| CONFIG-02 | Phase 2 (M1 Quản trị) | Pending |
+| CONFIG-02 | Phase 2 (M1 Quản trị) | Complete |
 | LOG-01 | Phase 2 (M1 Quản trị) | Complete |
 | LOG-02 | Phase 2 (M1 Quản trị) | Complete |
 | LOG-03 | Phase 2 (M1 Quản trị) | Complete |

@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-02-catalog-schema-seed — 8 catalogs seeded (8/20/15/8/30/12/15/6), lib/catalog-types.ts ready cho Plan 02-06
-last_updated: "2026-04-30T18:30:35.804Z"
+stopped_at: Completed 02-03-shared-ui-primitives — 13 shared components + 2 lib utilities (csv, clipboard) + Tiptap v3 ready cho Plan 02-04..07
+last_updated: "2026-04-30T18:44:47.842Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 1
   total_plans: 13
-  completed_plans: 8
-  percent: 62
+  completed_plans: 9
+  percent: 69
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 2 (M1 Quản trị & Danh mục) — EXECUTING
-Plan: 3 of 7
+Plan: 4 of 7
 Status: Ready to execute
 Last activity: 2026-04-30
 
@@ -60,6 +60,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-m0-bootstrap-h-t-ng P05 | 5m | 3 tasks | 11 files |
 | Phase 02-m1-quan-tri-danh-muc P01 | 8m | 3 tasks | 14 files |
 | Phase 02-m1-quan-tri-danh-muc P02 | 5m | 2 tasks | 4 files |
+| Phase 02-m1-quan-tri-danh-muc P03 | 9m | 3 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -104,6 +105,10 @@ Recent decisions affecting current work:
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-02: Append-only schema 8 catalog models (ProjectKind/IndustrySector/Market/PromotionType/Country/OrgUnit/ScoringCriterion/DocumentTemplate) — không sửa 14 models lock M0; common pattern code+name+searchKey+displayOrder+isActive+timestamps + indexes [searchKey][isActive,displayOrder] cho Plan 02-06 reuse 1 template
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-02: Self-relation hierarchy qua named relation — OrgUnit('OrgUnitParent') + ScoringCriterion('ScoringCriterionParent'); seed parents trước children với findUnique parentId resolution; ScoringCriterion 4 groups + 11 children = 15 records (gộp 'Bằng chứng số liệu' vào 'Phương pháp' để đạt spec); appliesToKinds JSON 8 ProjectKind codes (explicit thay wildcard)
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-02: lib/catalog-types.ts CATALOG_CONFIGS 4 flags (hasParent/hasWeight/hasRichText/hasRegion) drive Plan 02-06 catalog editor render dynamic; getCatalogConfigBySlug cho route /danh-muc/[slug] resolve; OrgUnit độc lập với Organization (master data lookup vs operational entity tách biệt); Country.code ISO alpha-3 cho Phase 8 thương vụ alert
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-03: Tiptap v3 thay v2 (registry shift) + immediatelyRender:false bắt buộc cho Next 15 RSC
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-03: DataTable generic <TData> server-side state (manualPagination/Sorting/Filtering=true) — auto checkbox column khi rowSelection enabled, EmptyState slot accept JSX or config object
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-03: CSV-injection escape (T-02-03-03) automatic trong toCSV — cell với formula prefix (=/+/-/@/tab/cr) tự prefix apostrophe
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-03: useConfirmDialog imperative hook bên cạnh ConfirmDialog component — Plan 02-04 reset password sẽ dùng imperative await confirm() flow
 
 ### Pending Todos
 
@@ -118,6 +123,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T18:30:20.262Z
-Stopped at: Completed 02-02-catalog-schema-seed — 8 catalogs seeded (8/20/15/8/30/12/15/6), lib/catalog-types.ts ready cho Plan 02-06
+Last session: 2026-04-30T18:44:47.838Z
+Stopped at: Completed 02-03-shared-ui-primitives — 13 shared components + 2 lib utilities (csv, clipboard) + Tiptap v3 ready cho Plan 02-04..07
 Resume file: None

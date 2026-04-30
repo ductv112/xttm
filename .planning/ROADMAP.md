@@ -59,7 +59,7 @@ Plans:
 Plans:
 - [x] 02-01-audit-log-infrastructure-PLAN.md — Audit log withAuditLog wrapper + trang /nhat-ky DataTable filter + xuất CSV (LOG-01..03) — Wave 1
 - [x] 02-02-catalog-schema-seed-PLAN.md — 8 catalog Prisma models + seed Vietnamese realistic data + lib/catalog-types.ts (CAT-01..08) — Wave 1
-- [ ] 02-03-shared-ui-primitives-PLAN.md — DataTable wrapper TanStack Table v8 + EmptyState + ConfirmDialog + RichTextEditor Tiptap + MultiSelect + DateRangePicker + lib/csv + lib/clipboard — Wave 1
+- [x] 02-03-shared-ui-primitives-PLAN.md — DataTable wrapper TanStack Table v8 + EmptyState + ConfirmDialog + RichTextEditor Tiptap + MultiSelect + DateRangePicker + lib/csv + lib/clipboard — Wave 1
 - [ ] 02-04-user-management-PLAN.md — User CRUD list+create+edit+lock/unlock+reset password+bulk actions+xuất Excel (USER-01..07) — Wave 2
 - [ ] 02-05-role-permission-matrix-PLAN.md — Role list cards + Permission Matrix Grid 18 sections × 8 actions × 7+ roles + custom role CRUD + canFromDB (ROLE-01..07) — Wave 2
 - [ ] 02-06-catalog-editors-PLAN.md — 8 catalog CRUD UI config-driven + ScoringCriterionForm + DocumentTemplateForm Tiptap+VariableMenu (CAT-01..08) — Wave 2
