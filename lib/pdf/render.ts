@@ -1,6 +1,11 @@
+import * as React from 'react';
 import { createElement } from 'react';
 import { renderToBuffer } from '@react-pdf/renderer';
 import { OfficialDocument, type OfficialDocumentProps } from './templates/OfficialDocument';
+import {
+  ProjectProposal,
+  type ProjectProposalProps,
+} from './templates/ProjectProposal';
 import { registerPdfFonts } from './fonts';
 
 /**
@@ -20,5 +25,23 @@ export async function renderOfficialDocumentPdf(
 ): Promise<Buffer> {
   registerPdfFonts();
   const buffer = await renderToBuffer(createElement(OfficialDocument, props));
+  return buffer;
+}
+
+/**
+ * Render the ProjectProposal template (Phase 5 đề án PDF) to a PDF Buffer.
+ * Idempotent font registration. Returns Node Buffer for streaming via NextResponse.
+ */
+export async function renderProjectProposalPdf(
+  props: ProjectProposalProps,
+): Promise<Buffer> {
+  registerPdfFonts();
+  // Type cast: createElement loses Document narrowing when component is .tsx;
+  // ProjectProposal returns <Document> at runtime. Same pattern as OfficialDocument.
+  const element = createElement(
+    ProjectProposal as unknown as React.ComponentType<ProjectProposalProps>,
+    props,
+  ) as Parameters<typeof renderToBuffer>[0];
+  const buffer = await renderToBuffer(element);
   return buffer;
 }
