@@ -38,14 +38,14 @@
 
 ### Danh mục Hệ thống (CAT) — Phase M1
 
-- [ ] **CAT-01**: CRUD danh mục Loại đề án (Triển lãm xuất khẩu / Hội nghị quốc tế / Hội chợ trong nước / Đoàn giao thương ra / Đoàn giao thương vào / Thông tin TM tuyên truyền xuất khẩu / Tuyên truyền trong nước / Đào tạo)
-- [ ] **CAT-02**: CRUD danh mục Ngành hàng (20 ngành — dệt may, da giày, gỗ, thủy sản, nông sản, cà phê, cao su, gạo, thép, điện tử, ...)
-- [ ] **CAT-03**: CRUD danh mục Thị trường (mã thị trường, tên VN/EN, khu vực)
-- [ ] **CAT-04**: CRUD danh mục Loại hình XTTM
-- [ ] **CAT-05**: CRUD danh mục Quốc gia (mã ISO, tên VN, khu vực, có thương vụ?)
-- [ ] **CAT-06**: CRUD danh mục Đơn vị (Cục XTTM, hiệp hội, doanh nghiệp...)
-- [ ] **CAT-07**: CRUD danh mục Tiêu chí chấm điểm (sơ bộ + thẩm định) với trọng số, mô tả, áp dụng cho loại đề án nào
-- [ ] **CAT-08**: CRUD danh mục Mẫu văn bản (công văn mời, tờ trình, quyết định, hợp đồng, biên bản nghiệm thu, thanh lý) với placeholder variable interpolation
+- [x] **CAT-01**: CRUD danh mục Loại đề án (Triển lãm xuất khẩu / Hội nghị quốc tế / Hội chợ trong nước / Đoàn giao thương ra / Đoàn giao thương vào / Thông tin TM tuyên truyền xuất khẩu / Tuyên truyền trong nước / Đào tạo)
+- [x] **CAT-02**: CRUD danh mục Ngành hàng (20 ngành — dệt may, da giày, gỗ, thủy sản, nông sản, cà phê, cao su, gạo, thép, điện tử, ...)
+- [x] **CAT-03**: CRUD danh mục Thị trường (mã thị trường, tên VN/EN, khu vực)
+- [x] **CAT-04**: CRUD danh mục Loại hình XTTM
+- [x] **CAT-05**: CRUD danh mục Quốc gia (mã ISO, tên VN, khu vực, có thương vụ?)
+- [x] **CAT-06**: CRUD danh mục Đơn vị (Cục XTTM, hiệp hội, doanh nghiệp...)
+- [x] **CAT-07**: CRUD danh mục Tiêu chí chấm điểm (sơ bộ + thẩm định) với trọng số, mô tả, áp dụng cho loại đề án nào
+- [x] **CAT-08**: CRUD danh mục Mẫu văn bản (công văn mời, tờ trình, quyết định, hợp đồng, biên bản nghiệm thu, thanh lý) với placeholder variable interpolation
 
 ### Cấu hình Hệ thống (CONFIG) — Phase M1
 
@@ -344,14 +344,14 @@ Explicit exclusions cho prototype POC này.
 | ROLE-05 | Phase 2 (M1 Quản trị) | Pending |
 | ROLE-06 | Phase 2 (M1 Quản trị) | Pending |
 | ROLE-07 | Phase 2 (M1 Quản trị) | Pending |
-| CAT-01 | Phase 2 (M1 Quản trị) | Pending |
-| CAT-02 | Phase 2 (M1 Quản trị) | Pending |
-| CAT-03 | Phase 2 (M1 Quản trị) | Pending |
-| CAT-04 | Phase 2 (M1 Quản trị) | Pending |
-| CAT-05 | Phase 2 (M1 Quản trị) | Pending |
-| CAT-06 | Phase 2 (M1 Quản trị) | Pending |
-| CAT-07 | Phase 2 (M1 Quản trị) | Pending |
-| CAT-08 | Phase 2 (M1 Quản trị) | Pending |
+| CAT-01 | Phase 2 (M1 Quản trị) | Complete |
+| CAT-02 | Phase 2 (M1 Quản trị) | Complete |
+| CAT-03 | Phase 2 (M1 Quản trị) | Complete |
+| CAT-04 | Phase 2 (M1 Quản trị) | Complete |
+| CAT-05 | Phase 2 (M1 Quản trị) | Complete |
+| CAT-06 | Phase 2 (M1 Quản trị) | Complete |
+| CAT-07 | Phase 2 (M1 Quản trị) | Complete |
+| CAT-08 | Phase 2 (M1 Quản trị) | Complete |
 | CONFIG-01 | Phase 2 (M1 Quản trị) | Pending |
 | CONFIG-02 | Phase 2 (M1 Quản trị) | Pending |
 | LOG-01 | Phase 2 (M1 Quản trị) | Complete |

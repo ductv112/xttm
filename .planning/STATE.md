@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-01 — audit log infrastructure ready, withAuditLog wrapper sẵn sàng cho Plan 02-04+
-last_updated: "2026-04-30T18:21:53.409Z"
+stopped_at: Completed 02-02-catalog-schema-seed — 8 catalogs seeded (8/20/15/8/30/12/15/6), lib/catalog-types.ts ready cho Plan 02-06
+last_updated: "2026-04-30T18:30:35.804Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 1
   total_plans: 13
-  completed_plans: 7
-  percent: 54
+  completed_plans: 8
+  percent: 62
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 2 (M1 Quản trị & Danh mục) — EXECUTING
-Plan: 2 of 7
+Plan: 3 of 7
 Status: Ready to execute
 Last activity: 2026-04-30
 
@@ -59,6 +59,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-m0-bootstrap-h-t-ng P04 | 4m | 3 tasks | 27 files |
 | Phase 01-m0-bootstrap-h-t-ng P05 | 5m | 3 tasks | 11 files |
 | Phase 02-m1-quan-tri-danh-muc P01 | 8m | 3 tasks | 14 files |
+| Phase 02-m1-quan-tri-danh-muc P02 | 5m | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -100,6 +101,9 @@ Recent decisions affecting current work:
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-01: withAuditLog<TArgs,TReturn> generic wrapper với fire-and-forget logAudit (void promise, không block business latency); dynamic import @/lib/auth + next/headers tránh circular dep; diffObjects skip SYSTEM_FIELDS (updatedAt/createdAt/searchKey/currentVersion) — convention cho mọi mutation Phase 2-9 phải import từ @/lib/audit
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-01: Trang /nhat-ky URL search params bookmarkable filter (6 fields: userId/resources/actions/from/to/keyword) + RBAC defense-in-depth 3 layers (middleware + RSC redirect + server action throw); CSV UTF-8 BOM cap 5000 rows + không export userAgent (T-02-01-03 mitigation); pagination 50/page (virtualization defer Plan 02-03 shared-ui-primitives)
 - [Phase 02-m1-quan-tri-danh-muc]: Plan 02-01 [Rule 3]: đổi sidebar menu /audit-log → /nhat-ky trong lib/permissions.ts ALL_MENU_ITEMS + thêm '/nhat-ky' vào lib/breadcrumbs.ts BREADCRUMB_LABELS (giữ '/audit-log' backward compat) — plan locks Vietnamese-friendly slug nhất quán với /tham-dinh /phe-duyet /hop-dong
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-02: Append-only schema 8 catalog models (ProjectKind/IndustrySector/Market/PromotionType/Country/OrgUnit/ScoringCriterion/DocumentTemplate) — không sửa 14 models lock M0; common pattern code+name+searchKey+displayOrder+isActive+timestamps + indexes [searchKey][isActive,displayOrder] cho Plan 02-06 reuse 1 template
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-02: Self-relation hierarchy qua named relation — OrgUnit('OrgUnitParent') + ScoringCriterion('ScoringCriterionParent'); seed parents trước children với findUnique parentId resolution; ScoringCriterion 4 groups + 11 children = 15 records (gộp 'Bằng chứng số liệu' vào 'Phương pháp' để đạt spec); appliesToKinds JSON 8 ProjectKind codes (explicit thay wildcard)
+- [Phase 02-m1-quan-tri-danh-muc]: Plan 02-02: lib/catalog-types.ts CATALOG_CONFIGS 4 flags (hasParent/hasWeight/hasRichText/hasRegion) drive Plan 02-06 catalog editor render dynamic; getCatalogConfigBySlug cho route /danh-muc/[slug] resolve; OrgUnit độc lập với Organization (master data lookup vs operational entity tách biệt); Country.code ISO alpha-3 cho Phase 8 thương vụ alert
 
 ### Pending Todos
 
@@ -114,6 +118,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T18:21:53.404Z
-Stopped at: Completed 02-01 — audit log infrastructure ready, withAuditLog wrapper sẵn sàng cho Plan 02-04+
+Last session: 2026-04-30T18:30:20.262Z
+Stopped at: Completed 02-02-catalog-schema-seed — 8 catalogs seeded (8/20/15/8/30/12/15/6), lib/catalog-types.ts ready cho Plan 02-06
 Resume file: None
