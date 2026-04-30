@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 04-01-server-actions-seed-PLAN.md
-last_updated: "2026-04-30T21:56:46.918Z"
+status: verifying
+stopped_at: Completed Phase 4 (both plans)
+last_updated: "2026-04-30T22:08:48.434Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 22
-  completed_plans: 21
-  percent: 95
+  completed_plans: 22
+  percent: 100
 ---
 
 # Project State
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 
 Phase: 4 (M2.2 Hồ sơ Đơn vị Chủ trì) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-04-30
 
 Progress: [░░░░░░░░░░] 0%
@@ -75,6 +75,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P06 | 12m | 4 tasks | 19 files |
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P07 | 6m | 4 tasks | 6 files |
 | Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì P01 | 14m | 3 tasks | 13 files |
+| Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì P02 | 22m | 2 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -158,6 +159,7 @@ Recent decisions affecting current work:
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-07: TongQuanTab promote 'use client' để wire onTransitionClick → TransitionDialog; recentAuditEntries vẫn server-fetched trong page.tsx và pass props xuống — boundary clean (server fetch + client state); Tooltip wrap span tabIndex=0 cho disabled buttons (Radix workaround)
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-07: state machine click CLOSED→OPEN no-op (silent return) — force user qua action bar 'Mở lại để gia hạn' button; consistent với transitionCycle server action reject CLOSED→OPEN; rationale: extend flow phải explicit qua ExtendCycleDialog form (reason + newDeadline required)
 - [Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì]: Plan 04-01: JSON-backed columns (legalInfoJson/capabilitiesJson/contactsJson) thay Prisma Json type — SQLite không support Json natively, pattern khớp ProgramCycle.configJson; Attachment.signedNumber column repurposed lưu document category code (tránh schema migration); SUBMITTED là frozen state đơn vị không edit được; validateGuards trả errors[] array thay GuardResult.reason đơn — UI bullet list
+- [Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì]: Plan 04-02: auto-save 1s debounce + SaveIndicator pattern cho form dài (replace 'Save' button); MenuItem.roleOnly field cho phép cùng resource trỏ URL khác nhau theo role (DONVI → /don-vi-cua-toi, ADMIN/BANQL/LANHDAO → /don-vi-chu-tri); ProfileDetailSheet client-side lazy-load qua getOrgProfileDetail thay pass props đầy đủ; DataTable POC mode: server filter qua URL params + client display-only đủ cho ≤50 rows
 
 ### Pending Todos
 
@@ -172,6 +174,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T21:56:38.921Z
-Stopped at: Completed 04-01-server-actions-seed-PLAN.md
+Last session: 2026-04-30T22:08:48.317Z
+Stopped at: Completed Phase 4 (both plans)
 Resume file: None
