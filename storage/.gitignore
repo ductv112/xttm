@@ -1,0 +1,6 @@
+*
+!.gitignore
+!.gitkeep
+!uploads
+uploads/*
+!uploads/.gitkeep
