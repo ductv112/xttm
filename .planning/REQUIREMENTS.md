@@ -8,7 +8,7 @@
 ### Hạ tầng & Auth (AUTH) — Phase M0
 
 - [ ] **AUTH-01**: Người dùng đăng nhập bằng username + mật khẩu, được redirect về trang chủ phù hợp với vai trò
-- [ ] **AUTH-02**: Hệ thống cung cấp 8 tài khoản hardcoded với mật khẩu bcrypt cho 7 vai trò (admin, banql, chuyenvien, hoidong, donvi1, donvi2, taichinh, lanhdao)
+- [x] **AUTH-02**: Hệ thống cung cấp 8 tài khoản hardcoded với mật khẩu bcrypt cho 7 vai trò (admin, banql, chuyenvien, hoidong, donvi1, donvi2, taichinh, lanhdao)
 - [ ] **AUTH-03**: Người dùng đăng xuất hủy session và quay về trang đăng nhập
 - [ ] **AUTH-04**: Session JWT giữ trạng thái đăng nhập qua refresh trình duyệt
 - [ ] **AUTH-05**: Trang đăng nhập có button "Đăng nhập SSO" (placeholder, hiển thị toast "Tính năng giai đoạn 2")
@@ -323,7 +323,7 @@ Explicit exclusions cho prototype POC này.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | AUTH-01 | Phase 1 (M0 Bootstrap) | Pending |
-| AUTH-02 | Phase 1 (M0 Bootstrap) | Pending |
+| AUTH-02 | Phase 1 (M0 Bootstrap) | Complete |
 | AUTH-03 | Phase 1 (M0 Bootstrap) | Pending |
 | AUTH-04 | Phase 1 (M0 Bootstrap) | Pending |
 | AUTH-05 | Phase 1 (M0 Bootstrap) | Pending |

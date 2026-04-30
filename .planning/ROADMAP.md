@@ -37,7 +37,7 @@
 **Plans**: 6 plans
 Plans:
 - [x] 01-01-repo-init-PLAN.md — Bootstrap Next.js 15 + dependencies + shadcn init + lib foundation (TERMS, RBAC matrix, formatters, state machines, NextAuth types) — Wave 1
-- [ ] 01-02-prisma-schema-seed-PLAN.md — Prisma schema (14 models) + db push [BLOCKING] + seed 8 accounts bcrypt + 5 organizations — Wave 2
+- [x] 01-02-prisma-schema-seed-PLAN.md — Prisma schema (14 models) + db push [BLOCKING] + seed 8 accounts bcrypt + 5 organizations — Wave 2
 - [ ] 01-03-nextauth-credentials-PLAN.md — NextAuth v5 split-config (edge auth.config + lib/auth Credentials) + middleware + login/logout server actions — Wave 3
 - [ ] 01-04-layout-shell-PLAN.md — 18 shadcn components + AppShell/Sidebar/Topbar/Breadcrumb/UserMenu/LogoutDialog + (app)/layout — Wave 3
 - [ ] 01-05-login-pages-PLAN.md — Login split 60/40 + LoginForm RHF/Zod + SSO toast + dashboard placeholder + 404/500 — Wave 4

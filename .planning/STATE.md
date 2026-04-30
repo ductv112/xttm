@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-m0-bootstrap-h-t-ng plan 01 (repo init)
-last_updated: "2026-04-30T16:44:54.961Z"
+stopped_at: Completed 01-m0-bootstrap-h-t-ng plan 02 (prisma schema + seed)
+last_updated: "2026-04-30T16:53:22.338Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 0
   total_plans: 6
-  completed_plans: 1
-  percent: 17
+  completed_plans: 2
+  percent: 33
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 1 (M0 Bootstrap & Hạ tầng) — EXECUTING
-Plan: 2 of 6
+Plan: 3 of 6
 Status: Ready to execute
 Last activity: 2026-04-30
 
@@ -53,6 +53,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 01-m0-bootstrap-h-t-ng P01 | 11m | 3 tasks | 38 files |
+| Phase 01-m0-bootstrap-h-t-ng P02 | 4m | 3 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,11 @@ Recent decisions affecting current work:
 - [Phase 01-m0-bootstrap-h-t-ng]: Plain TS state machine cho 6 entity (programCycle 7-state với gia hạn, project 16-state, orgProfile/scoreSheet/contract/report) — KHÔNG XState (overkill)
 - [Phase 01-m0-bootstrap-h-t-ng]: xlsx@0.18.5 thay 0.20.x (SheetJS chuyển sang CDN riêng, npm registry chỉ có đến 0.18.5)
 - [Phase 01-m0-bootstrap-h-t-ng]: Bootstrap manual thay create-next-app vì dir uppercase XTTM vi phạm npm naming; components.json + globals.css tạo manual với shadcn new-york + slate preset
+- [Phase 01-m0-bootstrap-h-t-ng]: Schema lock 14 models tại M0 (User/Role/Permission/Organization/OrganizationProfile/ProgramCycle/Project với parentProjectId/EvaluationCouncil/ScoreSheet/Contract/Report/Attachment/AuditLog) — tránh schema thrashing Phase 2-3 (PITFALLS §4.1 §4.2)
+- [Phase 01-m0-bootstrap-h-t-ng]: String thay Prisma enum cho status — debug-friendly + swap-friendly khi migrate Postgres; RBAC + state machine ở lib/permissions.ts + lib/workflows authoritative
+- [Phase 01-m0-bootstrap-h-t-ng]: Tạo .env riêng cho Prisma CLI (Prisma không đọc .env.local); duplicate DATABASE_URL trong cả .env (CLI) và .env.local (Next.js runtime); cả 2 gitignored
+- [Phase 01-m0-bootstrap-h-t-ng]: Bcrypt cost 10 (~80ms/hash, seed 8 users 640ms) + bcryptjs Windows-compatible — POC standard cho password hashing (T-02-01 mitigated)
+- [Phase 01-m0-bootstrap-h-t-ng]: Seed idempotent qua prisma.X.upsert pattern + count assertions (≥8 users / ≥5 orgs); orgs first (FK), users next; bcrypt hash trong helpers.ts shared
 
 ### Pending Todos
 
@@ -85,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T16:44:54.958Z
-Stopped at: Completed 01-m0-bootstrap-h-t-ng plan 01 (repo init)
+Last session: 2026-04-30T16:53:22.331Z
+Stopped at: Completed 01-m0-bootstrap-h-t-ng plan 02 (prisma schema + seed)
 Resume file: None
