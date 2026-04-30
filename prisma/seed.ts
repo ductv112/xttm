@@ -7,6 +7,7 @@ import { seedSystemConfig } from './seed/system-config';
 import { seedProgramCycles } from './seed/program-cycles';
 import { seedCycleNotifications } from './seed/notifications';
 import { seedOrgProfiles } from './seed/orgProfiles';
+import { seedProjects } from './seed/projects';
 
 const prisma = new PrismaClient();
 
@@ -36,6 +37,9 @@ async function main() {
   // Phase 4 (M2.2) data: 5 OrganizationProfile cover all 4 statuses
   await seedOrgProfiles(prisma);
 
+  // Phase 5 (M2.3) HERO data: 6 Projects covering diverse states + đề án 2 năm
+  await seedProjects(prisma);
+
   // Smoke verify counts
   const userCount = await prisma.user.count();
   const orgCount = await prisma.organization.count();
@@ -60,6 +64,14 @@ async function main() {
     by: ['status'],
     _count: { _all: true },
   });
+  const projectCount = await prisma.project.count();
+  const projectsByStatus = await prisma.project.groupBy({
+    by: ['status'],
+    _count: { _all: true },
+  });
+  const twoYearChildCount = await prisma.project.count({
+    where: { parentProjectId: { not: null } },
+  });
   console.log(`📊 Total users: ${userCount}, organizations: ${orgCount}`);
   console.log(`📊 Catalogs:`, catalogCounts);
   console.log(
@@ -70,6 +82,11 @@ async function main() {
     `📊 OrganizationProfile: ${orgProfileCount} (status mix: ${orgProfilesByStatus
       .map((r) => `${r.status}=${r._count._all}`)
       .join(', ')})`,
+  );
+  console.log(
+    `📊 Project: ${projectCount} (status mix: ${projectsByStatus
+      .map((r) => `${r.status}=${r._count._all}`)
+      .join(', ')}, đề án 2 năm child=${twoYearChildCount})`,
   );
 
   if (userCount < 8) throw new Error(`Expected 8 users, got ${userCount}`);
@@ -116,6 +133,24 @@ async function main() {
     throw new Error('Expected ≥1 REJECTED OrganizationProfile');
   if ((statusCounts.DRAFT ?? 0) < 2)
     throw new Error('Expected ≥2 DRAFT OrganizationProfile');
+
+  if (projectCount < 6)
+    throw new Error(`Expected ≥6 Project, got ${projectCount}`);
+  const projectStatusCounts = Object.fromEntries(
+    projectsByStatus.map((r) => [r.status, r._count._all] as const),
+  );
+  if ((projectStatusCounts.APPROVED ?? 0) < 1)
+    throw new Error('Expected ≥1 APPROVED Project');
+  if ((projectStatusCounts.SUBMITTED ?? 0) < 2)
+    throw new Error('Expected ≥2 SUBMITTED Project');
+  if ((projectStatusCounts.DRAFT ?? 0) < 1)
+    throw new Error('Expected ≥1 DRAFT Project');
+  if ((projectStatusCounts.IN_REVIEW ?? 0) < 1)
+    throw new Error('Expected ≥1 IN_REVIEW Project');
+  if ((projectStatusCounts.TENTATIVE ?? 0) < 1)
+    throw new Error('Expected ≥1 TENTATIVE Project');
+  if (twoYearChildCount < 1)
+    throw new Error('Expected ≥1 đề án 2 năm child (parentProjectId set)');
 
   console.timeEnd('seed');
   console.log('✅ Seed complete.');
