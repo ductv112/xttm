@@ -123,25 +123,29 @@ model OrganizationProfile {
 // =============================================================================
 
 model ProgramCycle {
-  id                   String    @id @default(cuid())
-  year                 Int       @unique // 1 chu kỳ / năm
-  name                 String
-  status               String    @default("DRAFT") // DRAFT | READY | OPEN_REGISTRATION | CLOSED_REGISTRATION | EVALUATING | APPROVED | COMPLETED
-  totalBudget          Float? // VND, SQLite REAL
-  registrationOpenAt   DateTime?
-  registrationCloseAt  DateTime? // mặc định 30/5
-  evaluationStartAt    DateTime?
-  evaluationEndAt      DateTime?
-  approvalDeadline     DateTime?
-  scanDocumentUrl      String?
-  emailTemplateId      String?
-  invitedOrganizations String? // JSON array of organizationIds
-  createdById          String?
-  createdAt            DateTime  @default(now())
-  updatedAt            DateTime  @updatedAt
+  id                            String    @id @default(cuid())
+  year                          Int       @unique // 1 chu kỳ / năm
+  name                          String
+  status                        String    @default("DRAFT") // DRAFT | READY | OPEN_REGISTRATION | CLOSED_REGISTRATION | EVALUATING | APPROVED | COMPLETED
+  totalBudget                   Float? // VND, SQLite REAL
+  registrationOpenAt            DateTime?
+  registrationCloseAt           DateTime? // mặc định 30/5
+  supplementDeadline            DateTime? // CYCLE-03 hạn nộp bổ sung
+  evaluationStartAt             DateTime?
+  evaluationEndAt               DateTime?
+  approvalDeadline              DateTime?
+  scanDocumentUrl               String?
+  emailTemplateId               String?
+  invitationLetterAttachmentId  String? // FK to Attachment uploaded as công văn ban hành
+  invitedOrganizations          String? // JSON array of organizationIds
+  configJson                    String? // JSON: scoringCriteriaIds + evaluationCriteriaIds + emailTemplateIds + extendReason history
+  createdById                   String?
+  createdAt                     DateTime  @default(now())
+  updatedAt                     DateTime  @updatedAt
 
-  projects Project[]
-  councils EvaluationCouncil[]
+  projects      Project[]
+  councils      EvaluationCouncil[]
+  notifications Notification[]
 
   @@index([status])
 }
@@ -293,6 +297,11 @@ model Attachment {
   fileUrl      String // path in storage/uploads/ or public/mock-files/
   fileSize     Int?
   mimeType     String?
+  // Công văn metadata (CYCLE-07) — chỉ populate khi entityType=ProgramCycle và là công văn ban hành
+  signedNumber  String? // số công văn (vd: 1234/CV-XTTM)
+  signedDate    DateTime? // ngày ký công văn
+  signedByName  String? // họ tên người ký
+  signedByTitle String? // chức vụ người ký
   uploadedById String
   createdAt    DateTime @default(now())
 
@@ -505,4 +514,46 @@ model SystemConfig {
   updatedAt   DateTime @updatedAt
 
   @@index([category])
+}
+
+// =============================================================================
+// NOTIFICATION + DISPATCH — Phase 3 (M2.1 CYCLE-13 mock dispatch)
+// Mock email/in-app dispatch system. KHÔNG gửi email thật — chỉ lưu records để
+// inbox UI (Phase 4) render. Pattern: 1 Notification (parent) + N Dispatches.
+// =============================================================================
+
+model Notification {
+  id             String   @id @default(cuid())
+  programCycleId String?
+  projectId      String?
+  type           String // CYCLE_INVITATION | CYCLE_CONFIG_CHANGED | CYCLE_EXTENDED | CYCLE_OPENED | CYCLE_CLOSED
+  subject        String
+  content        String // HTML body (Tiptap output)
+  recipientType  String   @default("ORGANIZATION") // ORGANIZATION | USER | ROLE
+  createdById    String
+  createdAt      DateTime @default(now())
+
+  programCycle ProgramCycle?           @relation(fields: [programCycleId], references: [id], onDelete: Cascade)
+  dispatches   NotificationDispatch[]
+
+  @@index([programCycleId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+model NotificationDispatch {
+  id              String    @id @default(cuid())
+  notificationId  String
+  recipientUserId String?
+  recipientOrgId  String?
+  status          String    @default("SENT") // PENDING | SENT | READ | FAILED
+  sentAt          DateTime  @default(now())
+  readAt          DateTime?
+
+  notification Notification @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+
+  @@index([notificationId])
+  @@index([recipientUserId])
+  @@index([recipientOrgId])
+  @@index([status])
 }
