@@ -89,9 +89,9 @@
 
 ### Khai báo & Nộp Đề án (PROJ) — Phase M2.3 — HERO
 
-- [ ] **PROJ-01**: Đơn vị chủ trì xem cổng tiếp nhận với banner "Đợt mời đề xuất [năm] đang mở — hạn [date]" hoặc "Hiện chưa có đợt mời nào đang mở" (gating bởi `ProgramCycle.status = OPEN_REGISTRATION`)
+- [x] **PROJ-01**: Đơn vị chủ trì xem cổng tiếp nhận với banner "Đợt mời đề xuất [năm] đang mở — hạn [date]" hoặc "Hiện chưa có đợt mời nào đang mở" (gating bởi `ProgramCycle.status = OPEN_REGISTRATION`)
 - [ ] **PROJ-02**: Đơn vị chủ trì xem chi tiết đợt mời (điều kiện, tiêu chí, biểu mẫu, thời hạn) và tải biểu mẫu
-- [ ] **PROJ-03**: Đơn vị chủ trì tạo đề án mới (yêu cầu hồ sơ tổ chức APPROVED + chu kỳ OPEN_REGISTRATION)
+- [x] **PROJ-03**: Đơn vị chủ trì tạo đề án mới (yêu cầu hồ sơ tổ chức APPROVED + chu kỳ OPEN_REGISTRATION)
 - [ ] **PROJ-04**: Multi-step form 6 bước (Thông tin chung → Mục tiêu, nội dung, kế hoạch → Dự toán kinh phí → Chủ nhiệm đề án → Tài liệu đính kèm → Xem lại & nộp) với progress indicator
 - [ ] **PROJ-05**: Form sử dụng RHF 1 instance + Zustand persist step + Zod schema/step + autosave debounce 2s
 - [ ] **PROJ-06**: Step "Thông tin chung": tên đề án, loại đề án, ngành hàng (multi), thị trường (multi), quốc gia (multi), thời gian dự kiến (date range hoặc quý cho đoàn nước ngoài)
@@ -100,17 +100,17 @@
 - [ ] **PROJ-09**: Step "Chủ nhiệm đề án": chọn từ danh sách đầu mối của đơn vị, hiển thị thông tin
 - [ ] **PROJ-10**: Step "Tài liệu đính kèm": upload nhiều file (kế hoạch chi tiết, hồ sơ năng lực, ...) với progress + preview
 - [ ] **PROJ-11**: Step "Xem lại & nộp": readonly summary toàn bộ đề án + checkbox cam đoan
-- [ ] **PROJ-12**: Đơn vị chủ trì lưu nháp đề án bất kỳ lúc nào (auto-save + manual save)
-- [ ] **PROJ-13**: Đơn vị chủ trì sao chép đề án từ đề án cũ (prefill toàn bộ data, sửa năm + chỉnh)
-- [ ] **PROJ-14**: Đơn vị chủ trì nộp đề án — server action validate đầy đủ + ghi nhận thời điểm nộp + chuyển trạng thái SUBMITTED + tăng version
-- [ ] **PROJ-15**: Đơn vị chủ trì rút hồ sơ trước khi được tiếp nhận (chỉ khi status = SUBMITTED, chưa được phân công)
+- [x] **PROJ-12**: Đơn vị chủ trì lưu nháp đề án bất kỳ lúc nào (auto-save + manual save)
+- [x] **PROJ-13**: Đơn vị chủ trì sao chép đề án từ đề án cũ (prefill toàn bộ data, sửa năm + chỉnh)
+- [x] **PROJ-14**: Đơn vị chủ trì nộp đề án — server action validate đầy đủ + ghi nhận thời điểm nộp + chuyển trạng thái SUBMITTED + tăng version
+- [x] **PROJ-15**: Đơn vị chủ trì rút hồ sơ trước khi được tiếp nhận (chỉ khi status = SUBMITTED, chưa được phân công)
 - [ ] **PROJ-16**: Đơn vị chủ trì in/xuất PDF hồ sơ đề án (header Bộ CT, Quốc hiệu, font Be Vietnam Pro, dấu mộc placeholder, watermark "BẢN MẪU")
-- [ ] **PROJ-17**: Đề án 2 năm: toggle "Đề án 2 năm" → tự động tạo 2 records cho 2 năm liên tiếp với parentProjectId link
-- [ ] **PROJ-18**: Đề án 2 năm hiển thị badge "Tiếp nối từ [tên đề án năm trước]" và link điều hướng
-- [ ] **PROJ-19**: Đơn vị chủ trì theo dõi trạng thái xử lý đề án (timeline visual: SUBMITTED → ASSIGNED → IN_REVIEW → SUPPLEMENT_REQUIRED → RESUBMITTED → VALID → EVALUATING → APPROVED → ...)
-- [ ] **PROJ-20**: Đơn vị chủ trì nhận thông báo yêu cầu bổ sung hồ sơ + xem nội dung yêu cầu
-- [ ] **PROJ-21**: Đơn vị chủ trì chỉnh sửa hồ sơ theo yêu cầu bổ sung và nộp lại với version increment
-- [ ] **PROJ-22**: Đơn vị chủ trì xem lịch sử các lần bổ sung (ProjectVersion snapshot)
+- [x] **PROJ-17**: Đề án 2 năm: toggle "Đề án 2 năm" → tự động tạo 2 records cho 2 năm liên tiếp với parentProjectId link
+- [x] **PROJ-18**: Đề án 2 năm hiển thị badge "Tiếp nối từ [tên đề án năm trước]" và link điều hướng
+- [x] **PROJ-19**: Đơn vị chủ trì theo dõi trạng thái xử lý đề án (timeline visual: SUBMITTED → ASSIGNED → IN_REVIEW → SUPPLEMENT_REQUIRED → RESUBMITTED → VALID → EVALUATING → APPROVED → ...)
+- [x] **PROJ-20**: Đơn vị chủ trì nhận thông báo yêu cầu bổ sung hồ sơ + xem nội dung yêu cầu
+- [x] **PROJ-21**: Đơn vị chủ trì chỉnh sửa hồ sơ theo yêu cầu bổ sung và nộp lại với version increment
+- [x] **PROJ-22**: Đơn vị chủ trì xem lịch sử các lần bổ sung (ProjectVersion snapshot)
 
 ### Tiếp nhận & Kiểm tra hồ sơ (INTAKE) — Phase M2.4
 
@@ -380,9 +380,9 @@ Explicit exclusions cho prototype POC này.
 | ORG-06 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
 | ORG-07 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
 | ORG-08 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
-| PROJ-01 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-01 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-02 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-03 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-03 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-04 | Phase 5 (M2.3 Đề án HERO) | Pending |
 | PROJ-05 | Phase 5 (M2.3 Đề án HERO) | Pending |
 | PROJ-06 | Phase 5 (M2.3 Đề án HERO) | Pending |
@@ -391,17 +391,17 @@ Explicit exclusions cho prototype POC này.
 | PROJ-09 | Phase 5 (M2.3 Đề án HERO) | Pending |
 | PROJ-10 | Phase 5 (M2.3 Đề án HERO) | Pending |
 | PROJ-11 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-12 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-13 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-14 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-15 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-12 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-13 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-14 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-15 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | PROJ-16 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-17 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-18 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-19 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-20 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-21 | Phase 5 (M2.3 Đề án HERO) | Pending |
-| PROJ-22 | Phase 5 (M2.3 Đề án HERO) | Pending |
+| PROJ-17 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-18 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-19 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-20 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-21 | Phase 5 (M2.3 Đề án HERO) | Complete |
+| PROJ-22 | Phase 5 (M2.3 Đề án HERO) | Complete |
 | INTAKE-01 | Phase 6 (M2.4 Tiếp nhận) | Pending |
 | INTAKE-02 | Phase 6 (M2.4 Tiếp nhận) | Pending |
 | INTAKE-03 | Phase 6 (M2.4 Tiếp nhận) | Pending |

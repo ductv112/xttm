@@ -112,7 +112,11 @@ Plans:
   4. Đơn vị chủ trì nộp đề án — server action validate đầy đủ + ghi nhận thời điểm nộp + chuyển trạng thái SUBMITTED + tăng version; có thể rút hồ sơ trước khi được tiếp nhận
   5. Đơn vị chủ trì in/xuất PDF hồ sơ đề án với header Bộ CT + Quốc hiệu + font Be Vietnam Pro + dấu mộc placeholder + watermark "BẢN MẪU"
   6. Đơn vị chủ trì theo dõi trạng thái xử lý qua timeline visual (SUBMITTED → ASSIGNED → IN_REVIEW → SUPPLEMENT_REQUIRED → RESUBMITTED → VALID → ...) và xem lịch sử các lần bổ sung qua ProjectVersion snapshot
-**Plans**: TBD
+**Plans**: 3 plans
+Plans:
+- [x] 05-01-foundation-PLAN.md — Schema verify + state machine 14 states + ProjectVersion + 11 server actions (autosave/submit/withdraw/copy-from-previous/upload với magic byte) + 6 mock projects (PROJ-01,03,12-15,17-22) — Wave 1
+- [ ] 05-02-wizard-6-buoc-PLAN.md — Wizard 6 bước với Stepper + Zustand persist + RHF + autosave 2s — Wave 2
+- [ ] 05-03-detail-pdf-versions-PLAN.md — Trang chi tiết + xuất PDF + tab lịch sử versions — Wave 3
 **UI hint**: yes
 
 ### Phase 6: M2.4 Tiếp nhận & Kiểm tra hồ sơ
@@ -205,7 +209,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 2. M1 Quản trị & Danh mục | 7/7 | Complete    | 2026-04-30 |
 | 3. M2.1 Chu kỳ Chương trình XTTM (HERO) | 7/7 | Complete    | 2026-04-30 |
 | 4. M2.2 Hồ sơ Đơn vị Chủ trì | 2/2 | Complete    | 2026-04-30 |
-| 5. M2.3 Khai báo & Nộp Đề án (HERO) | 0/TBD | Not started | - |
+| 5. M2.3 Khai báo & Nộp Đề án (HERO) | 1/3 | In Progress | - |
 | 6. M2.4 Tiếp nhận & Kiểm tra hồ sơ | 0/TBD | Not started | - |
 | 7. M3 Thẩm định & Phê duyệt (HERO) | 0/TBD | Not started | - |
 | 8. M4 Hợp đồng, Triển khai & Điều chỉnh | 0/TBD | Not started | - |

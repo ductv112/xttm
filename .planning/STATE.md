@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed Phase 4 (both plans)
-last_updated: "2026-04-30T22:10:09.265Z"
+status: executing
+stopped_at: Completed Phase 5 Plan 01 (foundation)
+last_updated: "2026-04-30T22:30:20.693Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 4
-  total_plans: 22
-  completed_plans: 22
-  percent: 100
+  total_plans: 25
+  completed_plans: 23
+  percent: 92
 ---
 
 # Project State
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-30)
 
 **Core value:** Demo end-to-end mượt và đẹp luồng "Vòng đời đề án" (M2-M3): từ Ban quản lý khởi tạo Chu kỳ Chương trình → Đơn vị chủ trì khai báo & nộp đề án → Tiếp nhận & kiểm tra → Hội đồng thẩm định chấm điểm → Ban quản lý lập tờ trình & nhập quyết định phê duyệt.
-**Current focus:** Phase 4 — M2.2 Hồ sơ Đơn vị Chủ trì
+**Current focus:** Phase 5 — M2.3 Khai báo & Nộp Đề án (HERO)
 
 ## Current Position
 
-Phase: 5
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 5 (M2.3 Khai báo & Nộp Đề án (HERO)) — EXECUTING
+Plan: 2 of 3
+Status: Ready to execute
 Last activity: 2026-04-30
 
 Progress: [░░░░░░░░░░] 0%
@@ -77,6 +77,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P07 | 6m | 4 tasks | 6 files |
 | Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì P01 | 14m | 3 tasks | 13 files |
 | Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì P02 | 22m | 2 tasks | 16 files |
+| Phase 05-m2.3-khai-báo-nộp-đề-án P01 | 13m | 3 tasks | 14 files |
 
 ## Accumulated Context
 
@@ -161,6 +162,10 @@ Recent decisions affecting current work:
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-07: state machine click CLOSED→OPEN no-op (silent return) — force user qua action bar 'Mở lại để gia hạn' button; consistent với transitionCycle server action reject CLOSED→OPEN; rationale: extend flow phải explicit qua ExtendCycleDialog form (reason + newDeadline required)
 - [Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì]: Plan 04-01: JSON-backed columns (legalInfoJson/capabilitiesJson/contactsJson) thay Prisma Json type — SQLite không support Json natively, pattern khớp ProgramCycle.configJson; Attachment.signedNumber column repurposed lưu document category code (tránh schema migration); SUBMITTED là frozen state đơn vị không edit được; validateGuards trả errors[] array thay GuardResult.reason đơn — UI bullet list
 - [Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì]: Plan 04-02: auto-save 1s debounce + SaveIndicator pattern cho form dài (replace 'Save' button); MenuItem.roleOnly field cho phép cùng resource trỏ URL khác nhau theo role (DONVI → /don-vi-cua-toi, ADMIN/BANQL/LANHDAO → /don-vi-chu-tri); ProfileDetailSheet client-side lazy-load qua getOrgProfileDetail thay pass props đầy đủ; DataTable POC mode: server filter qua URL params + client display-only đủ cho ≤50 rows
+- [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-01: Project state machine 14 states (DRAFT→SUBMITTED→ASSIGNED→IN_REVIEW→(SUPPLEMENT_REQUIRED↔RESUBMITTED)*→VALID→EVALUATING→APPROVED→IN_PROGRESS→COMPLETED + TENTATIVE for đề án 2 năm) lock trong lib/workflows/project.ts; renamed plan-spec names override M0 skeleton (IN_REVIEW vs UNDER_REVIEW etc); JSON-backed wizard columns (generalInfoJson/objectivesJson/planJson/budgetJson) coexist với M0 legacy scalars
+- [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-01: ProjectVersion snapshot model với @@unique([projectId,versionNumber]) + atomic transaction wrap version-snapshot + status-change + đề án 2 năm child creation; child created in same transaction as parent SUBMITTED with status TENTATIVE và parentProjectId — partial failure không leave inconsistent state
+- [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-01: pmContactId là plain String column reference OrgProfile.contactsJson[].id (không FK) — keeps schema lean; snapshot resolved trong get-detail.ts; idempotency 5s window dùng project.submittedAt + 5000ms cho double-click protection; mock notification reuse type=CYCLE_OPENED (không thêm enum mới Phase 5)
+- [Phase 05-m2.3-khai-báo-nộp-đề-án]: Plan 05-01: 11 server actions trong app/(app)/de-an/_actions với pattern Per-step Zod schemas (generalInfoSchema/objectivesSchema/planSchema/budgetSchema/pmContactSchema/documentSchema) Internal-suffixed + alias re-exports — wizard client Phase 5 Plan 02 import schemas direct; upload-document magic byte verification PDF/DOC/DOCX/XLSX/JPG/PNG (T-05-01-04) UUID filename + path.resolve guard, 10MB/file 20/project quota
 
 ### Pending Todos
 
@@ -175,6 +180,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T22:08:48.317Z
-Stopped at: Completed Phase 4 (both plans)
+Last session: 2026-04-30T22:30:20.688Z
+Stopped at: Completed Phase 5 Plan 01 (foundation)
 Resume file: None
