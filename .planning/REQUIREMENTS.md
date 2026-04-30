@@ -74,7 +74,7 @@
 - [ ] **CYCLE-12**: Cho phép chỉnh sửa cấu hình kỳ ngay cả khi đang OPEN_REGISTRATION (ghi audit log + tự động gửi thông báo cho đơn vị nếu thay đổi mốc/tiêu chí)
 - [x] **CYCLE-13**: Composer email mời đăng ký bằng Tiptap rich text với template variable + preview + gửi hàng loạt cho danh sách đơn vị (mock dispatch lưu DB + inbox)
 - [ ] **CYCLE-14**: Trang chi tiết chu kỳ với 6 tabs (Tổng quan / Cấu hình kỳ / Công văn / Đơn vị mời + thông báo / Đề án đăng ký / Nhật ký)
-- [ ] **CYCLE-15**: Trang danh sách chu kỳ dạng card view các năm với status badge + tiến độ + thống kê (số đề án, kinh phí đăng ký)
+- [x] **CYCLE-15**: Trang danh sách chu kỳ dạng card view các năm với status badge + tiến độ + thống kê (số đề án, kinh phí đăng ký)
 
 ### Hồ sơ Đơn vị Chủ trì (ORG) — Phase M2.2
 
@@ -371,7 +371,7 @@ Explicit exclusions cho prototype POC này.
 | CYCLE-12 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
 | CYCLE-13 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
 | CYCLE-14 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
-| CYCLE-15 | Phase 3 (M2.1 Chu kỳ HERO) | Pending |
+| CYCLE-15 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
 | ORG-01 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
 | ORG-02 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
 | ORG-03 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |

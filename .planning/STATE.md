@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-04-wizard-5-buoc — wizard /chuong-trinh/new đầy đủ 5 bước với Zustand persist + RHF + Zod superRefine + Stepper + autosave + final submit createCycle/transitionCycle; CYCLE-01..04 covered; [Rule 1] fix Plan 03-03 server-action non-async exports
-last_updated: "2026-04-30T21:02:01.934Z"
+stopped_at: Completed 03-05-list-page-card-view-PLAN.md
+last_updated: "2026-04-30T21:09:18.843Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 2
   total_plans: 20
-  completed_plans: 17
-  percent: 85
+  completed_plans: 18
+  percent: 90
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 3 (M2.1 Chu kỳ Chương trình XTTM (HERO)) — EXECUTING
-Plan: 5 of 7
+Plan: 6 of 7
 Status: Ready to execute
 Last activity: 2026-04-30
 
@@ -70,6 +70,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P02 | 4m | 2 tasks | 7 files |
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P03 | 8m | 4 tasks | 11 files |
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P04 | 13m | 4 tasks | 10 files |
+| Phase 03-m2.1-chu-kỳ-chương-trình-xttm P05 | 4m | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -141,6 +142,9 @@ Recent decisions affecting current work:
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-04: [Rule 1] 'use server' modules require all exports to be async functions — moved Plan 03-03 Zod schemas (createCycleSchema/updateCycleSchema/transitionInputSchema/extendInputSchema/sendInvitationInputSchema/uploadCongVanMetadataSchema) from 'export const' to internal const xxxInternal; removed barrel re-exports; fix latent bug uncovered when Plan 03-04 became first client consumer
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-04: Wizard pattern locked cho Plan 5 (M2.3 đề án 6 bước) reuse — Zustand persist localStorage + RHF per-step + Zod superRefine cross-validation + forwardRef validateAndCommit() + hydration gate via useWizardHasHydrated() (subscribe onFinishHydration); date revival via onRehydrateStorage callback
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-04: Step 3 dùng cùng pool ScoringCriterion catalog cho cả chấm điểm sơ bộ + thẩm định — Phase 2 chỉ seed 1 catalog tieu-chi-cham-diem 15 records (no scope partition); admin có thể split scope sau qua /danh-muc nếu cần
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: URL search params là single source of truth cho CycleFilterBar (no useState mirror) — Plan 5+ list views reuse pattern
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Triple RBAC defense-in-depth (page auth → page canFromDB → listCycles internal canFromDB) prevents URL-direct-hit bypass
+- [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: ALL_YEARS_VALUE='__all__' sentinel cho Radix Select empty-string disallow constraint
 
 ### Pending Todos
 
@@ -155,6 +159,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T21:02:01.929Z
-Stopped at: Completed 03-04-wizard-5-buoc — wizard /chuong-trinh/new đầy đủ 5 bước với Zustand persist + RHF + Zod superRefine + Stepper + autosave + final submit createCycle/transitionCycle; CYCLE-01..04 covered; [Rule 1] fix Plan 03-03 server-action non-async exports
+Last session: 2026-04-30T21:09:18.839Z
+Stopped at: Completed 03-05-list-page-card-view-PLAN.md
 Resume file: None
