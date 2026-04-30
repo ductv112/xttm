@@ -78,14 +78,14 @@
 
 ### Hồ sơ Đơn vị Chủ trì (ORG) — Phase M2.2
 
-- [ ] **ORG-01**: Đơn vị chủ trì tạo hồ sơ tổ chức (tên, mã số thuế, địa chỉ, người đại diện, loại hình, lĩnh vực hoạt động)
-- [ ] **ORG-02**: Đơn vị chủ trì cập nhật hồ sơ tổ chức
-- [ ] **ORG-03**: Đơn vị chủ trì upload hồ sơ pháp lý (Giấy ĐKKD, điều lệ, ...) với file PDF
-- [ ] **ORG-04**: Đơn vị chủ trì cập nhật năng lực (thành tích, kinh nghiệm tổ chức XTTM, đề án đã thực hiện)
-- [ ] **ORG-05**: Đơn vị chủ trì quản lý đầu mối liên hệ (CRUD: chủ tịch, chủ nhiệm, điều phối viên với chức danh + email + SĐT)
-- [ ] **ORG-06**: Đơn vị chủ trì gửi hồ sơ tổ chức để xác nhận với confirmation dialog
-- [ ] **ORG-07**: Đơn vị chủ trì theo dõi trạng thái xác nhận hồ sơ (DRAFT / SUBMITTED / APPROVED / REJECTED) với ghi chú xử lý
-- [ ] **ORG-08**: Ban quản lý CT XTTM phê duyệt/từ chối hồ sơ đơn vị với lý do
+- [x] **ORG-01**: Đơn vị chủ trì tạo hồ sơ tổ chức (tên, mã số thuế, địa chỉ, người đại diện, loại hình, lĩnh vực hoạt động)
+- [x] **ORG-02**: Đơn vị chủ trì cập nhật hồ sơ tổ chức
+- [x] **ORG-03**: Đơn vị chủ trì upload hồ sơ pháp lý (Giấy ĐKKD, điều lệ, ...) với file PDF
+- [x] **ORG-04**: Đơn vị chủ trì cập nhật năng lực (thành tích, kinh nghiệm tổ chức XTTM, đề án đã thực hiện)
+- [x] **ORG-05**: Đơn vị chủ trì quản lý đầu mối liên hệ (CRUD: chủ tịch, chủ nhiệm, điều phối viên với chức danh + email + SĐT)
+- [x] **ORG-06**: Đơn vị chủ trì gửi hồ sơ tổ chức để xác nhận với confirmation dialog
+- [x] **ORG-07**: Đơn vị chủ trì theo dõi trạng thái xác nhận hồ sơ (DRAFT / SUBMITTED / APPROVED / REJECTED) với ghi chú xử lý
+- [x] **ORG-08**: Ban quản lý CT XTTM phê duyệt/từ chối hồ sơ đơn vị với lý do
 
 ### Khai báo & Nộp Đề án (PROJ) — Phase M2.3 — HERO
 
@@ -372,14 +372,14 @@ Explicit exclusions cho prototype POC này.
 | CYCLE-13 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
 | CYCLE-14 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
 | CYCLE-15 | Phase 3 (M2.1 Chu kỳ HERO) | Complete |
-| ORG-01 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
-| ORG-02 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
-| ORG-03 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
-| ORG-04 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
-| ORG-05 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
-| ORG-06 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
-| ORG-07 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
-| ORG-08 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Pending |
+| ORG-01 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
+| ORG-02 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
+| ORG-03 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
+| ORG-04 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
+| ORG-05 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
+| ORG-06 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
+| ORG-07 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
+| ORG-08 | Phase 4 (M2.2 Hồ sơ Đơn vị) | Complete |
 | PROJ-01 | Phase 5 (M2.3 Đề án HERO) | Pending |
 | PROJ-02 | Phase 5 (M2.3 Đề án HERO) | Pending |
 | PROJ-03 | Phase 5 (M2.3 Đề án HERO) | Pending |

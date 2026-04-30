@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 03-07-action-handlers-workflows-PLAN.md
-last_updated: "2026-04-30T21:41:51.066Z"
+status: executing
+stopped_at: Completed 04-01-server-actions-seed-PLAN.md
+last_updated: "2026-04-30T21:56:46.918Z"
 last_activity: 2026-04-30
 progress:
   total_phases: 11
   completed_phases: 3
-  total_plans: 20
-  completed_plans: 20
-  percent: 100
+  total_plans: 22
+  completed_plans: 21
+  percent: 95
 ---
 
 # Project State
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-30)
 
 **Core value:** Demo end-to-end mượt và đẹp luồng "Vòng đời đề án" (M2-M3): từ Ban quản lý khởi tạo Chu kỳ Chương trình → Đơn vị chủ trì khai báo & nộp đề án → Tiếp nhận & kiểm tra → Hội đồng thẩm định chấm điểm → Ban quản lý lập tờ trình & nhập quyết định phê duyệt.
-**Current focus:** Phase 3 — M2.1 Chu kỳ Chương trình XTTM (HERO)
+**Current focus:** Phase 4 — M2.2 Hồ sơ Đơn vị Chủ trì
 
 ## Current Position
 
-Phase: 4
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 4 (M2.2 Hồ sơ Đơn vị Chủ trì) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
 Last activity: 2026-04-30
 
 Progress: [░░░░░░░░░░] 0%
@@ -74,6 +74,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P05 | 4m | 3 tasks | 5 files |
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P06 | 12m | 4 tasks | 19 files |
 | Phase 03-m2.1-chu-kỳ-chương-trình-xttm P07 | 6m | 4 tasks | 6 files |
+| Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì P01 | 14m | 3 tasks | 13 files |
 
 ## Accumulated Context
 
@@ -156,6 +157,7 @@ Recent decisions affecting current work:
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-07: ACTION_CONFIGS lookup table + sentinel targets EXTEND/NOOP-NOTIFY là pattern Phase 5+ project state machine reuse cho 16-state workflow; buildCopy switch per-target cho dynamic VN messaging với formatDate inline
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-07: TongQuanTab promote 'use client' để wire onTransitionClick → TransitionDialog; recentAuditEntries vẫn server-fetched trong page.tsx và pass props xuống — boundary clean (server fetch + client state); Tooltip wrap span tabIndex=0 cho disabled buttons (Radix workaround)
 - [Phase 03-m2.1-chu-kỳ-chương-trình-xttm]: Plan 03-07: state machine click CLOSED→OPEN no-op (silent return) — force user qua action bar 'Mở lại để gia hạn' button; consistent với transitionCycle server action reject CLOSED→OPEN; rationale: extend flow phải explicit qua ExtendCycleDialog form (reason + newDeadline required)
+- [Phase 04-m2.2-hồ-sơ-đơn-vị-chủ-trì]: Plan 04-01: JSON-backed columns (legalInfoJson/capabilitiesJson/contactsJson) thay Prisma Json type — SQLite không support Json natively, pattern khớp ProgramCycle.configJson; Attachment.signedNumber column repurposed lưu document category code (tránh schema migration); SUBMITTED là frozen state đơn vị không edit được; validateGuards trả errors[] array thay GuardResult.reason đơn — UI bullet list
 
 ### Pending Todos
 
@@ -170,6 +172,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-30T21:36:39.917Z
-Stopped at: Completed 03-07-action-handlers-workflows-PLAN.md
+Last session: 2026-04-30T21:56:38.921Z
+Stopped at: Completed 04-01-server-actions-seed-PLAN.md
 Resume file: None
