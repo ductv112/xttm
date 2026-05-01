@@ -104,7 +104,7 @@ export function SmsTemplateEditor({ templates }: Props) {
           value={activeKey}
           onValueChange={(v) => setActiveKey(v as SmsTemplateKey)}
         >
-          <TabsList className="flex h-auto flex-wrap justify-start gap-1 bg-slate-100 p-1">
+          <TabsList className="flex h-auto flex-wrap justify-start gap-1">
             {SMS_TEMPLATE_KEYS.map((key) => (
               <TabsTrigger key={key} value={key} className="text-sm">
                 {SMS_TEMPLATE_LABELS[key]}

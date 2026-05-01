@@ -132,7 +132,7 @@ export function ProjectTabsShell({
 
   return (
     <Tabs value={tab} onValueChange={handleChange} className="w-full">
-      <TabsList className="mb-4 flex h-auto w-full flex-wrap justify-start gap-1 bg-slate-100 p-1">
+      <TabsList className="mb-4 flex h-auto w-full flex-wrap justify-start gap-1">
         <TabsTrigger value="tong-quan">Tổng quan</TabsTrigger>
         <TabsTrigger value="ke-hoach">Kế hoạch</TabsTrigger>
         <TabsTrigger value="du-toan">Dự toán</TabsTrigger>

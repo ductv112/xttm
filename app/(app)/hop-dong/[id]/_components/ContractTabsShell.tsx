@@ -44,7 +44,7 @@ export function ContractTabsShell({
       onValueChange={(v) => isTab(v) && setTab(v)}
       className="w-full"
     >
-      <TabsList className="mb-4 flex h-auto w-full flex-wrap justify-start gap-1 bg-slate-100 p-1">
+      <TabsList className="mb-4 flex h-auto w-full flex-wrap justify-start gap-1">
         <TabsTrigger value="thong-tin">Thông tin & điều khoản</TabsTrigger>
         <TabsTrigger value="ban-scan">
           Bản scan {contract.scanFileUrl ? '✓' : ''}

@@ -63,10 +63,10 @@ export function CycleTabsNav({ cycleId }: CycleTabsNavProps) {
             role="tab"
             aria-selected={active}
             className={cn(
-              'px-4 py-3 text-sm font-medium transition-colors',
+              'px-4 py-3 -mb-px border-b-2 text-sm font-medium transition-colors',
               active
-                ? '-mb-px border-b-2 border-blue-700 text-blue-700'
-                : 'text-slate-600 hover:bg-slate-50 hover:text-blue-700'
+                ? 'border-primary text-primary font-semibold'
+                : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'
             )}
           >
             {tab.label}

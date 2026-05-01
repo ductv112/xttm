@@ -126,22 +126,31 @@ export function OrgProfileTable({ data, currentStatus }: OrgProfileTableProps) {
   return (
     <>
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div className="flex flex-wrap gap-1 rounded-md bg-slate-100 p-1">
-          {TABS.map((tab) => (
-            <button
-              key={tab.value}
-              type="button"
-              onClick={() => setStatus(tab.value)}
-              className={
-                'rounded px-3 py-1.5 text-sm font-medium transition ' +
-                (currentStatus === tab.value
-                  ? 'bg-white text-slate-900 shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900')
-              }
-            >
-              {tab.label}
-            </button>
-          ))}
+        <div
+          role="tablist"
+          aria-label="Lọc trạng thái hồ sơ"
+          className="flex flex-wrap items-center gap-1 border-b border-slate-200"
+        >
+          {TABS.map((tab) => {
+            const active = currentStatus === tab.value;
+            return (
+              <button
+                key={tab.value}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => setStatus(tab.value)}
+                className={
+                  'px-4 py-2.5 -mb-px border-b-2 text-sm font-medium transition-colors ' +
+                  (active
+                    ? 'border-primary text-primary font-semibold'
+                    : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300')
+                }
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
 
         <form onSubmit={handleSearchSubmit} className="flex gap-2">
