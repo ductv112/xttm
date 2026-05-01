@@ -163,30 +163,63 @@ export function can(role: Role, resource: Resource, action: Action): boolean {
  */
 export const MATRIX_FOR_SEED: Readonly<typeof MATRIX> = MATRIX;
 
+export type MenuGroup = 'TONG_QUAN' | 'NGHIEP_VU' | 'BAO_CAO_AUDIT' | 'QUAN_TRI';
+
+export const MENU_GROUP_LABELS: Record<MenuGroup, string> = {
+  TONG_QUAN: 'Tổng quan',
+  NGHIEP_VU: 'Nghiệp vụ',
+  BAO_CAO_AUDIT: 'Báo cáo & Audit',
+  QUAN_TRI: 'Quản trị',
+};
+
+/** Stable ordering for sidebar group rendering. */
+export const MENU_GROUP_ORDER: MenuGroup[] = [
+  'TONG_QUAN',
+  'NGHIEP_VU',
+  'BAO_CAO_AUDIT',
+  'QUAN_TRI',
+];
+
 export type MenuItem = {
   href: string;
   label: string;
   icon: string;
   resource: Resource;
+  /** @deprecated kept for back-compat; prefer `group`. */
   section: 'NGHIEP_VU' | 'QUAN_TRI';
+  /** Sidebar group this item belongs to. */
+  group: MenuGroup;
   /** Optional whitelist — if set, item only renders for roles in this list (in addition to resource read check). */
   roleOnly?: Role[];
 };
 
 const ALL_MENU_ITEMS: MenuItem[] = [
+  // Tổng quan
   {
     href: '/dashboard',
     label: 'Trang chủ',
     icon: 'layout-dashboard',
     resource: 'dashboard',
     section: 'NGHIEP_VU',
+    group: 'TONG_QUAN',
   },
+  {
+    href: '/thong-bao',
+    label: 'Thông báo',
+    icon: 'bell',
+    resource: 'thong-bao',
+    section: 'NGHIEP_VU',
+    group: 'TONG_QUAN',
+  },
+
+  // Nghiệp vụ
   {
     href: '/chuong-trinh',
     label: 'Chu kỳ chương trình',
     icon: 'calendar-range',
     resource: 'chuong-trinh',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
   },
   {
     href: '/don-vi-cua-toi',
@@ -194,6 +227,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'building-2',
     resource: 'don-vi-chu-tri',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
     roleOnly: [ROLES.DONVI],
   },
   {
@@ -202,6 +236,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'building-2',
     resource: 'don-vi-chu-tri',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
     roleOnly: [ROLES.ADMIN, ROLES.BANQL, ROLES.LANHDAO],
   },
   {
@@ -210,6 +245,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'file-text',
     resource: 'de-an',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
   },
   {
     href: '/tiep-nhan',
@@ -217,6 +253,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'inbox',
     resource: 'tiep-nhan',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
     roleOnly: [ROLES.ADMIN, ROLES.BANQL],
   },
   {
@@ -225,6 +262,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'users',
     resource: 'tiep-nhan',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
     roleOnly: [ROLES.ADMIN, ROLES.BANQL],
   },
   {
@@ -233,6 +271,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'clipboard-check',
     resource: 'tiep-nhan',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
     roleOnly: [ROLES.CHUYENVIEN, ROLES.ADMIN],
   },
   {
@@ -241,6 +280,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'scroll-text',
     resource: 'tiep-nhan',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
     roleOnly: [ROLES.CHUYENVIEN, ROLES.ADMIN],
   },
   {
@@ -249,6 +289,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'users',
     resource: 'tham-dinh',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
     roleOnly: [ROLES.ADMIN, ROLES.BANQL, ROLES.LANHDAO],
   },
   {
@@ -257,6 +298,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'gavel',
     resource: 'tham-dinh',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
     roleOnly: [ROLES.HOIDONG, ROLES.ADMIN],
   },
   {
@@ -265,6 +307,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'check-square',
     resource: 'phe-duyet',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
   },
   {
     href: '/hop-dong',
@@ -272,6 +315,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'file-signature',
     resource: 'hop-dong',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
   },
   {
     href: '/trien-khai',
@@ -279,20 +323,7 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'play-circle',
     resource: 'trien-khai',
     section: 'NGHIEP_VU',
-  },
-  {
-    href: '/bao-cao',
-    label: 'Báo cáo kết quả',
-    icon: 'file-bar-chart',
-    resource: 'bao-cao',
-    section: 'NGHIEP_VU',
-  },
-  {
-    href: '/nghiem-thu',
-    label: 'Nghiệm thu',
-    icon: 'clipboard-check',
-    resource: 'nghiem-thu',
-    section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
   },
   {
     href: '/tai-chinh',
@@ -300,41 +331,25 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'wallet',
     resource: 'tai-chinh',
     section: 'NGHIEP_VU',
+    group: 'NGHIEP_VU',
   },
+
+  // Báo cáo & Audit
   {
-    href: '/thong-bao',
-    label: 'Thông báo',
-    icon: 'bell',
-    resource: 'thong-bao',
+    href: '/bao-cao',
+    label: 'Báo cáo kết quả',
+    icon: 'file-bar-chart',
+    resource: 'bao-cao',
     section: 'NGHIEP_VU',
+    group: 'BAO_CAO_AUDIT',
   },
   {
-    href: '/danh-muc',
-    label: 'Danh mục',
-    icon: 'list',
-    resource: 'danh-muc',
-    section: 'QUAN_TRI',
-  },
-  {
-    href: '/nguoi-dung',
-    label: 'Người dùng',
-    icon: 'users',
-    resource: 'nguoi-dung',
-    section: 'QUAN_TRI',
-  },
-  {
-    href: '/vai-tro',
-    label: 'Vai trò & quyền',
-    icon: 'shield',
-    resource: 'vai-tro',
-    section: 'QUAN_TRI',
-  },
-  {
-    href: '/cau-hinh',
-    label: 'Cấu hình',
-    icon: 'settings',
-    resource: 'cau-hinh',
-    section: 'QUAN_TRI',
+    href: '/nghiem-thu',
+    label: 'Nghiệm thu',
+    icon: 'clipboard-check',
+    resource: 'nghiem-thu',
+    section: 'NGHIEP_VU',
+    group: 'BAO_CAO_AUDIT',
   },
   {
     href: '/nhat-ky',
@@ -342,6 +357,41 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'history',
     resource: 'audit-log',
     section: 'QUAN_TRI',
+    group: 'BAO_CAO_AUDIT',
+  },
+
+  // Quản trị
+  {
+    href: '/danh-muc',
+    label: 'Danh mục',
+    icon: 'list',
+    resource: 'danh-muc',
+    section: 'QUAN_TRI',
+    group: 'QUAN_TRI',
+  },
+  {
+    href: '/nguoi-dung',
+    label: 'Người dùng',
+    icon: 'users',
+    resource: 'nguoi-dung',
+    section: 'QUAN_TRI',
+    group: 'QUAN_TRI',
+  },
+  {
+    href: '/vai-tro',
+    label: 'Vai trò & quyền',
+    icon: 'shield',
+    resource: 'vai-tro',
+    section: 'QUAN_TRI',
+    group: 'QUAN_TRI',
+  },
+  {
+    href: '/cau-hinh',
+    label: 'Cấu hình',
+    icon: 'settings',
+    resource: 'cau-hinh',
+    section: 'QUAN_TRI',
+    group: 'QUAN_TRI',
   },
 ];
 
