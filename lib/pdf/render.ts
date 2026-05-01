@@ -22,6 +22,14 @@ import {
   AmendmentDecision,
   type AmendmentDecisionPdfProps,
 } from './templates/AmendmentDecision';
+import {
+  AcceptanceRecord,
+  type AcceptanceRecordPdfProps,
+} from './templates/AcceptanceRecord';
+import {
+  LiquidationRecord,
+  type LiquidationRecordPdfProps,
+} from './templates/LiquidationRecord';
 import { registerPdfFonts } from './fonts';
 
 /**
@@ -116,6 +124,36 @@ export async function renderAmendmentDecisionPdf(
   registerPdfFonts();
   const element = createElement(
     AmendmentDecision as unknown as React.ComponentType<AmendmentDecisionPdfProps>,
+    props,
+  ) as Parameters<typeof renderToBuffer>[0];
+  const buffer = await renderToBuffer(element);
+  return buffer;
+}
+
+/**
+ * Render the AcceptanceRecord (Biên bản nghiệm thu) template — Phase 9 PDF.
+ */
+export async function renderAcceptanceRecordPdf(
+  props: AcceptanceRecordPdfProps,
+): Promise<Buffer> {
+  registerPdfFonts();
+  const element = createElement(
+    AcceptanceRecord as unknown as React.ComponentType<AcceptanceRecordPdfProps>,
+    props,
+  ) as Parameters<typeof renderToBuffer>[0];
+  const buffer = await renderToBuffer(element);
+  return buffer;
+}
+
+/**
+ * Render the LiquidationRecord (Biên bản thanh lý HĐ) template — Phase 9 PDF.
+ */
+export async function renderLiquidationRecordPdf(
+  props: LiquidationRecordPdfProps,
+): Promise<Buffer> {
+  registerPdfFonts();
+  const element = createElement(
+    LiquidationRecord as unknown as React.ComponentType<LiquidationRecordPdfProps>,
     props,
   ) as Parameters<typeof renderToBuffer>[0];
   const buffer = await renderToBuffer(element);
