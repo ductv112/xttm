@@ -74,13 +74,19 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center gap-3 py-12 text-center',
+        'flex flex-col items-center justify-center gap-3 py-16 text-center',
         className
       )}
       data-slot="empty-state"
     >
-      <Icon className="h-12 w-12 text-slate-400" aria-hidden="true" />
-      <h3 className="text-base font-semibold text-slate-900">{heading}</h3>
+      <div className="rounded-full bg-slate-100 p-5 ring-8 ring-slate-50">
+        <Icon
+          className="h-10 w-10 text-slate-400"
+          strokeWidth={1.5}
+          aria-hidden="true"
+        />
+      </div>
+      <h3 className="text-base font-semibold text-slate-900 mt-2">{heading}</h3>
       {description ? (
         <p className="max-w-md text-sm text-slate-600">{description}</p>
       ) : null}

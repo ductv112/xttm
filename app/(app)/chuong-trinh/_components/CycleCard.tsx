@@ -79,14 +79,14 @@ export function CycleCard({ cycle }: CycleCardProps) {
   return (
     <Link
       href={`/chuong-trinh/${cycle.id}`}
-      className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2 rounded-lg"
+      className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-xl"
       aria-label={`Xem chi tiết chu kỳ ${cycle.year} - ${cycle.name}`}
     >
-      <div className="rounded-lg border border-slate-200 bg-white p-6 transition hover:border-blue-700 hover:shadow-md">
+      <div className="card-elevated p-6 hover:border-primary/40">
         {/* Header: year + status badge */}
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <div className="text-4xl font-bold text-blue-700 leading-none">
+            <div className="text-4xl font-bold text-primary leading-none tracking-tight">
               {cycle.year}
             </div>
             <div className="text-sm text-slate-600 mt-2 line-clamp-2">
@@ -136,7 +136,7 @@ export function CycleCard({ cycle }: CycleCardProps) {
               aria-label={`Tiến độ thời gian: ${progress.pct}%`}
             >
               <div
-                className="h-full rounded-full bg-blue-700 transition-all"
+                className="h-full rounded-full bg-primary transition-all"
                 style={{ width: `${progress.pct}%` }}
               />
             </div>
@@ -147,9 +147,9 @@ export function CycleCard({ cycle }: CycleCardProps) {
         ) : null}
 
         {/* Footer */}
-        <div className="mt-4 flex items-center justify-end text-sm text-blue-700 group-hover:underline">
+        <div className="mt-4 flex items-center justify-end text-sm font-medium text-primary group-hover:underline">
           Xem chi tiết
-          <ChevronRight className="h-4 w-4 ml-1" aria-hidden="true" />
+          <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
         </div>
       </div>
     </Link>
