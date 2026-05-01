@@ -597,6 +597,90 @@ const SEEDS: ProjectSeed[] = [
       { itemId: 'CHK-12-COMPLIANCE', status: '✓' },
     ],
   },
+
+  // ---------------------------------------------------------------------------
+  // 10. VALID — VITAS 2026 (đã hợp lệ, sẵn sàng phân công vào hội đồng tiếp theo)
+  //    Phase 7 demo state: hồ sơ ở /hoi-dong assignment list
+  // ---------------------------------------------------------------------------
+  {
+    code: 'XTTM-2026-008',
+    orgCode: 'VITAS',
+    cycleYear: 2026,
+    year: 2026,
+    name: 'Tham dự Texworld New York City 2026 — Triển lãm dệt may quy mô khu vực Bắc Mỹ',
+    kind: 'EXPORT_EXHIBITION',
+    status: 'VALID',
+    industrySectorCodes: ['TEXTILE', 'GARMENT'],
+    marketCodes: ['US'],
+    countryCodes: ['USA'],
+    promotionCodes: ['TRADE_FAIR', 'BUSINESS_MATCHING'],
+    isTwoYear: false,
+    timeRange: { start: '2026-07-21', end: '2026-07-23', quarter: 'Q3' },
+    objectiveHtml:
+      '<p>Đưa 18 doanh nghiệp Dệt may Việt tham dự Texworld New York City 2026, mở rộng cơ hội xuất khẩu sang thị trường Bắc Mỹ.</p><ul><li>18 doanh nghiệp tham gia gian hàng quốc gia</li><li>50 hợp đồng tiền-MOU dự kiến</li><li>Giá trị xuất khẩu tăng thêm 12 triệu USD năm 2026-2027</li></ul>',
+    contentHtml:
+      '<p>Gian hàng Vietnam Pavilion 200m² tại Javits Center, kết hợp Vietnam Textile Sourcing Day với 100 buyer Bắc Mỹ.</p>',
+    planRows: [
+      { task: 'Tuyển chọn 18 doanh nghiệp', deliverable: 'Danh sách', dueDate: '2026-04-15', owner: 'Vũ Đức Minh' },
+      { task: 'Đăng ký gian hàng + thiết kế', deliverable: 'Bản vẽ + hợp đồng thuê', dueDate: '2026-05-30', owner: 'Phòng Tổ chức Hội chợ' },
+      { task: 'Tham dự sự kiện + Sourcing Day', deliverable: 'Báo cáo 50 MOU', dueDate: '2026-07-31', owner: 'Vũ Đức Giang' },
+    ],
+    budgetRows: [
+      { item: 'Thuê gian hàng Texworld 200m²', unit: 'm²', quantity: 200, unitPrice: 2_400_000, source: 'STATE' },
+      { item: 'Thiết kế + thi công gian hàng', unit: 'gói', quantity: 1, unitPrice: 480_000_000, source: 'STATE' },
+      { item: 'Vé máy bay 12 cán bộ', unit: 'vé', quantity: 12, unitPrice: 42_000_000, source: 'STATE' },
+      { item: 'Lưu trú đoàn 5 đêm', unit: 'đêm-người', quantity: 60, unitPrice: 5_500_000, source: 'STATE' },
+      { item: 'Sourcing Day 100 khách', unit: 'gói', quantity: 1, unitPrice: 280_000_000, source: 'STATE' },
+      { item: 'In ấn + truyền thông', unit: 'gói', quantity: 1, unitPrice: 110_000_000, source: 'SELF' },
+      { item: 'Phiên dịch + tiếp khách', unit: 'gói', quantity: 1, unitPrice: 95_000_000, source: 'SELF' },
+    ],
+    pmContactEmail: 'minh.vu@vitas.org.vn',
+    submittedDaysAgo: 30,
+    receivedDaysAgo: 27,
+    assignedDaysAgo: 25,
+    assignedReviewer: 'chuyenvien',
+    passedFormalCheck: true,
+  },
+
+  // ---------------------------------------------------------------------------
+  // 11. VALID — LEFASO 2026 (đã hợp lệ, demo top of council assignable list)
+  // ---------------------------------------------------------------------------
+  {
+    code: 'XTTM-2026-009',
+    orgCode: 'LEFASO',
+    cycleYear: 2026,
+    year: 2026,
+    name: 'Đào tạo nâng cao kỹ năng XTTM cho doanh nghiệp Da giày 2026',
+    kind: 'TRAINING',
+    status: 'VALID',
+    industrySectorCodes: ['FOOTWEAR', 'LEATHER'],
+    marketCodes: ['EU', 'US'],
+    countryCodes: ['DEU', 'USA'],
+    promotionCodes: ['TRADE_TRAINING'],
+    isTwoYear: false,
+    timeRange: { start: '2026-08-15', end: '2026-08-30', quarter: 'Q3' },
+    objectiveHtml:
+      '<p>Tổ chức 3 khóa đào tạo cho 120 cán bộ Marketing - Xuất khẩu của 40 doanh nghiệp Da giày Việt tại Hà Nội + TP.HCM.</p>',
+    contentHtml:
+      '<p>Mỗi khóa 5 ngày, kết hợp lý thuyết + workshop case study CBAM, EU Green Deal cho ngành Da giày.</p>',
+    planRows: [
+      { task: 'Tuyển chọn 40 doanh nghiệp + 120 học viên', deliverable: 'Danh sách', dueDate: '2026-06-30', owner: 'Hoàng Mai Linh' },
+      { task: 'Thiết kế giáo trình + tài liệu', deliverable: 'Giáo trình 3 khóa', dueDate: '2026-07-30', owner: 'Phòng Đào tạo' },
+      { task: 'Tổ chức 3 khóa đào tạo', deliverable: 'Báo cáo + chứng chỉ 120 học viên', dueDate: '2026-08-30', owner: 'Phòng Đào tạo' },
+    ],
+    budgetRows: [
+      { item: 'Thuê hội trường + thiết bị (3 khóa x 5 ngày)', unit: 'ngày', quantity: 15, unitPrice: 32_000_000, source: 'STATE' },
+      { item: 'Thù lao diễn giả + chuyên gia', unit: 'khóa', quantity: 3, unitPrice: 75_000_000, source: 'STATE' },
+      { item: 'Tài liệu + giáo trình (120 bộ)', unit: 'bộ', quantity: 120, unitPrice: 380_000, source: 'STATE' },
+      { item: 'Đối ứng đơn vị: vận hành + phối hợp', unit: 'gói', quantity: 1, unitPrice: 90_000_000, source: 'SELF' },
+    ],
+    pmContactEmail: 'linh.hoang@lefaso.org.vn',
+    submittedDaysAgo: 28,
+    receivedDaysAgo: 26,
+    assignedDaysAgo: 24,
+    assignedReviewer: 'chuyenvien',
+    passedFormalCheck: true,
+  },
 ];
 
 // =============================================================================

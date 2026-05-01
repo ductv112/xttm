@@ -8,6 +8,7 @@ import { seedProgramCycles } from './seed/program-cycles';
 import { seedCycleNotifications } from './seed/notifications';
 import { seedOrgProfiles } from './seed/orgProfiles';
 import { seedProjects } from './seed/projects';
+import { seedCouncils } from './seed/councils';
 
 const prisma = new PrismaClient();
 
@@ -39,6 +40,9 @@ async function main() {
 
   // Phase 5 (M2.3) HERO data: 6 Projects covering diverse states + đề án 2 năm
   await seedProjects(prisma);
+
+  // Phase 7 (M3) HERO data: 1 EvaluationCouncil + 3 members + 2 assignments + 2 EVALUATION ScoreSheets
+  await seedCouncils(prisma);
 
   // Smoke verify counts
   const userCount = await prisma.user.count();
@@ -134,8 +138,8 @@ async function main() {
   if ((statusCounts.DRAFT ?? 0) < 2)
     throw new Error('Expected ≥2 DRAFT OrganizationProfile');
 
-  if (projectCount < 9)
-    throw new Error(`Expected ≥9 Project, got ${projectCount}`);
+  if (projectCount < 11)
+    throw new Error(`Expected ≥11 Project, got ${projectCount}`);
   const projectStatusCounts = Object.fromEntries(
     projectsByStatus.map((r) => [r.status, r._count._all] as const),
   );
@@ -169,6 +173,31 @@ async function main() {
     );
   console.log(
     `📊 PRELIMINARY ScoreSheet: ${preliminaryScoreSheets} record(s)`,
+  );
+
+  // Phase 7 (M3) — verify EvaluationCouncil + members + assignments + EVALUATION sheets
+  const councilCount = await prisma.evaluationCouncil.count();
+  const memberCount = await prisma.councilMember.count();
+  const assignmentCount = await prisma.projectCouncilAssignment.count();
+  const evaluationSheets = await prisma.scoreSheet.count({
+    where: { kind: 'EVALUATION' },
+  });
+  if (councilCount < 1)
+    throw new Error('Expected ≥1 EvaluationCouncil (Phase 7 demo state)');
+  if (memberCount < 3)
+    throw new Error(
+      `Expected ≥3 CouncilMember (Chu tịch + Phó + Ủy viên), got ${memberCount}`,
+    );
+  if (assignmentCount < 2)
+    throw new Error(
+      `Expected ≥2 ProjectCouncilAssignment, got ${assignmentCount}`,
+    );
+  if (evaluationSheets < 2)
+    throw new Error(
+      `Expected ≥2 EVALUATION ScoreSheet (1 DRAFT chair + 1 SUBMITTED phó), got ${evaluationSheets}`,
+    );
+  console.log(
+    `📊 Phase 7: councils=${councilCount}, members=${memberCount}, assignments=${assignmentCount}, EVALUATION sheets=${evaluationSheets}`,
   );
 
   console.timeEnd('seed');
