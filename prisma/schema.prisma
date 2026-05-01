@@ -229,15 +229,16 @@ model Project {
   updatedAt               DateTime  @updatedAt
   deletedAt               DateTime?
 
-  programCycle  ProgramCycle       @relation(fields: [programCycleId], references: [id])
-  organization  Organization       @relation(fields: [organizationId], references: [id])
-  parent        Project?           @relation("ProjectYearLink", fields: [parentProjectId], references: [id])
-  childProjects Project[]          @relation("ProjectYearLink")
-  scoreSheets   ScoreSheet[]
-  contract      Contract?
-  reports       Report[]
-  versions      ProjectVersion[]
-  amendments    ProjectAmendment[]
+  programCycle      ProgramCycle       @relation(fields: [programCycleId], references: [id])
+  organization      Organization       @relation(fields: [organizationId], references: [id])
+  parent            Project?           @relation("ProjectYearLink", fields: [parentProjectId], references: [id])
+  childProjects     Project[]          @relation("ProjectYearLink")
+  scoreSheets       ScoreSheet[]
+  contract          Contract?
+  reports           Report[]
+  versions          ProjectVersion[]
+  amendments        ProjectAmendment[]
+  acceptanceRecords AcceptanceRecord[]
 
   @@index([programCycleId, status])
   @@index([organizationId])
@@ -465,23 +466,97 @@ model ProjectAmendment {
 }
 
 // =============================================================================
-// REPORT — Scaffold for Phase 9 (M5)
+// REPORT — Phase 9 (M5) Báo cáo kết quả đề án
 // =============================================================================
 
+// Phase 9 (M5) — Báo cáo kết quả đề án từ đơn vị chủ trì sau khi triển khai.
+// quantitativeJson stores: { rows: [{id, name, unit, planned, actual, note}] }
+// qualitativeHtml: Tiptap HTML mô tả định tính kết quả
+// State machine: DRAFT → SUBMITTED → APPROVED | RETURNED → SUBMITTED
+// Cảnh báo SLA 15 ngày sau hoạt động kết thúc mà chưa nộp báo cáo.
 model Report {
-  id               String    @id @default(cuid())
-  projectId        String
-  title            String
-  reportType       String // PROGRESS | FINAL
-  quantitativeData String? // JSON
-  qualitativeData  String?
-  status           String    @default("DRAFT") // DRAFT | SUBMITTED | RETURNED | ACCEPTED
-  submittedAt      DateTime?
-  dueAt            DateTime?
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+  id                       String    @id @default(cuid())
+  projectId                String
+  title                    String
+  reportType               String    @default("FINAL") // PROGRESS | FINAL
+  quantitativeJson         String? // JSON: { rows: [{id, name, unit, planned, actual, note}] }
+  qualitativeHtml          String? // Tiptap HTML
+  attendingCompaniesCount  Int? // số DN tham gia (cảnh báo doanh thu/HĐ)
+  status                   String    @default("DRAFT") // DRAFT | SUBMITTED | APPROVED | RETURNED
+  submittedAt              DateTime?
+  reviewedById             String?
+  reviewedAt               DateTime?
+  reviewComments           String?
+  dueAt                    DateTime?
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
+
+  project          Project           @relation(fields: [projectId], references: [id])
+  acceptanceRecord AcceptanceRecord?
+
+  @@index([projectId])
+  @@index([status])
+}
+
+// =============================================================================
+// ACCEPTANCE RECORD — Phase 9 (M5) Biên bản nghiệm thu
+// =============================================================================
+
+// Phase 9 (M5) — Biên bản nghiệm thu sau khi báo cáo APPROVED.
+// BQL lập biên bản, sinh PDF, in + ký tay → upload bản scan.
+// result: PASS (đạt toàn bộ) | PARTIAL (đạt một phần) | FAIL (không đạt)
+model AcceptanceRecord {
+  id                      String   @id @default(cuid())
+  projectId               String
+  reportId                String   @unique
+  recordNumber            String // số biên bản (vd 12/BB-NT-XTTM)
+  recordDate              DateTime
+  result                  String // PASS | PARTIAL | FAIL
+  comments                String? // ghi chú nghiệm thu
+  scannedFileUrl          String? // path bản scan đã ký
+  liquidationDate         DateTime? // ngày thanh lý HĐ (nếu đã thanh lý)
+  liquidationFileUrl      String? // bản scan biên bản thanh lý
+  createdById             String
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
 
   project Project @relation(fields: [projectId], references: [id])
+  report  Report  @relation(fields: [reportId], references: [id])
+
+  @@index([projectId])
+  @@index([result])
+}
+
+// =============================================================================
+// FINANCIAL RECORD — Phase 9 (M5) Tạm ứng / Thanh toán / Quyết toán
+// =============================================================================
+
+// Phase 9 (M5) — Hồ sơ tài chính theo dõi tạm ứng + thanh toán + quyết toán.
+// recordType: ADVANCE (tạm ứng sau ký HĐ) | PAYMENT (thanh toán sau nghiệm thu) | SETTLEMENT (quyết toán cuối kỳ)
+// status: DRAFT → SUBMITTED → APPROVED → DISBURSED | SETTLED
+// amount: số tiền VND (SQLite REAL)
+model FinancialRecord {
+  id              String    @id @default(cuid())
+  projectId       String
+  contractId      String?
+  recordType      String // ADVANCE | PAYMENT | SETTLEMENT
+  recordNumber    String? // số phiếu (vd 12/PT-XTTM)
+  amount          Float
+  status          String    @default("DRAFT") // DRAFT | SUBMITTED | APPROVED | DISBURSED | SETTLED
+  submittedAt     DateTime?
+  approvedById    String?
+  approvedAt      DateTime?
+  disbursedAt     DateTime? // ngày chi trả thực tế
+  transactionDate DateTime? // ngày giao dịch thực tế trên sổ
+  notes           String?
+  createdById     String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([projectId])
+  @@index([contractId])
+  @@index([recordType, status])
+  @@index([transactionDate])
 }
 
 // =============================================================================

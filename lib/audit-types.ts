@@ -201,6 +201,36 @@ export const AMENDMENT_AUDIT_TYPES = {
   AMENDMENT_ROUTE_TO_EVALUATION: { action: 'TRANSITION' as AuditAction, resource: 'de-an' as AuditResource },
 } as const;
 
+// =============================================================================
+// Phase 9 (M5 Báo cáo + Nghiệm thu + Tài chính) — composite audit type identifiers.
+// REPORT_*: báo cáo kết quả (đơn vị nộp + BQL review).
+// ACCEPT_*: biên bản nghiệm thu (BQL lập + upload bản scan ký).
+// FIN_*: hồ sơ tài chính (tạm ứng / thanh toán / quyết toán).
+// =============================================================================
+
+export const REPORT_AUDIT_TYPES = {
+  REPORT_SAVE_DRAFT: { action: 'UPDATE' as AuditAction, resource: 'bao-cao' as AuditResource },
+  REPORT_SUBMIT: { action: 'SUBMIT' as AuditAction, resource: 'bao-cao' as AuditResource },
+  REPORT_REVIEW: { action: 'APPROVE' as AuditAction, resource: 'bao-cao' as AuditResource },
+  REPORT_RETURN: { action: 'REJECT' as AuditAction, resource: 'bao-cao' as AuditResource },
+} as const;
+
+export const ACCEPTANCE_AUDIT_TYPES = {
+  ACCEPT_CREATE: { action: 'CREATE' as AuditAction, resource: 'nghiem-thu' as AuditResource },
+  ACCEPT_UPDATE: { action: 'UPDATE' as AuditAction, resource: 'nghiem-thu' as AuditResource },
+  ACCEPT_UPLOAD_RECORD: { action: 'UPLOAD' as AuditAction, resource: 'nghiem-thu' as AuditResource },
+  ACCEPT_FINALIZE: { action: 'TRANSITION' as AuditAction, resource: 'nghiem-thu' as AuditResource },
+  ACCEPT_LIQUIDATE: { action: 'TRANSITION' as AuditAction, resource: 'nghiem-thu' as AuditResource },
+} as const;
+
+export const FINANCE_AUDIT_TYPES = {
+  FIN_CREATE_ADVANCE: { action: 'CREATE' as AuditAction, resource: 'tai-chinh' as AuditResource },
+  FIN_CREATE_PAYMENT: { action: 'CREATE' as AuditAction, resource: 'tai-chinh' as AuditResource },
+  FIN_CREATE_SETTLEMENT: { action: 'CREATE' as AuditAction, resource: 'tai-chinh' as AuditResource },
+  FIN_TRANSITION: { action: 'TRANSITION' as AuditAction, resource: 'tai-chinh' as AuditResource },
+  FIN_UPDATE: { action: 'UPDATE' as AuditAction, resource: 'tai-chinh' as AuditResource },
+} as const;
+
 // Color tokens for action badges (consumed by AuditLogTable)
 export const AUDIT_ACTION_BADGE: Record<AuditAction, string> = {
   CREATE: 'bg-green-100 text-green-800',
