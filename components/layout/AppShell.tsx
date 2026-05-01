@@ -1,5 +1,6 @@
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { type Role } from '@/lib/constants';
+import { RoleSwitcherCmdK } from '@/components/shared/RoleSwitcherCmdK';
 import { AppSidebar } from './AppSidebar';
 import { AppTopbar } from './AppTopbar';
 
@@ -30,6 +31,8 @@ export function AppShell({ user, children }: Props) {
           {children}
         </main>
       </SidebarInset>
+      {/* Phase 11-01 Task 3 — Cmd+K role switcher (dev/demo only). */}
+      <RoleSwitcherCmdK currentUsername={user.username} />
     </SidebarProvider>
   );
 }
