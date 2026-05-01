@@ -11,20 +11,7 @@ import { canFromDB } from '@/lib/permissions-db';
 import { withAuditLog } from '@/lib/audit';
 import { ROLES, type Role } from '@/lib/constants';
 
-export const COUNCIL_MEMBER_ROLES = [
-  'CHU_TICH',
-  'PHO',
-  'UY_VIEN',
-  'THU_KY',
-] as const;
-export type CouncilMemberRole = (typeof COUNCIL_MEMBER_ROLES)[number];
-
-export const COUNCIL_MEMBER_ROLE_LABELS: Record<CouncilMemberRole, string> = {
-  CHU_TICH: 'Chủ tịch',
-  PHO: 'Phó Chủ tịch',
-  UY_VIEN: 'Ủy viên',
-  THU_KY: 'Thư ký',
-};
+import { COUNCIL_MEMBER_ROLES, type CouncilMemberRole } from './member-types';
 
 export type AddMemberInput = {
   councilId: string;

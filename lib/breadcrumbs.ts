@@ -6,6 +6,7 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   '/de-an': 'Đề án',
   '/tiep-nhan': 'Tiếp nhận hồ sơ',
   '/tham-dinh': 'Thẩm định',
+  '/hoi-dong': 'Hội đồng thẩm định',
   '/phe-duyet': 'Phê duyệt',
   '/hop-dong': 'Hợp đồng',
   '/trien-khai': 'Triển khai',

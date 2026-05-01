@@ -244,11 +244,20 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     roleOnly: [ROLES.CHUYENVIEN, ROLES.ADMIN],
   },
   {
+    href: '/hoi-dong',
+    label: 'Hội đồng thẩm định',
+    icon: 'users',
+    resource: 'tham-dinh',
+    section: 'NGHIEP_VU',
+    roleOnly: [ROLES.ADMIN, ROLES.BANQL, ROLES.LANHDAO],
+  },
+  {
     href: '/tham-dinh',
     label: 'Thẩm định',
     icon: 'gavel',
     resource: 'tham-dinh',
     section: 'NGHIEP_VU',
+    roleOnly: [ROLES.HOIDONG, ROLES.ADMIN],
   },
   {
     href: '/phe-duyet',
