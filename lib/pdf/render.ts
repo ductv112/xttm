@@ -6,6 +6,10 @@ import {
   ProjectProposal,
   type ProjectProposalProps,
 } from './templates/ProjectProposal';
+import {
+  EvaluationReport,
+  type EvaluationReportProps,
+} from './templates/EvaluationReport';
 import { registerPdfFonts } from './fonts';
 
 /**
@@ -40,6 +44,21 @@ export async function renderProjectProposalPdf(
   // ProjectProposal returns <Document> at runtime. Same pattern as OfficialDocument.
   const element = createElement(
     ProjectProposal as unknown as React.ComponentType<ProjectProposalProps>,
+    props,
+  ) as Parameters<typeof renderToBuffer>[0];
+  const buffer = await renderToBuffer(element);
+  return buffer;
+}
+
+/**
+ * Render the EvaluationReport template (Phase 7 báo cáo thẩm định PDF) to a Buffer.
+ */
+export async function renderEvaluationReportPdf(
+  props: EvaluationReportProps,
+): Promise<Buffer> {
+  registerPdfFonts();
+  const element = createElement(
+    EvaluationReport as unknown as React.ComponentType<EvaluationReportProps>,
     props,
   ) as Parameters<typeof renderToBuffer>[0];
   const buffer = await renderToBuffer(element);
