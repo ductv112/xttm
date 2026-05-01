@@ -21,12 +21,16 @@ import { DuToanTab } from './DuToanTab';
 import { TaiLieuTab } from './TaiLieuTab';
 import { LichSuTab } from './LichSuTab';
 import { NhatKyTab } from './NhatKyTab';
+import { ImplementationTab } from './ImplementationTab';
+import { AmendmentTab } from './AmendmentTab';
 
 const TAB_VALUES = [
   'tong-quan',
   'ke-hoach',
   'du-toan',
   'tai-lieu',
+  'trien-khai',
+  'dieu-chinh',
   'lich-su',
   'nhat-ky',
 ] as const;
@@ -52,6 +56,20 @@ export type ProjectTabsShellProps = {
     actionLabel: string;
     summary: string;
   }>;
+  isOwner: boolean;
+  canManageImpl: boolean;
+  canApproveAmendment: boolean;
+  amendments: ReadonlyArray<{
+    id: string;
+    amendmentType: string;
+    isCritical: boolean;
+    status: string;
+    reason: string;
+    createdAt: Date;
+    requestedByName: string | null;
+    decisionNumber: string | null;
+    decisionDate: Date | null;
+  }>;
 };
 
 export function ProjectTabsShell({
@@ -59,6 +77,10 @@ export function ProjectTabsShell({
   catalogs,
   timeline,
   auditEntries,
+  isOwner,
+  canManageImpl,
+  canApproveAmendment,
+  amendments,
 }: ProjectTabsShellProps) {
   // Hash-driven default tab (bookmark friendly): /de-an/[id]#ke-hoach loads Kế hoạch
   const [tab, setTab] = React.useState<TabValue>('tong-quan');
@@ -94,6 +116,13 @@ export function ProjectTabsShell({
         <TabsTrigger value="tai-lieu">
           Tài liệu ({project.documents.length})
         </TabsTrigger>
+        <TabsTrigger value="trien-khai">
+          Triển khai
+          {project.contactedConsulate ? ' ✓' : ''}
+        </TabsTrigger>
+        <TabsTrigger value="dieu-chinh">
+          Điều chỉnh ({amendments.length})
+        </TabsTrigger>
         <TabsTrigger value="lich-su">
           Lịch sử ({project.versions.length})
         </TabsTrigger>
@@ -115,6 +144,21 @@ export function ProjectTabsShell({
       </TabsContent>
       <TabsContent value="tai-lieu">
         <TaiLieuTab project={project} />
+      </TabsContent>
+      <TabsContent value="trien-khai">
+        <ImplementationTab
+          project={project}
+          isOwner={isOwner}
+          canManage={canManageImpl}
+        />
+      </TabsContent>
+      <TabsContent value="dieu-chinh">
+        <AmendmentTab
+          project={project}
+          amendments={amendments}
+          isOwner={isOwner}
+          canApprove={canApproveAmendment}
+        />
       </TabsContent>
       <TabsContent value="lich-su">
         <LichSuTab project={project} />

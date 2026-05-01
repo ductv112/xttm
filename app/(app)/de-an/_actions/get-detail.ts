@@ -74,6 +74,13 @@ export type ProjectDetail = {
   updatedAt: Date;
   documents: ProjectDocument[];
   versions: ProjectVersionEntry[];
+  // Phase 8 (M4) — Triển khai + Điều chỉnh
+  implementationJson: string | null;
+  contactedConsulate: boolean;
+  consulateContactJson: string | null;
+  contractId: string | null;
+  contractNo: string | null;
+  contractStatus: string | null;
 };
 
 export async function getProjectDetail(
@@ -96,6 +103,9 @@ export async function getProjectDetail(
       },
       versions: {
         orderBy: { versionNumber: 'asc' },
+      },
+      contract: {
+        select: { id: true, contractNo: true, status: true },
       },
     },
   });
@@ -224,5 +234,12 @@ export async function getProjectDetail(
     updatedAt: project.updatedAt,
     documents,
     versions,
+    // Phase 8 (M4)
+    implementationJson: project.implementationJson,
+    contactedConsulate: project.contactedConsulate,
+    consulateContactJson: project.consulateContactJson,
+    contractId: project.contract?.id ?? null,
+    contractNo: project.contract?.contractNo ?? null,
+    contractStatus: project.contract?.status ?? null,
   };
 }

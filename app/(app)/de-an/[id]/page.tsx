@@ -22,6 +22,8 @@ import {
   PROJECT_STATUS_LABELS,
   type ProjectStatus,
 } from '@/lib/workflows/project';
+import { canFromDB } from '@/lib/permissions-db';
+import type { Role } from '@/lib/constants';
 
 import { getProjectDetail } from '../_actions/get-detail';
 import { ProjectDetailHeader } from './_components/ProjectDetailHeader';
@@ -207,11 +209,16 @@ export default async function ProjectDetailPage({
     session.user.organizationId !== null &&
     session.user.organizationId === project.organizationId;
 
-  const [catalogs, timeline, auditEntries] = await Promise.all([
-    loadCatalogs(),
-    loadStatusTimeline(project.id, project.status, project.createdAt),
-    loadRecentAuditEntries(project.id),
-  ]);
+  const role = session.user.role as Role;
+  const [catalogs, timeline, auditEntries, canManageImpl, canApproveAmendment, amendmentRows] =
+    await Promise.all([
+      loadCatalogs(),
+      loadStatusTimeline(project.id, project.status, project.createdAt),
+      loadRecentAuditEntries(project.id),
+      canFromDB(role, 'trien-khai', 'update'),
+      canFromDB(role, 'de-an', 'approve'),
+      loadAmendments(project.id),
+    ]);
 
   return (
     <div className="container mx-auto max-w-7xl py-8">
@@ -222,8 +229,39 @@ export default async function ProjectDetailPage({
           catalogs={catalogs}
           timeline={timeline}
           auditEntries={auditEntries}
+          isOwner={isOwner}
+          canManageImpl={canManageImpl}
+          canApproveAmendment={canApproveAmendment}
+          amendments={amendmentRows}
         />
       </div>
     </div>
   );
+}
+
+async function loadAmendments(projectId: string) {
+  const rows = await prisma.projectAmendment.findMany({
+    where: { projectId },
+    orderBy: { createdAt: 'desc' },
+  });
+  // Resolve requestedByName
+  const userIds = [...new Set(rows.map((r) => r.requestedById).filter(Boolean))];
+  const users = userIds.length
+    ? await prisma.user.findMany({
+        where: { id: { in: userIds } },
+        select: { id: true, fullName: true },
+      })
+    : [];
+  const userById = new Map(users.map((u) => [u.id, u.fullName]));
+  return rows.map((r) => ({
+    id: r.id,
+    amendmentType: r.amendmentType,
+    isCritical: r.isCritical,
+    status: r.status,
+    reason: r.reason,
+    createdAt: r.createdAt,
+    requestedByName: userById.get(r.requestedById) ?? null,
+    decisionNumber: r.decisionNumber,
+    decisionDate: r.decisionDate,
+  }));
 }
