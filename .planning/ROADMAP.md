@@ -20,7 +20,7 @@
 - [x] **Phase 8: M4 Hợp đồng, Triển khai & Điều chỉnh** - Sinh HĐ auto số + cảnh báo 60 ngày + kế hoạch triển khai + cảnh báo thương vụ 30 ngày + điều chỉnh đề án Điều 13 NĐ 28 với side-by-side diff (completed 2026-05-01)
 - [x] **Phase 9: M5 Báo cáo, Nghiệm thu, Tài chính** - Báo cáo kết quả + biên bản nghiệm thu PDF + thanh lý hợp đồng + tạm ứng/thanh toán/quyết toán (completed 2026-05-01)
 - [x] **Phase 10: M6 Dashboard & Cảnh báo (HERO Lãnh đạo)** - Overview cards + 4 widget SLA + drill-down 3 click + Recharts + thống kê + inbox thông báo + xuất Excel/PDF (completed 2026-05-01)
-- [ ] **Phase 11: M7 Polish & Demo Prep** - Mock data 10-15 records/loại + tên đơn vị thật + validator cross-entity + console hygiene + animation + role-switch Cmd+K + demo dry-run
+- [x] **Phase 11: M7 Polish & Demo Prep** - Mock data 10-15 records/loại + tên đơn vị thật + validator cross-entity + console hygiene + animation + role-switch Cmd+K + demo dry-run (completed 2026-05-01)
 
 ## Phase Details
 
@@ -215,7 +215,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 8. M4 Hợp đồng, Triển khai & Điều chỉnh | 1/1 | Complete    | 2026-05-01 |
 | 9. M5 Báo cáo, Nghiệm thu, Tài chính | 1/1 | Complete    | 2026-05-01 |
 | 10. M6 Dashboard & Cảnh báo (HERO Lãnh đạo) | 1/1 | Complete    | 2026-05-01 |
-| 11. M7 Polish & Demo Prep | 0/TBD | Not started | - |
+| 11. M7 Polish & Demo Prep | 1/1 | Complete   | 2026-05-01 |
 
 ## Coverage Summary
 

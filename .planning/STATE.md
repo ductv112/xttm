@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Completed Phase 10 — M6 Dashboard HERO + Notification System
-last_updated: "2026-05-01T02:51:32.902Z"
+stopped_at: Completed Phase 11 — POC demo-ready, 0 build warnings, 3/3 smoke pass
+last_updated: "2026-05-01T03:13:17.164Z"
 last_activity: 2026-05-01
 progress:
   total_phases: 11
-  completed_phases: 10
-  total_plans: 31
-  completed_plans: 31
+  completed_phases: 11
+  total_plans: 32
+  completed_plans: 32
   percent: 100
 ---
 
@@ -21,12 +21,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-30)
 
 **Core value:** Demo end-to-end mượt và đẹp luồng "Vòng đời đề án" (M2-M3): từ Ban quản lý khởi tạo Chu kỳ Chương trình → Đơn vị chủ trì khai báo & nộp đề án → Tiếp nhận & kiểm tra → Hội đồng thẩm định chấm điểm → Ban quản lý lập tờ trình & nhập quyết định phê duyệt.
-**Current focus:** Phase 10 — M6 Dashboard & Cảnh báo (HERO Lãnh đạo)
+**Current focus:** Phase 11 — M7 Polish & Demo Prep
 
 ## Current Position
 
-Phase: 11
-Plan: Not started
+Phase: 11 (M7 Polish & Demo Prep) — EXECUTING
+Plan: 1 of 1
 Status: Phase complete — ready for verification
 Last activity: 2026-05-01
 
@@ -92,6 +92,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh P08-01-contract-impl-amend | 30min | 5 tasks | 34 files |
 | Phase 09-m5-báo-cáo-nghiệm-thu-tài-chính PP09-01-report-acceptance-finance | 19m | 4 tasks | 29 files |
 | Phase 10-m6-dashboard-cảnh-báo P01 | 13min | 4 tasks | 25 files |
+| Phase 11-m7-polish-demo-prep P01 | 18m | 5 tasks | 15 files |
 
 ## Accumulated Context
 
@@ -207,6 +208,9 @@ Recent decisions affecting current work:
 - [Phase 10-m6-dashboard-cảnh-báo]: Polling 60s thay websocket cho NotificationBell unread count — POC scope; getDashboardSummary() single entry-point trả full summary trong 1 RSC call (charts hydrate via Recharts ResponsiveContainer)
 - [Phase 10-m6-dashboard-cảnh-báo]: Drill-down qua URL search params (year, status, overdue, budgetVariance, consulatePending) — không tạo special routes, tận dụng existing list pages CycleFilterBar pattern; DONVI scope filter qua projectOrgFilter() helper (T-10-01-01 mitigation)
 - [Phase 10-m6-dashboard-cảnh-báo]: Mock SLA detection at dashboard render time (no cron) per CONTEXT.md <deferred>; Excel xlsx 6-sheet + PDF react-pdf 1-page A4 portrait reusing Be Vietnam Pro font; createNotification public API trong lib/notifications.ts wraps Notification + N NotificationDispatch trong 1 transaction
+- [Phase 11-m7-polish-demo-prep]: LIQUIDATED contracts không cần implementationJson (chỉ IN_PROGRESS) — historical state OK
+- [Phase 11-m7-polish-demo-prep]: Cmd+K role switcher dual-gate: NODE_ENV !== production hoặc ?demo=1 query param — production safety
+- [Phase 11-m7-polish-demo-prep]: ESLint overrides cho prisma/** + scripts/** thay vì rải eslint-disable inline
 
 ### Pending Todos
 
@@ -221,6 +225,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-05-01T02:50:53.063Z
-Stopped at: Completed Phase 10 — M6 Dashboard HERO + Notification System
+Last session: 2026-05-01T03:13:17.159Z
+Stopped at: Completed Phase 11 — POC demo-ready, 0 build warnings, 3/3 smoke pass
 Resume file: None

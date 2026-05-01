@@ -247,19 +247,19 @@
 
 ### Polish & Demo Prep (POLISH) — Phase M7
 
-- [ ] **POLISH-01**: Mock data đầy đủ (10-15 records/loại) cover mọi trạng thái + mọi cảnh báo SLA
-- [ ] **POLISH-02**: Tên đơn vị thật (VITAS, VINATEX, LEFASO, VICOFA, VASEP, VFA, VIFOREST, VCCI, May 10) với địa chỉ + người đại diện realistic
-- [ ] **POLISH-03**: Tên chủ nhiệm có chức danh (TS./PGS./CN./KS.) realistic
-- [ ] **POLISH-04**: Tên đề án hợp lý (ví dụ: "Hội chợ Vietnam Expo 2026 — Quảng bá hàng Việt tại Trung Đông")
-- [ ] **POLISH-05**: Validator script cuối seed kiểm tra cross-entity invariants (mọi đề án phải thuộc 1 chu kỳ, mọi HĐ phải có quyết định...)
-- [ ] **POLISH-06**: Pre-demo console hygiene: production build, 0 warning/error/404, không hydration mismatch
-- [ ] **POLISH-07**: Animation transitions polish (Framer Motion cho route change, dialog, drawer)
-- [ ] **POLISH-08**: Empty states có illustration + CTA
-- [ ] **POLISH-09**: Loading states dùng skeleton, không spinner
-- [ ] **POLISH-10**: Demo script khớp "FLOW DEMO CHUẨN.docx" với note cho mỗi bước
-- [ ] **POLISH-11**: Role-switch dev button (Cmd+K command palette) chuyển vai trò trong < 2 giây
-- [ ] **POLISH-12**: README hướng dẫn chạy demo (npm install → db:reset → dev → đăng nhập tài khoản nào cho flow nào)
-- [ ] **POLISH-13**: Demo dry-run trên máy demo + projector + slow wifi
+- [x] **POLISH-01**: Mock data đầy đủ (10-15 records/loại) cover mọi trạng thái + mọi cảnh báo SLA
+- [x] **POLISH-02**: Tên đơn vị thật (VITAS, VINATEX, LEFASO, VICOFA, VASEP, VFA, VIFOREST, VCCI, May 10) với địa chỉ + người đại diện realistic
+- [x] **POLISH-03**: Tên chủ nhiệm có chức danh (TS./PGS./CN./KS.) realistic
+- [x] **POLISH-04**: Tên đề án hợp lý (ví dụ: "Hội chợ Vietnam Expo 2026 — Quảng bá hàng Việt tại Trung Đông")
+- [x] **POLISH-05**: Validator script cuối seed kiểm tra cross-entity invariants (mọi đề án phải thuộc 1 chu kỳ, mọi HĐ phải có quyết định...)
+- [x] **POLISH-06**: Pre-demo console hygiene: production build, 0 warning/error/404, không hydration mismatch
+- [x] **POLISH-07**: Animation transitions polish (Framer Motion cho route change, dialog, drawer)
+- [x] **POLISH-08**: Empty states có illustration + CTA
+- [x] **POLISH-09**: Loading states dùng skeleton, không spinner
+- [x] **POLISH-10**: Demo script khớp "FLOW DEMO CHUẨN.docx" với note cho mỗi bước
+- [x] **POLISH-11**: Role-switch dev button (Cmd+K command palette) chuyển vai trò trong < 2 giây
+- [x] **POLISH-12**: README hướng dẫn chạy demo (npm install → db:reset → dev → đăng nhập tài khoản nào cho flow nào)
+- [x] **POLISH-13**: Demo dry-run trên máy demo + projector + slow wifi
 
 ## v2 Requirements
 
@@ -502,19 +502,19 @@ Explicit exclusions cho prototype POC này.
 | ALERT-06 | Phase 10 (M6 Cảnh báo) | Complete |
 | ALERT-07 | Phase 10 (M6 Cảnh báo) | Complete |
 | ALERT-08 | Phase 10 (M6 Cảnh báo) | Complete |
-| POLISH-01 | Phase 11 (M7 Polish) | Pending |
-| POLISH-02 | Phase 11 (M7 Polish) | Pending |
-| POLISH-03 | Phase 11 (M7 Polish) | Pending |
-| POLISH-04 | Phase 11 (M7 Polish) | Pending |
-| POLISH-05 | Phase 11 (M7 Polish) | Pending |
-| POLISH-06 | Phase 11 (M7 Polish) | Pending |
-| POLISH-07 | Phase 11 (M7 Polish) | Pending |
-| POLISH-08 | Phase 11 (M7 Polish) | Pending |
-| POLISH-09 | Phase 11 (M7 Polish) | Pending |
-| POLISH-10 | Phase 11 (M7 Polish) | Pending |
-| POLISH-11 | Phase 11 (M7 Polish) | Pending |
-| POLISH-12 | Phase 11 (M7 Polish) | Pending |
-| POLISH-13 | Phase 11 (M7 Polish) | Pending |
+| POLISH-01 | Phase 11 (M7 Polish) | Complete |
+| POLISH-02 | Phase 11 (M7 Polish) | Complete |
+| POLISH-03 | Phase 11 (M7 Polish) | Complete |
+| POLISH-04 | Phase 11 (M7 Polish) | Complete |
+| POLISH-05 | Phase 11 (M7 Polish) | Complete |
+| POLISH-06 | Phase 11 (M7 Polish) | Complete |
+| POLISH-07 | Phase 11 (M7 Polish) | Complete |
+| POLISH-08 | Phase 11 (M7 Polish) | Complete |
+| POLISH-09 | Phase 11 (M7 Polish) | Complete |
+| POLISH-10 | Phase 11 (M7 Polish) | Complete |
+| POLISH-11 | Phase 11 (M7 Polish) | Complete |
+| POLISH-12 | Phase 11 (M7 Polish) | Complete |
+| POLISH-13 | Phase 11 (M7 Polish) | Complete |
 
 ---
 *Requirements defined: 2026-04-30*
