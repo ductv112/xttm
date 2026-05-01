@@ -26,7 +26,8 @@ function TabsList({
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn(
-        "bg-slate-100 text-slate-600 inline-flex h-9 w-fit items-center justify-center rounded-lg p-1",
+        // National Pride 2026 — line-style tabs (no pill background).
+        "inline-flex w-fit items-center justify-start gap-1 border-b border-slate-200 text-slate-600",
         className
       )}
       {...props}
@@ -42,11 +43,16 @@ function TabsTrigger({
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
       className={cn(
-        "inline-flex items-center justify-center gap-1.5 rounded-md px-3 py-1 text-sm font-medium whitespace-nowrap transition-all",
-        "data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm",
+        // Base
+        "relative inline-flex items-center justify-center gap-1.5 px-4 pt-2 pb-3 -mb-px text-sm font-medium whitespace-nowrap transition-colors",
         "text-slate-600 hover:text-slate-900",
+        // Active line indicator
+        "data-[state=active]:text-primary data-[state=active]:font-semibold",
+        "after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-1px] after:h-0.5 after:rounded-t after:bg-transparent after:transition-colors",
+        "data-[state=active]:after:bg-primary",
+        // States
         "disabled:pointer-events-none disabled:opacity-50",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:rounded-sm",
         className
       )}
       {...props}
