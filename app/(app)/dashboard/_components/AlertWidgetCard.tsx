@@ -34,28 +34,32 @@ const TONE_STYLES: Record<
     iconColor: string;
     badge: string;
     decor: string;
+    gradient: string;
   }
 > = {
   danger: {
-    border: 'border-l-red-500',
-    iconBg: 'bg-red-50',
-    iconColor: 'text-red-600',
-    badge: 'bg-red-100 text-red-800',
+    border: 'border-l-red-600',
+    iconBg: 'bg-red-100',
+    iconColor: 'text-red-700',
+    badge: 'bg-red-100 text-red-800 ring-1 ring-red-200',
     decor: 'text-red-500',
+    gradient: 'bg-gradient-to-br from-red-50/60 via-white to-red-100/40',
   },
   warning: {
     border: 'border-l-amber-500',
-    iconBg: 'bg-amber-50',
-    iconColor: 'text-amber-600',
-    badge: 'bg-amber-100 text-amber-800',
+    iconBg: 'bg-amber-100',
+    iconColor: 'text-amber-700',
+    badge: 'bg-amber-100 text-amber-800 ring-1 ring-amber-200',
     decor: 'text-amber-500',
+    gradient: 'bg-gradient-to-br from-amber-50/70 via-white to-amber-100/40',
   },
   info: {
-    border: 'border-l-blue-600',
-    iconBg: 'bg-blue-50',
+    border: 'border-l-blue-700',
+    iconBg: 'bg-blue-100',
     iconColor: 'text-blue-700',
-    badge: 'bg-blue-100 text-blue-800',
+    badge: 'bg-blue-100 text-blue-800 ring-1 ring-blue-200',
     decor: 'text-blue-600',
+    gradient: 'bg-gradient-to-br from-blue-50/60 via-white to-blue-100/40',
   },
 };
 
@@ -75,6 +79,7 @@ export function AlertWidgetCard({
       className={cn(
         'group card-elevated relative overflow-hidden border-l-4 p-5 flex flex-col h-full',
         styles.border,
+        styles.gradient,
       )}
     >
       <Icon

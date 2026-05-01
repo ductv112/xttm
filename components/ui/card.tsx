@@ -7,7 +7,9 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        "flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground shadow-sm",
+        // National Pride 2026 — navy-tinted gradient baseline (no longer pure white)
+        "flex flex-col gap-6 rounded-xl border border-slate-200/70 py-6 text-card-foreground shadow-sm",
+        "bg-gradient-to-br from-white via-white to-blue-50/40",
         className
       )}
       {...props}

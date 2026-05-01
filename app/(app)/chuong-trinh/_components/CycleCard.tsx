@@ -57,6 +57,53 @@ type ProgressInfo = {
   close: Date;
 };
 
+// Map cycle status to a gradient + accent border so the card visually reflects
+// where in the lifecycle it is — supports the "navy presence everywhere" goal.
+function statusVisuals(status: string): { gradient: string; accent: string } {
+  switch (status) {
+    case 'OPEN_REGISTRATION':
+      return {
+        gradient:
+          'bg-gradient-to-br from-emerald-50/60 via-white to-emerald-100/40',
+        accent: 'border-l-emerald-600',
+      };
+    case 'CLOSED_REGISTRATION':
+      return {
+        gradient:
+          'bg-gradient-to-br from-amber-50/70 via-white to-amber-100/40',
+        accent: 'border-l-amber-500',
+      };
+    case 'EVALUATING':
+      return {
+        gradient: 'bg-gradient-to-br from-blue-50/60 via-white to-blue-100/40',
+        accent: 'border-l-blue-700',
+      };
+    case 'APPROVED':
+      return {
+        gradient:
+          'bg-gradient-to-br from-emerald-50/50 via-white to-blue-50/40',
+        accent: 'border-l-emerald-700',
+      };
+    case 'COMPLETED':
+      return {
+        gradient: 'bg-gradient-to-br from-slate-50 via-white to-slate-100/50',
+        accent: 'border-l-slate-400',
+      };
+    case 'READY':
+      return {
+        gradient:
+          'bg-gradient-to-br from-indigo-50/40 via-white to-blue-50/40',
+        accent: 'border-l-indigo-500',
+      };
+    case 'DRAFT':
+    default:
+      return {
+        gradient: 'bg-gradient-to-br from-white via-white to-blue-50/40',
+        accent: 'border-l-slate-300',
+      };
+  }
+}
+
 function computeProgress(cycle: CycleListItem): ProgressInfo | null {
   const open = cycle.registrationOpenAt ? new Date(cycle.registrationOpenAt) : null;
   const close = cycle.registrationCloseAt
@@ -73,6 +120,7 @@ function computeProgress(cycle: CycleListItem): ProgressInfo | null {
 export function CycleCard({ cycle }: CycleCardProps) {
   const countdown = resolveCountdown(cycle);
   const progress = computeProgress(cycle);
+  const visuals = statusVisuals(cycle.status);
   const totalBudgetDisplay =
     cycle.totalBudget != null ? formatVNDCompact(cycle.totalBudget) : 'Chưa cấu hình';
 
@@ -82,7 +130,13 @@ export function CycleCard({ cycle }: CycleCardProps) {
       className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-xl"
       aria-label={`Xem chi tiết chu kỳ ${cycle.year} - ${cycle.name}`}
     >
-      <div className="card-elevated p-6 hover:border-primary/40">
+      <div
+        className={cn(
+          'card-elevated p-6 border-l-4 hover:border-primary/40',
+          visuals.accent,
+          visuals.gradient,
+        )}
+      >
         {/* Header: year + status badge */}
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">

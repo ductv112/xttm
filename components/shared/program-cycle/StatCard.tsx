@@ -8,27 +8,27 @@ import { cn } from '@/lib/utils';
 import type { StatCardProps, StatCardTone } from './types';
 
 const ICON_TONE: Record<StatCardTone, string> = {
-  default: 'text-slate-400',
-  success: 'text-emerald-600',
-  warning: 'text-amber-600',
-  danger: 'text-red-600',
-  info: 'text-blue-700',
-};
-
-const VALUE_TONE: Record<StatCardTone, string> = {
-  default: 'text-slate-900',
+  default: 'text-slate-500',
   success: 'text-emerald-700',
   warning: 'text-amber-700',
   danger: 'text-red-700',
   info: 'text-blue-700',
 };
 
+const VALUE_TONE: Record<StatCardTone, string> = {
+  default: 'text-slate-900',
+  success: 'text-emerald-800',
+  warning: 'text-amber-800',
+  danger: 'text-red-800',
+  info: 'text-blue-800',
+};
+
 const BORDER_TONE: Record<StatCardTone, string> = {
-  default: 'border-l-slate-300',
-  success: 'border-l-emerald-500',
+  default: 'border-l-slate-400',
+  success: 'border-l-emerald-600',
   warning: 'border-l-amber-500',
-  danger: 'border-l-red-500',
-  info: 'border-l-blue-600',
+  danger: 'border-l-red-600',
+  info: 'border-l-blue-700',
 };
 
 const DECOR_TONE: Record<StatCardTone, string> = {
@@ -37,6 +37,18 @@ const DECOR_TONE: Record<StatCardTone, string> = {
   warning: 'text-amber-500',
   danger: 'text-red-500',
   info: 'text-blue-600',
+};
+
+// Tone-matched gradient backgrounds for stronger visual presence
+const GRADIENT_TONE: Record<StatCardTone, string> = {
+  default:
+    'bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/40',
+  success:
+    'bg-gradient-to-br from-emerald-50/60 via-white to-emerald-100/40',
+  warning:
+    'bg-gradient-to-br from-amber-50/70 via-white to-amber-100/40',
+  danger: 'bg-gradient-to-br from-red-50/60 via-white to-red-100/40',
+  info: 'bg-gradient-to-br from-blue-50/60 via-white to-blue-100/40',
 };
 
 /**
@@ -80,12 +92,9 @@ export function StatCard({
       className={cn(
         'group card-elevated relative overflow-hidden p-6 border-l-4',
         BORDER_TONE[tone],
+        GRADIENT_TONE[tone],
         className,
       )}
-      style={{
-        backgroundImage:
-          'radial-gradient(circle at 100% 0%, rgb(37 99 235 / 0.04) 0%, transparent 60%)',
-      }}
     >
       {Icon ? (
         <Icon
