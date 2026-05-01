@@ -17,7 +17,7 @@
 - [x] **Phase 5: M2.3 Khai báo & Nộp Đề án (HERO)** - Multi-step form 6 bước + autosave + sao chép đề án cũ + đề án 2 năm + xuất PDF chuẩn công văn (completed 2026-04-30)
 - [x] **Phase 6: M2.4 Tiếp nhận & Kiểm tra hồ sơ** - BQL tiếp nhận + drag-drop phân công + checklist kiểm tra + trả bổ sung + chấm điểm sơ bộ với weighted scoring (completed 2026-04-30)
 - [x] **Phase 7: M3 Thẩm định & Phê duyệt (HERO)** - Hội đồng thẩm định + side-by-side scoring + COI checkbox + tổng hợp real-time + tờ trình PDF + quyết định phê duyệt (completed 2026-05-01)
-- [ ] **Phase 8: M4 Hợp đồng, Triển khai & Điều chỉnh** - Sinh HĐ auto số + cảnh báo 60 ngày + kế hoạch triển khai + cảnh báo thương vụ 30 ngày + điều chỉnh đề án Điều 13 NĐ 28 với side-by-side diff
+- [x] **Phase 8: M4 Hợp đồng, Triển khai & Điều chỉnh** - Sinh HĐ auto số + cảnh báo 60 ngày + kế hoạch triển khai + cảnh báo thương vụ 30 ngày + điều chỉnh đề án Điều 13 NĐ 28 với side-by-side diff (completed 2026-05-01)
 - [ ] **Phase 9: M5 Báo cáo, Nghiệm thu, Tài chính** - Báo cáo kết quả + biên bản nghiệm thu PDF + thanh lý hợp đồng + tạm ứng/thanh toán/quyết toán
 - [ ] **Phase 10: M6 Dashboard & Cảnh báo (HERO Lãnh đạo)** - Overview cards + 4 widget SLA + drill-down 3 click + Recharts + thống kê + inbox thông báo + xuất Excel/PDF
 - [ ] **Phase 11: M7 Polish & Demo Prep** - Mock data 10-15 records/loại + tên đơn vị thật + validator cross-entity + console hygiene + animation + role-switch Cmd+K + demo dry-run
@@ -212,7 +212,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 5. M2.3 Khai báo & Nộp Đề án (HERO) | 3/3 | Complete    | 2026-04-30 |
 | 6. M2.4 Tiếp nhận & Kiểm tra hồ sơ | 1/1 | Complete    | 2026-04-30 |
 | 7. M3 Thẩm định & Phê duyệt (HERO) | 2/2 | Complete    | 2026-05-01 |
-| 8. M4 Hợp đồng, Triển khai & Điều chỉnh | 0/TBD | Not started | - |
+| 8. M4 Hợp đồng, Triển khai & Điều chỉnh | 1/1 | Complete    | 2026-05-01 |
 | 9. M5 Báo cáo, Nghiệm thu, Tài chính | 0/TBD | Not started | - |
 | 10. M6 Dashboard & Cảnh báo (HERO Lãnh đạo) | 0/TBD | Not started | - |
 | 11. M7 Polish & Demo Prep | 0/TBD | Not started | - |
