@@ -10,9 +10,9 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   '/phe-duyet': 'Phê duyệt',
   '/hop-dong': 'Hợp đồng',
   '/trien-khai': 'Triển khai',
-  '/bao-cao': 'Báo cáo kết quả',
-  '/nghiem-thu': 'Nghiệm thu',
-  '/tai-chinh': 'Tài chính',
+  '/bao-cao': 'Báo cáo chờ duyệt',
+  '/nghiem-thu': 'Nghiệm thu chờ xử lý',
+  '/tai-chinh': 'Tạm ứng & Thanh toán',
   '/thong-bao': 'Thông báo',
   '/danh-muc': 'Danh mục',
   '/danh-muc/loai-de-an': 'Loại đề án',
@@ -31,10 +31,11 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   '/nhat-ky': 'Nhật ký truy cập',
   '/de-an/new': 'Tạo đề án mới',
   '/chuong-trinh/new': 'Tạo chu kỳ mới',
-  '/kiem-tra': 'Kiểm tra hồ sơ',
+  '/kiem-tra': 'Kiểm tra & chấm điểm sơ bộ',
   '/cham-diem-so-bo': 'Chấm điểm sơ bộ',
   '/phan-cong': 'Phân công',
   '/dieu-chinh': 'Điều chỉnh đề án',
+  '/viec-can-lam': 'Việc cần làm',
 };
 
 export function buildBreadcrumb(pathname: string): Array<{ href: string; label: string }> {

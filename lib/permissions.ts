@@ -54,19 +54,43 @@ const MATRIX: Record<Resource, Partial<Record<Action, Role[]>>> = {
     ],
   },
   'chuong-trinh': {
-    read: [ROLES.ADMIN, ROLES.BANQL, ROLES.DONVI, ROLES.HOIDONG, ROLES.LANHDAO],
+    read: [
+      ROLES.ADMIN,
+      ROLES.BANQL,
+      ROLES.CHUYENVIEN,
+      ROLES.DONVI,
+      ROLES.HOIDONG,
+      ROLES.TAICHINH,
+      ROLES.LANHDAO,
+    ],
     create: [ROLES.BANQL],
     update: [ROLES.BANQL],
     approve: [ROLES.LANHDAO],
   },
   'don-vi-chu-tri': {
-    read: [ROLES.ADMIN, ROLES.BANQL, ROLES.DONVI, ROLES.LANHDAO],
+    read: [
+      ROLES.ADMIN,
+      ROLES.BANQL,
+      ROLES.CHUYENVIEN,
+      ROLES.HOIDONG,
+      ROLES.DONVI,
+      ROLES.TAICHINH,
+      ROLES.LANHDAO,
+    ],
     create: [ROLES.DONVI],
     update: [ROLES.DONVI],
     approve: [ROLES.BANQL],
   },
   'de-an': {
-    read: [ROLES.ADMIN, ROLES.BANQL, ROLES.CHUYENVIEN, ROLES.HOIDONG, ROLES.DONVI, ROLES.LANHDAO],
+    read: [
+      ROLES.ADMIN,
+      ROLES.BANQL,
+      ROLES.CHUYENVIEN,
+      ROLES.HOIDONG,
+      ROLES.DONVI,
+      ROLES.TAICHINH,
+      ROLES.LANHDAO,
+    ],
     create: [ROLES.DONVI],
     update: [ROLES.DONVI, ROLES.BANQL],
     submit: [ROLES.DONVI],
@@ -165,20 +189,24 @@ export function can(role: Role, resource: Resource, action: Action): boolean {
  */
 export const MATRIX_FOR_SEED: Readonly<typeof MATRIX> = MATRIX;
 
-export type MenuGroup = 'TONG_QUAN' | 'NGHIEP_VU' | 'BAO_CAO_AUDIT' | 'QUAN_TRI';
+export type MenuGroup =
+  | 'TONG_QUAN'
+  | 'VIEC_CUA_TOI'
+  | 'QUAN_LY'
+  | 'QUAN_TRI';
 
 export const MENU_GROUP_LABELS: Record<MenuGroup, string> = {
   TONG_QUAN: 'Tổng quan',
-  NGHIEP_VU: 'Nghiệp vụ',
-  BAO_CAO_AUDIT: 'Báo cáo & Audit',
-  QUAN_TRI: 'Quản trị',
+  VIEC_CUA_TOI: 'Việc của tôi',
+  QUAN_LY: 'Quản lý',
+  QUAN_TRI: 'Quản trị hệ thống',
 };
 
 /** Stable ordering for sidebar group rendering. */
 export const MENU_GROUP_ORDER: MenuGroup[] = [
   'TONG_QUAN',
-  'NGHIEP_VU',
-  'BAO_CAO_AUDIT',
+  'VIEC_CUA_TOI',
+  'QUAN_LY',
   'QUAN_TRI',
 ];
 
@@ -196,7 +224,7 @@ export type MenuItem = {
 };
 
 const ALL_MENU_ITEMS: MenuItem[] = [
-  // Tổng quan
+  // ===== Tổng quan =====
   {
     href: '/dashboard',
     label: 'Trang chủ',
@@ -214,93 +242,41 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     group: 'TONG_QUAN',
   },
 
-  // Nghiệp vụ
-  {
-    href: '/chuong-trinh',
-    label: 'Chu kỳ chương trình',
-    icon: 'calendar-range',
-    resource: 'chuong-trinh',
-    section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
-  },
-  {
-    href: '/don-vi-cua-toi',
-    label: 'Hồ sơ tổ chức của tôi',
-    icon: 'building-2',
-    resource: 'don-vi-chu-tri',
-    section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
-    roleOnly: [ROLES.DONVI],
-  },
-  {
-    href: '/don-vi-chu-tri',
-    label: 'Đơn vị chủ trì',
-    icon: 'building-2',
-    resource: 'don-vi-chu-tri',
-    section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
-    roleOnly: [ROLES.ADMIN, ROLES.BANQL, ROLES.LANHDAO],
-  },
-  {
-    href: '/de-an',
-    label: 'Đề án',
-    icon: 'file-text',
-    resource: 'de-an',
-    section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
-  },
+  // ===== Việc của tôi (action queues) =====
   {
     href: '/tiep-nhan',
     label: 'Tiếp nhận hồ sơ',
     icon: 'inbox',
     resource: 'tiep-nhan',
     section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
+    group: 'VIEC_CUA_TOI',
     roleOnly: [ROLES.ADMIN, ROLES.BANQL],
   },
   {
     href: '/phan-cong',
     label: 'Phân công kiểm tra',
-    icon: 'users',
+    icon: 'user-cog',
     resource: 'tiep-nhan',
     section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
+    group: 'VIEC_CUA_TOI',
     roleOnly: [ROLES.ADMIN, ROLES.BANQL],
   },
   {
     href: '/kiem-tra',
-    label: 'Kiểm tra hồ sơ',
-    icon: 'clipboard-check',
+    label: 'Kiểm tra & chấm điểm sơ bộ',
+    icon: 'clipboard-list',
     resource: 'tiep-nhan',
     section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
+    group: 'VIEC_CUA_TOI',
     roleOnly: [ROLES.CHUYENVIEN, ROLES.ADMIN],
-  },
-  {
-    href: '/cham-diem-so-bo',
-    label: 'Chấm điểm sơ bộ',
-    icon: 'scroll-text',
-    resource: 'tiep-nhan',
-    section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
-    roleOnly: [ROLES.CHUYENVIEN, ROLES.ADMIN],
-  },
-  {
-    href: '/hoi-dong',
-    label: 'Hội đồng thẩm định',
-    icon: 'users',
-    resource: 'tham-dinh',
-    section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
-    roleOnly: [ROLES.ADMIN, ROLES.BANQL, ROLES.LANHDAO],
   },
   {
     href: '/tham-dinh',
-    label: 'Thẩm định',
+    label: 'Phiếu thẩm định',
     icon: 'gavel',
     resource: 'tham-dinh',
     section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
+    group: 'VIEC_CUA_TOI',
     roleOnly: [ROLES.HOIDONG, ROLES.ADMIN],
   },
   {
@@ -309,7 +285,62 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'check-square',
     resource: 'phe-duyet',
     section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
+    group: 'VIEC_CUA_TOI',
+    roleOnly: [ROLES.LANHDAO, ROLES.BANQL, ROLES.ADMIN],
+  },
+  {
+    href: '/bao-cao',
+    label: 'Báo cáo chờ duyệt',
+    icon: 'file-check-2',
+    resource: 'bao-cao',
+    section: 'NGHIEP_VU',
+    group: 'VIEC_CUA_TOI',
+    roleOnly: [ROLES.BANQL, ROLES.ADMIN],
+  },
+  {
+    href: '/nghiem-thu',
+    label: 'Nghiệm thu chờ xử lý',
+    icon: 'package-check',
+    resource: 'nghiem-thu',
+    section: 'NGHIEP_VU',
+    group: 'VIEC_CUA_TOI',
+    roleOnly: [ROLES.BANQL, ROLES.ADMIN],
+  },
+  {
+    href: '/viec-can-lam',
+    label: 'Việc cần làm',
+    icon: 'list-todo',
+    resource: 'de-an',
+    section: 'NGHIEP_VU',
+    group: 'VIEC_CUA_TOI',
+    roleOnly: [ROLES.DONVI],
+  },
+  {
+    href: '/tai-chinh',
+    label: 'Tạm ứng & Thanh toán',
+    icon: 'wallet',
+    resource: 'tai-chinh',
+    section: 'NGHIEP_VU',
+    group: 'VIEC_CUA_TOI',
+    roleOnly: [ROLES.TAICHINH, ROLES.ADMIN, ROLES.BANQL, ROLES.LANHDAO],
+  },
+
+  // ===== Quản lý (entity centers / tra cứu) =====
+  {
+    href: '/chuong-trinh',
+    label: 'Chu kỳ chương trình',
+    icon: 'calendar-range',
+    resource: 'chuong-trinh',
+    section: 'NGHIEP_VU',
+    group: 'QUAN_LY',
+  },
+  {
+    href: '/de-an',
+    label: 'Đề án',
+    icon: 'file-text',
+    resource: 'de-an',
+    section: 'NGHIEP_VU',
+    group: 'QUAN_LY',
   },
   {
     href: '/hop-dong',
@@ -317,52 +348,45 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     icon: 'file-signature',
     resource: 'hop-dong',
     section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
+    group: 'QUAN_LY',
   },
   {
-    href: '/trien-khai',
-    label: 'Triển khai',
-    icon: 'play-circle',
-    resource: 'trien-khai',
+    href: '/don-vi-chu-tri',
+    label: 'Đơn vị chủ trì',
+    icon: 'building-2',
+    resource: 'don-vi-chu-tri',
     section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
+    group: 'QUAN_LY',
+    roleOnly: [ROLES.ADMIN, ROLES.BANQL, ROLES.LANHDAO],
   },
   {
-    href: '/tai-chinh',
-    label: 'Tài chính',
-    icon: 'wallet',
-    resource: 'tai-chinh',
+    href: '/don-vi-cua-toi',
+    label: 'Hồ sơ tổ chức của tôi',
+    icon: 'building-2',
+    resource: 'don-vi-chu-tri',
     section: 'NGHIEP_VU',
-    group: 'NGHIEP_VU',
+    group: 'QUAN_LY',
+    roleOnly: [ROLES.DONVI],
+  },
+  {
+    href: '/hoi-dong',
+    label: 'Hội đồng thẩm định',
+    icon: 'users',
+    resource: 'tham-dinh',
+    section: 'NGHIEP_VU',
+    group: 'QUAN_LY',
+    roleOnly: [ROLES.ADMIN, ROLES.BANQL, ROLES.LANHDAO, ROLES.HOIDONG],
   },
 
-  // Báo cáo & Audit
-  {
-    href: '/bao-cao',
-    label: 'Báo cáo kết quả',
-    icon: 'file-bar-chart',
-    resource: 'bao-cao',
-    section: 'NGHIEP_VU',
-    group: 'BAO_CAO_AUDIT',
-  },
-  {
-    href: '/nghiem-thu',
-    label: 'Nghiệm thu',
-    icon: 'clipboard-check',
-    resource: 'nghiem-thu',
-    section: 'NGHIEP_VU',
-    group: 'BAO_CAO_AUDIT',
-  },
+  // ===== Quản trị hệ thống =====
   {
     href: '/nhat-ky',
     label: 'Nhật ký truy cập',
     icon: 'history',
     resource: 'audit-log',
     section: 'QUAN_TRI',
-    group: 'BAO_CAO_AUDIT',
+    group: 'QUAN_TRI',
   },
-
-  // Quản trị
   {
     href: '/danh-muc',
     label: 'Danh mục',
@@ -398,11 +422,13 @@ const ALL_MENU_ITEMS: MenuItem[] = [
 ];
 
 export function getMenuItems(role: Role): MenuItem[] {
-  // Admin has full access — see every menu item including role-specific ones.
-  if (role === ROLES.ADMIN) return ALL_MENU_ITEMS;
+  // roleOnly luôn được tôn trọng (kể cả admin) — vì có items mang context cá nhân
+  // (vd "Hồ sơ tổ chức của tôi" cần organizationId mà admin không có).
+  // Admin chỉ bypass resource:read check để god-mode mọi resource thường.
   return ALL_MENU_ITEMS.filter((item) => {
-    if (!can(role, item.resource, 'read')) return false;
     if (item.roleOnly && !item.roleOnly.includes(role)) return false;
+    if (role === ROLES.ADMIN) return true;
+    if (!can(role, item.resource, 'read')) return false;
     return true;
   });
 }
@@ -410,7 +436,7 @@ export function getMenuItems(role: Role): MenuItem[] {
 export function defaultLandingPath(role: Role): string {
   if (role === ROLES.ADMIN) return '/dashboard';
   if (role === ROLES.BANQL) return '/dashboard';
-  if (role === ROLES.CHUYENVIEN) return '/tiep-nhan';
+  if (role === ROLES.CHUYENVIEN) return '/kiem-tra';
   if (role === ROLES.HOIDONG) return '/tham-dinh';
   if (role === ROLES.DONVI) return '/de-an';
   if (role === ROLES.TAICHINH) return '/tai-chinh';

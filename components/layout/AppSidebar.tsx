@@ -40,8 +40,8 @@ export function AppSidebar({ user }: Props) {
     },
     {
       TONG_QUAN: [],
-      NGHIEP_VU: [],
-      BAO_CAO_AUDIT: [],
+      VIEC_CUA_TOI: [],
+      QUAN_LY: [],
       QUAN_TRI: [],
     },
   );

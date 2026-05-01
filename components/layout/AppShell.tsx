@@ -22,11 +22,11 @@ export function AppShell({ user, children }: Props) {
   return (
     <SidebarProvider>
       <AppSidebar user={user} />
-      <SidebarInset className="gradient-mesh-bg">
+      <SidebarInset className="gradient-mesh-bg min-w-0">
         <AppTopbar user={user} />
         <main
           id="main-content"
-          className="flex-1 overflow-y-auto p-4 md:p-6"
+          className="min-w-0 flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6"
         >
           {children}
         </main>

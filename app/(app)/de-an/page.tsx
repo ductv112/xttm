@@ -1,25 +1,24 @@
-// /de-an — Cổng tiếp nhận đề án (PROJ-01, PROJ-03, PROJ-12).
-// RSC: auth check + role gate + active cycle + orgProfile lookup + projects list.
-//
-// Audience: tất cả role có thể xem (DONVI / BANQL / LANHDAO etc), nhưng:
-//   - DONVI: thấy SubmissionGate (3 states) + danh sách đề án của đơn vị mình
-//   - BANQL/LANHDAO/HOIDONG/CHUYENVIEN: redirect tới list cấp hệ thống (Phase 6)
-//                                       — POC: hiển thị empty state với hint
-//
-// Phase 5 scope chỉ implement DONVI flow đầy đủ; non-DONVI fallback empty state.
+// /de-an — Cổng quản lý đề án.
+// 2 nhánh hiển thị:
+//   - DONVI: SubmissionGate + danh sách đề án của đơn vị (full create/edit flow)
+//   - Non-DONVI (ADMIN/BANQL/LANHDAO/CHUYENVIEN/HOIDONG/TAICHINH): master list
+//     read-only theo phạm vi role với search/filter/sort/export Excel.
 
 import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
 import { defaultLandingPath } from '@/lib/permissions';
 import { canFromDB } from '@/lib/permissions-db';
-import { ROLES, type Role } from '@/lib/constants';
+import { ROLES, ROLE_LABELS, type Role } from '@/lib/constants';
 import { prisma } from '@/lib/prisma';
 import { EmptyState } from '@/components/shared/EmptyState';
 
 import { SubmissionGate } from './_components/SubmissionGate';
 import { MyProjectsList } from './_components/MyProjectsList';
+import { MasterTable } from './_components/MasterTable';
+import { MasterFilterBar } from './_components/MasterFilterBar';
 import { listMyProjects } from './_actions/list-mine';
+import { listProjectsForRole, listAvailableYears } from './_actions/list-all';
 
 export const metadata = { title: 'Đề án' };
 
@@ -50,7 +49,54 @@ async function loadProfileStatus(orgId: string) {
     | undefined;
 }
 
-export default async function DeAnHomePage() {
+type SearchParams = Promise<{
+  q?: string;
+  status?: string;
+  year?: string;
+  kind?: string;
+  mine?: string;
+}>;
+
+const ROLE_HEADERS: Partial<
+  Record<Role, { title: string; subtitle: string }>
+> = {
+  ADMIN: {
+    title: 'Đề án (Quản trị)',
+    subtitle:
+      'Chế độ quản trị toàn quyền: tra cứu mọi đề án trên hệ thống, drill-down đầy đủ vòng đời đăng ký → thẩm định → triển khai → nghiệm thu.',
+  },
+  BANQL: {
+    title: 'Đề án — Toàn hệ thống',
+    subtitle:
+      'Tra cứu toàn bộ đề án thuộc các chu kỳ chương trình do Ban quản lý điều phối. Click vào đề án để xem chi tiết và xử lý theo từng giai đoạn.',
+  },
+  LANHDAO: {
+    title: 'Đề án — Tổng quan',
+    subtitle:
+      'Giám sát tổng thể danh mục đề án Xúc tiến thương mại quốc gia. Phục vụ quyết định cấp cao và báo cáo điều hành.',
+  },
+  CHUYENVIEN: {
+    title: 'Đề án',
+    subtitle:
+      'Tra cứu đề án trong hệ thống. Bật "Chỉ của tôi" để lọc các đề án được giao cho bạn kiểm tra hành chính.',
+  },
+  HOIDONG: {
+    title: 'Đề án — Phạm vi thẩm định',
+    subtitle:
+      'Đề án đã hoàn thiện hồ sơ và đi vào giai đoạn thẩm định, phê duyệt, triển khai, nghiệm thu. Phục vụ tham khảo trong quá trình chấm điểm.',
+  },
+  TAICHINH: {
+    title: 'Đề án — Phạm vi tài chính',
+    subtitle:
+      'Đề án đã được phê duyệt và đang triển khai/hoàn thành. Tra cứu thông tin để xử lý phiếu tạm ứng, thanh toán, quyết toán.',
+  },
+};
+
+export default async function DeAnHomePage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const session = await auth();
   if (!session?.user) {
     redirect('/login');
@@ -62,56 +108,55 @@ export default async function DeAnHomePage() {
     redirect(defaultLandingPath(role));
   }
 
-  // ADMIN bypass: full data access — show all projects across ALL orgs
-  if (role === ROLES.ADMIN) {
-    const projects = await listMyProjects();
-    return (
-      <main className="container mx-auto py-8 max-w-7xl">
-        <header className="mb-6">
-          <h1 className="text-2xl font-semibold text-slate-900">
-            Đề án (Quản trị)
-          </h1>
-          <p className="mt-1 text-sm text-slate-600">
-            Chế độ quản trị: hiển thị toàn bộ đề án trong hệ thống, bao gồm tất
-            cả đơn vị chủ trì.
-          </p>
-        </header>
+  // Non-DONVI roles: master list view với role-scoped filtering + search + export
+  if (role !== ROLES.DONVI) {
+    const sp = await searchParams;
+    const filters = {
+      search: sp.q?.trim() || undefined,
+      status: sp.status && sp.status !== 'ALL' ? sp.status : undefined,
+      year:
+        sp.year && sp.year !== 'ALL'
+          ? Number.parseInt(sp.year, 10) || undefined
+          : undefined,
+      kind: sp.kind && sp.kind !== 'ALL' ? sp.kind : undefined,
+      mineOnly: sp.mine === '1',
+    };
+    const [rows, years] = await Promise.all([
+      listProjectsForRole(filters),
+      listAvailableYears(),
+    ]);
 
-        <section aria-labelledby="all-projects-heading">
-          <div className="mb-4 flex items-baseline justify-between">
-            <h2
-              id="all-projects-heading"
-              className="text-lg font-semibold text-slate-900"
-            >
-              Tất cả đề án
-            </h2>
-            <p className="text-sm text-slate-500">
-              {projects.length > 0
-                ? `${projects.length} đề án`
-                : 'Chưa có đề án nào'}
+    const header = ROLE_HEADERS[role] ?? {
+      title: 'Đề án',
+      subtitle: `Danh sách đề án theo phạm vi vai trò ${
+        ROLE_LABELS[role] ?? role
+      }.`,
+    };
+
+    return (
+      <main className="container mx-auto max-w-7xl py-8">
+        <header className="mb-6 flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-semibold text-slate-900">
+              {header.title}
+            </h1>
+            <p className="mt-1 max-w-3xl text-sm text-slate-600">
+              {header.subtitle}
             </p>
           </div>
-          <MyProjectsList projects={projects} />
-        </section>
-      </main>
-    );
-  }
-
-  // Non-DONVI roles: Phase 5 scope chỉ DONVI flow → fallback friendly screen
-  if (role !== ROLES.DONVI) {
-    return (
-      <main className="container mx-auto py-8 max-w-7xl">
-        <header className="mb-6">
-          <h1 className="text-2xl font-semibold text-slate-900">Đề án</h1>
-          <p className="mt-1 text-sm text-slate-600">
-            Danh sách đề án theo phạm vi vai trò của bạn.
-          </p>
+          <div className="flex flex-shrink-0 gap-3">
+            <StatPill label="Tổng số" value={rows.length} tone="blue" />
+          </div>
         </header>
-        <EmptyState
-          icon="inbox"
-          heading="Phạm vi đề án theo vai trò chưa được cấu hình"
-          description="Phân hệ tiếp nhận, kiểm tra, thẩm định đề án dành cho Ban quản lý / Chuyên viên / Hội đồng sẽ được kích hoạt trong các phase tiếp theo."
-        />
+
+        <div className="mb-4">
+          <MasterFilterBar
+            years={years}
+            showMineOnly={role === ROLES.CHUYENVIEN}
+          />
+        </div>
+
+        <MasterTable rows={rows} />
       </main>
     );
   }
@@ -173,5 +218,32 @@ export default async function DeAnHomePage() {
         <MyProjectsList projects={projects} />
       </section>
     </main>
+  );
+}
+
+function StatPill({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: number;
+  tone: 'blue' | 'amber' | 'green' | 'red';
+}) {
+  const map: Record<typeof tone, string> = {
+    blue: 'border-blue-200 bg-blue-50 text-blue-700',
+    amber: 'border-amber-200 bg-amber-50 text-amber-700',
+    green: 'border-emerald-200 bg-emerald-50 text-emerald-700',
+    red: 'border-red-200 bg-red-50 text-red-700',
+  };
+  return (
+    <div
+      className={`min-w-[120px] rounded-md border px-4 py-2 text-center ${map[tone]}`}
+    >
+      <div className="text-2xl font-semibold tabular-nums">{value}</div>
+      <div className="mt-0.5 text-xs font-medium uppercase tracking-wide">
+        {label}
+      </div>
+    </div>
   );
 }
