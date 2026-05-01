@@ -16,7 +16,9 @@ type Props = {
 
 export function AppTopbar({ user }: Props) {
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-blue-100/70 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 px-4 md:px-6">
+    <header
+      className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b-2 border-primary/20 bg-gradient-to-r from-white via-blue-50/30 to-white backdrop-blur supports-[backdrop-filter]:from-white/85 supports-[backdrop-filter]:via-blue-50/40 supports-[backdrop-filter]:to-white/85 px-4 md:px-6 shadow-[0_1px_0_0_rgb(30_58_138_/_0.04)]"
+    >
       <div className="flex items-center gap-2 min-w-0">
         <SidebarTrigger
           className="md:hidden"
