@@ -10,6 +10,14 @@ import {
   EvaluationReport,
   type EvaluationReportProps,
 } from './templates/EvaluationReport';
+import {
+  Submission,
+  type SubmissionPdfProps,
+} from './templates/Submission';
+import {
+  ApprovalDecision,
+  type ApprovalDecisionPdfProps,
+} from './templates/ApprovalDecision';
 import { registerPdfFonts } from './fonts';
 
 /**
@@ -59,6 +67,36 @@ export async function renderEvaluationReportPdf(
   registerPdfFonts();
   const element = createElement(
     EvaluationReport as unknown as React.ComponentType<EvaluationReportProps>,
+    props,
+  ) as Parameters<typeof renderToBuffer>[0];
+  const buffer = await renderToBuffer(element);
+  return buffer;
+}
+
+/**
+ * Render the Submission (Tờ trình) template — Phase 7-02 PDF.
+ */
+export async function renderSubmissionPdf(
+  props: SubmissionPdfProps,
+): Promise<Buffer> {
+  registerPdfFonts();
+  const element = createElement(
+    Submission as unknown as React.ComponentType<SubmissionPdfProps>,
+    props,
+  ) as Parameters<typeof renderToBuffer>[0];
+  const buffer = await renderToBuffer(element);
+  return buffer;
+}
+
+/**
+ * Render the ApprovalDecision (Quyết định phê duyệt) template — Phase 7-02 PDF.
+ */
+export async function renderApprovalDecisionPdf(
+  props: ApprovalDecisionPdfProps,
+): Promise<Buffer> {
+  registerPdfFonts();
+  const element = createElement(
+    ApprovalDecision as unknown as React.ComponentType<ApprovalDecisionPdfProps>,
     props,
   ) as Parameters<typeof renderToBuffer>[0];
   const buffer = await renderToBuffer(element);
