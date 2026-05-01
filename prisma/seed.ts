@@ -12,6 +12,8 @@ import { seedCouncils } from './seed/councils';
 import { seedContractsAndAmendments } from './seed/contracts-and-amendments';
 import { seedReportsAcceptanceFinance } from './seed/reports-acceptance-finance';
 import { seedInboxNotifications } from './seed/inbox-notifications';
+import { seedExtraUsers } from './seed/extra-users';
+import { seedDemoBulk } from './seed/demo-bulk';
 
 const prisma = new PrismaClient();
 
@@ -23,6 +25,7 @@ async function main() {
   // permissions last (no FK dep on User/Organization).
   await seedOrganizations(prisma);
   await seedUsers(prisma);
+  await seedExtraUsers(prisma);
   await seedCatalogs(prisma);
   await seedPermissions(prisma);
   await seedSystemConfig(prisma);
@@ -55,6 +58,9 @@ async function main() {
 
   // Phase 10 (M6) data: inbox notifications cho mock users
   await seedInboxNotifications(prisma);
+
+  // Demo enrichment (post-launch) — bulk dữ liệu để demo dashboard/charts đầy đủ
+  await seedDemoBulk(prisma);
 
   // Smoke verify counts
   const userCount = await prisma.user.count();
@@ -150,8 +156,8 @@ async function main() {
   if ((statusCounts.DRAFT ?? 0) < 2)
     throw new Error('Expected ≥2 DRAFT OrganizationProfile');
 
-  if (projectCount < 11)
-    throw new Error(`Expected ≥11 Project, got ${projectCount}`);
+  if (projectCount < 25)
+    throw new Error(`Expected ≥25 Project, got ${projectCount}`);
   const projectStatusCounts = Object.fromEntries(
     projectsByStatus.map((r) => [r.status, r._count._all] as const),
   );
