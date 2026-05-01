@@ -17,7 +17,7 @@
 import { prisma } from './prisma';
 import { can as canStatic } from './permissions';
 import type { Resource, Action } from './permissions';
-import type { Role } from './constants';
+import { ROLES, type Role } from './constants';
 
 type Cache = Map<string, Set<string>>; // role code -> Set of "resource:action"
 
@@ -84,6 +84,9 @@ export async function canFromDB(
   resource: Resource,
   action: Action,
 ): Promise<boolean> {
+  // Admin has full access to all functions (god-mode for system administrator).
+  // Skip DB check entirely so admin actions never blocked by missing grants.
+  if (roleCode === ROLES.ADMIN) return true;
   try {
     const grants = await loadPermissionsForRole(roleCode);
     if (grants.size > 0) {

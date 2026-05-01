@@ -76,19 +76,41 @@ export async function seedPermissions(prisma: PrismaClient): Promise<void> {
     }
   }
 
-  // 3. Seed RolePermission grants from MATRIX
+  // 3. Seed RolePermission grants from MATRIX (other roles) + ADMIN gets ALL.
   // Strategy: for each (resource, action) cell, set granted=true cho roles có
   // trong MATRIX. KHÔNG xóa rows không match — admin có thể đã chỉnh tay
   // rồi re-run seed (idempotent giữ overrides). Nếu cần reset hoàn toàn,
   // dùng seedPermissionsFromMatrix() server action với force=true.
+  // ADMIN special case: grant ALL 144 permissions (god-mode for system administrator).
+  const adminRole = await prisma.role.findUnique({ where: { code: ROLES.ADMIN } });
   for (const resource of allResources) {
     const resourceMatrix = MATRIX_FOR_SEED[resource];
     for (const action of ALL_ACTIONS) {
-      const grantedRoles = resourceMatrix?.[action] ?? [];
       const permission = await prisma.permission.findUnique({
         where: { code: `${resource}:${action}` },
       });
       if (!permission) continue;
+      // ADMIN: grant every permission unconditionally
+      if (adminRole) {
+        await prisma.rolePermission.upsert({
+          where: {
+            roleId_permissionId: {
+              roleId: adminRole.id,
+              permissionId: permission.id,
+            },
+          },
+          update: { granted: true },
+          create: {
+            roleId: adminRole.id,
+            permissionId: permission.id,
+            granted: true,
+          },
+        });
+      }
+      // Other roles: grant per MATRIX entries
+      const grantedRoles = (resourceMatrix?.[action] ?? []).filter(
+        (r) => r !== ROLES.ADMIN,
+      );
       for (const roleCode of grantedRoles) {
         const role = await prisma.role.findUnique({
           where: { code: roleCode },

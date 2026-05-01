@@ -153,6 +153,8 @@ const MATRIX: Record<Resource, Partial<Record<Action, Role[]>>> = {
 };
 
 export function can(role: Role, resource: Resource, action: Action): boolean {
+  // Admin has full access to all functions (god-mode for system administrator).
+  if (role === ROLES.ADMIN) return true;
   return MATRIX[resource]?.[action]?.includes(role) ?? false;
 }
 
@@ -396,6 +398,8 @@ const ALL_MENU_ITEMS: MenuItem[] = [
 ];
 
 export function getMenuItems(role: Role): MenuItem[] {
+  // Admin has full access — see every menu item including role-specific ones.
+  if (role === ROLES.ADMIN) return ALL_MENU_ITEMS;
   return ALL_MENU_ITEMS.filter((item) => {
     if (!can(role, item.resource, 'read')) return false;
     if (item.roleOnly && !item.roleOnly.includes(role)) return false;
