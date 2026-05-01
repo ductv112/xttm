@@ -39,11 +39,13 @@ export async function confirmConsulateContact(
   if (!project) return { ok: false, error: 'Không tìm thấy đề án' };
 
   const role = session.user.role as Role;
+  // ADMIN bypass: full data access — admin can confirm consulate contact for any project
+  const isAdmin = role === 'ADMIN';
   const isOwn =
     role === 'DONVI' &&
     project.organizationId === session.user.organizationId;
   const canUpdate = await canFromDB(role, 'trien-khai', 'update');
-  if (!isOwn && !canUpdate) {
+  if (!isAdmin && !isOwn && !canUpdate) {
     return { ok: false, error: 'Không có quyền cập nhật' };
   }
 

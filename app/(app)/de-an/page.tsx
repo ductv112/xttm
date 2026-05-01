@@ -62,6 +62,41 @@ export default async function DeAnHomePage() {
     redirect(defaultLandingPath(role));
   }
 
+  // ADMIN bypass: full data access — show all projects across ALL orgs
+  if (role === ROLES.ADMIN) {
+    const projects = await listMyProjects();
+    return (
+      <main className="container mx-auto py-8 max-w-7xl">
+        <header className="mb-6">
+          <h1 className="text-2xl font-semibold text-slate-900">
+            Đề án (Quản trị)
+          </h1>
+          <p className="mt-1 text-sm text-slate-600">
+            Chế độ quản trị: hiển thị toàn bộ đề án trong hệ thống, bao gồm tất
+            cả đơn vị chủ trì.
+          </p>
+        </header>
+
+        <section aria-labelledby="all-projects-heading">
+          <div className="mb-4 flex items-baseline justify-between">
+            <h2
+              id="all-projects-heading"
+              className="text-lg font-semibold text-slate-900"
+            >
+              Tất cả đề án
+            </h2>
+            <p className="text-sm text-slate-500">
+              {projects.length > 0
+                ? `${projects.length} đề án`
+                : 'Chưa có đề án nào'}
+            </p>
+          </div>
+          <MyProjectsList projects={projects} />
+        </section>
+      </main>
+    );
+  }
+
   // Non-DONVI roles: Phase 5 scope chỉ DONVI flow → fallback friendly screen
   if (role !== ROLES.DONVI) {
     return (

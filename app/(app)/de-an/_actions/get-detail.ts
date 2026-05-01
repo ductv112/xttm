@@ -113,11 +113,13 @@ export async function getProjectDetail(
   if (!project || project.deletedAt) return null;
 
   // Authorization
+  // ADMIN bypass: full data access — admin can view any project
+  const isAdmin = session.user.role === 'ADMIN';
   const isOwnOrg =
     session.user.organizationId &&
     session.user.organizationId === project.organizationId;
   const canRead = await canFromDB(session.user.role, 'de-an', 'read');
-  if (!isOwnOrg && !canRead) {
+  if (!isAdmin && !isOwnOrg && !canRead) {
     return null; // do not leak existence
   }
 

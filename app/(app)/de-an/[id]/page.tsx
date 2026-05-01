@@ -209,9 +209,12 @@ export default async function ProjectDetailPage({
     notFound();
   }
 
+  // ADMIN bypass: full data access — admin treated as owner for view purposes
+  const isAdmin = session.user.role === 'ADMIN';
   const isOwner =
-    session.user.organizationId !== null &&
-    session.user.organizationId === project.organizationId;
+    isAdmin ||
+    (session.user.organizationId !== null &&
+      session.user.organizationId === project.organizationId);
 
   const role = session.user.role as Role;
   const [

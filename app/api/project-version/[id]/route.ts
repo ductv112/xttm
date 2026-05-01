@@ -39,11 +39,13 @@ export async function GET(
     return NextResponse.json({ error: 'not-found' }, { status: 404 });
   }
 
+  // ADMIN bypass: full data access — admin can view any project version snapshot
+  const isAdmin = session.user.role === 'ADMIN';
   const isOwnOrg =
     session.user.organizationId &&
     session.user.organizationId === version.project.organizationId;
   const canRead = await canFromDB(session.user.role, 'de-an', 'read');
-  if (!isOwnOrg && !canRead) {
+  if (!isAdmin && !isOwnOrg && !canRead) {
     return NextResponse.json({ error: 'forbidden' }, { status: 403 });
   }
 

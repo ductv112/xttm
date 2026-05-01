@@ -2,10 +2,12 @@
 
 // listMyProjects — return projects for the logged-in DONVI user's organization.
 // Cross-tenant guard (T-05-01-02): always filter by session.user.organizationId.
+// ADMIN bypass: full data access — returns ALL projects across all orgs.
 // Filters: year + status + kind (all optional).
 
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { ROLES } from '@/lib/constants';
 import type { ProjectStatus } from '@/lib/workflows/project';
 
 export type ListMyProjectsFilters = {
@@ -38,21 +40,24 @@ export async function listMyProjects(
   if (!session?.user) {
     throw new Error('Yêu cầu đăng nhập');
   }
+
+  // ADMIN bypass: full data access — list projects across ALL orgs
+  const isAdmin = session.user.role === ROLES.ADMIN;
   const orgId = session.user.organizationId;
-  if (!orgId) {
+  if (!isAdmin && !orgId) {
     throw new Error('Tài khoản của bạn chưa được gán đơn vị');
   }
 
   const where: {
-    organizationId: string;
+    organizationId?: string;
     deletedAt: null;
     year?: number;
     status?: string;
     kind?: string;
   } = {
-    organizationId: orgId,
     deletedAt: null,
   };
+  if (!isAdmin && orgId) where.organizationId = orgId;
   if (filters.year !== undefined) where.year = filters.year;
   if (filters.status) where.status = filters.status as string;
   if (filters.kind) where.kind = filters.kind;

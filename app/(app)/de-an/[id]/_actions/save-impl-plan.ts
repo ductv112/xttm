@@ -47,11 +47,13 @@ export async function saveImplementationPlan(
   if (!project) return { ok: false, error: 'Không tìm thấy đề án' };
 
   // RBAC: DONVI must own the project; BANQL/CHUYENVIEN need 'trien-khai:update'
+  // ADMIN bypass: full data access — admin can update any project's impl plan
+  const isAdmin = role === 'ADMIN';
   const isOwn =
     role === 'DONVI' &&
     project.organizationId === session.user.organizationId;
   const canUpdateAny = await canFromDB(role, 'trien-khai', 'update');
-  if (!isOwn && !canUpdateAny) {
+  if (!isAdmin && !isOwn && !canUpdateAny) {
     return {
       ok: false,
       error: 'Bạn không có quyền chỉnh sửa kế hoạch triển khai',
@@ -113,11 +115,13 @@ export async function updateMilestoneProgress(
   if (!project) return { ok: false, error: 'Không tìm thấy đề án' };
 
   const role = session.user.role as Role;
+  // ADMIN bypass: full data access — admin can update progress on any project
+  const isAdmin = role === 'ADMIN';
   const isOwn =
     role === 'DONVI' &&
     project.organizationId === session.user.organizationId;
   const canUpdateAny = await canFromDB(role, 'trien-khai', 'update');
-  if (!isOwn && !canUpdateAny) {
+  if (!isAdmin && !isOwn && !canUpdateAny) {
     return { ok: false, error: 'Không có quyền cập nhật tiến độ' };
   }
 

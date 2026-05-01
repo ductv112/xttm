@@ -10,6 +10,7 @@
 
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { ROLES } from '@/lib/constants';
 
 export type PreviousProjectItem = {
   id: string;
@@ -34,14 +35,17 @@ export async function listPreviousProjects(): Promise<PreviousProjectItem[]> {
   if (!session?.user) {
     throw new Error('Yêu cầu đăng nhập');
   }
+
+  // ADMIN bypass: full data access — list previous projects across ALL orgs
+  const isAdmin = session.user.role === ROLES.ADMIN;
   const orgId = session.user.organizationId;
-  if (!orgId) {
+  if (!isAdmin && !orgId) {
     throw new Error('Tài khoản của bạn chưa được gán đơn vị');
   }
 
   const rows = await prisma.project.findMany({
     where: {
-      organizationId: orgId,
+      ...(isAdmin ? {} : { organizationId: orgId! }),
       deletedAt: null,
       status: { in: [...COPY_ELIGIBLE_STATUSES] },
     },

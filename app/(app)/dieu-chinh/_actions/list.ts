@@ -122,13 +122,14 @@ export async function getAmendmentDetail(
   if (!a) return null;
 
   // RBAC scope
+  // ADMIN bypass: full data access — admin can view any amendment
   if (
     role === 'DONVI' &&
     a.project.organizationId !== session.user.organizationId
   ) {
     return null;
   }
-  const canRead = await canFromDB(role, 'de-an', 'read');
+  const canRead = role === 'ADMIN' || (await canFromDB(role, 'de-an', 'read'));
   if (!canRead) return null;
 
   const userIds = [a.requestedById, a.reviewedById].filter(
