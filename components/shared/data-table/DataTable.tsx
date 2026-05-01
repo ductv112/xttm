@@ -191,13 +191,13 @@ export function DataTable<TData>({
     <div className={cn('space-y-4', className)} data-slot="data-table">
       {toolbarSlot ? <DataTableToolbar>{toolbarSlot}</DataTableToolbar> : null}
 
-      <div className="rounded-md border border-slate-200 bg-white">
+      <div className="rounded-xl border border-slate-200 bg-white shadow-card overflow-hidden">
         <Table>
           <TableHeader>
             {headerGroups.map((headerGroup) => (
               <TableRow
                 key={headerGroup.id}
-                className="bg-slate-100 hover:bg-slate-100"
+                className="bg-slate-50 hover:bg-slate-50 border-b border-slate-200"
               >
                 {headerGroup.headers.map((header) => (
                   <SortableHeaderCell
@@ -351,12 +351,26 @@ function DataTableBodyRow<TData>({
   return (
     <TableRow
       data-state={selected ? 'selected' : undefined}
+      tabIndex={clickable ? 0 : undefined}
       className={cn(
-        'border-b border-slate-200',
-        clickable && 'cursor-pointer hover:bg-slate-50',
-        selected && 'bg-blue-50 hover:bg-blue-50'
+        'border-b border-slate-100 transition-colors',
+        'odd:bg-slate-50/40',
+        clickable &&
+          'cursor-pointer hover:bg-blue-50/50 focus-visible:bg-blue-50/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/40',
+        !clickable && 'hover:bg-blue-50/40',
+        selected && 'bg-blue-100/60 hover:bg-blue-100/60 odd:bg-blue-100/60'
       )}
       onClick={clickable ? () => onRowClick(row.original) : undefined}
+      onKeyDown={
+        clickable
+          ? (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onRowClick(row.original);
+              }
+            }
+          : undefined
+      }
     >
       {row.getVisibleCells().map((cell) => (
         <TableCell
