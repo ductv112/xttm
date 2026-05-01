@@ -36,7 +36,7 @@ function SheetOverlay({
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-black/50 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0",
+        "fixed inset-0 z-50 bg-slate-900/55 backdrop-blur-[2px] data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0",
         className
       )}
       {...props}
@@ -46,11 +46,15 @@ function SheetOverlay({
 
 type SheetSize = "sm" | "md" | "lg" | "xl"
 
+// Bumped widths post-POC for less main-content occlusion when forms are dense.
+// md: 480px (was 28rem/448) — comfy for 1-col forms
+// lg: 560px (was 32rem/512) — comfy for textarea + meta forms
+// xl: 720px (was 36rem; override 40rem) — comfy for 2-col forms with 6+ fields
 const SHEET_SIZE_CLASS: Record<SheetSize, string> = {
-  sm: "sm:max-w-sm",   // 24rem
-  md: "sm:max-w-md",   // 28rem
-  lg: "sm:max-w-lg",   // 32rem
-  xl: "sm:max-w-xl",   // 36rem; we override to 40rem below for forms
+  sm: "sm:max-w-sm",            // 24rem (auth, simple confirm)
+  md: "sm:max-w-[480px]",       // 480px
+  lg: "sm:max-w-[560px]",       // 560px
+  xl: "sm:max-w-[720px]",       // 720px
 }
 
 function SheetContent({
@@ -71,18 +75,16 @@ function SheetContent({
       <SheetPrimitive.Content
         data-slot="sheet-content"
         className={cn(
-          "fixed z-50 flex flex-col gap-4 bg-background shadow-lg transition ease-in-out data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:animate-in data-[state=open]:duration-500",
+          "fixed z-50 flex flex-col gap-4 bg-background shadow-2xl shadow-slate-900/20 transition ease-in-out data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:animate-in data-[state=open]:duration-500",
           side === "right" &&
             cn(
-              "inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
-              SHEET_SIZE_CLASS[size],
-              size === "xl" && "sm:max-w-[40rem]"
+              "inset-y-0 right-0 h-full w-3/4 border-l border-slate-200 data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
+              SHEET_SIZE_CLASS[size]
             ),
           side === "left" &&
             cn(
-              "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
-              SHEET_SIZE_CLASS[size],
-              size === "xl" && "sm:max-w-[40rem]"
+              "inset-y-0 left-0 h-full w-3/4 border-r border-slate-200 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
+              SHEET_SIZE_CLASS[size]
             ),
           side === "top" &&
             "inset-x-0 top-0 h-auto border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",

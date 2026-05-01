@@ -145,7 +145,7 @@ export function AmendmentForm({
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" size="xl" className="p-0">
+      <SheetContent side="right" size="xl" className="flex flex-col p-0">
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2 text-base">
             <Pencil className="h-5 w-5 text-primary" aria-hidden="true" />
@@ -213,7 +213,7 @@ export function AmendmentForm({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 items-start">
             <div>
               <Label htmlFor="oldValue">Giá trị hiện tại</Label>
               {oldValue.length > 100 ? (

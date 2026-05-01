@@ -328,7 +328,7 @@ function ContactDialog({
               {errors.name ? <p className="text-xs text-red-600">{errors.name}</p> : null}
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3 items-start">
               <div className="grid gap-1.5">
                 <Label htmlFor="contact-title">Chức danh / Học vị</Label>
                 <Input

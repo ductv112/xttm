@@ -240,7 +240,7 @@ export function InvitationComposer({ cycle }: InvitationComposerProps) {
       </div>
 
       <Sheet open={previewOpen} onOpenChange={setPreviewOpen}>
-        <SheetContent side="right" className="w-full sm:max-w-2xl">
+        <SheetContent side="right" size="xl">
           <SheetHeader>
             <SheetTitle>Xem trước thông báo</SheetTitle>
           </SheetHeader>

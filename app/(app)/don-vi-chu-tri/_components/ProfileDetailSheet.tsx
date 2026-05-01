@@ -88,7 +88,8 @@ export function ProfileDetailSheet({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
-        className="flex w-full flex-col gap-0 p-0 sm:max-w-2xl"
+        size="xl"
+        className="flex w-full flex-col gap-0 p-0"
       >
         <SheetHeader className="border-b border-slate-200 px-6 py-4">
           <div className="flex items-start justify-between gap-3">

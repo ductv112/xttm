@@ -163,7 +163,7 @@ ${previewHtml || '<p style="color:#94a3b8;font-style:italic">Chưa có nội dun
 
   return (
     <div className="space-y-5">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="form-grid">
         {/* Mã */}
         <FormField
           control={form.control}
@@ -215,6 +215,9 @@ ${previewHtml || '<p style="color:#94a3b8;font-style:italic">Chưa có nội dun
                   </SelectContent>
                 </Select>
               </FormControl>
+              <FormDescription>
+                Phân loại để lọc trong thư viện mẫu khi sinh văn bản.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -371,7 +374,7 @@ ${previewHtml || '<p style="color:#94a3b8;font-style:italic">Chưa có nội dun
       />
 
       {/* Display order + isActive */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="form-grid">
         <FormField
           control={form.control}
           name="displayOrder"
@@ -390,6 +393,9 @@ ${previewHtml || '<p style="color:#94a3b8;font-style:italic">Chưa có nội dun
                   }
                 />
               </FormControl>
+              <FormDescription>
+                Số nhỏ hơn xuất hiện trước trong thư viện mẫu văn bản.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -399,7 +405,7 @@ ${previewHtml || '<p style="color:#94a3b8;font-style:italic">Chưa có nội dun
           control={form.control}
           name="isActive"
           render={({ field }) => (
-            <FormItem className="flex flex-col gap-2">
+            <FormItem className="form-grid-skip">
               <FormLabel>Trạng thái</FormLabel>
               <FormControl>
                 <div className="flex items-center gap-3 rounded-md border border-slate-200 bg-white px-3 py-2">
@@ -413,6 +419,9 @@ ${previewHtml || '<p style="color:#94a3b8;font-style:italic">Chưa có nội dun
                   </span>
                 </div>
               </FormControl>
+              <FormDescription>
+                Tắt để ẩn mẫu khỏi danh sách chọn nhưng giữ lại bản lưu.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

@@ -81,7 +81,7 @@ export function ScoringCriterionForm({ form, currentItemId, mode }: Props) {
 
   return (
     <div className="space-y-5">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="form-grid">
         {/* Mã */}
         <FormField
           control={form.control}
@@ -252,7 +252,7 @@ export function ScoringCriterionForm({ form, currentItemId, mode }: Props) {
       />
 
       {/* Thứ tự hiển thị + Trạng thái */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="form-grid">
         <FormField
           control={form.control}
           name="displayOrder"
@@ -271,6 +271,9 @@ export function ScoringCriterionForm({ form, currentItemId, mode }: Props) {
                   }
                 />
               </FormControl>
+              <FormDescription>
+                Số nhỏ hơn xuất hiện trước trong bảng tiêu chí thẩm định.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -280,7 +283,7 @@ export function ScoringCriterionForm({ form, currentItemId, mode }: Props) {
           control={form.control}
           name="isActive"
           render={({ field }) => (
-            <FormItem className="flex flex-col gap-2">
+            <FormItem className="form-grid-skip">
               <FormLabel>Trạng thái</FormLabel>
               <FormControl>
                 <div className="flex items-center gap-3 rounded-md border border-slate-200 bg-white px-3 py-2">
@@ -294,6 +297,9 @@ export function ScoringCriterionForm({ form, currentItemId, mode }: Props) {
                   </span>
                 </div>
               </FormControl>
+              <FormDescription>
+                Tắt để ngừng dùng tiêu chí trong các phiên thẩm định mới.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

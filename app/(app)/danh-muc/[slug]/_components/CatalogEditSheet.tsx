@@ -41,7 +41,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import {
   getCatalogConfig,
   type CatalogKind,
@@ -135,10 +134,8 @@ export function CatalogEditSheet({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
-        className={cn(
-          'flex flex-col gap-0 p-0 !max-w-none sm:!max-w-none',
-          isWide ? 'w-full sm:w-[800px]' : 'w-full sm:w-[600px]',
-        )}
+        size={isWide ? 'xl' : 'lg'}
+        className="flex flex-col gap-0 p-0"
       >
         <SheetHeader className="border-b border-slate-200 p-6 pb-4">
           <SheetTitle className="text-lg">
@@ -240,7 +237,7 @@ function SimpleCatalogFields({ kind, form, isEdit, currentItemId }: SimpleProps)
 
   return (
     <div className="space-y-5">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="form-grid">
         {/* Mã */}
         <FormField
           control={form.control}
@@ -284,6 +281,9 @@ function SimpleCatalogFields({ kind, form, isEdit, currentItemId }: SimpleProps)
               <FormControl>
                 <Input placeholder="Tên hiển thị tiếng Việt" {...field} />
               </FormControl>
+              <FormDescription>
+                Tên hiển thị cho người dùng cuối trên các form chọn.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -473,7 +473,7 @@ function SimpleCatalogFields({ kind, form, isEdit, currentItemId }: SimpleProps)
       />
 
       {/* Display order + isActive */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="form-grid">
         <FormField
           control={form.control}
           name="displayOrder"
@@ -492,6 +492,9 @@ function SimpleCatalogFields({ kind, form, isEdit, currentItemId }: SimpleProps)
                   }
                 />
               </FormControl>
+              <FormDescription>
+                Số nhỏ hơn hiển thị trước trong dropdown / danh sách chọn.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -501,7 +504,7 @@ function SimpleCatalogFields({ kind, form, isEdit, currentItemId }: SimpleProps)
           control={form.control}
           name="isActive"
           render={({ field }) => (
-            <FormItem className="flex flex-col gap-2">
+            <FormItem className="form-grid-skip">
               <FormLabel>Trạng thái</FormLabel>
               <FormControl>
                 <div className="flex items-center gap-3 rounded-md border border-slate-200 bg-white px-3 py-2">
@@ -515,6 +518,9 @@ function SimpleCatalogFields({ kind, form, isEdit, currentItemId }: SimpleProps)
                   </span>
                 </div>
               </FormControl>
+              <FormDescription>
+                Tắt để ẩn khỏi danh sách chọn nhưng giữ lại dữ liệu lịch sử.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

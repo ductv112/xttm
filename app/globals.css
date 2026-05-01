@@ -274,4 +274,36 @@
     border-radius: 2px;
     background-color: var(--primary);
   }
+
+  /* =============================================================
+     Form 2-col grid alignment
+     Wraps FormField pairs so input rows align even when one item
+     has FormDescription and the other doesn't. Uses CSS subgrid
+     where supported; falls back to grid-template-rows on older
+     browsers.
+     ============================================================= */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .form-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    /* Promote child FormItems to align label/control rows across columns. */
+    .form-grid > [data-slot="form-item"] {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 0.5rem;
+      align-content: start;
+    }
+  }
+
+  /* When child uses Switch wrapper (flex flex-col gap-2 override on the
+     FormItem itself), keep its own structure — opt out via .form-grid-skip. */
+  .form-grid > [data-slot="form-item"].form-grid-skip {
+    display: flex;
+    grid-template-rows: none;
+  }
 }

@@ -46,7 +46,7 @@ export function AuditLogDetailSheet({ row, open, onOpenChange }: Props) {
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent className="w-full sm:max-w-[600px] flex flex-col p-0">
+      <SheetContent size="lg" className="flex flex-col p-0">
         {row && (
           <>
             <SheetHeader className="border-b border-slate-200 p-6">

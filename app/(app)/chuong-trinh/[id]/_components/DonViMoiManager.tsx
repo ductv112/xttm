@@ -192,7 +192,7 @@ export function DonViMoiManager({
 
       {/* ===== Edit orgs sheet ===== */}
       <Sheet open={editOpen} onOpenChange={setEditOpen}>
-        <SheetContent side="right" className="w-full sm:max-w-lg">
+        <SheetContent side="right" size="lg">
           <SheetHeader>
             <SheetTitle>Sửa danh sách đơn vị mời</SheetTitle>
           </SheetHeader>

@@ -82,7 +82,7 @@ export function ConsulateContactDialog({
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" size="xl" className="p-0">
+      <SheetContent side="right" size="xl" className="flex flex-col p-0">
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2 text-base">
             <Globe className="h-5 w-5 text-primary" aria-hidden="true" />
@@ -95,7 +95,7 @@ export function ConsulateContactDialog({
         </SheetHeader>
 
         <div className="flex-1 overflow-y-auto px-6 py-4">
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 items-start">
             <div className="sm:col-span-2">
               <Label htmlFor="country">Quốc gia / Thị trường *</Label>
               <Input

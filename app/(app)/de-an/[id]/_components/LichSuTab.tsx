@@ -158,7 +158,7 @@ export function LichSuTab({ project }: LichSuTabProps) {
       >
         <SheetContent
           side="right"
-          className="w-full sm:max-w-xl"
+          size="xl"
         >
           <SheetHeader>
             <SheetTitle>

@@ -76,11 +76,15 @@ const FormItemContext = React.createContext<FormItemContextValue>(
 function FormItem({ className, ...props }: React.ComponentProps<"div">) {
   const id = React.useId()
 
+  // Use flex-col with consistent gap so multiple FormItems in a 2-col grid align
+  // their inputs at the same vertical row. The label is always first, the input
+  // (FormControl) second; description/message flow below the input naturally.
+  // When wrapped by `.form-grid` (see globals.css) the input row aligns across columns.
   return (
     <FormItemContext.Provider value={{ id }}>
       <div
         data-slot="form-item"
-        className={cn("grid gap-2", className)}
+        className={cn("flex flex-col gap-2", className)}
         {...props}
       />
     </FormItemContext.Provider>
