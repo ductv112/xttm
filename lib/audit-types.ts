@@ -171,6 +171,36 @@ export const APPROVAL_AUDIT_TYPES = {
   NOTIFY_RESULT: { action: 'DISPATCH' as AuditAction, resource: 'phe-duyet' as AuditResource },
 } as const;
 
+// =============================================================================
+// Phase 8 (M4 Hợp đồng + Triển khai + Điều chỉnh) — composite audit types.
+// CONTRACT_*: hợp đồng lifecycle (auto-create, edit terms, upload scan, sign,
+//   complete, liquidate).
+// IMPL_*: triển khai theo dõi (kế hoạch, tiến độ, liên hệ thương vụ).
+// AMENDMENT_*: điều chỉnh đề án (Điều 13 NĐ 28).
+// =============================================================================
+
+export const CONTRACT_AUDIT_TYPES = {
+  CONTRACT_CREATE: { action: 'CREATE' as AuditAction, resource: 'hop-dong' as AuditResource },
+  CONTRACT_UPDATE: { action: 'UPDATE' as AuditAction, resource: 'hop-dong' as AuditResource },
+  CONTRACT_UPLOAD_SCAN: { action: 'UPLOAD' as AuditAction, resource: 'hop-dong' as AuditResource },
+  CONTRACT_SIGN: { action: 'TRANSITION' as AuditAction, resource: 'hop-dong' as AuditResource },
+  CONTRACT_COMPLETE: { action: 'TRANSITION' as AuditAction, resource: 'hop-dong' as AuditResource },
+  CONTRACT_LIQUIDATE: { action: 'TRANSITION' as AuditAction, resource: 'hop-dong' as AuditResource },
+} as const;
+
+export const IMPL_AUDIT_TYPES = {
+  IMPL_UPDATE_PLAN: { action: 'UPDATE' as AuditAction, resource: 'trien-khai' as AuditResource },
+  IMPL_UPDATE_PROGRESS: { action: 'UPDATE' as AuditAction, resource: 'trien-khai' as AuditResource },
+  IMPL_CONTACT_CONSULATE: { action: 'UPDATE' as AuditAction, resource: 'trien-khai' as AuditResource },
+} as const;
+
+export const AMENDMENT_AUDIT_TYPES = {
+  AMENDMENT_REQUEST: { action: 'CREATE' as AuditAction, resource: 'de-an' as AuditResource },
+  AMENDMENT_APPROVE: { action: 'APPROVE' as AuditAction, resource: 'de-an' as AuditResource },
+  AMENDMENT_REJECT: { action: 'REJECT' as AuditAction, resource: 'de-an' as AuditResource },
+  AMENDMENT_ROUTE_TO_EVALUATION: { action: 'TRANSITION' as AuditAction, resource: 'de-an' as AuditResource },
+} as const;
+
 // Color tokens for action badges (consumed by AuditLogTable)
 export const AUDIT_ACTION_BADGE: Record<AuditAction, string> = {
   CREATE: 'bg-green-100 text-green-800',

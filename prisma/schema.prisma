@@ -130,25 +130,25 @@ model OrganizationProfile {
 // =============================================================================
 
 model ProgramCycle {
-  id                            String    @id @default(cuid())
-  year                          Int       @unique // 1 chu kỳ / năm
-  name                          String
-  status                        String    @default("DRAFT") // DRAFT | READY | OPEN_REGISTRATION | CLOSED_REGISTRATION | EVALUATING | APPROVED | COMPLETED
-  totalBudget                   Float? // VND, SQLite REAL
-  registrationOpenAt            DateTime?
-  registrationCloseAt           DateTime? // mặc định 30/5
-  supplementDeadline            DateTime? // CYCLE-03 hạn nộp bổ sung
-  evaluationStartAt             DateTime?
-  evaluationEndAt               DateTime?
-  approvalDeadline              DateTime?
-  scanDocumentUrl               String?
-  emailTemplateId               String?
-  invitationLetterAttachmentId  String? // FK to Attachment uploaded as công văn ban hành
-  invitedOrganizations          String? // JSON array of organizationIds
-  configJson                    String? // JSON: scoringCriteriaIds + evaluationCriteriaIds + emailTemplateIds + extendReason history
-  createdById                   String?
-  createdAt                     DateTime  @default(now())
-  updatedAt                     DateTime  @updatedAt
+  id                           String    @id @default(cuid())
+  year                         Int       @unique // 1 chu kỳ / năm
+  name                         String
+  status                       String    @default("DRAFT") // DRAFT | READY | OPEN_REGISTRATION | CLOSED_REGISTRATION | EVALUATING | APPROVED | COMPLETED
+  totalBudget                  Float? // VND, SQLite REAL
+  registrationOpenAt           DateTime?
+  registrationCloseAt          DateTime? // mặc định 30/5
+  supplementDeadline           DateTime? // CYCLE-03 hạn nộp bổ sung
+  evaluationStartAt            DateTime?
+  evaluationEndAt              DateTime?
+  approvalDeadline             DateTime?
+  scanDocumentUrl              String?
+  emailTemplateId              String?
+  invitationLetterAttachmentId String? // FK to Attachment uploaded as công văn ban hành
+  invitedOrganizations         String? // JSON array of organizationIds
+  configJson                   String? // JSON: scoringCriteriaIds + evaluationCriteriaIds + emailTemplateIds + extendReason history
+  createdById                  String?
+  createdAt                    DateTime  @default(now())
+  updatedAt                    DateTime  @updatedAt
 
   projects      Project[]
   councils      EvaluationCouncil[]
@@ -175,63 +175,69 @@ model ProgramCycle {
 //   IN_PROGRESS → COMPLETED. SUBMITTED → DRAFT (rút) when not yet assigned.
 //   TENTATIVE = đề án 2 năm year+1 placeholder.
 model Project {
-  id                 String    @id @default(cuid())
-  code               String    @unique // XTTM-2026-001
-  programCycleId     String
-  organizationId     String
-  parentProjectId    String? // Đề án 2 năm — link tới năm 1 (per PITFALLS §4.2)
-  name               String
-  year               Int       @default(0) // năm thực hiện (đề án 2 năm: parent.year + 1)
-  kind               String // EXPORT_EXHIBITION | INTL_CONFERENCE | DOMESTIC_FAIR | TRADE_DELEGATION_OUT | TRADE_DELEGATION_IN | TRADE_INFO_EXPORT | TRADE_INFO_DOMESTIC | TRAINING | OTHER
+  id                      String    @id @default(cuid())
+  code                    String    @unique // XTTM-2026-001
+  programCycleId          String
+  organizationId          String
+  parentProjectId         String? // Đề án 2 năm — link tới năm 1 (per PITFALLS §4.2)
+  name                    String
+  year                    Int       @default(0) // năm thực hiện (đề án 2 năm: parent.year + 1)
+  kind                    String // EXPORT_EXHIBITION | INTL_CONFERENCE | DOMESTIC_FAIR | TRADE_DELEGATION_OUT | TRADE_DELEGATION_IN | TRADE_INFO_EXPORT | TRADE_INFO_DOMESTIC | TRAINING | OTHER
   // Phase 5 wizard JSON columns
-  generalInfoJson    String? // JSON: industrySectorIds + marketIds + countryIds + promotionTypeIds + timeRange
-  objectivesJson     String? // JSON: { objective: html, content: html }
-  planJson           String? // JSON: { rows: [{task,deliverable,dueDate,owner}] }
-  budgetJson         String? // JSON: { rows, totalState, totalSelf, total }
-  pmContactId        String? // contact UUID (from OrganizationProfile.contactsJson)
+  generalInfoJson         String? // JSON: industrySectorIds + marketIds + countryIds + promotionTypeIds + timeRange
+  objectivesJson          String? // JSON: { objective: html, content: html }
+  planJson                String? // JSON: { rows: [{task,deliverable,dueDate,owner}] }
+  budgetJson              String? // JSON: { rows, totalState, totalSelf, total }
+  pmContactId             String? // contact UUID (from OrganizationProfile.contactsJson)
   // Legacy scaffolded scalar columns (M0) — co-exist; UI prefers JSON
-  industrySectorId   String?
-  promotionTypeId    String?
-  marketIds          String? // JSON array (M0 legacy)
-  countryIds         String? // JSON array (M0 legacy)
-  objective          String?
-  description        String?
-  expectedOutcome    String?
-  plannedStartAt     DateTime?
-  plannedEndAt       DateTime?
-  location           String?
-  proposedBudget     Float?
-  approvedBudget     Float?
-  managerName        String?
-  managerTitle       String?
-  managerPhone       String?
-  managerEmail       String?
-  status             String    @default("DRAFT") // see lib/workflows/project.ts
-  currentVersion     Int       @default(1)
-  submittedAt        DateTime?
-  receivedAt         DateTime?
-  assignedReviewerId String? // alias: assignedToUserId
+  industrySectorId        String?
+  promotionTypeId         String?
+  marketIds               String? // JSON array (M0 legacy)
+  countryIds              String? // JSON array (M0 legacy)
+  objective               String?
+  description             String?
+  expectedOutcome         String?
+  plannedStartAt          DateTime?
+  plannedEndAt            DateTime?
+  location                String?
+  proposedBudget          Float?
+  approvedBudget          Float?
+  managerName             String?
+  managerTitle            String?
+  managerPhone            String?
+  managerEmail            String?
+  status                  String    @default("DRAFT") // see lib/workflows/project.ts
+  currentVersion          Int       @default(1)
+  submittedAt             DateTime?
+  receivedAt              DateTime?
+  assignedReviewerId      String? // alias: assignedToUserId
   // Phase 6 (M2.4) intake metadata
-  assignedAt         DateTime? // BQL/LĐ phân công cho chuyên viên thời điểm nào
-  assignedById       String? // user id của BQL/LĐ phân công
+  assignedAt              DateTime? // BQL/LĐ phân công cho chuyên viên thời điểm nào
+  assignedById            String? // user id của BQL/LĐ phân công
   checklistJson           String? // JSON: [{ itemId, status: '✓'|'✗'|'N/A', note }]
   passedFormalCheck       Boolean   @default(false) // chuyên viên xác nhận hợp lệ
   formalRejectionReason   String? // lý do loại từ vòng kiểm tra hành chính
   supplementRequestReason String? // lý do trả bổ sung mới nhất
-  searchKey          String    @default("") // diacritics-removed
-  createdById        String?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-  deletedAt          DateTime?
+  // Phase 8 (M4) — Triển khai (IMPL-01..12)
+  // implementationJson stores: { milestones: [{id,title,startDate,endDate,owner,progress,note}], staff: [{name,role,phone,email}], schedule: {start,end,note} }
+  implementationJson      String? // JSON: kế hoạch triển khai
+  contactedConsulate      Boolean   @default(false) // đã liên hệ Thương vụ ĐSQ chưa
+  consulateContactJson    String? // JSON: { country, contactName, contactDate, contactInfo, attachmentId }
+  searchKey               String    @default("") // diacritics-removed
+  createdById             String?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  deletedAt               DateTime?
 
-  programCycle  ProgramCycle     @relation(fields: [programCycleId], references: [id])
-  organization  Organization     @relation(fields: [organizationId], references: [id])
-  parent        Project?         @relation("ProjectYearLink", fields: [parentProjectId], references: [id])
-  childProjects Project[]        @relation("ProjectYearLink")
+  programCycle  ProgramCycle       @relation(fields: [programCycleId], references: [id])
+  organization  Organization       @relation(fields: [organizationId], references: [id])
+  parent        Project?           @relation("ProjectYearLink", fields: [parentProjectId], references: [id])
+  childProjects Project[]          @relation("ProjectYearLink")
   scoreSheets   ScoreSheet[]
   contract      Contract?
   reports       Report[]
   versions      ProjectVersion[]
+  amendments    ProjectAmendment[]
 
   @@index([programCycleId, status])
   @@index([organizationId])
@@ -280,7 +286,7 @@ model EvaluationCouncil {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 
-  programCycle ProgramCycle              @relation(fields: [programCycleId], references: [id])
+  programCycle ProgramCycle               @relation(fields: [programCycleId], references: [id])
   scoreSheets  ScoreSheet[]
   members      CouncilMember[]
   assignments  ProjectCouncilAssignment[]
@@ -383,8 +389,8 @@ model ScoreSheet {
   updatedAt          DateTime  @updatedAt
 
   council  EvaluationCouncil? @relation(fields: [councilId], references: [id])
-  project  Project           @relation(fields: [projectId], references: [id])
-  reviewer User              @relation(fields: [reviewerId], references: [id])
+  project  Project            @relation(fields: [projectId], references: [id])
+  reviewer User               @relation(fields: [reviewerId], references: [id])
 
   @@unique([projectId, reviewerId, kind])
   @@index([kind, status])
@@ -392,9 +398,13 @@ model ScoreSheet {
 }
 
 // =============================================================================
-// CONTRACT — Scaffold for Phase 8 (M4)
+// CONTRACT — Phase 8 (M4) Hợp đồng quản lý
 // =============================================================================
 
+// Phase 8 (M4) — Hợp đồng được sinh tự động từ đề án APPROVED.
+// Số HĐ format XTTM/YYYY/NNN, atomic running counter per year.
+// Status machine: DRAFT → SIGNED → IN_PROGRESS → COMPLETED → LIQUIDATED.
+// Cảnh báo 60 ngày sau quyết định phê duyệt mà vẫn chưa SIGNED.
 model Contract {
   id             String    @id @default(cuid())
   projectId      String    @unique
@@ -404,13 +414,54 @@ model Contract {
   effectiveFrom  DateTime?
   effectiveTo    DateTime?
   totalValue     Float
-  status         String    @default("DRAFT") // DRAFT | SIGNED | ACTIVE | COMPLETED | LIQUIDATED | OVERDUE
+  status         String    @default("DRAFT") // DRAFT | SIGNED | IN_PROGRESS | COMPLETED | LIQUIDATED
   scanFileUrl    String?
+  termsHtml      String? // Tiptap HTML — điều khoản hợp đồng
+  signedById     String? // User.id của người ký từ phía Cục XTTM
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 
   project      Project      @relation(fields: [projectId], references: [id])
   organization Organization @relation(fields: [organizationId], references: [id])
+
+  @@index([status])
+  @@index([signedDate])
+}
+
+// =============================================================================
+// PROJECT AMENDMENT — Phase 8 (M4) Điều chỉnh đề án (Điều 13 NĐ 28/2018/NĐ-CP)
+// =============================================================================
+
+// Phase 8 (M4) — Điều chỉnh đề án theo Điều 13 NĐ 28.
+// Loại NHỎ (BQL phê duyệt nội bộ): TIME, LOCATION, UNIT_NAME, PROJECT_NAME, OTHER
+// Loại TRỌNG YẾU (yêu cầu thẩm định lại): OBJECTIVE, CONTENT, BUDGET, MARKET
+// isCritical computed bởi lib/amendment-rules.isCriticalAmendment().
+// Status: PENDING → APPROVED (loại nhỏ) | RESUBMIT_EVALUATION (loại trọng yếu) | REJECTED
+// oldValueJson/newValueJson lưu snapshot trường thay đổi (per amendmentType key).
+model ProjectAmendment {
+  id              String    @id @default(cuid())
+  projectId       String
+  amendmentType   String // TIME | LOCATION | UNIT_NAME | PROJECT_NAME | OBJECTIVE | CONTENT | BUDGET | MARKET | OTHER
+  isCritical      Boolean   @default(false)
+  oldValueJson    String? // JSON: snapshot field cũ
+  newValueJson    String? // JSON: giá trị mới đề xuất
+  reason          String // lý do điều chỉnh (min 50 chars)
+  status          String    @default("PENDING") // PENDING | APPROVED | REJECTED | RESUBMIT_EVALUATION
+  decisionNumber  String? // số quyết định điều chỉnh (vd 12/QĐ-XTTM)
+  decisionDate    DateTime?
+  reviewedById    String? // User.id của BQL phê duyệt / từ chối
+  reviewedAt      DateTime?
+  reviewerComment String?
+  requestedById   String // User.id của đơn vị tạo yêu cầu
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([status])
+  @@index([isCritical])
+  @@index([createdAt])
 }
 
 // =============================================================================
@@ -438,20 +489,20 @@ model Report {
 // =============================================================================
 
 model Attachment {
-  id           String   @id @default(cuid())
-  entityType   String // Project | Contract | Report | ProgramCycle | OrganizationProfile
-  entityId     String
-  fileName     String
-  fileUrl      String // path in storage/uploads/ or public/mock-files/
-  fileSize     Int?
-  mimeType     String?
+  id            String    @id @default(cuid())
+  entityType    String // Project | Contract | Report | ProgramCycle | OrganizationProfile
+  entityId      String
+  fileName      String
+  fileUrl       String // path in storage/uploads/ or public/mock-files/
+  fileSize      Int?
+  mimeType      String?
   // Công văn metadata (CYCLE-07) — chỉ populate khi entityType=ProgramCycle và là công văn ban hành
   signedNumber  String? // số công văn (vd: 1234/CV-XTTM)
   signedDate    DateTime? // ngày ký công văn
   signedByName  String? // họ tên người ký
   signedByTitle String? // chức vụ người ký
-  uploadedById String
-  createdAt    DateTime @default(now())
+  uploadedById  String
+  createdAt     DateTime  @default(now())
 
   uploader User @relation("AttachmentUploader", fields: [uploadedById], references: [id])
 
@@ -681,7 +732,7 @@ model Notification {
   createdById    String
   createdAt      DateTime @default(now())
 
-  programCycle ProgramCycle?           @relation(fields: [programCycleId], references: [id], onDelete: Cascade)
+  programCycle ProgramCycle?          @relation(fields: [programCycleId], references: [id], onDelete: Cascade)
   dispatches   NotificationDispatch[]
 
   @@index([programCycleId])
