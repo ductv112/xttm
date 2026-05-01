@@ -23,6 +23,12 @@ import { LichSuTab } from './LichSuTab';
 import { NhatKyTab } from './NhatKyTab';
 import { ImplementationTab } from './ImplementationTab';
 import { AmendmentTab } from './AmendmentTab';
+import { BaoCaoTab } from './BaoCaoTab';
+import { NghiemThuTab } from './NghiemThuTab';
+import { TaiChinhTab } from './TaiChinhTab';
+import type { ProjectReportSummary } from '../_actions/report-actions';
+import type { AcceptanceSummary } from '../_actions/acceptance-actions';
+import type { FinancialRecordRow } from '../../../tai-chinh/_actions/list';
 
 const TAB_VALUES = [
   'tong-quan',
@@ -30,6 +36,9 @@ const TAB_VALUES = [
   'du-toan',
   'tai-lieu',
   'trien-khai',
+  'bao-cao',
+  'nghiem-thu',
+  'tai-chinh',
   'dieu-chinh',
   'lich-su',
   'nhat-ky',
@@ -59,6 +68,9 @@ export type ProjectTabsShellProps = {
   isOwner: boolean;
   canManageImpl: boolean;
   canApproveAmendment: boolean;
+  canReviewReport: boolean;
+  canManageAcceptance: boolean;
+  canManageFinance: boolean;
   amendments: ReadonlyArray<{
     id: string;
     amendmentType: string;
@@ -70,6 +82,10 @@ export type ProjectTabsShellProps = {
     decisionNumber: string | null;
     decisionDate: Date | null;
   }>;
+  report: ProjectReportSummary | null;
+  acceptance: AcceptanceSummary | null;
+  financialRecords: ReadonlyArray<FinancialRecordRow>;
+  reportSlaWarning: { daysOverdue: number; endDate: Date } | null;
 };
 
 export function ProjectTabsShell({
@@ -80,7 +96,14 @@ export function ProjectTabsShell({
   isOwner,
   canManageImpl,
   canApproveAmendment,
+  canReviewReport,
+  canManageAcceptance,
+  canManageFinance,
   amendments,
+  report,
+  acceptance,
+  financialRecords,
+  reportSlaWarning,
 }: ProjectTabsShellProps) {
   // Hash-driven default tab (bookmark friendly): /de-an/[id]#ke-hoach loads Kế hoạch
   const [tab, setTab] = React.useState<TabValue>('tong-quan');
@@ -120,6 +143,19 @@ export function ProjectTabsShell({
           Triển khai
           {project.contactedConsulate ? ' ✓' : ''}
         </TabsTrigger>
+        <TabsTrigger value="bao-cao">
+          Báo cáo
+          {report?.status === 'APPROVED' ? ' ✓' : ''}
+          {report?.status === 'SUBMITTED' ? ' …' : ''}
+          {reportSlaWarning ? ' ⚠' : ''}
+        </TabsTrigger>
+        <TabsTrigger value="nghiem-thu">
+          Nghiệm thu
+          {acceptance ? ' ✓' : ''}
+        </TabsTrigger>
+        <TabsTrigger value="tai-chinh">
+          Tài chính ({financialRecords.length})
+        </TabsTrigger>
         <TabsTrigger value="dieu-chinh">
           Điều chỉnh ({amendments.length})
         </TabsTrigger>
@@ -150,6 +186,30 @@ export function ProjectTabsShell({
           project={project}
           isOwner={isOwner}
           canManage={canManageImpl}
+        />
+      </TabsContent>
+      <TabsContent value="bao-cao">
+        <BaoCaoTab
+          project={project}
+          initialReport={report}
+          isOwner={isOwner}
+          canReview={canReviewReport}
+          reportSlaWarning={reportSlaWarning}
+        />
+      </TabsContent>
+      <TabsContent value="nghiem-thu">
+        <NghiemThuTab
+          project={project}
+          report={report}
+          initialAcceptance={acceptance}
+          isOwner={isOwner}
+          canManage={canManageAcceptance}
+        />
+      </TabsContent>
+      <TabsContent value="tai-chinh">
+        <TaiChinhTab
+          records={financialRecords}
+          canManageFinance={canManageFinance}
         />
       </TabsContent>
       <TabsContent value="dieu-chinh">

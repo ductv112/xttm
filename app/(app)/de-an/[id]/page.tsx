@@ -26,6 +26,10 @@ import { canFromDB } from '@/lib/permissions-db';
 import type { Role } from '@/lib/constants';
 
 import { getProjectDetail } from '../_actions/get-detail';
+import { getReportForProject } from './_actions/report-actions';
+import { getAcceptanceForProject } from './_actions/acceptance-actions';
+import { listProjectFinancialRecords } from '../../tai-chinh/_actions/list';
+import { checkProjectReportSLA } from '@/lib/report-sla';
 import { ProjectDetailHeader } from './_components/ProjectDetailHeader';
 import { ProjectTabsShell } from './_components/ProjectTabsShell';
 import type { ProjectTimelineEntry } from './_components/ProjectStatusTimeline';
@@ -210,15 +214,35 @@ export default async function ProjectDetailPage({
     session.user.organizationId === project.organizationId;
 
   const role = session.user.role as Role;
-  const [catalogs, timeline, auditEntries, canManageImpl, canApproveAmendment, amendmentRows] =
-    await Promise.all([
-      loadCatalogs(),
-      loadStatusTimeline(project.id, project.status, project.createdAt),
-      loadRecentAuditEntries(project.id),
-      canFromDB(role, 'trien-khai', 'update'),
-      canFromDB(role, 'de-an', 'approve'),
-      loadAmendments(project.id),
-    ]);
+  const [
+    catalogs,
+    timeline,
+    auditEntries,
+    canManageImpl,
+    canApproveAmendment,
+    amendmentRows,
+    canReviewReport,
+    canManageAcceptance,
+    canManageFinance,
+    report,
+    acceptance,
+    financialRecords,
+    reportSlaWarning,
+  ] = await Promise.all([
+    loadCatalogs(),
+    loadStatusTimeline(project.id, project.status, project.createdAt),
+    loadRecentAuditEntries(project.id),
+    canFromDB(role, 'trien-khai', 'update'),
+    canFromDB(role, 'de-an', 'approve'),
+    loadAmendments(project.id),
+    canFromDB(role, 'bao-cao', 'update'),
+    canFromDB(role, 'nghiem-thu', 'create'),
+    canFromDB(role, 'tai-chinh', 'create'),
+    getReportForProject(project.id),
+    getAcceptanceForProject(project.id),
+    listProjectFinancialRecords(project.id),
+    checkProjectReportSLA(project.id),
+  ]);
 
   return (
     <div className="container mx-auto max-w-7xl py-8">
@@ -232,7 +256,21 @@ export default async function ProjectDetailPage({
           isOwner={isOwner}
           canManageImpl={canManageImpl}
           canApproveAmendment={canApproveAmendment}
+          canReviewReport={canReviewReport}
+          canManageAcceptance={canManageAcceptance}
+          canManageFinance={canManageFinance}
           amendments={amendmentRows}
+          report={report}
+          acceptance={acceptance}
+          financialRecords={financialRecords}
+          reportSlaWarning={
+            reportSlaWarning
+              ? {
+                  daysOverdue: reportSlaWarning.daysOverdue,
+                  endDate: reportSlaWarning.endDate,
+                }
+              : null
+          }
         />
       </div>
     </div>
