@@ -45,15 +45,15 @@ async function upsertCatalogItemImpl(
 
   const config = getCatalogConfig(kind);
   const schema = SCHEMA_BY_KIND[kind];
-  const result = schema.safeParse(input);
-  if (!result.success) {
+  const parseResult = schema.safeParse(input);
+  if (!parseResult.success) {
     // Return user-friendly error rather than throw raw ZodError to runtime
-    const firstIssue = result.error.issues[0];
+    const firstIssue = parseResult.error.issues[0];
     const fieldName = firstIssue?.path?.join('.') ?? 'dữ liệu';
     const message = firstIssue?.message ?? 'Dữ liệu không hợp lệ';
     throw new Error(`${message} (trường: ${fieldName})`);
   }
-  const parsed = result.data as Record<string, unknown>;
+  const parsed = parseResult.data as Record<string, unknown>;
 
   // T-02-06-09 — parent cycle guard (direct only)
   if (config.hasParent && id && parsed.parentId === id) {
