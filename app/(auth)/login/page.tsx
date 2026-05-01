@@ -4,6 +4,7 @@ import { defaultLandingPath } from '@/lib/permissions';
 import { LoginForm } from '@/components/auth/LoginForm';
 import { SsoPlaceholderButton } from '@/components/auth/SsoPlaceholderButton';
 import { QuocHuySvg } from '@/components/auth/QuocHuySvg';
+import { DemoAccountsHelper } from '@/components/auth/DemoAccountsHelper';
 import { Separator } from '@/components/ui/separator';
 
 export const metadata = { title: 'Đăng nhập hệ thống' };
@@ -64,6 +65,8 @@ export default async function LoginPage() {
           </div>
 
           <SsoPlaceholderButton />
+
+          <DemoAccountsHelper />
 
           <p className="text-sm text-slate-400 mt-8 text-center">Phiên bản POC · 2026</p>
         </div>
