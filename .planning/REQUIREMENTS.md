@@ -130,22 +130,22 @@
 
 ### Hội đồng Thẩm định (COUNCIL) — Phase M3 — HERO
 
-- [ ] **COUNCIL-01**: Ban quản lý tạo hội đồng thẩm định cho kỳ (tên, kỳ, ngày họp, ghi chú)
-- [ ] **COUNCIL-02**: Ban quản lý thêm thành viên hội đồng (chọn user vai trò Hội đồng) với chức danh trong hội đồng (Chủ tịch / Phó / Ủy viên / Thư ký)
-- [ ] **COUNCIL-03**: Ban quản lý phân công đề án cho hội đồng (assign nhiều đề án → 1 hội đồng)
-- [ ] **COUNCIL-04**: Hệ thống cấp quyền truy cập hồ sơ cho thành viên được phân công
-- [ ] **COUNCIL-05**: Ban quản lý mở/khóa phiên chấm điểm
-- [ ] **COUNCIL-06**: Thành viên hội đồng xem danh sách đề án được phân công
-- [ ] **COUNCIL-07**: Thành viên hội đồng xem chi tiết hồ sơ đề án + tải tài liệu đính kèm
-- [ ] **COUNCIL-08**: Thành viên hội đồng chấm điểm với side-by-side panel (rubric trọng số trái + nội dung hồ sơ phải)
-- [ ] **COUNCIL-09**: Phiếu chấm điểm có conflict-of-interest checkbox (thành viên đánh dấu nếu có xung đột lợi ích)
-- [ ] **COUNCIL-10**: Thành viên nhập nhận xét thẩm định / kết luận
-- [ ] **COUNCIL-11**: Thành viên lưu nháp phiếu chấm
-- [ ] **COUNCIL-12**: Thành viên nộp chính thức phiếu chấm (khóa phiếu cá nhân)
-- [ ] **COUNCIL-13**: Hệ thống tự động tổng hợp & tính điểm trung bình theo trọng số (real-time qua TanStack Query polling 5s)
-- [ ] **COUNCIL-14**: Ban quản lý xuất báo cáo thẩm định (PDF chuẩn công văn)
-- [ ] **COUNCIL-15**: Ban quản lý xác nhận kết quả thẩm định (khóa danh sách)
-- [ ] **COUNCIL-16**: Lãnh đạo Ban quản lý có quyền mở lại kết quả theo thẩm quyền (audit log)
+- [x] **COUNCIL-01**: Ban quản lý tạo hội đồng thẩm định cho kỳ (tên, kỳ, ngày họp, ghi chú)
+- [x] **COUNCIL-02**: Ban quản lý thêm thành viên hội đồng (chọn user vai trò Hội đồng) với chức danh trong hội đồng (Chủ tịch / Phó / Ủy viên / Thư ký)
+- [x] **COUNCIL-03**: Ban quản lý phân công đề án cho hội đồng (assign nhiều đề án → 1 hội đồng)
+- [x] **COUNCIL-04**: Hệ thống cấp quyền truy cập hồ sơ cho thành viên được phân công
+- [x] **COUNCIL-05**: Ban quản lý mở/khóa phiên chấm điểm
+- [x] **COUNCIL-06**: Thành viên hội đồng xem danh sách đề án được phân công
+- [x] **COUNCIL-07**: Thành viên hội đồng xem chi tiết hồ sơ đề án + tải tài liệu đính kèm
+- [x] **COUNCIL-08**: Thành viên hội đồng chấm điểm với side-by-side panel (rubric trọng số trái + nội dung hồ sơ phải)
+- [x] **COUNCIL-09**: Phiếu chấm điểm có conflict-of-interest checkbox (thành viên đánh dấu nếu có xung đột lợi ích)
+- [x] **COUNCIL-10**: Thành viên nhập nhận xét thẩm định / kết luận
+- [x] **COUNCIL-11**: Thành viên lưu nháp phiếu chấm
+- [x] **COUNCIL-12**: Thành viên nộp chính thức phiếu chấm (khóa phiếu cá nhân)
+- [x] **COUNCIL-13**: Hệ thống tự động tổng hợp & tính điểm trung bình theo trọng số (real-time qua TanStack Query polling 5s)
+- [x] **COUNCIL-14**: Ban quản lý xuất báo cáo thẩm định (PDF chuẩn công văn)
+- [x] **COUNCIL-15**: Ban quản lý xác nhận kết quả thẩm định (khóa danh sách)
+- [x] **COUNCIL-16**: Lãnh đạo Ban quản lý có quyền mở lại kết quả theo thẩm quyền (audit log)
 
 ### Phê duyệt (APPROVE) — Phase M3 — HERO
 
@@ -415,22 +415,22 @@ Explicit exclusions cho prototype POC này.
 | INTAKE-11 | Phase 6 (M2.4 Tiếp nhận) | Complete |
 | INTAKE-12 | Phase 6 (M2.4 Tiếp nhận) | Complete |
 | INTAKE-13 | Phase 6 (M2.4 Tiếp nhận) | Complete |
-| COUNCIL-01 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-02 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-03 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-04 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-05 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-06 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-07 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-08 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-09 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-10 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-11 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-12 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-13 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-14 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-15 | Phase 7 (M3 Thẩm định HERO) | Pending |
-| COUNCIL-16 | Phase 7 (M3 Thẩm định HERO) | Pending |
+| COUNCIL-01 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-02 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-03 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-04 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-05 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-06 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-07 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-08 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-09 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-10 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-11 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-12 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-13 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-14 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-15 | Phase 7 (M3 Thẩm định HERO) | Complete |
+| COUNCIL-16 | Phase 7 (M3 Thẩm định HERO) | Complete |
 | APPROVE-01 | Phase 7 (M3 Phê duyệt HERO) | Pending |
 | APPROVE-02 | Phase 7 (M3 Phê duyệt HERO) | Pending |
 | APPROVE-03 | Phase 7 (M3 Phê duyệt HERO) | Pending |
