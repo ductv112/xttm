@@ -1,5 +1,63 @@
 # 🌙 Session Overnight Report — 2026-04-30 / 2026-05-01
 
+> ## 🎉 UPDATE 2026-05-01 (sau khi anh đi ra ngoài)
+>
+> **Anh đã ủy quyền tôi chạy hết các phase còn lại + khóa màn hình.** Tôi đã hoàn thành:
+>
+> - ✅ **Phase 8 (M4 Hợp đồng + Triển khai + Điều chỉnh)** — 26 reqs covered (~30 phút)
+> - ✅ **Phase 9 (M5 Báo cáo + Nghiệm thu + Tài chính)** — 17 reqs covered (~19 phút)
+> - ✅ **Phase 10 (M6 Dashboard HERO Lãnh đạo)** — 20 reqs covered (~13 phút)
+> - ✅ **Phase 11 (M7 Polish & Demo Prep)** — 13 reqs covered (~18 phút)
+>
+> ### 🏆 KẾT QUẢ CUỐI CÙNG
+>
+> - **11/11 phase complete** (100%)
+> - **32/32 plans executed** (100%)
+> - **193/193 requirements covered** (100%)
+> - **192 git commits** atomic, có log đầy đủ
+> - **`npm run build` 0 warnings/errors**
+> - **`npm run db:validate` PASS** (cross-entity invariants verified)
+> - **3 smoke tests PASS** (auth 8/8 + menu 7/7 + PDF render)
+>
+> ### 🆕 Bổ sung từ phần 2 (sáng/trưa 2026-05-01)
+>
+> - **/dashboard HERO** cho lãnh đạo: 4 stat cards + 4 alert widgets (sai lệch ngân sách, chậm ký HĐ 60d, báo cáo trễ 15d, chưa liên hệ thương vụ 30d) + 2 Recharts + Excel/PDF export + drill-down 3-click chain
+> - **Notification system** end-to-end: NotificationBell topbar polling 60s + /thong-bao inbox + 6 trigger types (NEW_PROJECT/ASSIGNED/SUPPLEMENT_REQUEST/APPROVAL_RESULT/SLA_WARNING/GENERAL) + 20 mock notifications seeded
+> - **/hop-dong** module: auto số HĐ format `XTTM/YYYY/NNN` + 60d cảnh báo chậm ký + state machine 5 trạng thái + tab implementation tracking
+> - **/dieu-chinh** module: side-by-side diff view (CSS grid 2-col) + isCriticalAmendment auto-classify theo Điều 13 NĐ 28 + AmendmentDecision PDF
+> - **Báo cáo + Nghiệm thu + Tài chính** tabs trên /de-an/[id] + /tai-chinh route với bar chart Recharts + 2 PDF templates (AcceptanceRecord + LiquidationRecord)
+> - **Cmd+K command palette role switcher** (dev/demo only — guard env hoặc ?demo=1)
+> - **Empty states + skeleton loaders** cho mọi list page
+> - **README.md** + **scripts/demo-script.md** đầy đủ
+> - **scripts/validate-seed.mts** cross-entity invariants validator
+>
+> ### 📊 Số liệu cuối
+>
+> | Metric | Value |
+> |---|---|
+> | Phases | 11/11 ✅ |
+> | Plans | 32/32 ✅ |
+> | Requirements | 193/193 ✅ |
+> | Commits | 192 |
+> | Files | ~400+ |
+> | Routes | ~30+ |
+> | PDF templates | 6 (Quyết định mẫu, ProjectProposal, EvaluationReport, Submission, ApprovalDecision, AmendmentDecision, AcceptanceRecord, LiquidationRecord — thực tế 8) |
+> | Mock data | 8 users, 7 orgs, 5 org profiles, 3 cycles, 20+ projects, 1 council, 3 contracts, 3 amendments, 3 reports, 3 finance records, 20 notifications, 9 SystemConfig, 119 catalog items |
+>
+> ### 🎬 Anh demo theo
+>
+> - **scripts/demo-script.md** — step-by-step chuẩn (đã viết)
+> - **README.md** — quick start guide (đã viết)
+> - **Cmd+K** trên bất kỳ trang nào → switch role nhanh trong 2s
+>
+> ### ⏰ Đã làm xong khóa màn hình. Anh quay về mở khóa bằng password Windows là làm việc tiếp được.
+>
+> ---
+>
+> **Bên dưới là báo cáo gốc từ tối hôm trước (Phase 1-7) để anh có context đầy đủ:**
+
+---
+
 **Anh Đức**, sáng mai chào anh — đây là báo cáo tổng kết overnight session.
 
 ---
