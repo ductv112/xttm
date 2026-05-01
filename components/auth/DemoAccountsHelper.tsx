@@ -1,9 +1,18 @@
 'use client';
 
 import * as React from 'react';
-import { ChevronDown, Copy, Users } from 'lucide-react';
+import { Copy, KeyRound, LogIn, Users } from 'lucide-react';
 import { toast } from 'sonner';
 
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 
 type DemoAccount = {
@@ -90,14 +99,17 @@ const BADGE_TONES: Record<DemoAccount['badgeTone'], string> = {
 };
 
 function fillLoginForm(account: DemoAccount) {
-  const usernameInput = document.getElementById('username') as HTMLInputElement | null;
-  const passwordInput = document.getElementById('password') as HTMLInputElement | null;
+  const usernameInput = document.getElementById(
+    'username',
+  ) as HTMLInputElement | null;
+  const passwordInput = document.getElementById(
+    'password',
+  ) as HTMLInputElement | null;
   if (!usernameInput || !passwordInput) {
     toast.error('Không tìm thấy form đăng nhập');
-    return;
+    return false;
   }
 
-  // Use native input setter so React picks up the change
   const setter = Object.getOwnPropertyDescriptor(
     window.HTMLInputElement.prototype,
     'value',
@@ -113,87 +125,129 @@ function fillLoginForm(account: DemoAccount) {
   }
 
   usernameInput.focus();
-  toast.success(`Đã điền tài khoản: ${account.role}`, {
-    description: `${account.username} • ${account.org}`,
-    duration: 2000,
-  });
+  return true;
+}
+
+async function copyAccountToClipboard(account: DemoAccount) {
+  const text = `${account.username} / ${account.password}`;
+  try {
+    await navigator.clipboard.writeText(text);
+    toast.success('Đã sao chép vào clipboard', {
+      description: text,
+      duration: 2000,
+    });
+  } catch {
+    toast.error('Không thể sao chép — vui lòng nhập tay');
+  }
 }
 
 export function DemoAccountsHelper() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+
+  const handleFill = (account: DemoAccount) => {
+    const ok = fillLoginForm(account);
+    if (ok) {
+      toast.success(`Đã điền tài khoản: ${account.role}`, {
+        description: `${account.username} • ${account.org}`,
+        duration: 2000,
+      });
+      setOpen(false);
+    }
+  };
 
   return (
-    <div className="mt-6 rounded-lg border border-amber-200/70 bg-gradient-to-br from-amber-50 via-white to-amber-50/40 shadow-sm">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between gap-2 px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-lg"
-        aria-expanded={open}
-      >
-        <div className="flex items-center gap-2">
-          <div className="rounded-full bg-amber-200/60 p-1.5">
-            <Users className="h-4 w-4 text-amber-800" aria-hidden="true" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-sm font-semibold text-amber-900">
-              Tài khoản demo (POC)
-            </span>
-            <span className="text-xs text-amber-800/80">
-              Click để điền nhanh thông tin đăng nhập
-            </span>
-          </div>
-        </div>
-        <ChevronDown
-          className={cn(
-            'h-4 w-4 text-amber-800 transition-transform',
-            open ? 'rotate-180' : '',
-          )}
-          aria-hidden="true"
-        />
-      </button>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button
+          type="button"
+          variant="outline"
+          className="w-full mt-3 border-amber-300 bg-amber-50/60 text-amber-900 hover:bg-amber-100 hover:text-amber-900 hover:border-amber-400"
+        >
+          <Users className="h-4 w-4" aria-hidden="true" />
+          Xem tài khoản demo (POC)
+        </Button>
+      </DialogTrigger>
 
-      {open ? (
-        <div className="border-t border-amber-200/70 max-h-[320px] overflow-y-auto">
-          <ul className="divide-y divide-amber-100">
+      <DialogContent className="sm:max-w-[640px] max-h-[85vh] flex flex-col gap-0 p-0">
+        <DialogHeader className="border-b border-amber-200 bg-gradient-to-br from-amber-50 via-white to-amber-50/40 p-6">
+          <DialogTitle className="flex items-center gap-2 text-amber-900">
+            <Users className="h-5 w-5" aria-hidden="true" />
+            Tài khoản demo POC
+          </DialogTitle>
+          <DialogDescription className="text-amber-800/80">
+            Hệ thống có 8 tài khoản hardcoded cho demo. Click{' '}
+            <strong>&quot;Điền form&quot;</strong> để đăng nhập nhanh, hoặc{' '}
+            <strong>&quot;Sao chép&quot;</strong> để copy thông tin vào
+            clipboard.
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="flex-1 overflow-y-auto">
+          <ul className="divide-y divide-slate-100">
             {DEMO_ACCOUNTS.map((acc) => (
-              <li key={acc.username}>
-                <button
-                  type="button"
-                  onClick={() => fillLoginForm(acc)}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-amber-50 focus-visible:outline-none focus-visible:bg-amber-50 transition-colors group"
-                  title={`Click để đăng nhập với ${acc.role}`}
+              <li
+                key={acc.username}
+                className="flex items-center gap-3 px-6 py-3 hover:bg-amber-50/50 transition-colors"
+              >
+                <span
+                  className={cn(
+                    'inline-flex items-center justify-center px-2 py-1 text-[10px] font-bold uppercase tracking-wider rounded ring-1 shrink-0 min-w-[88px]',
+                    BADGE_TONES[acc.badgeTone],
+                  )}
                 >
-                  <span
-                    className={cn(
-                      'inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded ring-1 shrink-0',
-                      BADGE_TONES[acc.badgeTone],
-                    )}
-                  >
-                    {acc.badge}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-sm font-semibold text-slate-900 font-mono">
-                        {acc.username}
-                      </span>
-                      <span className="text-xs text-slate-500 font-mono">
-                        / {acc.password}
-                      </span>
-                    </div>
-                    <p className="text-xs text-slate-600 truncate mt-0.5">
-                      {acc.role} · {acc.org}
-                    </p>
+                  {acc.badge}
+                </span>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-sm font-semibold text-slate-900 font-mono">
+                      {acc.username}
+                    </span>
+                    <span className="text-xs text-slate-500 font-mono">
+                      / {acc.password}
+                    </span>
                   </div>
-                  <Copy
-                    className="h-3.5 w-3.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
-                    aria-hidden="true"
-                  />
-                </button>
+                  <p className="text-xs text-slate-600 truncate mt-0.5">
+                    {acc.role} · {acc.org}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => copyAccountToClipboard(acc)}
+                    className="h-8 px-2 text-slate-600 hover:text-slate-900"
+                    title="Sao chép username / password"
+                  >
+                    <Copy className="h-3.5 w-3.5" aria-hidden="true" />
+                    <span className="text-xs">Sao chép</span>
+                  </Button>
+                  <Button
+                    type="button"
+                    size="sm"
+                    onClick={() => handleFill(acc)}
+                    className="h-8 px-2 bg-blue-700 hover:bg-blue-800 text-white"
+                    title="Điền vào form đăng nhập"
+                  >
+                    <LogIn className="h-3.5 w-3.5" aria-hidden="true" />
+                    <span className="text-xs">Điền form</span>
+                  </Button>
+                </div>
               </li>
             ))}
           </ul>
         </div>
-      ) : null}
-    </div>
+
+        <div className="border-t border-slate-100 px-6 py-3 bg-slate-50/60">
+          <p className="text-xs text-slate-500 flex items-center gap-1.5">
+            <KeyRound className="h-3 w-3" aria-hidden="true" />
+            Mật khẩu đã hash bcrypt cost 10. Tài khoản demo này sẽ bị xóa khi
+            triển khai production.
+          </p>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }
