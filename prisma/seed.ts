@@ -11,6 +11,7 @@ import { seedProjects } from './seed/projects';
 import { seedCouncils } from './seed/councils';
 import { seedContractsAndAmendments } from './seed/contracts-and-amendments';
 import { seedReportsAcceptanceFinance } from './seed/reports-acceptance-finance';
+import { seedInboxNotifications } from './seed/inbox-notifications';
 
 const prisma = new PrismaClient();
 
@@ -51,6 +52,9 @@ async function main() {
 
   // Phase 9 (M5) data: reports + acceptance + financial records
   await seedReportsAcceptanceFinance(prisma);
+
+  // Phase 10 (M6) data: inbox notifications cho mock users
+  await seedInboxNotifications(prisma);
 
   // Smoke verify counts
   const userCount = await prisma.user.count();
