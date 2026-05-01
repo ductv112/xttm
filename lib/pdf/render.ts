@@ -30,6 +30,10 @@ import {
   LiquidationRecord,
   type LiquidationRecordPdfProps,
 } from './templates/LiquidationRecord';
+import {
+  DashboardSummary,
+  type DashboardSummaryPdfProps,
+} from './templates/DashboardSummary';
 import { registerPdfFonts } from './fonts';
 
 /**
@@ -154,6 +158,21 @@ export async function renderLiquidationRecordPdf(
   registerPdfFonts();
   const element = createElement(
     LiquidationRecord as unknown as React.ComponentType<LiquidationRecordPdfProps>,
+    props,
+  ) as Parameters<typeof renderToBuffer>[0];
+  const buffer = await renderToBuffer(element);
+  return buffer;
+}
+
+/**
+ * Render the DashboardSummary (báo cáo tổng quan) template — Phase 10 PDF.
+ */
+export async function renderDashboardSummaryPdf(
+  props: DashboardSummaryPdfProps,
+): Promise<Buffer> {
+  registerPdfFonts();
+  const element = createElement(
+    DashboardSummary as unknown as React.ComponentType<DashboardSummaryPdfProps>,
     props,
   ) as Parameters<typeof renderToBuffer>[0];
   const buffer = await renderToBuffer(element);
