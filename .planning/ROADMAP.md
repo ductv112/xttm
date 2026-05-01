@@ -214,7 +214,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 7. M3 Thẩm định & Phê duyệt (HERO) | 2/2 | Complete    | 2026-05-01 |
 | 8. M4 Hợp đồng, Triển khai & Điều chỉnh | 1/1 | Complete    | 2026-05-01 |
 | 9. M5 Báo cáo, Nghiệm thu, Tài chính | 1/1 | Complete    | 2026-05-01 |
-| 10. M6 Dashboard & Cảnh báo (HERO Lãnh đạo) | 1/1 | Complete   | 2026-05-01 |
+| 10. M6 Dashboard & Cảnh báo (HERO Lãnh đạo) | 1/1 | Complete    | 2026-05-01 |
 | 11. M7 Polish & Demo Prep | 0/TBD | Not started | - |
 
 ## Coverage Summary
