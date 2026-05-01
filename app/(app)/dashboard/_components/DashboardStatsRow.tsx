@@ -1,5 +1,6 @@
 // DashboardStatsRow — 4 stat cards: số đề án, kinh phí, đơn vị tham gia, tiến độ.
-// Server component (RSC) — receives pre-aggregated stats via props.
+// Client component — lucide icons (ForwardRef components) cannot cross RSC boundary.
+'use client';
 
 import {
   FileText,

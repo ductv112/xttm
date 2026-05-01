@@ -1,6 +1,6 @@
 // TongQuanTab — Tab Tổng quan của /de-an/[id].
-// Plan 05-03: hiển thị thông tin chung + key stats + status timeline + mục tiêu/nội dung
-// (Tiptap HTML render qua dangerouslySetInnerHTML — Tiptap output đã sanitized server-side).
+// Client component — lucide icons cannot cross RSC boundary; receives serialized data via props.
+'use client';
 
 import * as React from 'react';
 import {

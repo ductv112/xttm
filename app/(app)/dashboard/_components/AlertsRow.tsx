@@ -1,5 +1,6 @@
-// AlertsRow — 4 alert widgets in a responsive grid (server component).
-// Each widget displays count, top 3 items, drill-down URL.
+// AlertsRow — 4 alert widgets in a responsive grid.
+// Client component — lucide icons cannot cross RSC boundary.
+'use client';
 
 import { TrendingUp, FileWarning, Clock, Globe2 } from 'lucide-react';
 
