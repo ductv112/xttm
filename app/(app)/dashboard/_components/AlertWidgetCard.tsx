@@ -43,7 +43,7 @@ const TONE_STYLES: Record<
     iconColor: 'text-red-700',
     badge: 'bg-red-100 text-red-800 ring-1 ring-red-200',
     decor: 'text-red-500',
-    gradient: 'bg-gradient-to-br from-red-50/60 via-white to-red-100/40',
+    gradient: 'bg-gradient-to-br from-red-50 via-white to-red-200/60',
   },
   warning: {
     border: 'border-l-amber-500',
@@ -51,7 +51,7 @@ const TONE_STYLES: Record<
     iconColor: 'text-amber-700',
     badge: 'bg-amber-100 text-amber-800 ring-1 ring-amber-200',
     decor: 'text-amber-500',
-    gradient: 'bg-gradient-to-br from-amber-50/70 via-white to-amber-100/40',
+    gradient: 'bg-gradient-to-br from-amber-50 via-orange-50/60 to-amber-200/60',
   },
   info: {
     border: 'border-l-blue-700',
@@ -59,7 +59,7 @@ const TONE_STYLES: Record<
     iconColor: 'text-blue-700',
     badge: 'bg-blue-100 text-blue-800 ring-1 ring-blue-200',
     decor: 'text-blue-600',
-    gradient: 'bg-gradient-to-br from-blue-50/60 via-white to-blue-100/40',
+    gradient: 'bg-gradient-to-br from-blue-50 via-sky-50 to-blue-200/60',
   },
 };
 

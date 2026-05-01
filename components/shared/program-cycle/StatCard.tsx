@@ -39,16 +39,16 @@ const DECOR_TONE: Record<StatCardTone, string> = {
   info: 'text-blue-600',
 };
 
-// Tone-matched gradient backgrounds for stronger visual presence
+// Tone-matched gradient backgrounds — saturated for stronger visual presence
 const GRADIENT_TONE: Record<StatCardTone, string> = {
   default:
-    'bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/40',
+    'bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-100/70',
   success:
-    'bg-gradient-to-br from-emerald-50/60 via-white to-emerald-100/40',
+    'bg-gradient-to-br from-emerald-50 via-white to-emerald-200/60',
   warning:
-    'bg-gradient-to-br from-amber-50/70 via-white to-amber-100/40',
-  danger: 'bg-gradient-to-br from-red-50/60 via-white to-red-100/40',
-  info: 'bg-gradient-to-br from-blue-50/60 via-white to-blue-100/40',
+    'bg-gradient-to-br from-amber-50 via-orange-50/60 to-amber-200/60',
+  danger: 'bg-gradient-to-br from-red-50 via-white to-red-200/60',
+  info: 'bg-gradient-to-br from-blue-50 via-sky-50 to-blue-200/60',
 };
 
 /**
@@ -90,7 +90,7 @@ export function StatCard({
   return (
     <div
       className={cn(
-        'group card-elevated relative overflow-hidden p-6 border-l-4',
+        'group card-elevated relative overflow-hidden p-6 border-l-4 h-full min-h-[160px] flex flex-col',
         BORDER_TONE[tone],
         GRADIENT_TONE[tone],
         className,
@@ -106,19 +106,19 @@ export function StatCard({
         />
       ) : null}
 
-      <div className="relative flex items-start justify-between gap-4">
-        <div className="flex flex-col min-w-0">
+      <div className="relative flex items-start justify-between gap-4 flex-1">
+        <div className="flex flex-col min-w-0 flex-1">
           <p className="text-sm font-medium text-slate-600">{label}</p>
           <p
             className={cn(
-              'text-2xl font-bold mt-2 break-words tracking-tight',
+              'text-3xl font-bold mt-2 break-words tracking-tight',
               VALUE_TONE[tone],
             )}
           >
             {formattedValue}
           </p>
           {subtitle ? (
-            <p className="text-sm text-slate-500 mt-1">{subtitle}</p>
+            <p className="text-sm text-slate-500 mt-auto pt-2">{subtitle}</p>
           ) : null}
           {trend ? (
             <div className={cn('flex items-center gap-1 mt-2', trendIconClass)}>
@@ -131,7 +131,7 @@ export function StatCard({
         {Icon ? (
           <div className="shrink-0 relative z-10">
             <Icon
-              className={cn('h-8 w-8', ICON_TONE[tone])}
+              className={cn('h-9 w-9', ICON_TONE[tone])}
               aria-hidden="true"
             />
           </div>

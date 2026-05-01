@@ -21,11 +21,11 @@ type Props = {
 
 export function DashboardStatsRow({ stats, year }: Props) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-fr items-stretch">
       <Link
         href={`/de-an?year=${year}`}
         aria-label="Xem danh sách đề án"
-        className="block transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2 rounded-lg"
+        className="block h-full transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2 rounded-lg"
       >
         <StatCard
           label="Số đề án năm"
@@ -39,7 +39,7 @@ export function DashboardStatsRow({ stats, year }: Props) {
       <Link
         href={`/tai-chinh?year=${year}`}
         aria-label="Xem chi tiết tài chính"
-        className="block transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2 rounded-lg"
+        className="block h-full transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2 rounded-lg"
       >
         <StatCard
           label="Tổng kinh phí năm"
@@ -53,7 +53,7 @@ export function DashboardStatsRow({ stats, year }: Props) {
       <Link
         href="/don-vi-chu-tri"
         aria-label="Xem danh sách đơn vị chủ trì"
-        className="block transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2 rounded-lg"
+        className="block h-full transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2 rounded-lg"
       >
         <StatCard
           label="Đơn vị tham gia"

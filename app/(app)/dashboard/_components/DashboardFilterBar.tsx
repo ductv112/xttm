@@ -112,10 +112,10 @@ export function DashboardFilterBar({ years, currentYear }: Props) {
 
       <div className="flex items-center gap-2 ml-auto">
         <Button
-          variant="outline"
           size="sm"
           onClick={handleExportExcel}
           disabled={isExportingExcel || isExportingPdf}
+          className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm border-0"
         >
           {isExportingExcel ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -125,10 +125,10 @@ export function DashboardFilterBar({ years, currentYear }: Props) {
           Xuất Excel
         </Button>
         <Button
-          variant="outline"
           size="sm"
           onClick={handleExportPdf}
           disabled={isExportingExcel || isExportingPdf}
+          className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm border-0"
         >
           {isExportingPdf ? (
             <Loader2 className="h-4 w-4 animate-spin" />
