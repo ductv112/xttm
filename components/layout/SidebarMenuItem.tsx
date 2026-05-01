@@ -32,18 +32,22 @@ export function SidebarMenuItem({ item }: Props) {
         tooltip={item.label}
         className={cn(
           'relative h-auto gap-3 px-3 py-2.5 text-sm transition-colors duration-150',
-          'text-slate-700 hover:bg-slate-100 hover:text-slate-900',
+          // Resting state — light slate text on navy background
+          'text-slate-200 hover:bg-sidebar-accent hover:text-white',
+          // Active — GOLD accent (amber-500) with navy text
           isActive &&
-            'bg-primary/8 text-primary font-semibold hover:bg-primary/10 hover:text-primary',
+            'bg-amber-500 text-slate-900 font-semibold shadow-sm hover:bg-amber-500 hover:text-slate-900',
           isActive &&
-            "before:absolute before:left-0 before:top-1.5 before:bottom-1.5 before:w-1 before:rounded-r before:bg-primary",
+            "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:rounded-r before:bg-amber-300",
         )}
       >
         <Link href={item.href}>
           <Icon
             className={cn(
               'h-5 w-5 shrink-0 transition-colors',
-              isActive ? 'text-primary' : 'text-slate-500',
+              isActive
+                ? 'text-slate-900'
+                : 'text-amber-300/70 group-hover/menu-item:text-amber-300',
             )}
             strokeWidth={2}
           />

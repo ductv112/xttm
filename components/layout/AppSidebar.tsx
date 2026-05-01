@@ -48,34 +48,39 @@ export function AppSidebar({ user }: Props) {
 
   return (
     <Sidebar variant="inset" collapsible="icon">
-      <SidebarHeader>
+      <SidebarHeader className="border-b border-sidebar-border/60 bg-sidebar">
         <div className="flex items-center justify-between gap-2 px-2 py-2">
           <Link
             href="/dashboard"
             className="flex items-center gap-2 min-w-0"
             aria-label="Trang chủ XTTMQG"
           >
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-bold shrink-0">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-amber-500 text-slate-900 text-sm font-bold shrink-0 shadow-sm ring-1 ring-amber-300/40">
               X
             </span>
-            <span className="text-base font-bold tracking-tight text-primary truncate group-data-[collapsible=icon]:hidden">
-              XTTMQG
+            <span className="flex flex-col min-w-0 group-data-[collapsible=icon]:hidden">
+              <span className="text-base font-bold tracking-tight text-white truncate leading-none">
+                XTTMQG
+              </span>
+              <span className="text-[10px] font-medium text-amber-300/80 truncate mt-0.5">
+                Cục Xúc tiến Thương mại
+              </span>
             </span>
           </Link>
           <SidebarTrigger
             aria-label="Thu gọn / mở rộng thanh điều hướng"
-            className="text-slate-500 hover:text-primary hover:bg-slate-100 shrink-0"
+            className="text-amber-300/80 hover:text-amber-300 hover:bg-sidebar-accent shrink-0"
           />
         </div>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="bg-sidebar">
         {MENU_GROUP_ORDER.map((group) => {
           const groupItems = itemsByGroup[group];
           if (groupItems.length === 0) return null;
           return (
             <SidebarGroup key={group}>
-              <SidebarGroupLabel className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+              <SidebarGroupLabel className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-amber-300/70">
                 {MENU_GROUP_LABELS[group]}
               </SidebarGroupLabel>
               <SidebarMenu>

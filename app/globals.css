@@ -96,15 +96,17 @@
   --chart-4: hsl(160 84% 39%);
   --chart-5: hsl(0 84% 60%);
 
-  /* Sidebar surface */
-  --sidebar: hsl(0 0% 100%);
-  --sidebar-foreground: hsl(222 32% 25%);
-  --sidebar-primary: hsl(226 71% 32%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(210 40% 96%);
-  --sidebar-accent-foreground: hsl(226 71% 32%);
-  --sidebar-border: hsl(214 32% 91%);
-  --sidebar-ring: hsl(226 71% 40%);
+  /* Sidebar surface — National Pride 2026 navy palette
+     Premium gov dashboard: navy-950 base + amber-500 accent for active items.
+     Mirrors the Bộ Công Thương formal aesthetic. */
+  --sidebar: hsl(226 71% 14%);                     /* navy-950 deep */
+  --sidebar-foreground: hsl(210 40% 98%);          /* slate-50 */
+  --sidebar-primary: hsl(38 92% 50%);              /* amber-500 GOLD */
+  --sidebar-primary-foreground: hsl(226 71% 14%);  /* navy on gold */
+  --sidebar-accent: hsl(226 50% 22%);              /* navy lighter for hover */
+  --sidebar-accent-foreground: hsl(210 40% 98%);
+  --sidebar-border: hsl(226 50% 22%);
+  --sidebar-ring: hsl(38 92% 50%);
 
   /* Elevation */
   --shadow-card: 0 1px 3px 0 rgb(15 23 42 / 0.04),
