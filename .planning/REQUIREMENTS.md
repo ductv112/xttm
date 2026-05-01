@@ -221,29 +221,29 @@
 
 ### Dashboard & Thống kê (DASH) — Phase M6
 
-- [ ] **DASH-01**: Lãnh đạo/Ban quản lý xem dashboard tổng quan chương trình theo từng năm với cards (số đề án, kinh phí đăng ký/duyệt/HĐ/giải ngân, số đơn vị tham gia)
-- [ ] **DASH-02**: Widget cảnh báo sai lệch ngân sách (số phê duyệt > đăng ký, số HĐ > phê duyệt) với drill-down
-- [ ] **DASH-03**: Widget chậm ký hợp đồng (60 ngày) với danh sách + drill-down
-- [ ] **DASH-04**: Widget vi phạm hạn báo cáo (15 ngày) với danh sách + drill-down
-- [ ] **DASH-05**: Widget đề án quốc tế chưa liên hệ thương vụ (30 ngày) với danh sách + drill-down
-- [ ] **DASH-06**: SLA countdown widgets với màu sắc theo mức độ (đỏ/cam/vàng/xanh)
-- [ ] **DASH-07**: Drill-down từ widget → danh sách filtered → record detail (3 click chain)
-- [ ] **DASH-08**: Thống kê số lượng đề án theo năm (chart)
-- [ ] **DASH-09**: Thống kê theo loại đề án + theo đơn vị chủ trì
-- [ ] **DASH-10**: Thống kê kinh phí đăng ký / phê duyệt / hợp đồng / giải ngân (multi-series chart)
-- [ ] **DASH-11**: Xuất Excel/PDF báo cáo dashboard
-- [ ] **DASH-12**: Import báo cáo từ biểu mẫu ngoài hệ thống (upload Excel → map → preview → save)
+- [x] **DASH-01**: Lãnh đạo/Ban quản lý xem dashboard tổng quan chương trình theo từng năm với cards (số đề án, kinh phí đăng ký/duyệt/HĐ/giải ngân, số đơn vị tham gia)
+- [x] **DASH-02**: Widget cảnh báo sai lệch ngân sách (số phê duyệt > đăng ký, số HĐ > phê duyệt) với drill-down
+- [x] **DASH-03**: Widget chậm ký hợp đồng (60 ngày) với danh sách + drill-down
+- [x] **DASH-04**: Widget vi phạm hạn báo cáo (15 ngày) với danh sách + drill-down
+- [x] **DASH-05**: Widget đề án quốc tế chưa liên hệ thương vụ (30 ngày) với danh sách + drill-down
+- [x] **DASH-06**: SLA countdown widgets với màu sắc theo mức độ (đỏ/cam/vàng/xanh)
+- [x] **DASH-07**: Drill-down từ widget → danh sách filtered → record detail (3 click chain)
+- [x] **DASH-08**: Thống kê số lượng đề án theo năm (chart)
+- [x] **DASH-09**: Thống kê theo loại đề án + theo đơn vị chủ trì
+- [x] **DASH-10**: Thống kê kinh phí đăng ký / phê duyệt / hợp đồng / giải ngân (multi-series chart)
+- [x] **DASH-11**: Xuất Excel/PDF báo cáo dashboard
+- [x] **DASH-12**: Import báo cáo từ biểu mẫu ngoài hệ thống (upload Excel → map → preview → save)
 
 ### Thông báo & Cảnh báo (ALERT) — Phase M6
 
-- [ ] **ALERT-01**: Hệ thống gửi thông báo khi có hồ sơ mới nộp (cho cán bộ phụ trách)
-- [ ] **ALERT-02**: Hệ thống gửi thông báo khi phân công xử lý
-- [ ] **ALERT-03**: Hệ thống gửi thông báo yêu cầu bổ sung hồ sơ
-- [ ] **ALERT-04**: Hệ thống gửi thông báo kết quả phê duyệt
-- [ ] **ALERT-05**: Hệ thống gửi cảnh báo SLA (60 ngày HĐ / 30 ngày thương vụ / 15 ngày báo cáo / hạn 30/5)
-- [ ] **ALERT-06**: Inbox thông báo trong app (topbar bell với badge counter)
-- [ ] **ALERT-07**: Trang lịch sử thông báo cá nhân với filter (loại, đã đọc/chưa, khoảng thời gian)
-- [ ] **ALERT-08**: Notification mock dispatch — lưu DB, hiển thị inbox, KHÔNG gửi thật ra ngoài
+- [x] **ALERT-01**: Hệ thống gửi thông báo khi có hồ sơ mới nộp (cho cán bộ phụ trách)
+- [x] **ALERT-02**: Hệ thống gửi thông báo khi phân công xử lý
+- [x] **ALERT-03**: Hệ thống gửi thông báo yêu cầu bổ sung hồ sơ
+- [x] **ALERT-04**: Hệ thống gửi thông báo kết quả phê duyệt
+- [x] **ALERT-05**: Hệ thống gửi cảnh báo SLA (60 ngày HĐ / 30 ngày thương vụ / 15 ngày báo cáo / hạn 30/5)
+- [x] **ALERT-06**: Inbox thông báo trong app (topbar bell với badge counter)
+- [x] **ALERT-07**: Trang lịch sử thông báo cá nhân với filter (loại, đã đọc/chưa, khoảng thời gian)
+- [x] **ALERT-08**: Notification mock dispatch — lưu DB, hiển thị inbox, KHÔNG gửi thật ra ngoài
 
 ### Polish & Demo Prep (POLISH) — Phase M7
 
@@ -482,26 +482,26 @@ Explicit exclusions cho prototype POC này.
 | FIN-02 | Phase 9 (M5 Tài chính) | Complete |
 | FIN-03 | Phase 9 (M5 Tài chính) | Complete |
 | FIN-04 | Phase 9 (M5 Tài chính) | Complete |
-| DASH-01 | Phase 10 (M6 Dashboard HERO) | Pending |
-| DASH-02 | Phase 10 (M6 Dashboard HERO) | Pending |
-| DASH-03 | Phase 10 (M6 Dashboard HERO) | Pending |
-| DASH-04 | Phase 10 (M6 Dashboard HERO) | Pending |
-| DASH-05 | Phase 10 (M6 Dashboard HERO) | Pending |
-| DASH-06 | Phase 10 (M6 Dashboard HERO) | Pending |
-| DASH-07 | Phase 10 (M6 Dashboard HERO) | Pending |
-| DASH-08 | Phase 10 (M6 Dashboard HERO) | Pending |
-| DASH-09 | Phase 10 (M6 Dashboard HERO) | Pending |
-| DASH-10 | Phase 10 (M6 Dashboard HERO) | Pending |
-| DASH-11 | Phase 10 (M6 Dashboard HERO) | Pending |
-| DASH-12 | Phase 10 (M6 Dashboard HERO) | Pending |
-| ALERT-01 | Phase 10 (M6 Cảnh báo) | Pending |
-| ALERT-02 | Phase 10 (M6 Cảnh báo) | Pending |
-| ALERT-03 | Phase 10 (M6 Cảnh báo) | Pending |
-| ALERT-04 | Phase 10 (M6 Cảnh báo) | Pending |
-| ALERT-05 | Phase 10 (M6 Cảnh báo) | Pending |
-| ALERT-06 | Phase 10 (M6 Cảnh báo) | Pending |
-| ALERT-07 | Phase 10 (M6 Cảnh báo) | Pending |
-| ALERT-08 | Phase 10 (M6 Cảnh báo) | Pending |
+| DASH-01 | Phase 10 (M6 Dashboard HERO) | Complete |
+| DASH-02 | Phase 10 (M6 Dashboard HERO) | Complete |
+| DASH-03 | Phase 10 (M6 Dashboard HERO) | Complete |
+| DASH-04 | Phase 10 (M6 Dashboard HERO) | Complete |
+| DASH-05 | Phase 10 (M6 Dashboard HERO) | Complete |
+| DASH-06 | Phase 10 (M6 Dashboard HERO) | Complete |
+| DASH-07 | Phase 10 (M6 Dashboard HERO) | Complete |
+| DASH-08 | Phase 10 (M6 Dashboard HERO) | Complete |
+| DASH-09 | Phase 10 (M6 Dashboard HERO) | Complete |
+| DASH-10 | Phase 10 (M6 Dashboard HERO) | Complete |
+| DASH-11 | Phase 10 (M6 Dashboard HERO) | Complete |
+| DASH-12 | Phase 10 (M6 Dashboard HERO) | Complete |
+| ALERT-01 | Phase 10 (M6 Cảnh báo) | Complete |
+| ALERT-02 | Phase 10 (M6 Cảnh báo) | Complete |
+| ALERT-03 | Phase 10 (M6 Cảnh báo) | Complete |
+| ALERT-04 | Phase 10 (M6 Cảnh báo) | Complete |
+| ALERT-05 | Phase 10 (M6 Cảnh báo) | Complete |
+| ALERT-06 | Phase 10 (M6 Cảnh báo) | Complete |
+| ALERT-07 | Phase 10 (M6 Cảnh báo) | Complete |
+| ALERT-08 | Phase 10 (M6 Cảnh báo) | Complete |
 | POLISH-01 | Phase 11 (M7 Polish) | Pending |
 | POLISH-02 | Phase 11 (M7 Polish) | Pending |
 | POLISH-03 | Phase 11 (M7 Polish) | Pending |

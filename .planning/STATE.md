@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Completed Phase 9 — M5 Báo cáo + Nghiệm thu + Tài chính
-last_updated: "2026-05-01T02:31:17.610Z"
+stopped_at: Completed Phase 10 — M6 Dashboard HERO + Notification System
+last_updated: "2026-05-01T02:50:53.068Z"
 last_activity: 2026-05-01
 progress:
   total_phases: 11
-  completed_phases: 9
-  total_plans: 30
-  completed_plans: 30
+  completed_phases: 10
+  total_plans: 31
+  completed_plans: 31
   percent: 100
 ---
 
@@ -21,12 +21,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-30)
 
 **Core value:** Demo end-to-end mượt và đẹp luồng "Vòng đời đề án" (M2-M3): từ Ban quản lý khởi tạo Chu kỳ Chương trình → Đơn vị chủ trì khai báo & nộp đề án → Tiếp nhận & kiểm tra → Hội đồng thẩm định chấm điểm → Ban quản lý lập tờ trình & nhập quyết định phê duyệt.
-**Current focus:** Phase 9 — M5 Báo cáo + Nghiệm thu + Tài chính
+**Current focus:** Phase 10 — M6 Dashboard & Cảnh báo (HERO Lãnh đạo)
 
 ## Current Position
 
-Phase: 10
-Plan: Not started
+Phase: 10 (M6 Dashboard & Cảnh báo (HERO Lãnh đạo)) — EXECUTING
+Plan: 1 of 1
 Status: Phase complete — ready for verification
 Last activity: 2026-05-01
 
@@ -90,6 +90,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 07-m3-thẩm-định-phê-duyệt P02 | 14m | 3 tasks | 17 files |
 | Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh P08-01-contract-impl-amend | 30min | 5 tasks | 34 files |
 | Phase 09-m5-báo-cáo-nghiệm-thu-tài-chính PP09-01-report-acceptance-finance | 19m | 4 tasks | 29 files |
+| Phase 10-m6-dashboard-cảnh-báo P01 | 13min | 4 tasks | 25 files |
 
 ## Accumulated Context
 
@@ -202,6 +203,9 @@ Recent decisions affecting current work:
 - [Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh]: Pure types extracted lib/implementation.ts để bypass 'use server' async-only constraint
 - [Phase 09-m5-báo-cáo-nghiệm-thu-tài-chính]: Report ↔ AcceptanceRecord 1:1 (reportId @unique) — đơn giản hóa POC scope
 - [Phase 09-m5-báo-cáo-nghiệm-thu-tài-chính]: Financial state machine 5-state linear (DRAFT→SUBMITTED→APPROVED→DISBURSED→SETTLED), không rollback sau APPROVED
+- [Phase 10-m6-dashboard-cảnh-báo]: Polling 60s thay websocket cho NotificationBell unread count — POC scope; getDashboardSummary() single entry-point trả full summary trong 1 RSC call (charts hydrate via Recharts ResponsiveContainer)
+- [Phase 10-m6-dashboard-cảnh-báo]: Drill-down qua URL search params (year, status, overdue, budgetVariance, consulatePending) — không tạo special routes, tận dụng existing list pages CycleFilterBar pattern; DONVI scope filter qua projectOrgFilter() helper (T-10-01-01 mitigation)
+- [Phase 10-m6-dashboard-cảnh-báo]: Mock SLA detection at dashboard render time (no cron) per CONTEXT.md <deferred>; Excel xlsx 6-sheet + PDF react-pdf 1-page A4 portrait reusing Be Vietnam Pro font; createNotification public API trong lib/notifications.ts wraps Notification + N NotificationDispatch trong 1 transaction
 
 ### Pending Todos
 
@@ -216,6 +220,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-05-01T02:30:18.639Z
-Stopped at: Completed Phase 9 — M5 Báo cáo + Nghiệm thu + Tài chính
+Last session: 2026-05-01T02:50:53.063Z
+Stopped at: Completed Phase 10 — M6 Dashboard HERO + Notification System
 Resume file: None
