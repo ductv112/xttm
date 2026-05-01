@@ -10,6 +10,7 @@ import { seedOrgProfiles } from './seed/orgProfiles';
 import { seedProjects } from './seed/projects';
 import { seedCouncils } from './seed/councils';
 import { seedContractsAndAmendments } from './seed/contracts-and-amendments';
+import { seedReportsAcceptanceFinance } from './seed/reports-acceptance-finance';
 
 const prisma = new PrismaClient();
 
@@ -47,6 +48,9 @@ async function main() {
 
   // Phase 8 (M4) data: contracts + impl tracking + amendments
   await seedContractsAndAmendments(prisma);
+
+  // Phase 9 (M5) data: reports + acceptance + financial records
+  await seedReportsAcceptanceFinance(prisma);
 
   // Smoke verify counts
   const userCount = await prisma.user.count();
@@ -222,20 +226,60 @@ async function main() {
   const cStatusMap = Object.fromEntries(
     contractsByStatus.map((r) => [r.status, r._count._all] as const),
   );
+  // Phase 9 may transition 1 contract to LIQUIDATED, so allow LIQUIDATED in count.
   if (
     !(
       ((cStatusMap.DRAFT ?? 0) +
         (cStatusMap.SIGNED ?? 0) +
-        (cStatusMap.IN_PROGRESS ?? 0)) >=
+        (cStatusMap.IN_PROGRESS ?? 0) +
+        (cStatusMap.LIQUIDATED ?? 0)) >=
       3
     )
   )
-    throw new Error('Expected ≥3 Contract covering DRAFT/SIGNED/IN_PROGRESS');
+    throw new Error(
+      'Expected ≥3 Contract covering DRAFT/SIGNED/IN_PROGRESS/LIQUIDATED',
+    );
   console.log(
     `📊 Phase 8: contracts=${contractCount} (${contractsByStatus
       .map((r) => `${r.status}=${r._count._all}`)
       .join(', ')}), amendments=${amendmentCount} (${amendmentsByStatus
       .map((r) => `${r.status}=${r._count._all}`)
+      .join(', ')})`,
+  );
+
+  // Phase 9 (M5) — verify Reports + AcceptanceRecords + FinancialRecords
+  const reportCount = await prisma.report.count();
+  const reportsByStatus = await prisma.report.groupBy({
+    by: ['status'],
+    _count: { _all: true },
+  });
+  const acceptanceCount = await prisma.acceptanceRecord.count();
+  const acceptanceByResult = await prisma.acceptanceRecord.groupBy({
+    by: ['result'],
+    _count: { _all: true },
+  });
+  const financialCount = await prisma.financialRecord.count();
+  const financialByType = await prisma.financialRecord.groupBy({
+    by: ['recordType'],
+    _count: { _all: true },
+  });
+  if (reportCount < 2)
+    throw new Error(`Expected ≥2 Report (Phase 9), got ${reportCount}`);
+  if (acceptanceCount < 2)
+    throw new Error(
+      `Expected ≥2 AcceptanceRecord (Phase 9), got ${acceptanceCount}`,
+    );
+  if (financialCount < 3)
+    throw new Error(
+      `Expected ≥3 FinancialRecord (Phase 9), got ${financialCount}`,
+    );
+  console.log(
+    `📊 Phase 9: reports=${reportCount} (${reportsByStatus
+      .map((r) => `${r.status}=${r._count._all}`)
+      .join(', ')}), acceptance=${acceptanceCount} (${acceptanceByResult
+      .map((r) => `${r.result}=${r._count._all}`)
+      .join(', ')}), financial=${financialCount} (${financialByType
+      .map((r) => `${r.recordType}=${r._count._all}`)
       .join(', ')})`,
   );
 

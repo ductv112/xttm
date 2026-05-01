@@ -51,7 +51,7 @@ export function NghiemThuTab({
   project,
   report,
   initialAcceptance,
-  isOwner,
+  isOwner: _isOwner,
   canManage,
 }: {
   project: ProjectDetail;

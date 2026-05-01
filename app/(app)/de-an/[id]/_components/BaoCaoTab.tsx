@@ -59,9 +59,7 @@ export function BaoCaoTab({
   reportSlaWarning: { daysOverdue: number; endDate: Date } | null;
 }) {
   const router = useRouter();
-  const [report, setReport] = React.useState<ProjectReportSummary | null>(
-    initialReport,
-  );
+  const report = initialReport;
   const [rows, setRows] = React.useState<QuantitativeRow[]>(
     initialReport?.quantitativeRows ?? DEFAULT_QUANTITATIVE_ROWS,
   );
@@ -450,7 +448,8 @@ export function BaoCaoTab({
         </h3>
         <p className="mt-1 text-xs text-slate-500">
           Upload danh sách DN tham gia (Excel), hình ảnh sự kiện, hồ sơ HĐ ký
-          kết. Các tệp này được liệt kê tại tab "Tài liệu" của đề án.
+          kết. Các tệp này được liệt kê tại tab &ldquo;Tài liệu&rdquo; của đề
+          án.
         </p>
         {project.documents.length > 0 ? (
           <ul className="mt-2 space-y-1 text-sm text-slate-700">
