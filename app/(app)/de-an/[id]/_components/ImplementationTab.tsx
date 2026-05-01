@@ -4,6 +4,7 @@
 // Hiển thị + chỉnh sửa kế hoạch triển khai + cảnh báo Thương vụ 30d.
 
 import * as React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
   AlertTriangle,
@@ -30,14 +31,14 @@ import {
 import { formatDate } from '@/lib/format';
 
 import type { ProjectDetail } from '../../_actions/get-detail';
+import { saveImplementationPlan } from '../_actions/save-impl-plan';
 import {
   parseImplementationJson,
-  saveImplementationPlan,
+  parseConsulateContactJson,
   type ImplementationData,
   type ImplementationMilestone,
   type ImplementationStaff,
-} from '../_actions/save-impl-plan';
-import { parseConsulateContactJson } from '../_actions/confirm-consulate';
+} from '@/lib/implementation';
 import { ImplementationTimeline } from './ImplementationTimeline';
 import { ConsulateContactDialog } from './ConsulateContactDialog';
 
@@ -286,12 +287,12 @@ export function ImplementationTab({
         <div className="rounded-lg border border-blue-200 bg-blue-50 p-3">
           <div className="text-sm">
             Hợp đồng:{' '}
-            <a
+            <Link
               href={`/hop-dong/${project.contractId}`}
               className="font-mono font-semibold text-blue-700 hover:underline"
             >
               {project.contractNo}
-            </a>
+            </Link>
             {' · '}
             <span className="font-medium">
               Trạng thái: {project.contractStatus}
@@ -301,9 +302,9 @@ export function ImplementationTab({
       ) : project.status === 'APPROVED' ? (
         <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
           Đề án đã được phê duyệt nhưng chưa có hợp đồng. Hãy đến trang{' '}
-          <a href="/hop-dong" className="font-semibold underline">
+          <Link href="/hop-dong" className="font-semibold underline">
             Hợp đồng
-          </a>{' '}
+          </Link>{' '}
           để tạo.
         </div>
       ) : null}

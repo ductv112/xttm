@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { CheckCircle2, Circle, AlertOctagon, Loader } from 'lucide-react';
 
-import type { ImplementationMilestone } from '../_actions/save-impl-plan';
+import type { ImplementationMilestone } from '@/lib/implementation';
 import { formatDate } from '@/lib/format';
 
 const STATUS_LABEL: Record<ImplementationMilestone['status'], string> = {

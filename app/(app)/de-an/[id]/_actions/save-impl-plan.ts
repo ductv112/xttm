@@ -3,6 +3,9 @@
 // saveImplementationPlan — Phase 8 Plan 08-01 Task 3.
 // Lưu kế hoạch triển khai (milestones, staff, schedule).
 // RBAC: DONVI sửa đề án của mình; BANQL có quyền update toàn bộ.
+//
+// Pure types + parsers extracted to lib/implementation.ts (Next.js 'use server'
+// constraint: only async functions can be exported from server action files).
 
 import { revalidatePath } from 'next/cache';
 
@@ -12,69 +15,11 @@ import { canFromDB } from '@/lib/permissions-db';
 import { logAudit } from '@/lib/audit';
 import { IMPL_AUDIT_TYPES } from '@/lib/audit-types';
 import type { Role } from '@/lib/constants';
-
-export type ImplementationMilestone = {
-  id: string;
-  title: string;
-  startDate: string | null; // ISO
-  endDate: string | null; // ISO
-  owner: string;
-  progress: number; // 0-100
-  note: string;
-  status: 'PENDING' | 'IN_PROGRESS' | 'DONE' | 'BLOCKED';
-};
-
-export type ImplementationStaff = {
-  id: string;
-  name: string;
-  role: string;
-  phone: string;
-  email: string;
-};
-
-export type ImplementationData = {
-  milestones: ImplementationMilestone[];
-  staff: ImplementationStaff[];
-  schedule: {
-    start: string | null;
-    end: string | null;
-    note: string;
-  };
-};
-
-export function emptyImplementationData(): ImplementationData {
-  return {
-    milestones: [],
-    staff: [],
-    schedule: { start: null, end: null, note: '' },
-  };
-}
-
-export function parseImplementationJson(
-  raw: string | null | undefined,
-): ImplementationData {
-  if (!raw) return emptyImplementationData();
-  try {
-    const v = JSON.parse(raw);
-    if (v && typeof v === 'object') {
-      return {
-        milestones: Array.isArray(v.milestones) ? v.milestones : [],
-        staff: Array.isArray(v.staff) ? v.staff : [],
-        schedule:
-          v.schedule && typeof v.schedule === 'object'
-            ? {
-                start: v.schedule.start ?? null,
-                end: v.schedule.end ?? null,
-                note: v.schedule.note ?? '',
-              }
-            : { start: null, end: null, note: '' },
-      };
-    }
-  } catch {
-    // ignore
-  }
-  return emptyImplementationData();
-}
+import {
+  parseImplementationJson,
+  type ImplementationData,
+  type ImplementationMilestone,
+} from '@/lib/implementation';
 
 export type SaveImplPlanResult =
   | { ok: true }

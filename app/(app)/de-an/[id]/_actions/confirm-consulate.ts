@@ -2,6 +2,8 @@
 
 // confirmConsulateContact — Phase 8 Plan 08-01 Task 3.
 // Đánh dấu đã liên hệ Thương vụ ĐSQ — IMPL-08 cảnh báo 30 ngày.
+//
+// Pure type ConsulateContactInput + parser extracted to lib/implementation.ts.
 
 import { revalidatePath } from 'next/cache';
 
@@ -11,16 +13,7 @@ import { canFromDB } from '@/lib/permissions-db';
 import { logAudit } from '@/lib/audit';
 import { IMPL_AUDIT_TYPES } from '@/lib/audit-types';
 import type { Role } from '@/lib/constants';
-
-export type ConsulateContactInput = {
-  countryName: string;
-  contactName: string;
-  contactTitle: string;
-  contactPhone: string;
-  contactEmail: string;
-  contactDate: string; // ISO
-  note: string;
-};
+import type { ConsulateContactInput } from '@/lib/implementation';
 
 export type ConsulateContactResult =
   | { ok: true }
@@ -90,13 +83,4 @@ export async function confirmConsulateContact(
 
   revalidatePath(`/de-an/${projectId}`);
   return { ok: true };
-}
-
-export function parseConsulateContactJson(raw: string | null | undefined) {
-  if (!raw) return null;
-  try {
-    return JSON.parse(raw) as ConsulateContactInput;
-  } catch {
-    return null;
-  }
 }

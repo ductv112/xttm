@@ -20,10 +20,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 
-import {
-  confirmConsulateContact,
-  type ConsulateContactInput,
-} from '../_actions/confirm-consulate';
+import { confirmConsulateContact } from '../_actions/confirm-consulate';
+import type { ConsulateContactInput } from '@/lib/implementation';
 
 export function ConsulateContactDialog({
   projectId,

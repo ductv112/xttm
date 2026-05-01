@@ -9,6 +9,7 @@ import { seedCycleNotifications } from './seed/notifications';
 import { seedOrgProfiles } from './seed/orgProfiles';
 import { seedProjects } from './seed/projects';
 import { seedCouncils } from './seed/councils';
+import { seedContractsAndAmendments } from './seed/contracts-and-amendments';
 
 const prisma = new PrismaClient();
 
@@ -43,6 +44,9 @@ async function main() {
 
   // Phase 7 (M3) HERO data: 1 EvaluationCouncil + 3 members + 2 assignments + 2 EVALUATION ScoreSheets
   await seedCouncils(prisma);
+
+  // Phase 8 (M4) data: contracts + impl tracking + amendments
+  await seedContractsAndAmendments(prisma);
 
   // Smoke verify counts
   const userCount = await prisma.user.count();
@@ -198,6 +202,41 @@ async function main() {
     );
   console.log(
     `📊 Phase 7: councils=${councilCount}, members=${memberCount}, assignments=${assignmentCount}, EVALUATION sheets=${evaluationSheets}`,
+  );
+
+  // Phase 8 (M4) — verify Contract + ProjectAmendment seeded
+  const contractCount = await prisma.contract.count();
+  const amendmentCount = await prisma.projectAmendment.count();
+  const contractsByStatus = await prisma.contract.groupBy({
+    by: ['status'],
+    _count: { _all: true },
+  });
+  const amendmentsByStatus = await prisma.projectAmendment.groupBy({
+    by: ['status'],
+    _count: { _all: true },
+  });
+  if (contractCount < 3)
+    throw new Error(`Expected ≥3 Contract, got ${contractCount}`);
+  if (amendmentCount < 3)
+    throw new Error(`Expected ≥3 ProjectAmendment, got ${amendmentCount}`);
+  const cStatusMap = Object.fromEntries(
+    contractsByStatus.map((r) => [r.status, r._count._all] as const),
+  );
+  if (
+    !(
+      ((cStatusMap.DRAFT ?? 0) +
+        (cStatusMap.SIGNED ?? 0) +
+        (cStatusMap.IN_PROGRESS ?? 0)) >=
+      3
+    )
+  )
+    throw new Error('Expected ≥3 Contract covering DRAFT/SIGNED/IN_PROGRESS');
+  console.log(
+    `📊 Phase 8: contracts=${contractCount} (${contractsByStatus
+      .map((r) => `${r.status}=${r._count._all}`)
+      .join(', ')}), amendments=${amendmentCount} (${amendmentsByStatus
+      .map((r) => `${r.status}=${r._count._all}`)
+      .join(', ')})`,
   );
 
   console.timeEnd('seed');
