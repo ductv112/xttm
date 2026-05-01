@@ -2,8 +2,6 @@
 // Defense-in-depth RBAC + invalid slug → notFound().
 
 import { notFound, redirect } from 'next/navigation';
-import Link from 'next/link';
-import { ChevronRight, Home } from 'lucide-react';
 
 import { auth } from '@/lib/auth';
 import { can, defaultLandingPath } from '@/lib/permissions';
@@ -52,31 +50,7 @@ export default async function CatalogSlugPage({
 
   return (
     <div className="space-y-6">
-      {/* Breadcrumb */}
-      <nav
-        aria-label="Đường dẫn"
-        className="flex items-center gap-1 text-sm text-slate-600"
-      >
-        <Link
-          href="/dashboard"
-          className="flex items-center gap-1 hover:text-blue-700"
-        >
-          <Home className="h-3.5 w-3.5" aria-hidden="true" />
-          Trang chủ
-        </Link>
-        <ChevronRight
-          className="h-3.5 w-3.5 text-slate-400"
-          aria-hidden="true"
-        />
-        <Link href="/danh-muc" className="hover:text-blue-700">
-          Danh mục
-        </Link>
-        <ChevronRight
-          className="h-3.5 w-3.5 text-slate-400"
-          aria-hidden="true"
-        />
-        <span className="text-slate-900">{config.label}</span>
-      </nav>
+      {/* Breadcrumb removed — handled by AppTopbar AppBreadcrumb globally */}
 
       <CatalogPage
         kind={config.kind}
