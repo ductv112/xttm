@@ -1,6 +1,6 @@
 // AlertWidgetCard — generic alert widget with icon + count + top items + drill-down.
-// Tone-coded border + icon. Used cho 4 widgets: budget variance, contract delay,
-// report overdue, consulate.
+// Tone-coded border + icon + decorative bg icon. Used cho 4 widgets: budget
+// variance, contract delay, report overdue, consulate.
 
 import { ArrowRight, type LucideIcon } from 'lucide-react';
 import Link from 'next/link';
@@ -26,21 +26,36 @@ type Props = {
   emptyText?: string;
 };
 
-const TONE_STYLES: Record<AlertTone, { border: string; icon: string; badge: string }> = {
+const TONE_STYLES: Record<
+  AlertTone,
+  {
+    border: string;
+    iconBg: string;
+    iconColor: string;
+    badge: string;
+    decor: string;
+  }
+> = {
   danger: {
     border: 'border-l-red-500',
-    icon: 'text-red-600 bg-red-50',
+    iconBg: 'bg-red-50',
+    iconColor: 'text-red-600',
     badge: 'bg-red-100 text-red-800',
+    decor: 'text-red-500',
   },
   warning: {
     border: 'border-l-amber-500',
-    icon: 'text-amber-600 bg-amber-50',
+    iconBg: 'bg-amber-50',
+    iconColor: 'text-amber-600',
     badge: 'bg-amber-100 text-amber-800',
+    decor: 'text-amber-500',
   },
   info: {
-    border: 'border-l-blue-500',
-    icon: 'text-blue-600 bg-blue-50',
+    border: 'border-l-blue-600',
+    iconBg: 'bg-blue-50',
+    iconColor: 'text-blue-700',
     badge: 'bg-blue-100 text-blue-800',
+    decor: 'text-blue-600',
   },
 };
 
@@ -58,13 +73,21 @@ export function AlertWidgetCard({
   return (
     <div
       className={cn(
-        'rounded-lg border border-slate-200 border-l-4 bg-white p-5 flex flex-col h-full shadow-sm transition-shadow hover:shadow-md',
+        'group card-elevated relative overflow-hidden border-l-4 p-5 flex flex-col h-full',
         styles.border,
       )}
     >
-      <div className="flex items-start justify-between gap-3">
+      <Icon
+        className={cn(
+          'card-decorative-icon h-24 w-24',
+          styles.decor,
+        )}
+        aria-hidden="true"
+      />
+
+      <div className="relative flex items-start justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
-          <div className={cn('p-2 rounded-md', styles.icon)}>
+          <div className={cn('p-2 rounded-md', styles.iconBg, styles.iconColor)}>
             <Icon className="h-5 w-5" aria-hidden="true" />
           </div>
           <div className="min-w-0">
@@ -83,7 +106,7 @@ export function AlertWidgetCard({
         </div>
       </div>
 
-      <ul className="mt-4 flex-1 space-y-2">
+      <ul className="relative mt-4 flex-1 space-y-2">
         {items.length === 0 ? (
           <li className="text-sm text-slate-500 italic py-2">{emptyText}</li>
         ) : (
@@ -92,7 +115,7 @@ export function AlertWidgetCard({
               {item.href ? (
                 <Link
                   href={item.href}
-                  className="block px-2 py-1.5 -mx-2 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700"
+                  className="block px-2 py-1.5 -mx-2 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <div className="flex items-baseline gap-2">
                     <span className="font-mono text-xs text-slate-500 shrink-0">
@@ -128,10 +151,10 @@ export function AlertWidgetCard({
 
       <Link
         href={drillDownHref}
-        className="mt-4 pt-3 border-t border-slate-100 inline-flex items-center gap-1 text-sm font-medium text-blue-700 hover:text-blue-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 rounded"
+        className="relative mt-4 pt-3 border-t border-slate-100 inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
       >
         Xem tất cả
-        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
       </Link>
     </div>
   );
