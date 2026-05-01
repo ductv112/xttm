@@ -98,7 +98,7 @@ async function requestSupplementImpl(
       const notification = await prisma.notification.create({
         data: {
           projectId: project.id,
-          type: 'CYCLE_OPENED', // reuse existing enum until INTAKE notification type added
+          type: 'SUPPLEMENT_REQUEST',
           subject: `Yêu cầu bổ sung hồ sơ: ${project.code}`,
           content: `<p>Hồ sơ <strong>${project.name}</strong> (${project.code}) cần được bổ sung.</p><p><strong>Nội dung yêu cầu:</strong></p><blockquote>${escapeHtml(input.reason)}</blockquote><p>Vui lòng truy cập trang Đề án để cập nhật hồ sơ và nộp lại.</p>`,
           recipientType: 'USER',

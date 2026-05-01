@@ -148,3 +148,222 @@ export async function getCycleNotificationStats(
 
   return { totalNotifications, totalDispatches, readDispatches };
 }
+
+// =============================================================================
+// Phase 10 (M6) — Personal inbox helpers
+// listMyNotifications / getUnreadCount / markRead / markAllRead / createNotification
+// =============================================================================
+
+export type CreateNotificationInput = {
+  type: NotificationType;
+  subject: string;
+  contentHtml: string;
+  recipientUserIds?: string[];
+  recipientOrgIds?: string[];
+  createdById: string;
+  projectId?: string | null;
+  programCycleId?: string | null;
+};
+
+/**
+ * Generic notification creator for Phase 10 inbox triggers.
+ * Idempotent: caller responsible for upstream dedupe (e.g. SLA detection).
+ * Either recipientUserIds or recipientOrgIds must be non-empty.
+ */
+export async function createNotification(
+  input: CreateNotificationInput,
+): Promise<{ notificationId: string; dispatchCount: number }> {
+  const userIds = input.recipientUserIds ?? [];
+  const orgIds = input.recipientOrgIds ?? [];
+  if (userIds.length === 0 && orgIds.length === 0) {
+    throw new Error('Phải có ít nhất 1 người nhận');
+  }
+
+  const recipientType = userIds.length > 0 ? 'USER' : 'ORGANIZATION';
+  const now = new Date();
+
+  return prisma.$transaction(async (tx) => {
+    const notification = await tx.notification.create({
+      data: {
+        type: input.type,
+        subject: input.subject,
+        content: input.contentHtml,
+        recipientType,
+        createdById: input.createdById,
+        projectId: input.projectId ?? null,
+        programCycleId: input.programCycleId ?? null,
+      },
+    });
+
+    const dispatchData = [
+      ...userIds.map((uid) => ({
+        notificationId: notification.id,
+        recipientUserId: uid,
+        status: 'SENT' satisfies DispatchStatus,
+        sentAt: now,
+      })),
+      ...orgIds.map((oid) => ({
+        notificationId: notification.id,
+        recipientOrgId: oid,
+        status: 'SENT' satisfies DispatchStatus,
+        sentAt: now,
+      })),
+    ];
+
+    if (dispatchData.length > 0) {
+      await tx.notificationDispatch.createMany({ data: dispatchData });
+    }
+
+    return {
+      notificationId: notification.id,
+      dispatchCount: dispatchData.length,
+    };
+  });
+}
+
+export type InboxNotification = {
+  dispatchId: string;
+  notificationId: string;
+  type: NotificationType;
+  subject: string;
+  content: string;
+  status: DispatchStatus;
+  sentAt: Date | null;
+  readAt: Date | null;
+  projectId: string | null;
+  programCycleId: string | null;
+  createdAt: Date;
+};
+
+export type ListMyNotificationsOptions = {
+  unreadOnly?: boolean;
+  type?: NotificationType;
+  fromDate?: Date;
+  toDate?: Date;
+  limit?: number;
+  offset?: number;
+};
+
+/**
+ * List notifications dispatched to the current user.
+ * Returns dispatches scoped to userId (recipientUserId).
+ */
+export async function listMyNotifications(
+  userId: string,
+  options: ListMyNotificationsOptions = {},
+): Promise<{ rows: InboxNotification[]; total: number }> {
+  const limit = options.limit ?? 50;
+  const offset = options.offset ?? 0;
+
+  const where: Parameters<typeof prisma.notificationDispatch.findMany>[0] extends
+    | { where?: infer W }
+    | undefined
+    ? W
+    : never = {
+    recipientUserId: userId,
+  };
+  if (options.unreadOnly) {
+    where.status = { in: ['SENT', 'PENDING'] };
+  }
+  if (options.fromDate || options.toDate) {
+    where.sentAt = {};
+    if (options.fromDate) where.sentAt.gte = options.fromDate;
+    if (options.toDate) where.sentAt.lte = options.toDate;
+  }
+  if (options.type) {
+    where.notification = { type: options.type };
+  }
+
+  const [rows, total] = await Promise.all([
+    prisma.notificationDispatch.findMany({
+      where,
+      orderBy: { sentAt: 'desc' },
+      skip: offset,
+      take: limit,
+      include: {
+        notification: {
+          select: {
+            id: true,
+            type: true,
+            subject: true,
+            content: true,
+            createdAt: true,
+            projectId: true,
+            programCycleId: true,
+          },
+        },
+      },
+    }),
+    prisma.notificationDispatch.count({ where }),
+  ]);
+
+  return {
+    rows: rows.map((d) => ({
+      dispatchId: d.id,
+      notificationId: d.notificationId,
+      type: d.notification.type as NotificationType,
+      subject: d.notification.subject,
+      content: d.notification.content,
+      status: d.status as DispatchStatus,
+      sentAt: d.sentAt,
+      readAt: d.readAt,
+      projectId: d.notification.projectId,
+      programCycleId: d.notification.programCycleId,
+      createdAt: d.notification.createdAt,
+    })),
+    total,
+  };
+}
+
+/**
+ * Count unread (SENT/PENDING) notifications for current user.
+ */
+export async function getUnreadCount(userId: string): Promise<number> {
+  return prisma.notificationDispatch.count({
+    where: {
+      recipientUserId: userId,
+      status: { in: ['SENT', 'PENDING'] },
+    },
+  });
+}
+
+/**
+ * Mark a single dispatch READ. Idempotent — already-READ rows refresh readAt.
+ * Verifies ownership: dispatch.recipientUserId === userId.
+ */
+export async function markNotificationRead(
+  dispatchId: string,
+  userId: string,
+): Promise<void> {
+  const dispatch = await prisma.notificationDispatch.findUnique({
+    where: { id: dispatchId },
+    select: { recipientUserId: true },
+  });
+  if (!dispatch) {
+    throw new Error('Không tìm thấy thông báo');
+  }
+  if (dispatch.recipientUserId !== userId) {
+    throw new Error('Bạn không có quyền truy cập thông báo này');
+  }
+  await prisma.notificationDispatch.update({
+    where: { id: dispatchId },
+    data: { status: 'READ', readAt: new Date() },
+  });
+}
+
+/**
+ * Mark all unread (SENT/PENDING) notifications for the user as READ.
+ */
+export async function markAllNotificationsRead(
+  userId: string,
+): Promise<{ count: number }> {
+  const now = new Date();
+  const result = await prisma.notificationDispatch.updateMany({
+    where: {
+      recipientUserId: userId,
+      status: { in: ['SENT', 'PENDING'] },
+    },
+    data: { status: 'READ', readAt: now },
+  });
+  return { count: result.count };
+}

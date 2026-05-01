@@ -100,11 +100,35 @@ async function assignProjectImpl(
     select: {
       id: true,
       code: true,
+      name: true,
       status: true,
       assignedReviewerId: true,
       assignedAt: true,
     },
   });
+
+  // Mock notification: dispatch to assigned chuyên viên
+  try {
+    const notification = await prisma.notification.create({
+      data: {
+        projectId: updated.id,
+        type: 'ASSIGNED',
+        subject: `Bạn được phân công kiểm tra: ${updated.code}`,
+        content: `<p>Bạn được phân công kiểm tra hồ sơ đề án: <strong>${updated.name}</strong> (mã ${updated.code}).</p><p>Vui lòng truy cập trang Kiểm tra hồ sơ để bắt đầu công việc.</p>`,
+        recipientType: 'USER',
+        createdById: session.user.id,
+      },
+    });
+    await prisma.notificationDispatch.create({
+      data: {
+        notificationId: notification.id,
+        recipientUserId: staff.id,
+        status: 'SENT',
+      },
+    });
+  } catch (err) {
+    console.error('[assignProject] notification dispatch failed:', err);
+  }
 
   revalidatePath('/phan-cong');
   revalidatePath('/kiem-tra');

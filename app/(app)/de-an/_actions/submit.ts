@@ -213,7 +213,7 @@ async function submitProjectImpl(projectId: string): Promise<SubmitProjectResult
       const notification = await prisma.notification.create({
         data: {
           projectId: project.id,
-          type: 'CYCLE_OPENED', // reuse existing enum (Phase 5 to extend)
+          type: 'NEW_PROJECT',
           subject: `Đề án mới từ ${project.code}`,
           content: `<p>Có đề án mới được nộp: <strong>${project.name}</strong> (mã ${project.code}).</p>`,
           recipientType: 'USER',

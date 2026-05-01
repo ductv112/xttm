@@ -7,6 +7,13 @@ export const NOTIFICATION_TYPES = [
   'CYCLE_EXTENDED',
   'CYCLE_OPENED',
   'CYCLE_CLOSED',
+  // Phase 10 (M6) inbox types
+  'NEW_PROJECT',
+  'ASSIGNED',
+  'SUPPLEMENT_REQUEST',
+  'APPROVAL_RESULT',
+  'SLA_WARNING',
+  'GENERAL',
 ] as const;
 
 export type NotificationType = (typeof NOTIFICATION_TYPES)[number];
@@ -17,6 +24,12 @@ export const NOTIFICATION_TYPE_LABELS: Record<NotificationType, string> = {
   CYCLE_EXTENDED: 'Chu kỳ được gia hạn',
   CYCLE_OPENED: 'Chu kỳ mở cổng đăng ký',
   CYCLE_CLOSED: 'Chu kỳ đóng cổng đăng ký',
+  NEW_PROJECT: 'Đề án mới',
+  ASSIGNED: 'Phân công kiểm tra',
+  SUPPLEMENT_REQUEST: 'Yêu cầu bổ sung',
+  APPROVAL_RESULT: 'Kết quả phê duyệt',
+  SLA_WARNING: 'Cảnh báo SLA',
+  GENERAL: 'Thông báo chung',
 };
 
 export const DISPATCH_STATUSES = ['PENDING', 'SENT', 'READ', 'FAILED'] as const;
