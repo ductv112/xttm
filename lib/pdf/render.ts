@@ -18,6 +18,10 @@ import {
   ApprovalDecision,
   type ApprovalDecisionPdfProps,
 } from './templates/ApprovalDecision';
+import {
+  AmendmentDecision,
+  type AmendmentDecisionPdfProps,
+} from './templates/AmendmentDecision';
 import { registerPdfFonts } from './fonts';
 
 /**
@@ -97,6 +101,21 @@ export async function renderApprovalDecisionPdf(
   registerPdfFonts();
   const element = createElement(
     ApprovalDecision as unknown as React.ComponentType<ApprovalDecisionPdfProps>,
+    props,
+  ) as Parameters<typeof renderToBuffer>[0];
+  const buffer = await renderToBuffer(element);
+  return buffer;
+}
+
+/**
+ * Render the AmendmentDecision (Quyết định điều chỉnh) template — Phase 8 PDF.
+ */
+export async function renderAmendmentDecisionPdf(
+  props: AmendmentDecisionPdfProps,
+): Promise<Buffer> {
+  registerPdfFonts();
+  const element = createElement(
+    AmendmentDecision as unknown as React.ComponentType<AmendmentDecisionPdfProps>,
     props,
   ) as Parameters<typeof renderToBuffer>[0];
   const buffer = await renderToBuffer(element);
