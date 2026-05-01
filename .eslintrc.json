@@ -4,5 +4,14 @@
     "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "@typescript-eslint/no-explicit-any": "error",
     "no-console": ["warn", { "allow": ["warn", "error"] }]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["prisma/**/*.ts", "prisma/**/*.mts", "scripts/**/*.ts", "scripts/**/*.mts"],
+      "rules": {
+        "no-console": "off",
+        "@typescript-eslint/no-unused-vars": "off"
+      }
+    }
+  ]
 }

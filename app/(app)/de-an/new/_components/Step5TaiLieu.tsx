@@ -22,7 +22,6 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
 import {
   Select,
   SelectContent,
@@ -34,10 +33,7 @@ import { ConfirmDialog } from '@/components/shared/ConfirmDialog';
 import { formatDateTime } from '@/lib/format';
 import { cn } from '@/lib/utils';
 
-import {
-  useProjectWizardStore,
-  getDefaultStep5,
-} from '../_lib/wizardStore';
+import { useProjectWizardStore } from '../_lib/wizardStore';
 import type { Step5DocumentEntry } from '../_lib/types';
 import {
   uploadProjectDocument,
@@ -67,10 +63,6 @@ function formatFileSize(bytes: number | null): string {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 }
 
-function getCategoryLabel(cat: string): string {
-  return CATEGORY_OPTIONS.find((c) => c.value === cat)?.label ?? cat;
-}
-
 export type Step5Props = {
   /** Server draft id once autosave succeeds. Required to upload. */
   projectId: string | null;
@@ -80,8 +72,13 @@ export type Step5Props = {
 
 export const Step5TaiLieu = React.forwardRef<StepHandle, Step5Props>(
   function Step5TaiLieu({ projectId, onAutosaveBeforeUpload }, ref) {
-    const documents =
-      useProjectWizardStore((s) => s.formData.step5?.documents) ?? [];
+    const documentsRaw = useProjectWizardStore(
+      (s) => s.formData.step5?.documents,
+    );
+    const documents = React.useMemo(
+      () => documentsRaw ?? [],
+      [documentsRaw],
+    );
     const setStepData = useProjectWizardStore((s) => s.setStepData);
     const addDocument = useProjectWizardStore((s) => s.addDocument);
     const removeDocument = useProjectWizardStore((s) => s.removeDocument);

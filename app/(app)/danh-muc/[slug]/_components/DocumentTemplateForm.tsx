@@ -88,7 +88,11 @@ type Props = {
 
 export function DocumentTemplateForm({ form, mode }: Props) {
   const [variableInput, setVariableInput] = React.useState('');
-  const watchedVariables = form.watch('variables') ?? [];
+  const watchedVariablesRaw = form.watch('variables');
+  const watchedVariables = React.useMemo(
+    () => watchedVariablesRaw ?? [],
+    [watchedVariablesRaw],
+  );
   const watchedBody = form.watch('bodyHtml') ?? '';
 
   const variableMenuItems = React.useMemo(

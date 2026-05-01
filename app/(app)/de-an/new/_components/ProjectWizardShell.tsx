@@ -43,8 +43,6 @@ import {
   getDefaultStep2,
   getDefaultStep3,
   getDefaultStep4,
-  getDefaultStep5,
-  getDefaultStep6,
 } from '../_lib/wizardStore';
 import type {
   ContactOption,
