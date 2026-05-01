@@ -17,13 +17,13 @@ import { toast } from 'sonner';
 import { Loader2, FileText } from 'lucide-react';
 
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { EmptyState } from '@/components/shared/EmptyState';
@@ -88,18 +88,18 @@ export function CopyFromPreviousDialog({
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl">
-        <DialogHeader>
-          <DialogTitle>Sao chép từ đề án cũ</DialogTitle>
-          <DialogDescription>
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent side="right" size="lg" className="flex flex-col p-0">
+        <SheetHeader>
+          <SheetTitle>Sao chép từ đề án cũ</SheetTitle>
+          <SheetDescription>
             Chọn một đề án đã được phê duyệt hoặc nghiệm thu để sao chép thông
             tin (loại đề án, ngành hàng, mục tiêu, kế hoạch, dự toán). Thời gian
             và năm sẽ được đặt lại theo chu kỳ hiện hành.
-          </DialogDescription>
-        </DialogHeader>
+          </SheetDescription>
+        </SheetHeader>
 
-        <div className="py-2">
+        <div className="flex-1 overflow-y-auto px-6 py-5">
           {previousProjects.length === 0 ? (
             <EmptyState
               icon="file-x"
@@ -107,7 +107,7 @@ export function CopyFromPreviousDialog({
               description="Chỉ những đề án đã phê duyệt, đang triển khai hoặc đã nghiệm thu mới có thể được sao chép."
             />
           ) : (
-            <div className="max-h-[400px] space-y-2 overflow-y-auto rounded-md border border-slate-200 p-2">
+            <div className="space-y-2 rounded-md border border-slate-200 p-2">
               {previousProjects.map((p) => {
                 const isSelected = selectedId === p.id;
                 return (
@@ -150,7 +150,7 @@ export function CopyFromPreviousDialog({
           )}
         </div>
 
-        <DialogFooter>
+        <SheetFooter>
           <Button
             type="button"
             variant="outline"
@@ -174,9 +174,9 @@ export function CopyFromPreviousDialog({
             ) : null}
             Sao chép sang đề án mới
           </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 }
 

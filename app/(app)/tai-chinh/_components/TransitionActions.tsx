@@ -17,13 +17,13 @@ import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import {
   FINANCIAL_STATUS_LABELS,
   type FinancialStatus,
@@ -103,27 +103,28 @@ export function TransitionActions({
         })}
       </div>
 
-      <Dialog open={!!target} onOpenChange={(o) => !o && setTarget(null)}>
-        <DialogContent className="sm:max-w-md">
+      <Sheet open={!!target} onOpenChange={(o) => !o && setTarget(null)}>
+        <SheetContent side="right" size="md" className="flex flex-col p-0">
           {target ? (
             <>
-              <DialogHeader>
-                <DialogTitle>
+              <SheetHeader>
+                <SheetTitle>
                   Chuyển sang {FINANCIAL_STATUS_LABELS[target]}
-                </DialogTitle>
-                <DialogDescription>
+                </SheetTitle>
+                <SheetDescription>
                   Xác nhận chuyển trạng thái hồ sơ tài chính. Có thể ghi chú
                   thêm trước khi xác nhận.
-                </DialogDescription>
-              </DialogHeader>
-              <Textarea
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                rows={3}
-                placeholder="Ghi chú (không bắt buộc)..."
-                className="my-2"
-              />
-              <DialogFooter>
+                </SheetDescription>
+              </SheetHeader>
+              <div className="flex-1 overflow-y-auto px-6 py-5">
+                <Textarea
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  rows={4}
+                  placeholder="Ghi chú (không bắt buộc)..."
+                />
+              </div>
+              <SheetFooter>
                 <Button
                   variant="outline"
                   onClick={() => setTarget(null)}
@@ -134,11 +135,11 @@ export function TransitionActions({
                 <Button onClick={handleConfirm} disabled={busy}>
                   Xác nhận
                 </Button>
-              </DialogFooter>
+              </SheetFooter>
             </>
           ) : null}
-        </DialogContent>
-      </Dialog>
+        </SheetContent>
+      </Sheet>
     </>
   );
 }

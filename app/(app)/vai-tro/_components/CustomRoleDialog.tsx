@@ -12,13 +12,13 @@ import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -60,8 +60,8 @@ export function CustomRoleDialog({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent side="right" size="md" className="flex flex-col p-0">
         {mode === 'create' ? (
           <CreateRoleForm onClose={() => onOpenChange(false)} />
         ) : (
@@ -70,8 +70,8 @@ export function CustomRoleDialog({
             onClose={() => onOpenChange(false)}
           />
         )}
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 }
 
@@ -103,19 +103,19 @@ function CreateRoleForm({ onClose }: { onClose: () => void }) {
   });
 
   return (
-    <>
-      <DialogHeader>
-        <DialogTitle>Tạo vai trò mới</DialogTitle>
-        <DialogDescription>
+    <form
+      onSubmit={form.handleSubmit((values) => mutation.mutate(values))}
+      className="flex flex-col flex-1 min-h-0"
+    >
+      <SheetHeader>
+        <SheetTitle>Tạo vai trò mới</SheetTitle>
+        <SheetDescription>
           Vai trò tùy chỉnh sẽ xuất hiện trong ma trận phân quyền và có thể gán
           quyền chi tiết cho từng phân hệ.
-        </DialogDescription>
-      </DialogHeader>
+        </SheetDescription>
+      </SheetHeader>
 
-      <form
-        onSubmit={form.handleSubmit((values) => mutation.mutate(values))}
-        className="space-y-4"
-      >
+      <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
         <div className="space-y-1.5">
           <Label htmlFor="role-code">
             Mã vai trò <span className="text-red-600">*</span>
@@ -171,29 +171,29 @@ function CreateRoleForm({ onClose }: { onClose: () => void }) {
             </p>
           ) : null}
         </div>
+      </div>
 
-        <DialogFooter>
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onClose}
-            disabled={mutation.isPending}
-          >
-            Hủy
-          </Button>
-          <Button type="submit" disabled={mutation.isPending}>
-            {mutation.isPending ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                Đang tạo...
-              </>
-            ) : (
-              'Tạo vai trò'
-            )}
-          </Button>
-        </DialogFooter>
-      </form>
-    </>
+      <SheetFooter>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={onClose}
+          disabled={mutation.isPending}
+        >
+          Hủy
+        </Button>
+        <Button type="submit" disabled={mutation.isPending}>
+          {mutation.isPending ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              Đang tạo...
+            </>
+          ) : (
+            'Tạo vai trò'
+          )}
+        </Button>
+      </SheetFooter>
+    </form>
   );
 }
 
@@ -235,19 +235,19 @@ function EditRoleForm({
   });
 
   return (
-    <>
-      <DialogHeader>
-        <DialogTitle>Chỉnh sửa vai trò</DialogTitle>
-        <DialogDescription>
+    <form
+      onSubmit={form.handleSubmit((values) => mutation.mutate(values))}
+      className="flex flex-col flex-1 min-h-0"
+    >
+      <SheetHeader>
+        <SheetTitle>Chỉnh sửa vai trò</SheetTitle>
+        <SheetDescription>
           Mã vai trò không thể thay đổi sau khi tạo. Bạn có thể chỉnh tên hiển
           thị và mô tả.
-        </DialogDescription>
-      </DialogHeader>
+        </SheetDescription>
+      </SheetHeader>
 
-      <form
-        onSubmit={form.handleSubmit((values) => mutation.mutate(values))}
-        className="space-y-4"
-      >
+      <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
         <div className="space-y-1.5">
           <Label htmlFor="role-code-edit">Mã vai trò</Label>
           <Input
@@ -291,28 +291,28 @@ function EditRoleForm({
             </p>
           ) : null}
         </div>
+      </div>
 
-        <DialogFooter>
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onClose}
-            disabled={mutation.isPending}
-          >
-            Hủy
-          </Button>
-          <Button type="submit" disabled={mutation.isPending}>
-            {mutation.isPending ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                Đang lưu...
-              </>
-            ) : (
-              'Lưu thay đổi'
-            )}
-          </Button>
-        </DialogFooter>
-      </form>
-    </>
+      <SheetFooter>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={onClose}
+          disabled={mutation.isPending}
+        >
+          Hủy
+        </Button>
+        <Button type="submit" disabled={mutation.isPending}>
+          {mutation.isPending ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              Đang lưu...
+            </>
+          ) : (
+            'Lưu thay đổi'
+          )}
+        </Button>
+      </SheetFooter>
+    </form>
   );
 }

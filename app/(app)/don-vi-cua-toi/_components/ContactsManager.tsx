@@ -27,13 +27,13 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { ConfirmDialog } from '@/components/shared/ConfirmDialog';
 import {
   ORG_PROFILE_CONTACT_ROLE_LABELS,
@@ -305,16 +305,16 @@ function ContactDialog({
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <form onSubmit={handleSubmit}>
-          <DialogHeader>
-            <DialogTitle>{initial ? 'Chỉnh sửa đầu mối' : 'Thêm đầu mối liên hệ'}</DialogTitle>
-            <DialogDescription>
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent side="right" size="md" className="flex flex-col p-0">
+        <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
+          <SheetHeader>
+            <SheetTitle>{initial ? 'Chỉnh sửa đầu mối' : 'Thêm đầu mối liên hệ'}</SheetTitle>
+            <SheetDescription>
               Vui lòng cung cấp đầy đủ thông tin để Ban quản lý có thể liên hệ khi cần.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-3 py-4">
+            </SheetDescription>
+          </SheetHeader>
+          <div className="flex-1 overflow-y-auto px-6 py-5 grid gap-3">
             <div className="grid gap-1.5">
               <Label htmlFor="contact-name">
                 Họ và tên <span className="text-red-600">*</span>
@@ -391,7 +391,7 @@ function ContactDialog({
               {errors.phone ? <p className="text-xs text-red-600">{errors.phone}</p> : null}
             </div>
           </div>
-          <DialogFooter>
+          <SheetFooter>
             <Button
               type="button"
               variant="outline"
@@ -403,10 +403,10 @@ function ContactDialog({
             <Button type="submit" disabled={submitting}>
               {submitting ? 'Đang lưu...' : initial ? 'Cập nhật' : 'Thêm'}
             </Button>
-          </DialogFooter>
+          </SheetFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 }
 

@@ -9,13 +9,13 @@ import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 
@@ -84,17 +84,17 @@ export function RejectDialog({
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-lg">
-        <form onSubmit={handleSubmit}>
-          <DialogHeader>
-            <DialogTitle>Từ chối hồ sơ và yêu cầu bổ sung</DialogTitle>
-            <DialogDescription>
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent side="right" size="lg" className="flex flex-col p-0">
+        <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
+          <SheetHeader>
+            <SheetTitle>Từ chối hồ sơ và yêu cầu bổ sung</SheetTitle>
+            <SheetDescription>
               Vui lòng nêu rõ lý do để đơn vị <strong>{organizationName}</strong> có thể bổ sung hồ sơ và gửi lại.
               Đơn vị sẽ nhận được thông báo kèm nội dung này.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-2 py-4">
+            </SheetDescription>
+          </SheetHeader>
+          <div className="flex-1 overflow-y-auto px-6 py-5 grid gap-2">
             <Label htmlFor="reject-reason">
               Lý do từ chối <span className="text-red-600">*</span>
             </Label>
@@ -124,7 +124,7 @@ export function RejectDialog({
               {error ? <span className="text-red-600">{error}</span> : null}
             </div>
           </div>
-          <DialogFooter>
+          <SheetFooter>
             <Button
               type="button"
               variant="outline"
@@ -147,10 +147,10 @@ export function RejectDialog({
                 'Xác nhận từ chối'
               )}
             </Button>
-          </DialogFooter>
+          </SheetFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 }
 

@@ -25,13 +25,13 @@ import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { Label } from '@/components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Textarea } from '@/components/ui/textarea';
@@ -144,17 +144,22 @@ export function ExtendCycleDialog({
   }, []);
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-lg">
-        <DialogHeader>
-          <DialogTitle>Mở lại để gia hạn chu kỳ</DialogTitle>
-          <DialogDescription>
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent side="right" size="lg" className="flex flex-col p-0">
+        <SheetHeader>
+          <SheetTitle>Mở lại để gia hạn chu kỳ</SheetTitle>
+          <SheetDescription>
             Sau khi gia hạn, đơn vị chủ trì có thể nộp đề án trở lại đến ngày
             hạn mới. Lý do gia hạn sẽ được ghi vào nhật ký truy cập của chu kỳ.
-          </DialogDescription>
-        </DialogHeader>
+          </SheetDescription>
+        </SheetHeader>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col flex-1 min-h-0"
+          noValidate
+        >
+          <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
           {/* Reason textarea */}
           <div className="space-y-2">
             <div className="flex items-baseline justify-between">
@@ -244,7 +249,8 @@ export function ExtendCycleDialog({
             ) : null}
           </div>
 
-          <DialogFooter>
+          </div>
+          <SheetFooter>
             <Button
               type="button"
               variant="outline"
@@ -266,10 +272,10 @@ export function ExtendCycleDialog({
                 'Xác nhận gia hạn'
               )}
             </Button>
-          </DialogFooter>
+          </SheetFooter>
         </form>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 }
 

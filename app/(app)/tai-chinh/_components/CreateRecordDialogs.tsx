@@ -13,13 +13,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import {
   Select,
   SelectContent,
@@ -151,20 +151,20 @@ function CreateRecordDialog({
   }
 
   return (
-    <Dialog open={!!type} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent className="sm:max-w-lg">
+    <Sheet open={!!type} onOpenChange={(o) => !o && onClose()}>
+      <SheetContent side="right" size="lg" className="flex flex-col p-0">
         {type ? (
           <>
-            <DialogHeader>
-              <DialogTitle>
+            <SheetHeader>
+              <SheetTitle>
                 Tạo hồ sơ {FINANCIAL_TYPE_LABELS[type].toLowerCase()}
-              </DialogTitle>
-              <DialogDescription>
+              </SheetTitle>
+              <SheetDescription>
                 {FINANCIAL_TYPE_DESCRIPTIONS[type]}
-              </DialogDescription>
-            </DialogHeader>
+              </SheetDescription>
+            </SheetHeader>
 
-            <div className="space-y-4 py-2">
+            <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
               <div>
                 <Label htmlFor="fin-project">Đề án</Label>
                 <Select
@@ -232,7 +232,7 @@ function CreateRecordDialog({
               </div>
             </div>
 
-            <DialogFooter>
+            <SheetFooter>
               <Button variant="outline" onClick={onClose} disabled={busy}>
                 Hủy
               </Button>
@@ -240,10 +240,10 @@ function CreateRecordDialog({
                 <Plus className="mr-1 h-4 w-4" aria-hidden="true" />
                 Tạo hồ sơ
               </Button>
-            </DialogFooter>
+            </SheetFooter>
           </>
         ) : null}
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 }

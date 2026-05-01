@@ -7,13 +7,13 @@ import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -67,16 +67,16 @@ export function CreateCouncilButton() {
         <PlusCircle className="mr-1.5 h-4 w-4" aria-hidden="true" />
         Tạo hội đồng mới
       </Button>
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Tạo hội đồng thẩm định mới</DialogTitle>
-            <DialogDescription>
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetContent side="right" size="md" className="flex flex-col p-0">
+          <SheetHeader>
+            <SheetTitle>Tạo hội đồng thẩm định mới</SheetTitle>
+            <SheetDescription>
               Khởi tạo hội đồng cho chu kỳ chương trình hiện tại. Bạn có thể
               thêm thành viên + phân công đề án ở bước sau.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 py-2">
+            </SheetDescription>
+          </SheetHeader>
+          <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
             <div className="space-y-2">
               <Label htmlFor="council-name">Tên hội đồng</Label>
               <Input
@@ -104,7 +104,7 @@ export function CreateCouncilButton() {
               </Select>
             </div>
           </div>
-          <DialogFooter>
+          <SheetFooter>
             <Button
               variant="outline"
               onClick={() => setOpen(false)}
@@ -125,9 +125,9 @@ export function CreateCouncilButton() {
                 'Tạo hội đồng'
               )}
             </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
     </>
   );
 }
