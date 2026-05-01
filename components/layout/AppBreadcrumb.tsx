@@ -29,14 +29,14 @@ export function AppBreadcrumb() {
             <Fragment key={item.href}>
               <BreadcrumbItem>
                 {isLast ? (
-                  <BreadcrumbPage className="text-sm font-semibold text-slate-900">
+                  <BreadcrumbPage className="text-base font-semibold text-primary">
                     {item.label}
                   </BreadcrumbPage>
                 ) : (
                   <BreadcrumbLink asChild>
                     <Link
                       href={item.href}
-                      className="text-sm text-slate-600 hover:text-blue-700"
+                      className="text-base font-medium text-slate-600 hover:text-primary transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -45,7 +45,7 @@ export function AppBreadcrumb() {
               </BreadcrumbItem>
               {!isLast && (
                 <BreadcrumbSeparator>
-                  <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+                  <ChevronRight className="h-4 w-4 text-slate-400" />
                 </BreadcrumbSeparator>
               )}
             </Fragment>
