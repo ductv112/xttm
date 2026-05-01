@@ -1,6 +1,7 @@
 'use client';
 
 // ConsulateContactDialog — Phase 8 Plan 08-01 Task 3.
+// Converted to Sheet (right drawer) for richer form layout (Phase post-POC UI overhaul).
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
@@ -8,13 +9,13 @@ import { Globe, Save } from 'lucide-react';
 import { toast } from 'sonner';
 
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -80,106 +81,108 @@ export function ConsulateContactDialog({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <Globe className="h-5 w-5 text-blue-600" aria-hidden="true" />
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent side="right" size="xl" className="p-0">
+        <SheetHeader>
+          <SheetTitle className="flex items-center gap-2 text-base">
+            <Globe className="h-5 w-5 text-primary" aria-hidden="true" />
             Xác nhận liên hệ Thương vụ ĐSQ
-          </DialogTitle>
-          <DialogDescription>
+          </SheetTitle>
+          <SheetDescription>
             Ghi nhận thông tin đã liên hệ với Thương vụ Việt Nam tại nước sở
             tại trước sự kiện ít nhất 30 ngày (theo Điều 12 NĐ 28/2018/NĐ-CP).
-          </DialogDescription>
-        </DialogHeader>
+          </SheetDescription>
+        </SheetHeader>
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <div className="sm:col-span-2">
-            <Label htmlFor="country">Quốc gia / Thị trường *</Label>
-            <Input
-              id="country"
-              value={form.countryName}
-              onChange={(e) =>
-                setForm((s) => ({ ...s, countryName: e.target.value }))
-              }
-              placeholder="VD: Hàn Quốc, Nhật Bản, UAE..."
-              className="mt-1"
-            />
-          </div>
-          <div>
-            <Label htmlFor="contactName">Họ tên người liên hệ *</Label>
-            <Input
-              id="contactName"
-              value={form.contactName}
-              onChange={(e) =>
-                setForm((s) => ({ ...s, contactName: e.target.value }))
-              }
-              className="mt-1"
-            />
-          </div>
-          <div>
-            <Label htmlFor="contactTitle">Chức vụ</Label>
-            <Input
-              id="contactTitle"
-              value={form.contactTitle}
-              onChange={(e) =>
-                setForm((s) => ({ ...s, contactTitle: e.target.value }))
-              }
-              placeholder="Tham tán thương mại, Tùy viên..."
-              className="mt-1"
-            />
-          </div>
-          <div>
-            <Label htmlFor="contactPhone">Số điện thoại</Label>
-            <Input
-              id="contactPhone"
-              value={form.contactPhone}
-              onChange={(e) =>
-                setForm((s) => ({ ...s, contactPhone: e.target.value }))
-              }
-              className="mt-1"
-            />
-          </div>
-          <div>
-            <Label htmlFor="contactEmail">Email</Label>
-            <Input
-              id="contactEmail"
-              type="email"
-              value={form.contactEmail}
-              onChange={(e) =>
-                setForm((s) => ({ ...s, contactEmail: e.target.value }))
-              }
-              className="mt-1"
-            />
-          </div>
-          <div className="sm:col-span-2">
-            <Label htmlFor="contactDate">Ngày liên hệ *</Label>
-            <Input
-              id="contactDate"
-              type="date"
-              value={form.contactDate}
-              onChange={(e) =>
-                setForm((s) => ({ ...s, contactDate: e.target.value }))
-              }
-              className="mt-1"
-            />
-          </div>
-          <div className="sm:col-span-2">
-            <Label htmlFor="note">Ghi chú nội dung trao đổi</Label>
-            <Textarea
-              id="note"
-              value={form.note}
-              onChange={(e) =>
-                setForm((s) => ({ ...s, note: e.target.value }))
-              }
-              rows={4}
-              placeholder="Mô tả ngắn gọn nội dung đã trao đổi với Thương vụ ĐSQ..."
-              className="mt-1"
-            />
+        <div className="flex-1 overflow-y-auto px-6 py-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="sm:col-span-2">
+              <Label htmlFor="country">Quốc gia / Thị trường *</Label>
+              <Input
+                id="country"
+                value={form.countryName}
+                onChange={(e) =>
+                  setForm((s) => ({ ...s, countryName: e.target.value }))
+                }
+                placeholder="VD: Hàn Quốc, Nhật Bản, UAE..."
+                className="mt-1"
+              />
+            </div>
+            <div>
+              <Label htmlFor="contactName">Họ tên người liên hệ *</Label>
+              <Input
+                id="contactName"
+                value={form.contactName}
+                onChange={(e) =>
+                  setForm((s) => ({ ...s, contactName: e.target.value }))
+                }
+                className="mt-1"
+              />
+            </div>
+            <div>
+              <Label htmlFor="contactTitle">Chức vụ</Label>
+              <Input
+                id="contactTitle"
+                value={form.contactTitle}
+                onChange={(e) =>
+                  setForm((s) => ({ ...s, contactTitle: e.target.value }))
+                }
+                placeholder="Tham tán thương mại, Tùy viên..."
+                className="mt-1"
+              />
+            </div>
+            <div>
+              <Label htmlFor="contactPhone">Số điện thoại</Label>
+              <Input
+                id="contactPhone"
+                value={form.contactPhone}
+                onChange={(e) =>
+                  setForm((s) => ({ ...s, contactPhone: e.target.value }))
+                }
+                className="mt-1"
+              />
+            </div>
+            <div>
+              <Label htmlFor="contactEmail">Email</Label>
+              <Input
+                id="contactEmail"
+                type="email"
+                value={form.contactEmail}
+                onChange={(e) =>
+                  setForm((s) => ({ ...s, contactEmail: e.target.value }))
+                }
+                className="mt-1"
+              />
+            </div>
+            <div className="sm:col-span-2">
+              <Label htmlFor="contactDate">Ngày liên hệ *</Label>
+              <Input
+                id="contactDate"
+                type="date"
+                value={form.contactDate}
+                onChange={(e) =>
+                  setForm((s) => ({ ...s, contactDate: e.target.value }))
+                }
+                className="mt-1"
+              />
+            </div>
+            <div className="sm:col-span-2">
+              <Label htmlFor="note">Ghi chú nội dung trao đổi</Label>
+              <Textarea
+                id="note"
+                value={form.note}
+                onChange={(e) =>
+                  setForm((s) => ({ ...s, note: e.target.value }))
+                }
+                rows={4}
+                placeholder="Mô tả ngắn gọn nội dung đã trao đổi với Thương vụ ĐSQ..."
+                className="mt-1"
+              />
+            </div>
           </div>
         </div>
 
-        <DialogFooter>
+        <SheetFooter>
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}
@@ -191,8 +194,8 @@ export function ConsulateContactDialog({
             <Save className="mr-1.5 h-4 w-4" aria-hidden="true" />
             {pending ? 'Đang lưu...' : 'Lưu thông tin liên hệ'}
           </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 }

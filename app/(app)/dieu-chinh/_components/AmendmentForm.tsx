@@ -8,13 +8,13 @@ import { AlertTriangle, Pencil, Send } from 'lucide-react';
 import { toast } from 'sonner';
 
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -144,20 +144,20 @@ export function AmendmentForm({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <Pencil className="h-5 w-5 text-blue-600" aria-hidden="true" />
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent side="right" size="xl" className="p-0">
+        <SheetHeader>
+          <SheetTitle className="flex items-center gap-2 text-base">
+            <Pencil className="h-5 w-5 text-primary" aria-hidden="true" />
             Đề nghị điều chỉnh đề án
-          </DialogTitle>
-          <DialogDescription>
+          </SheetTitle>
+          <SheetDescription>
             Đề án: <strong>{projectName}</strong>. Theo Điều 13 NĐ 28/2018/NĐ-CP,
             các điều chỉnh sẽ được phân loại tự động theo mức độ ảnh hưởng.
-          </DialogDescription>
-        </DialogHeader>
+          </SheetDescription>
+        </SheetHeader>
 
-        <div className="space-y-4">
+        <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
           <div>
             <Label htmlFor="type">Loại điều chỉnh *</Label>
             <Select
@@ -280,7 +280,7 @@ export function AmendmentForm({
           </div>
         </div>
 
-        <DialogFooter>
+        <SheetFooter>
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}
@@ -292,9 +292,9 @@ export function AmendmentForm({
             <Send className="mr-1.5 h-4 w-4" aria-hidden="true" />
             {pending ? 'Đang gửi...' : 'Gửi yêu cầu điều chỉnh'}
           </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 }
 
