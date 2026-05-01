@@ -319,6 +319,54 @@ model ProjectCouncilAssignment {
   @@index([projectId])
 }
 
+// Phase 7-02 (Approval) — Tờ trình BQL gửi Bộ phê duyệt.
+// projectIdsJson: JSON array of selected project ids (sorted by aggregate score desc).
+// contentHtml: Tiptap rich text body của tờ trình (auto-fill từ template DocumentTemplate.code='TO_TRINH').
+// status: DRAFT (đang soạn) | SUBMITTED_TO_BO (đã gửi cho Bộ).
+model SubmissionDraft {
+  id              String    @id @default(cuid())
+  programCycleId  String
+  councilId       String? // có thể tổng hợp từ nhiều council
+  draftNumber     String? // Số tờ trình (vd 12/TTr-XTTM)
+  draftedAt       DateTime  @default(now())
+  draftedById     String
+  projectIdsJson  String // JSON array of project ids
+  contentHtml     String // Tiptap HTML
+  status          String    @default("DRAFT") // DRAFT | SUBMITTED_TO_BO
+  submittedToBoAt DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  decision ApprovalDecision?
+
+  @@index([programCycleId])
+  @@index([status])
+  @@index([draftedAt])
+}
+
+// Phase 7-02 (Approval) — Quyết định phê duyệt từ Bộ.
+// approvedItemsJson: JSON array of { projectId, approvedBudget, comments } cho mỗi đề án phê duyệt.
+// totalApprovedBudget: tổng kinh phí được duyệt (sum of approvedItems.approvedBudget).
+// 1:1 với SubmissionDraft (FK unique).
+model ApprovalDecision {
+  id                  String   @id @default(cuid())
+  submissionId        String   @unique
+  decisionNumber      String // Số quyết định (vd 1234/QĐ-BCT)
+  decisionDate        DateTime
+  signedByName        String
+  signedByTitle       String
+  approvedItemsJson   String // JSON: [{projectId, approvedBudget, comments?}]
+  totalApprovedBudget Float
+  scanFileUrl         String? // optional: bản scan QĐ
+  notes               String?
+  createdAt           DateTime @default(now())
+  createdById         String?
+
+  submission SubmissionDraft @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+
+  @@index([decisionDate])
+}
+
 model ScoreSheet {
   id                 String    @id @default(cuid())
   councilId          String? // null khi kind=PRELIMINARY (chấm điểm sơ bộ trước khi lập hội đồng)
