@@ -15,7 +15,9 @@
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "prisma studio",
     "db:reset": "prisma db push --force-reset && npm run db:seed",
-    "db:validate": "tsx scripts/validate-seed.mts"
+    "db:validate": "tsx scripts/validate-seed.mts",
+    "demo": "next build && next start",
+    "demo:fresh": "npm run db:reset && npm run build && npm run start"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
