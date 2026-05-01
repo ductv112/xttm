@@ -149,14 +149,14 @@
 
 ### Phê duyệt (APPROVE) — Phase M3 — HERO
 
-- [ ] **APPROVE-01**: Ban quản lý lập danh sách đề án trình duyệt từ kết quả thẩm định
-- [ ] **APPROVE-02**: Ban quản lý lập tờ trình từ template với nội dung tự động điền + chỉnh sửa được
-- [ ] **APPROVE-03**: Ban quản lý xuất tờ trình PDF (font Be Vietnam Pro, layout chuẩn công văn nhà nước với Quốc hiệu, "Nơi nhận", "Lưu: VT")
-- [ ] **APPROVE-04**: Ban quản lý nhập quyết định phê duyệt (số quyết định, ngày ký, người ký, danh sách đề án + kinh phí được duyệt)
-- [ ] **APPROVE-05**: Hệ thống cảnh báo nếu kinh phí phê duyệt cao hơn kinh phí đăng ký (tooltip + warning icon)
-- [ ] **APPROVE-06**: Ban quản lý xuất quyết định phê duyệt PDF (chuẩn công văn)
-- [ ] **APPROVE-07**: Ban quản lý gửi thông báo kết quả cho đơn vị chủ trì (composer email với template, cho phép sửa nội dung)
-- [ ] **APPROVE-08**: Đơn vị chủ trì nhận thông báo kết quả phê duyệt và xem chi tiết quyết định
+- [x] **APPROVE-01**: Ban quản lý lập danh sách đề án trình duyệt từ kết quả thẩm định
+- [x] **APPROVE-02**: Ban quản lý lập tờ trình từ template với nội dung tự động điền + chỉnh sửa được
+- [x] **APPROVE-03**: Ban quản lý xuất tờ trình PDF (font Be Vietnam Pro, layout chuẩn công văn nhà nước với Quốc hiệu, "Nơi nhận", "Lưu: VT")
+- [x] **APPROVE-04**: Ban quản lý nhập quyết định phê duyệt (số quyết định, ngày ký, người ký, danh sách đề án + kinh phí được duyệt)
+- [x] **APPROVE-05**: Hệ thống cảnh báo nếu kinh phí phê duyệt cao hơn kinh phí đăng ký (tooltip + warning icon)
+- [x] **APPROVE-06**: Ban quản lý xuất quyết định phê duyệt PDF (chuẩn công văn)
+- [x] **APPROVE-07**: Ban quản lý gửi thông báo kết quả cho đơn vị chủ trì (composer email với template, cho phép sửa nội dung)
+- [x] **APPROVE-08**: Đơn vị chủ trì nhận thông báo kết quả phê duyệt và xem chi tiết quyết định
 
 ### Quản lý Hợp đồng (CONTRACT) — Phase M4
 
@@ -431,14 +431,14 @@ Explicit exclusions cho prototype POC này.
 | COUNCIL-14 | Phase 7 (M3 Thẩm định HERO) | Complete |
 | COUNCIL-15 | Phase 7 (M3 Thẩm định HERO) | Complete |
 | COUNCIL-16 | Phase 7 (M3 Thẩm định HERO) | Complete |
-| APPROVE-01 | Phase 7 (M3 Phê duyệt HERO) | Pending |
-| APPROVE-02 | Phase 7 (M3 Phê duyệt HERO) | Pending |
-| APPROVE-03 | Phase 7 (M3 Phê duyệt HERO) | Pending |
-| APPROVE-04 | Phase 7 (M3 Phê duyệt HERO) | Pending |
-| APPROVE-05 | Phase 7 (M3 Phê duyệt HERO) | Pending |
-| APPROVE-06 | Phase 7 (M3 Phê duyệt HERO) | Pending |
-| APPROVE-07 | Phase 7 (M3 Phê duyệt HERO) | Pending |
-| APPROVE-08 | Phase 7 (M3 Phê duyệt HERO) | Pending |
+| APPROVE-01 | Phase 7 (M3 Phê duyệt HERO) | Complete |
+| APPROVE-02 | Phase 7 (M3 Phê duyệt HERO) | Complete |
+| APPROVE-03 | Phase 7 (M3 Phê duyệt HERO) | Complete |
+| APPROVE-04 | Phase 7 (M3 Phê duyệt HERO) | Complete |
+| APPROVE-05 | Phase 7 (M3 Phê duyệt HERO) | Complete |
+| APPROVE-06 | Phase 7 (M3 Phê duyệt HERO) | Complete |
+| APPROVE-07 | Phase 7 (M3 Phê duyệt HERO) | Complete |
+| APPROVE-08 | Phase 7 (M3 Phê duyệt HERO) | Complete |
 | CONTRACT-01 | Phase 8 (M4 Hợp đồng) | Pending |
 | CONTRACT-02 | Phase 8 (M4 Hợp đồng) | Pending |
 | CONTRACT-03 | Phase 8 (M4 Hợp đồng) | Pending |

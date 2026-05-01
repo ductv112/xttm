@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed Phase 7 Plan 01 — ready for Plan 07-02 approval
-last_updated: "2026-05-01T00:18:17.602Z"
+status: verifying
+stopped_at: Completed Phase 7 — HERO flow demo end-to-end (M0→M3)
+last_updated: "2026-05-01T00:34:42.408Z"
 last_activity: 2026-05-01
 progress:
   total_phases: 11
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 28
-  completed_plans: 27
-  percent: 96
+  completed_plans: 28
+  percent: 100
 ---
 
 # Project State
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 
 Phase: 7 (M3 Thẩm định & Phê duyệt (HERO)) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-05-01
 
 Progress: [░░░░░░░░░░] 0%
@@ -84,6 +84,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 05-m2.3-khai-báo-nộp-đề-án P03 | 25m | 3 tasks | 18 files |
 | Phase 06-m2.4-tiếp-nhận-kiểm-tra P01 | 47m | 6 tasks | 30 files |
 | Phase 07-m3-thẩm-định-phê-duyệt P01 | 25m | 5 tasks | 34 files |
+| Phase 07-m3-thẩm-định-phê-duyệt P02 | 14m | 3 tasks | 17 files |
 
 ## Accumulated Context
 
@@ -185,6 +186,11 @@ Recent decisions affecting current work:
 - [Phase 07-m3-thẩm-định-phê-duyệt]: Plan 07-01: COI normalization — same ScoreSheet với conflictOfInterest=true flag (totalScore=0, scoresJson=null), không tạo riêng model; aggregate filter excludes COI
 - [Phase 07-m3-thẩm-định-phê-duyệt]: Plan 07-01 [Rule 1]: 'use server' module export-async-only constraint forces moving COUNCIL_MEMBER_ROLES + LABELS to sibling member-types.ts (pattern: pure constants in -types.ts module siblings)
 - [Phase 07-m3-thẩm-định-phê-duyệt]: Plan 07-01: Split sidebar paths /hoi-dong (BANQL/ADMIN/LANHDAO) vs /tham-dinh (HOIDONG/ADMIN) — same RBAC resource (tham-dinh) nhưng 2 path để menu role-clarity
+- [Phase 07-m3-thẩm-định-phê-duyệt]: Plan 07-02: SubmissionDraft.projectIdsJson lưu JSON array (no junction table) — preserves order + simple read; FK validate at write time
+- [Phase 07-m3-thẩm-định-phê-duyệt]: Plan 07-02: ApprovalDecision 1:1 với SubmissionDraft via @unique submissionId — preserves audit, không duplicate decision per submission
+- [Phase 07-m3-thẩm-định-phê-duyệt]: Plan 07-02: saveDecision atomic prisma.transaction wraps create ApprovalDecision + N project transitions (EVALUATING → APPROVED|REJECTED_FINAL) trong cùng tx — prevents partial state
+- [Phase 07-m3-thẩm-định-phê-duyệt]: Plan 07-02 [Rule 1 React Hooks]: useMemo declarations PHẢI trước conditional null-check return — pattern cho client components có thể render null body sau hooks
+- [Phase 07-m3-thẩm-định-phê-duyệt]: Plan 07-02: SubmissionTabsShell defaultValue logic chuyển tab theo state (DRAFT→draft, SUBMITTED→decision, has decision→notify) — UX flow tự nhiên without polling
 
 ### Pending Todos
 
@@ -199,6 +205,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-05-01T00:18:01.428Z
-Stopped at: Completed Phase 7 Plan 01 — ready for Plan 07-02 approval
+Last session: 2026-05-01T00:34:28.001Z
+Stopped at: Completed Phase 7 — HERO flow demo end-to-end (M0→M3)
 Resume file: None
