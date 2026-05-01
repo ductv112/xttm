@@ -16,7 +16,7 @@
 - [x] **Phase 4: M2.2 Hồ sơ Đơn vị Chủ trì** - Đăng ký tổ chức + năng lực + đầu mối liên hệ + xác nhận hồ sơ (completed 2026-04-30)
 - [x] **Phase 5: M2.3 Khai báo & Nộp Đề án (HERO)** - Multi-step form 6 bước + autosave + sao chép đề án cũ + đề án 2 năm + xuất PDF chuẩn công văn (completed 2026-04-30)
 - [x] **Phase 6: M2.4 Tiếp nhận & Kiểm tra hồ sơ** - BQL tiếp nhận + drag-drop phân công + checklist kiểm tra + trả bổ sung + chấm điểm sơ bộ với weighted scoring (completed 2026-04-30)
-- [ ] **Phase 7: M3 Thẩm định & Phê duyệt (HERO)** - Hội đồng thẩm định + side-by-side scoring + COI checkbox + tổng hợp real-time + tờ trình PDF + quyết định phê duyệt
+- [x] **Phase 7: M3 Thẩm định & Phê duyệt (HERO)** - Hội đồng thẩm định + side-by-side scoring + COI checkbox + tổng hợp real-time + tờ trình PDF + quyết định phê duyệt (completed 2026-05-01)
 - [ ] **Phase 8: M4 Hợp đồng, Triển khai & Điều chỉnh** - Sinh HĐ auto số + cảnh báo 60 ngày + kế hoạch triển khai + cảnh báo thương vụ 30 ngày + điều chỉnh đề án Điều 13 NĐ 28 với side-by-side diff
 - [ ] **Phase 9: M5 Báo cáo, Nghiệm thu, Tài chính** - Báo cáo kết quả + biên bản nghiệm thu PDF + thanh lý hợp đồng + tạm ứng/thanh toán/quyết toán
 - [ ] **Phase 10: M6 Dashboard & Cảnh báo (HERO Lãnh đạo)** - Overview cards + 4 widget SLA + drill-down 3 click + Recharts + thống kê + inbox thông báo + xuất Excel/PDF
@@ -211,7 +211,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 4. M2.2 Hồ sơ Đơn vị Chủ trì | 2/2 | Complete    | 2026-04-30 |
 | 5. M2.3 Khai báo & Nộp Đề án (HERO) | 3/3 | Complete    | 2026-04-30 |
 | 6. M2.4 Tiếp nhận & Kiểm tra hồ sơ | 1/1 | Complete    | 2026-04-30 |
-| 7. M3 Thẩm định & Phê duyệt (HERO) | 0/TBD | Not started | - |
+| 7. M3 Thẩm định & Phê duyệt (HERO) | 2/2 | Complete    | 2026-05-01 |
 | 8. M4 Hợp đồng, Triển khai & Điều chỉnh | 0/TBD | Not started | - |
 | 9. M5 Báo cáo, Nghiệm thu, Tài chính | 0/TBD | Not started | - |
 | 10. M6 Dashboard & Cảnh báo (HERO Lãnh đạo) | 0/TBD | Not started | - |
