@@ -160,38 +160,38 @@
 
 ### Quản lý Hợp đồng (CONTRACT) — Phase M4
 
-- [ ] **CONTRACT-01**: Ban quản lý sinh hợp đồng từ đề án đã phê duyệt với auto-generate số HĐ format "XTTM/YYYY/NNN"
-- [ ] **CONTRACT-02**: Ban quản lý chỉnh sửa thông tin hợp đồng theo bản ký thực tế (điều khoản, số liệu)
-- [ ] **CONTRACT-03**: Ban quản lý upload bản scan hợp đồng đã ký
-- [ ] **CONTRACT-04**: Ban quản lý theo dõi trạng thái hợp đồng (DRAFT / SIGNED / IN_PROGRESS / COMPLETED / LIQUIDATED)
-- [ ] **CONTRACT-05**: Tra cứu danh sách hợp đồng với filter (năm, đơn vị, trạng thái, khoảng kinh phí)
-- [ ] **CONTRACT-06**: Hệ thống cảnh báo chậm ký hợp đồng (60 ngày sau quyết định phê duyệt) — gửi notification + email
-- [ ] **CONTRACT-07**: Tổng hợp danh sách hợp đồng quá hạn ký với drill-down
+- [x] **CONTRACT-01**: Ban quản lý sinh hợp đồng từ đề án đã phê duyệt với auto-generate số HĐ format "XTTM/YYYY/NNN"
+- [x] **CONTRACT-02**: Ban quản lý chỉnh sửa thông tin hợp đồng theo bản ký thực tế (điều khoản, số liệu)
+- [x] **CONTRACT-03**: Ban quản lý upload bản scan hợp đồng đã ký
+- [x] **CONTRACT-04**: Ban quản lý theo dõi trạng thái hợp đồng (DRAFT / SIGNED / IN_PROGRESS / COMPLETED / LIQUIDATED)
+- [x] **CONTRACT-05**: Tra cứu danh sách hợp đồng với filter (năm, đơn vị, trạng thái, khoảng kinh phí)
+- [x] **CONTRACT-06**: Hệ thống cảnh báo chậm ký hợp đồng (60 ngày sau quyết định phê duyệt) — gửi notification + email
+- [x] **CONTRACT-07**: Tổng hợp danh sách hợp đồng quá hạn ký với drill-down
 
 ### Triển khai Đề án (IMPL) — Phase M4
 
-- [ ] **IMPL-01**: Đơn vị chủ trì khai báo kế hoạch triển khai chi tiết sau khi ký HĐ (mục tiêu, nội dung, hoạt động chính)
-- [ ] **IMPL-02**: Đơn vị chủ trì khai báo các mốc công việc (timeline với due date)
-- [ ] **IMPL-03**: Đơn vị chủ trì khai báo nhân sự thực hiện
-- [ ] **IMPL-04**: Đơn vị chủ trì khai báo lịch trình thực hiện (thời gian, địa điểm)
-- [ ] **IMPL-05**: Đơn vị chủ trì cập nhật trạng thái triển khai (% hoàn thành, ghi chú)
-- [ ] **IMPL-06**: Đơn vị chủ trì cập nhật kết quả từng hạng mục
-- [ ] **IMPL-07**: Đơn vị chủ trì đính kèm minh chứng thực hiện (ảnh, tài liệu, chứng từ)
-- [ ] **IMPL-08**: Ban quản lý theo dõi tiến độ tổng thể (% theo mốc, simple horizontal timeline)
-- [ ] **IMPL-09**: Hệ thống cảnh báo chậm tiến độ khi tới hạn mốc chưa hoàn thành
-- [ ] **IMPL-10**: Hệ thống gửi cảnh báo liên hệ thương vụ/đại sứ quán 30 ngày trước sự kiện quốc tế
-- [ ] **IMPL-11**: Đơn vị chủ trì xác nhận đã liên hệ thương vụ với thông tin liên hệ
-- [ ] **IMPL-12**: Ban quản lý tổng hợp đề án quốc tế chưa hoàn thành nghĩa vụ ngoại giao
+- [x] **IMPL-01**: Đơn vị chủ trì khai báo kế hoạch triển khai chi tiết sau khi ký HĐ (mục tiêu, nội dung, hoạt động chính)
+- [x] **IMPL-02**: Đơn vị chủ trì khai báo các mốc công việc (timeline với due date)
+- [x] **IMPL-03**: Đơn vị chủ trì khai báo nhân sự thực hiện
+- [x] **IMPL-04**: Đơn vị chủ trì khai báo lịch trình thực hiện (thời gian, địa điểm)
+- [x] **IMPL-05**: Đơn vị chủ trì cập nhật trạng thái triển khai (% hoàn thành, ghi chú)
+- [x] **IMPL-06**: Đơn vị chủ trì cập nhật kết quả từng hạng mục
+- [x] **IMPL-07**: Đơn vị chủ trì đính kèm minh chứng thực hiện (ảnh, tài liệu, chứng từ)
+- [x] **IMPL-08**: Ban quản lý theo dõi tiến độ tổng thể (% theo mốc, simple horizontal timeline)
+- [x] **IMPL-09**: Hệ thống cảnh báo chậm tiến độ khi tới hạn mốc chưa hoàn thành
+- [x] **IMPL-10**: Hệ thống gửi cảnh báo liên hệ thương vụ/đại sứ quán 30 ngày trước sự kiện quốc tế
+- [x] **IMPL-11**: Đơn vị chủ trì xác nhận đã liên hệ thương vụ với thông tin liên hệ
+- [x] **IMPL-12**: Ban quản lý tổng hợp đề án quốc tế chưa hoàn thành nghĩa vụ ngoại giao
 
 ### Điều chỉnh Đề án (AMEND) — Phase M4
 
-- [ ] **AMEND-01**: Đơn vị chủ trì tạo đề nghị điều chỉnh đề án (chọn loại điều chỉnh: thời gian / địa điểm / tên đơn vị / tên đề án / mục tiêu / nội dung / dự toán / thị trường)
-- [ ] **AMEND-02**: Hệ thống tự suy luận `is_critical` theo Điều 13 NĐ 28 (thay đổi nhỏ vs trọng yếu) và route đúng workflow
-- [ ] **AMEND-03**: Ban quản lý kiểm tra thông tin đề án điều chỉnh
-- [ ] **AMEND-04**: Thay đổi nhỏ → Ban quản lý phê duyệt nội bộ → ban hành quyết định điều chỉnh
-- [ ] **AMEND-05**: Thay đổi trọng yếu → chuyển hồ sơ về quy trình thẩm định lại
-- [ ] **AMEND-06**: Side-by-side diff view phiên bản cũ vs mới (highlight thay đổi)
-- [ ] **AMEND-07**: Ban quản lý xuất quyết định điều chỉnh PDF
+- [x] **AMEND-01**: Đơn vị chủ trì tạo đề nghị điều chỉnh đề án (chọn loại điều chỉnh: thời gian / địa điểm / tên đơn vị / tên đề án / mục tiêu / nội dung / dự toán / thị trường)
+- [x] **AMEND-02**: Hệ thống tự suy luận `is_critical` theo Điều 13 NĐ 28 (thay đổi nhỏ vs trọng yếu) và route đúng workflow
+- [x] **AMEND-03**: Ban quản lý kiểm tra thông tin đề án điều chỉnh
+- [x] **AMEND-04**: Thay đổi nhỏ → Ban quản lý phê duyệt nội bộ → ban hành quyết định điều chỉnh
+- [x] **AMEND-05**: Thay đổi trọng yếu → chuyển hồ sơ về quy trình thẩm định lại
+- [x] **AMEND-06**: Side-by-side diff view phiên bản cũ vs mới (highlight thay đổi)
+- [x] **AMEND-07**: Ban quản lý xuất quyết định điều chỉnh PDF
 
 ### Báo cáo Kết quả (REPORT) — Phase M5
 
@@ -439,32 +439,32 @@ Explicit exclusions cho prototype POC này.
 | APPROVE-06 | Phase 7 (M3 Phê duyệt HERO) | Complete |
 | APPROVE-07 | Phase 7 (M3 Phê duyệt HERO) | Complete |
 | APPROVE-08 | Phase 7 (M3 Phê duyệt HERO) | Complete |
-| CONTRACT-01 | Phase 8 (M4 Hợp đồng) | Pending |
-| CONTRACT-02 | Phase 8 (M4 Hợp đồng) | Pending |
-| CONTRACT-03 | Phase 8 (M4 Hợp đồng) | Pending |
-| CONTRACT-04 | Phase 8 (M4 Hợp đồng) | Pending |
-| CONTRACT-05 | Phase 8 (M4 Hợp đồng) | Pending |
-| CONTRACT-06 | Phase 8 (M4 Hợp đồng) | Pending |
-| CONTRACT-07 | Phase 8 (M4 Hợp đồng) | Pending |
-| IMPL-01 | Phase 8 (M4 Triển khai) | Pending |
-| IMPL-02 | Phase 8 (M4 Triển khai) | Pending |
-| IMPL-03 | Phase 8 (M4 Triển khai) | Pending |
-| IMPL-04 | Phase 8 (M4 Triển khai) | Pending |
-| IMPL-05 | Phase 8 (M4 Triển khai) | Pending |
-| IMPL-06 | Phase 8 (M4 Triển khai) | Pending |
-| IMPL-07 | Phase 8 (M4 Triển khai) | Pending |
-| IMPL-08 | Phase 8 (M4 Triển khai) | Pending |
-| IMPL-09 | Phase 8 (M4 Triển khai) | Pending |
-| IMPL-10 | Phase 8 (M4 Triển khai) | Pending |
-| IMPL-11 | Phase 8 (M4 Triển khai) | Pending |
-| IMPL-12 | Phase 8 (M4 Triển khai) | Pending |
-| AMEND-01 | Phase 8 (M4 Điều chỉnh) | Pending |
-| AMEND-02 | Phase 8 (M4 Điều chỉnh) | Pending |
-| AMEND-03 | Phase 8 (M4 Điều chỉnh) | Pending |
-| AMEND-04 | Phase 8 (M4 Điều chỉnh) | Pending |
-| AMEND-05 | Phase 8 (M4 Điều chỉnh) | Pending |
-| AMEND-06 | Phase 8 (M4 Điều chỉnh) | Pending |
-| AMEND-07 | Phase 8 (M4 Điều chỉnh) | Pending |
+| CONTRACT-01 | Phase 8 (M4 Hợp đồng) | Complete |
+| CONTRACT-02 | Phase 8 (M4 Hợp đồng) | Complete |
+| CONTRACT-03 | Phase 8 (M4 Hợp đồng) | Complete |
+| CONTRACT-04 | Phase 8 (M4 Hợp đồng) | Complete |
+| CONTRACT-05 | Phase 8 (M4 Hợp đồng) | Complete |
+| CONTRACT-06 | Phase 8 (M4 Hợp đồng) | Complete |
+| CONTRACT-07 | Phase 8 (M4 Hợp đồng) | Complete |
+| IMPL-01 | Phase 8 (M4 Triển khai) | Complete |
+| IMPL-02 | Phase 8 (M4 Triển khai) | Complete |
+| IMPL-03 | Phase 8 (M4 Triển khai) | Complete |
+| IMPL-04 | Phase 8 (M4 Triển khai) | Complete |
+| IMPL-05 | Phase 8 (M4 Triển khai) | Complete |
+| IMPL-06 | Phase 8 (M4 Triển khai) | Complete |
+| IMPL-07 | Phase 8 (M4 Triển khai) | Complete |
+| IMPL-08 | Phase 8 (M4 Triển khai) | Complete |
+| IMPL-09 | Phase 8 (M4 Triển khai) | Complete |
+| IMPL-10 | Phase 8 (M4 Triển khai) | Complete |
+| IMPL-11 | Phase 8 (M4 Triển khai) | Complete |
+| IMPL-12 | Phase 8 (M4 Triển khai) | Complete |
+| AMEND-01 | Phase 8 (M4 Điều chỉnh) | Complete |
+| AMEND-02 | Phase 8 (M4 Điều chỉnh) | Complete |
+| AMEND-03 | Phase 8 (M4 Điều chỉnh) | Complete |
+| AMEND-04 | Phase 8 (M4 Điều chỉnh) | Complete |
+| AMEND-05 | Phase 8 (M4 Điều chỉnh) | Complete |
+| AMEND-06 | Phase 8 (M4 Điều chỉnh) | Complete |
+| AMEND-07 | Phase 8 (M4 Điều chỉnh) | Complete |
 | REPORT-01 | Phase 9 (M5 Báo cáo) | Pending |
 | REPORT-02 | Phase 9 (M5 Báo cáo) | Pending |
 | REPORT-03 | Phase 9 (M5 Báo cáo) | Pending |

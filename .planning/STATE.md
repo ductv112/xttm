@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Completed Phase 7 — HERO flow demo end-to-end (M0→M3)
-last_updated: "2026-05-01T00:36:24.434Z"
+stopped_at: Completed Phase 8 — M4 Hợp đồng + Triển khai + Điều chỉnh
+last_updated: "2026-05-01T02:04:53.805Z"
 last_activity: 2026-05-01
 progress:
   total_phases: 11
-  completed_phases: 7
-  total_plans: 28
-  completed_plans: 28
+  completed_phases: 8
+  total_plans: 29
+  completed_plans: 29
   percent: 100
 ---
 
@@ -21,12 +21,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-30)
 
 **Core value:** Demo end-to-end mượt và đẹp luồng "Vòng đời đề án" (M2-M3): từ Ban quản lý khởi tạo Chu kỳ Chương trình → Đơn vị chủ trì khai báo & nộp đề án → Tiếp nhận & kiểm tra → Hội đồng thẩm định chấm điểm → Ban quản lý lập tờ trình & nhập quyết định phê duyệt.
-**Current focus:** Phase 7 — M3 Thẩm định & Phê duyệt (HERO)
+**Current focus:** Phase 8 — M4 Hợp đồng + Triển khai + Điều chỉnh
 
 ## Current Position
 
-Phase: 8
-Plan: Not started
+Phase: 8 (M4 Hợp đồng + Triển khai + Điều chỉnh) — EXECUTING
+Plan: 1 of 1
 Status: Phase complete — ready for verification
 Last activity: 2026-05-01
 
@@ -86,6 +86,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 06-m2.4-tiếp-nhận-kiểm-tra P01 | 47m | 6 tasks | 30 files |
 | Phase 07-m3-thẩm-định-phê-duyệt P01 | 25m | 5 tasks | 34 files |
 | Phase 07-m3-thẩm-định-phê-duyệt P02 | 14m | 3 tasks | 17 files |
+| Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh P08-01-contract-impl-amend | 30min | 5 tasks | 34 files |
 
 ## Accumulated Context
 
@@ -192,6 +193,10 @@ Recent decisions affecting current work:
 - [Phase 07-m3-thẩm-định-phê-duyệt]: Plan 07-02: saveDecision atomic prisma.transaction wraps create ApprovalDecision + N project transitions (EVALUATING → APPROVED|REJECTED_FINAL) trong cùng tx — prevents partial state
 - [Phase 07-m3-thẩm-định-phê-duyệt]: Plan 07-02 [Rule 1 React Hooks]: useMemo declarations PHẢI trước conditional null-check return — pattern cho client components có thể render null body sau hooks
 - [Phase 07-m3-thẩm-định-phê-duyệt]: Plan 07-02: SubmissionTabsShell defaultValue logic chuyển tab theo state (DRAFT→draft, SUBMITTED→decision, has decision→notify) — UX flow tự nhiên without polling
+- [Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh]: Auto contract number XTTM/YYYY/NNN với atomic counter + retry on collision
+- [Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh]: Side-by-side diff CSS grid 2-col (no react-diff-view) per user instruction
+- [Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh]: isCritical hardcoded list theo Điều 13 NĐ 28 (4 trọng yếu / 5 nhỏ)
+- [Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh]: Pure types extracted lib/implementation.ts để bypass 'use server' async-only constraint
 
 ### Pending Todos
 
@@ -206,6 +211,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-05-01T00:34:28.001Z
-Stopped at: Completed Phase 7 — HERO flow demo end-to-end (M0→M3)
+Last session: 2026-05-01T02:04:44.777Z
+Stopped at: Completed Phase 8 — M4 Hợp đồng + Triển khai + Điều chỉnh
 Resume file: None
