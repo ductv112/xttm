@@ -195,29 +195,29 @@
 
 ### Báo cáo Kết quả (REPORT) — Phase M5
 
-- [ ] **REPORT-01**: Đơn vị chủ trì tạo báo cáo kết quả thực hiện sau khi kết thúc hoạt động
-- [ ] **REPORT-02**: Đơn vị chủ trì khai báo chỉ tiêu kết quả (định lượng + định tính theo form chuẩn)
-- [ ] **REPORT-03**: Đơn vị chủ trì upload tài liệu, hình ảnh, bằng chứng, danh sách doanh nghiệp tham gia
-- [ ] **REPORT-04**: Đơn vị chủ trì gửi báo cáo (chuyển → SUBMITTED)
-- [ ] **REPORT-05**: Ban quản lý xem xét, có thể trả lại báo cáo yêu cầu chỉnh sửa
-- [ ] **REPORT-06**: Đơn vị chủ trì chỉnh sửa và nộp lại báo cáo
-- [ ] **REPORT-07**: Hệ thống cảnh báo hạn nộp báo cáo (15 ngày sau hoạt động)
+- [x] **REPORT-01**: Đơn vị chủ trì tạo báo cáo kết quả thực hiện sau khi kết thúc hoạt động
+- [x] **REPORT-02**: Đơn vị chủ trì khai báo chỉ tiêu kết quả (định lượng + định tính theo form chuẩn)
+- [x] **REPORT-03**: Đơn vị chủ trì upload tài liệu, hình ảnh, bằng chứng, danh sách doanh nghiệp tham gia
+- [x] **REPORT-04**: Đơn vị chủ trì gửi báo cáo (chuyển → SUBMITTED)
+- [x] **REPORT-05**: Ban quản lý xem xét, có thể trả lại báo cáo yêu cầu chỉnh sửa
+- [x] **REPORT-06**: Đơn vị chủ trì chỉnh sửa và nộp lại báo cáo
+- [x] **REPORT-07**: Hệ thống cảnh báo hạn nộp báo cáo (15 ngày sau hoạt động)
 
 ### Nghiệm thu & Thanh lý (ACCEPT) — Phase M5
 
-- [ ] **ACCEPT-01**: Đơn vị chủ trì hoặc Ban quản lý tạo hồ sơ nghiệm thu khi đến giai đoạn
-- [ ] **ACCEPT-02**: Hệ thống sinh biên bản nghiệm thu theo mẫu (PDF, ký bên ngoài hệ thống)
-- [ ] **ACCEPT-03**: Ban quản lý tải về / in biên bản nghiệm thu
-- [ ] **ACCEPT-04**: Ban quản lý cập nhật kết quả nghiệm thu (đạt/không đạt + ghi chú)
-- [ ] **ACCEPT-05**: Tài chính/Ban quản lý tạo hồ sơ thanh lý hợp đồng (sau nghiệm thu)
-- [ ] **ACCEPT-06**: Hệ thống cập nhật trạng thái đề án CLOSED khi hoàn tất thanh lý
+- [x] **ACCEPT-01**: Đơn vị chủ trì hoặc Ban quản lý tạo hồ sơ nghiệm thu khi đến giai đoạn
+- [x] **ACCEPT-02**: Hệ thống sinh biên bản nghiệm thu theo mẫu (PDF, ký bên ngoài hệ thống)
+- [x] **ACCEPT-03**: Ban quản lý tải về / in biên bản nghiệm thu
+- [x] **ACCEPT-04**: Ban quản lý cập nhật kết quả nghiệm thu (đạt/không đạt + ghi chú)
+- [x] **ACCEPT-05**: Tài chính/Ban quản lý tạo hồ sơ thanh lý hợp đồng (sau nghiệm thu)
+- [x] **ACCEPT-06**: Hệ thống cập nhật trạng thái đề án CLOSED khi hoàn tất thanh lý
 
 ### Tài chính (FIN) — Phase M5
 
-- [ ] **FIN-01**: Tài chính/Ban quản lý tạo hồ sơ tạm ứng từ hợp đồng có hiệu lực
-- [ ] **FIN-02**: Tài chính/Ban quản lý tạo hồ sơ thanh toán
-- [ ] **FIN-03**: Tài chính/Ban quản lý tạo hồ sơ quyết toán cuối kỳ đề án
-- [ ] **FIN-04**: Tài chính cập nhật trạng thái xử lý hồ sơ tài chính (DRAFT / SUBMITTED / APPROVED / DISBURSED / SETTLED)
+- [x] **FIN-01**: Tài chính/Ban quản lý tạo hồ sơ tạm ứng từ hợp đồng có hiệu lực
+- [x] **FIN-02**: Tài chính/Ban quản lý tạo hồ sơ thanh toán
+- [x] **FIN-03**: Tài chính/Ban quản lý tạo hồ sơ quyết toán cuối kỳ đề án
+- [x] **FIN-04**: Tài chính cập nhật trạng thái xử lý hồ sơ tài chính (DRAFT / SUBMITTED / APPROVED / DISBURSED / SETTLED)
 
 ### Dashboard & Thống kê (DASH) — Phase M6
 
@@ -465,23 +465,23 @@ Explicit exclusions cho prototype POC này.
 | AMEND-05 | Phase 8 (M4 Điều chỉnh) | Complete |
 | AMEND-06 | Phase 8 (M4 Điều chỉnh) | Complete |
 | AMEND-07 | Phase 8 (M4 Điều chỉnh) | Complete |
-| REPORT-01 | Phase 9 (M5 Báo cáo) | Pending |
-| REPORT-02 | Phase 9 (M5 Báo cáo) | Pending |
-| REPORT-03 | Phase 9 (M5 Báo cáo) | Pending |
-| REPORT-04 | Phase 9 (M5 Báo cáo) | Pending |
-| REPORT-05 | Phase 9 (M5 Báo cáo) | Pending |
-| REPORT-06 | Phase 9 (M5 Báo cáo) | Pending |
-| REPORT-07 | Phase 9 (M5 Báo cáo) | Pending |
-| ACCEPT-01 | Phase 9 (M5 Nghiệm thu) | Pending |
-| ACCEPT-02 | Phase 9 (M5 Nghiệm thu) | Pending |
-| ACCEPT-03 | Phase 9 (M5 Nghiệm thu) | Pending |
-| ACCEPT-04 | Phase 9 (M5 Nghiệm thu) | Pending |
-| ACCEPT-05 | Phase 9 (M5 Nghiệm thu) | Pending |
-| ACCEPT-06 | Phase 9 (M5 Nghiệm thu) | Pending |
-| FIN-01 | Phase 9 (M5 Tài chính) | Pending |
-| FIN-02 | Phase 9 (M5 Tài chính) | Pending |
-| FIN-03 | Phase 9 (M5 Tài chính) | Pending |
-| FIN-04 | Phase 9 (M5 Tài chính) | Pending |
+| REPORT-01 | Phase 9 (M5 Báo cáo) | Complete |
+| REPORT-02 | Phase 9 (M5 Báo cáo) | Complete |
+| REPORT-03 | Phase 9 (M5 Báo cáo) | Complete |
+| REPORT-04 | Phase 9 (M5 Báo cáo) | Complete |
+| REPORT-05 | Phase 9 (M5 Báo cáo) | Complete |
+| REPORT-06 | Phase 9 (M5 Báo cáo) | Complete |
+| REPORT-07 | Phase 9 (M5 Báo cáo) | Complete |
+| ACCEPT-01 | Phase 9 (M5 Nghiệm thu) | Complete |
+| ACCEPT-02 | Phase 9 (M5 Nghiệm thu) | Complete |
+| ACCEPT-03 | Phase 9 (M5 Nghiệm thu) | Complete |
+| ACCEPT-04 | Phase 9 (M5 Nghiệm thu) | Complete |
+| ACCEPT-05 | Phase 9 (M5 Nghiệm thu) | Complete |
+| ACCEPT-06 | Phase 9 (M5 Nghiệm thu) | Complete |
+| FIN-01 | Phase 9 (M5 Tài chính) | Complete |
+| FIN-02 | Phase 9 (M5 Tài chính) | Complete |
+| FIN-03 | Phase 9 (M5 Tài chính) | Complete |
+| FIN-04 | Phase 9 (M5 Tài chính) | Complete |
 | DASH-01 | Phase 10 (M6 Dashboard HERO) | Pending |
 | DASH-02 | Phase 10 (M6 Dashboard HERO) | Pending |
 | DASH-03 | Phase 10 (M6 Dashboard HERO) | Pending |

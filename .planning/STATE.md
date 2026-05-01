@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Completed Phase 8 — M4 Hợp đồng + Triển khai + Điều chỉnh
-last_updated: "2026-05-01T02:06:27.203Z"
+stopped_at: Completed Phase 9 — M5 Báo cáo + Nghiệm thu + Tài chính
+last_updated: "2026-05-01T02:30:21.892Z"
 last_activity: 2026-05-01
 progress:
   total_phases: 11
-  completed_phases: 8
-  total_plans: 29
-  completed_plans: 29
+  completed_phases: 9
+  total_plans: 30
+  completed_plans: 30
   percent: 100
 ---
 
@@ -21,12 +21,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-30)
 
 **Core value:** Demo end-to-end mượt và đẹp luồng "Vòng đời đề án" (M2-M3): từ Ban quản lý khởi tạo Chu kỳ Chương trình → Đơn vị chủ trì khai báo & nộp đề án → Tiếp nhận & kiểm tra → Hội đồng thẩm định chấm điểm → Ban quản lý lập tờ trình & nhập quyết định phê duyệt.
-**Current focus:** Phase 8 — M4 Hợp đồng + Triển khai + Điều chỉnh
+**Current focus:** Phase 9 — M5 Báo cáo + Nghiệm thu + Tài chính
 
 ## Current Position
 
-Phase: 9
-Plan: Not started
+Phase: 9 (M5 Báo cáo + Nghiệm thu + Tài chính) — EXECUTING
+Plan: 1 of 1
 Status: Phase complete — ready for verification
 Last activity: 2026-05-01
 
@@ -88,6 +88,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 07-m3-thẩm-định-phê-duyệt P01 | 25m | 5 tasks | 34 files |
 | Phase 07-m3-thẩm-định-phê-duyệt P02 | 14m | 3 tasks | 17 files |
 | Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh P08-01-contract-impl-amend | 30min | 5 tasks | 34 files |
+| Phase 09-m5-báo-cáo-nghiệm-thu-tài-chính PP09-01-report-acceptance-finance | 19m | 4 tasks | 29 files |
 
 ## Accumulated Context
 
@@ -198,6 +199,8 @@ Recent decisions affecting current work:
 - [Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh]: Side-by-side diff CSS grid 2-col (no react-diff-view) per user instruction
 - [Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh]: isCritical hardcoded list theo Điều 13 NĐ 28 (4 trọng yếu / 5 nhỏ)
 - [Phase 08-m4-hợp-đồng-triển-khai-điều-chỉnh]: Pure types extracted lib/implementation.ts để bypass 'use server' async-only constraint
+- [Phase 09-m5-báo-cáo-nghiệm-thu-tài-chính]: Report ↔ AcceptanceRecord 1:1 (reportId @unique) — đơn giản hóa POC scope
+- [Phase 09-m5-báo-cáo-nghiệm-thu-tài-chính]: Financial state machine 5-state linear (DRAFT→SUBMITTED→APPROVED→DISBURSED→SETTLED), không rollback sau APPROVED
 
 ### Pending Todos
 
@@ -212,6 +215,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-05-01T02:04:44.777Z
-Stopped at: Completed Phase 8 — M4 Hợp đồng + Triển khai + Điều chỉnh
+Last session: 2026-05-01T02:30:18.639Z
+Stopped at: Completed Phase 9 — M5 Báo cáo + Nghiệm thu + Tài chính
 Resume file: None
