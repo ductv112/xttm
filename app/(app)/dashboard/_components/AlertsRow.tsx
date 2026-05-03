@@ -21,7 +21,7 @@ export function AlertsRow({ summary }: Props) {
       <AlertWidgetCard
         title="Sai lệch ngân sách"
         icon={TrendingUp}
-        tone="warning"
+        tone={summary.alertBudgetVariance.length > 0 ? 'warning' : 'success'}
         count={summary.alertBudgetVariance.length}
         items={summary.alertBudgetVariance.map((a) => ({
           code: a.code,
@@ -36,7 +36,7 @@ export function AlertsRow({ summary }: Props) {
       <AlertWidgetCard
         title="Chậm ký hợp đồng (>60 ngày)"
         icon={FileWarning}
-        tone="danger"
+        tone={summary.alertContractDelay.length > 0 ? 'danger' : 'success'}
         count={summary.alertContractDelay.length}
         items={summary.alertContractDelay.map((a) => ({
           code: a.code,
@@ -53,7 +53,7 @@ export function AlertsRow({ summary }: Props) {
       <AlertWidgetCard
         title="Báo cáo trễ hạn (>15 ngày)"
         icon={Clock}
-        tone="danger"
+        tone={summary.alertReportOverdue.length > 0 ? 'danger' : 'success'}
         count={summary.alertReportOverdue.length}
         items={summary.alertReportOverdue.map((a) => ({
           code: a.code,
@@ -70,7 +70,7 @@ export function AlertsRow({ summary }: Props) {
       <AlertWidgetCard
         title="Đề án quốc tế chưa liên hệ thương vụ"
         icon={Globe2}
-        tone="warning"
+        tone={summary.alertConsulate.length > 0 ? 'warning' : 'success'}
         count={summary.alertConsulate.length}
         items={summary.alertConsulate.map((a) => ({
           code: a.code,

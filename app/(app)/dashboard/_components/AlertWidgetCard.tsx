@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 
-type AlertTone = 'danger' | 'warning' | 'info';
+type AlertTone = 'danger' | 'warning' | 'info' | 'success';
 
 type AlertItem = {
   code: string;
@@ -61,6 +61,14 @@ const TONE_STYLES: Record<
     decor: 'text-blue-600',
     gradient: 'bg-gradient-to-br from-blue-50 via-sky-50 to-blue-200/60',
   },
+  success: {
+    border: 'border-l-emerald-500',
+    iconBg: 'bg-emerald-100',
+    iconColor: 'text-emerald-700',
+    badge: 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200',
+    decor: 'text-emerald-500',
+    gradient: 'bg-white',
+  },
 };
 
 export function AlertWidgetCard({
@@ -84,10 +92,11 @@ export function AlertWidgetCard({
     >
       <Icon
         className={cn(
-          'card-decorative-icon h-24 w-24',
+          'card-decorative-icon h-16 w-16',
           styles.decor,
         )}
         aria-hidden="true"
+        strokeWidth={1.5}
       />
 
       <div className="relative flex items-start justify-between gap-3">
@@ -105,7 +114,7 @@ export function AlertWidgetCard({
                 styles.badge,
               )}
             >
-              {count} cảnh báo
+              {count === 0 ? 'Không có cảnh báo' : `${count} cảnh báo`}
             </span>
           </div>
         </div>

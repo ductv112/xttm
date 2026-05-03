@@ -12,7 +12,10 @@ import { DashboardStatsRow } from './_components/DashboardStatsRow';
 import { AlertsRow } from './_components/AlertsRow';
 import { ChartByKind } from './_components/ChartByKind';
 import { ChartByBudgetStatus } from './_components/ChartByBudgetStatus';
-import { DashboardFilterBar } from './_components/DashboardFilterBar';
+import {
+  DashboardFilterBar,
+  DashboardYearFilter,
+} from './_components/DashboardFilterBar';
 
 export const metadata = { title: 'Trang chủ' };
 
@@ -64,6 +67,9 @@ export default async function DashboardPage({
           <p className="text-sm text-slate-600 mt-1">
             Bạn đang đăng nhập với vai trò {roleLine}
           </p>
+          <div className="mt-3">
+            <DashboardYearFilter years={years} currentYear={year} />
+          </div>
         </div>
         <DashboardFilterBar years={years} currentYear={year} />
       </div>

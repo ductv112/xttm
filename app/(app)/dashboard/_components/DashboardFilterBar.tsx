@@ -43,18 +43,9 @@ function triggerDownload(blob: Blob, filename: string) {
   URL.revokeObjectURL(url);
 }
 
-export function DashboardFilterBar({ years, currentYear }: Props) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
+export function DashboardFilterBar({ currentYear }: Props) {
   const [isExportingExcel, setIsExportingExcel] = React.useState(false);
   const [isExportingPdf, setIsExportingPdf] = React.useState(false);
-
-  const handleYearChange = (next: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('year', next);
-    router.push(`/dashboard?${params.toString()}`);
-  };
 
   const handleExportExcel = async () => {
     setIsExportingExcel(true);
@@ -90,54 +81,73 @@ export function DashboardFilterBar({ years, currentYear }: Props) {
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-3">
-      <div className="flex items-center gap-2">
-        <span className="text-sm text-slate-600">Năm:</span>
-        <Select
-          value={String(currentYear)}
-          onValueChange={handleYearChange}
-        >
-          <SelectTrigger className="w-[120px]">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {years.map((y) => (
-              <SelectItem key={y} value={String(y)}>
-                {y}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
+    <div className="flex items-center gap-2">
+      <Button
+        size="sm"
+        variant="outline"
+        onClick={handleExportExcel}
+        disabled={isExportingExcel || isExportingPdf}
+        className="border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800"
+      >
+        {isExportingExcel ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          <FileSpreadsheet className="h-4 w-4" />
+        )}
+        Xuất Excel
+      </Button>
+      <Button
+        size="sm"
+        variant="outline"
+        onClick={handleExportPdf}
+        disabled={isExportingExcel || isExportingPdf}
+        className="border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-800"
+      >
+        {isExportingPdf ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          <FileText className="h-4 w-4" />
+        )}
+        Xuất PDF
+      </Button>
+    </div>
+  );
+}
 
-      <div className="flex items-center gap-2 ml-auto">
-        <Button
-          size="sm"
-          onClick={handleExportExcel}
-          disabled={isExportingExcel || isExportingPdf}
-          className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm border-0"
-        >
-          {isExportingExcel ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <FileSpreadsheet className="h-4 w-4" />
-          )}
-          Xuất Excel
-        </Button>
-        <Button
-          size="sm"
-          onClick={handleExportPdf}
-          disabled={isExportingExcel || isExportingPdf}
-          className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm border-0"
-        >
-          {isExportingPdf ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <FileText className="h-4 w-4" />
-          )}
-          Xuất PDF
-        </Button>
-      </div>
+/**
+ * DashboardYearFilter — separate component for year selector, placed under
+ * the welcome header for better visibility per UI feedback.
+ */
+export function DashboardYearFilter({ years, currentYear }: Props) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleYearChange = (next: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('year', next);
+    router.push(`/dashboard?${params.toString()}`);
+  };
+
+  return (
+    <div className="inline-flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 py-2.5 shadow-sm">
+      <span className="text-sm font-medium text-slate-700">
+        Đang xem dữ liệu năm:
+      </span>
+      <Select
+        value={String(currentYear)}
+        onValueChange={handleYearChange}
+      >
+        <SelectTrigger className="w-[110px] border-slate-300 font-semibold text-slate-900">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          {years.map((y) => (
+            <SelectItem key={y} value={String(y)}>
+              {y}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 }

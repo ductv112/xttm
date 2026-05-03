@@ -99,10 +99,11 @@ export function StatCard({
       {Icon ? (
         <Icon
           className={cn(
-            'card-decorative-icon h-24 w-24',
+            'card-decorative-icon h-16 w-16',
             DECOR_TONE[tone],
           )}
           aria-hidden="true"
+          strokeWidth={1.5}
         />
       ) : null}
 
@@ -118,7 +119,9 @@ export function StatCard({
             {formattedValue}
           </p>
           {subtitle ? (
-            <p className="text-sm text-slate-500 mt-auto pt-2">{subtitle}</p>
+            <p className="text-sm font-medium text-slate-700 mt-auto pt-2 leading-relaxed">
+              {subtitle}
+            </p>
           ) : null}
           {trend ? (
             <div className={cn('flex items-center gap-1 mt-2', trendIconClass)}>

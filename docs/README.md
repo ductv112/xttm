@@ -14,14 +14,26 @@ docs/
     └── ...
 ```
 
-## ⏳ Trạng thái screenshots
+## ✅ Trạng thái screenshots
 
-**Chưa chụp** — đang trong giai đoạn user test + comment để chỉnh sửa UI/chức năng.
-Khi nào hệ thống ổn định thì sẽ:
-- **Phương án A**: Chụp tay 51 ảnh theo danh sách bên dưới
-- **Phương án B** (đề xuất): Build script Playwright auto-capture — login 8 tài khoản, navigate theo kịch bản, lưu PNG đúng tên file
+**Đã capture đầy đủ 52 ảnh** bằng script Playwright tự động:
 
-Các vị trí ảnh đã được tag sẵn trong `kich-ban-demo-pilot.md` (đường dẫn `./screenshots/<tên-file>.png`). Khi có ảnh thật, chỉ cần đặt vào `screenshots/` và regenerate docx.
+```bash
+# Yêu cầu dev server đang chạy ở localhost:3000
+npm run dev
+
+# Trong terminal khác, chạy capture
+npx tsx scripts/capture-screenshots.mts
+```
+
+Script ở [scripts/capture-screenshots.mts](../scripts/capture-screenshots.mts) sẽ:
+1. Mở Chromium headless 1920×1080
+2. Cho mỗi tài khoản trong 8 demo accounts: tạo fresh BrowserContext → login → chạy lần lượt các capture của tài khoản đó
+3. Lưu PNG vào `docs/screenshots/<id>.png` đúng tên file đã tag trong `kich-ban-demo-pilot.md`
+
+Re-run script bất kỳ lúc nào sau khi UI thay đổi để cập nhật ảnh. Sau đó regenerate docx (lệnh ở mục "Regenerate file Word" bên dưới).
+
+> ⚠️ Một số ảnh là page-level capture (best-effort). Nếu cần ảnh có form đã fill / dialog đã mở / state đặc biệt → chỉnh hàm `run` của entry tương ứng trong script, hoặc thay thủ công file PNG cụ thể.
 
 ## Quy trình cập nhật kịch bản
 
