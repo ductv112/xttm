@@ -234,6 +234,15 @@ const ALL_MENU_ITEMS: MenuItem[] = [
     group: 'TONG_QUAN',
   },
   {
+    href: '/dashboard-dieu-hanh',
+    label: 'Dashboard điều hành',
+    icon: 'gauge',
+    resource: 'dashboard',
+    section: 'NGHIEP_VU',
+    group: 'TONG_QUAN',
+    roleOnly: [ROLES.ADMIN, ROLES.BANQL, ROLES.LANHDAO],
+  },
+  {
     href: '/thong-bao',
     label: 'Thông báo',
     icon: 'bell',
